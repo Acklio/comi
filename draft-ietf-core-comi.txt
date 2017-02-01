@@ -679,7 +679,7 @@ Internet-Draft                    CoMI                     February 2017
    +-------+-----------------------------------------------------------+
    | Value | Description                                               |
    +-------+-----------------------------------------------------------+
-   | a     | All data nodes are reported| Defined as 'report-all' in   |
+   | a     | All data nodes are reported.  Defined as 'report-all' in  |
    |       | section 3.1 of [RFC6243].                                 |
    |       |                                                           |
    | t     | Data nodes set to the YANG default are not reported.      |
