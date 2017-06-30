@@ -5,12 +5,12 @@
 CoRE                                                     P. van der Stok
 Internet-Draft                                                consultant
 Intended status: Standards Track                              A. Bierman
-Expires: August 5, 2017                                        YumaWorks
+Expires: January 1, 2018                                       YumaWorks
                                                             M. Veillette
                                                  Trilliant Networks Inc.
                                                                 A. Pelov
                                                                   Acklio
-                                                       February 01, 2017
+                                                           June 30, 2017
 
 
                        CoAP Management Interface
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 5, 2017.
+   This Internet-Draft will expire on January 1, 2018.
 
 
 
 
 
-van der Stok, et al.     Expires August 5, 2017                 [Page 1]
+van der Stok, et al.     Expires January 1, 2018                [Page 1]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
 Copyright Notice
@@ -80,58 +80,66 @@ Table of Contents
    2.  CoMI Architecture . . . . . . . . . . . . . . . . . . . . . .   5
      2.1.  Major differences between RESTCONF and CoMI . . . . . . .   7
      2.2.  Compression of YANG identifiers . . . . . . . . . . . . .   7
-   3.  Example syntax  . . . . . . . . . . . . . . . . . . . . . . .   8
-   4.  CoAP Interface  . . . . . . . . . . . . . . . . . . . . . . .   8
-   5.  /c Function Set . . . . . . . . . . . . . . . . . . . . . . .   9
-     5.1.  Using the 'k' query parameter . . . . . . . . . . . . . .  10
-     5.2.  Data Retrieval  . . . . . . . . . . . . . . . . . . . . .  11
-       5.2.1.  Using the 'c' query parameter . . . . . . . . . . . .  12
-       5.2.2.  Using the 'd' query parameter . . . . . . . . . . . .  12
-       5.2.3.  GET . . . . . . . . . . . . . . . . . . . . . . . . .  13
-       5.2.4.  FETCH . . . . . . . . . . . . . . . . . . . . . . . .  15
-     5.3.  Data Editing  . . . . . . . . . . . . . . . . . . . . . .  16
-       5.3.1.  Data Ordering . . . . . . . . . . . . . . . . . . . .  16
-       5.3.2.  POST  . . . . . . . . . . . . . . . . . . . . . . . .  16
-       5.3.3.  PUT . . . . . . . . . . . . . . . . . . . . . . . . .  17
-       5.3.4.  iPATCH  . . . . . . . . . . . . . . . . . . . . . . .  18
-       5.3.5.  DELETE  . . . . . . . . . . . . . . . . . . . . . . .  19
-     5.4.  Full Data Store access  . . . . . . . . . . . . . . . . .  19
-       5.4.1.  Full Data Store examples  . . . . . . . . . . . . . .  20
-     5.5.  Notify functions  . . . . . . . . . . . . . . . . . . . .  21
-       5.5.1.  Notify Examples . . . . . . . . . . . . . . . . . . .  21
-     5.6.  RPC statements  . . . . . . . . . . . . . . . . . . . . .  22
-       5.6.1.  RPC Example . . . . . . . . . . . . . . . . . . . . .  23
-   6.  Access to MIB Data  . . . . . . . . . . . . . . . . . . . . .  23
-   7.  Use of Block  . . . . . . . . . . . . . . . . . . . . . . . .  25
-   8.  Resource Discovery  . . . . . . . . . . . . . . . . . . . . .  25
-   9.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  27
-   10. Security Considerations . . . . . . . . . . . . . . . . . . .  28
+     2.3.  Content-Formats . . . . . . . . . . . . . . . . . . . . .   8
+   3.  Example syntax  . . . . . . . . . . . . . . . . . . . . . . .  10
+   4.  CoAP Interface  . . . . . . . . . . . . . . . . . . . . . . .  10
+   5.  CoMI Collection Interface . . . . . . . . . . . . . . . . . .  11
+     5.1.  Comi specific errors  . . . . . . . . . . . . . . . . . .  12
+     5.2.  Using the 'k' query parameter . . . . . . . . . . . . . .  13
+     5.3.  Data Retrieval  . . . . . . . . . . . . . . . . . . . . .  14
+       5.3.1.  Using the 'c' query parameter . . . . . . . . . . . .  15
+       5.3.2.  Using the 'd' query parameter . . . . . . . . . . . .  15
+       5.3.3.  GET . . . . . . . . . . . . . . . . . . . . . . . . .  16
+       5.3.4.  FETCH . . . . . . . . . . . . . . . . . . . . . . . .  18
+     5.4.  Data Editing  . . . . . . . . . . . . . . . . . . . . . .  19
+       5.4.1.  Data Ordering . . . . . . . . . . . . . . . . . . . .  19
+       5.4.2.  POST  . . . . . . . . . . . . . . . . . . . . . . . .  19
+       5.4.3.  PUT . . . . . . . . . . . . . . . . . . . . . . . . .  20
+       5.4.4.  iPATCH  . . . . . . . . . . . . . . . . . . . . . . .  21
+       5.4.5.  DELETE  . . . . . . . . . . . . . . . . . . . . . . .  22
+     5.5.  Full Data Store access  . . . . . . . . . . . . . . . . .  23
+       5.5.1.  Full Data Store examples  . . . . . . . . . . . . . .  23
+     5.6.  Notify functions  . . . . . . . . . . . . . . . . . . . .  24
+       5.6.1.  Notify Examples . . . . . . . . . . . . . . . . . . .  25
+     5.7.  RPC statements  . . . . . . . . . . . . . . . . . . . . .  26
+       5.7.1.  RPC Example . . . . . . . . . . . . . . . . . . . . .  26
+   6.  Access to MIB Data  . . . . . . . . . . . . . . . . . . . . .  27
+   7.  Use of Block  . . . . . . . . . . . . . . . . . . . . . . . .  28
+   8.  Resource Discovery  . . . . . . . . . . . . . . . . . . . . .  29
 
 
 
-van der Stok, et al.     Expires August 5, 2017                 [Page 2]
+van der Stok, et al.     Expires January 1, 2018                [Page 2]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
-   11. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  29
-   12. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  29
-   13. Changelog . . . . . . . . . . . . . . . . . . . . . . . . . .  30
-   14. References  . . . . . . . . . . . . . . . . . . . . . . . . .  30
-     14.1.  Normative References . . . . . . . . . . . . . . . . . .  30
-     14.2.  Informative References . . . . . . . . . . . . . . . . .  31
-   Appendix A.  YANG example specifications  . . . . . . . . . . . .  33
-     A.1.  ietf-system . . . . . . . . . . . . . . . . . . . . . . .  33
-     A.2.  server list . . . . . . . . . . . . . . . . . . . . . . .  35
-     A.3.  interfaces  . . . . . . . . . . . . . . . . . . . . . . .  36
-     A.4.  Example-port  . . . . . . . . . . . . . . . . . . . . . .  36
-     A.5.  IP-MIB  . . . . . . . . . . . . . . . . . . . . . . . . .  37
-   Appendix B.  Comparison with LWM2M  . . . . . . . . . . . . . . .  39
-     B.1.  Introduction  . . . . . . . . . . . . . . . . . . . . . .  39
-     B.2.  Defining Management Resources . . . . . . . . . . . . . .  40
-     B.3.  Identifying Management Resources  . . . . . . . . . . . .  40
-     B.4.  Encoding of Management Resources  . . . . . . . . . . . .  41
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  41
+   9.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  30
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .  31
+   11. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
+     11.1.  coap considerations  . . . . . . . . . . . . . . . . . .  32
+     11.2.  Media types  . . . . . . . . . . . . . . . . . . . . . .  34
+       11.2.1.  application/yang-data+cbor . . . . . . . . . . . . .  34
+       11.2.2.  application/yang-value+cbor  . . . . . . . . . . . .  34
+       11.2.3.  application/yang-sid+cbor  . . . . . . . . . . . . .  34
+       11.2.4.  application/yang-patch+cbor  . . . . . . . . . . . .  34
+   12. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  34
+   13. Changelog . . . . . . . . . . . . . . . . . . . . . . . . . .  35
+   14. References  . . . . . . . . . . . . . . . . . . . . . . . . .  35
+     14.1.  Normative References . . . . . . . . . . . . . . . . . .  35
+     14.2.  Informative References . . . . . . . . . . . . . . . . .  36
+   Appendix A.  YANG example specifications  . . . . . . . . . . . .  38
+     A.1.  ietf-system . . . . . . . . . . . . . . . . . . . . . . .  39
+     A.2.  server list . . . . . . . . . . . . . . . . . . . . . . .  40
+     A.3.  interfaces  . . . . . . . . . . . . . . . . . . . . . . .  41
+     A.4.  Example-port  . . . . . . . . . . . . . . . . . . . . . .  42
+     A.5.  IP-MIB  . . . . . . . . . . . . . . . . . . . . . . . . .  43
+   Appendix B.  Comparison with LWM2M  . . . . . . . . . . . . . . .  45
+     B.1.  Introduction  . . . . . . . . . . . . . . . . . . . . . .  45
+     B.2.  Defining Management Resources . . . . . . . . . . . . . .  46
+     B.3.  Identifying Management Resources  . . . . . . . . . . . .  46
+     B.4.  Encoding of Management Resources  . . . . . . . . . . . .  47
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  47
 
 1.  Introduction
 
@@ -145,30 +153,29 @@ Internet-Draft                    CoMI                     February 2017
 
    This draft describes the CoAP Management Interface which uses CoAP
    methods to access structured data defined in YANG [RFC7950].  This
-   draft is complementary to the draft [I-D.ietf-netconf-restconf] which
-   describes a REST-like interface called RESTCONF, which uses HTTP
-   methods to access structured data defined in YANG.
+   draft is complementary to [RFC8040] which describes a REST-like
+   interface called RESTCONF, which uses HTTP methods to access
+   structured data defined in YANG.
 
    The use of standardized data sets, specified in a standardized
    language such as YANG, promotes interoperability between devices and
    applications from different manufacturers.  A large amount of
    Management Information Base (MIB) [mibreg] specifications already
    exists for monitoring purposes.  This data can be accessed in
+
+
+
+van der Stok, et al.     Expires January 1, 2018                [Page 3]
+
+Internet-Draft                    CoMI                         June 2017
+
+
    RESTCONF or CoMI if the server converts the SMIv2 modules to YANG,
    using the mapping rules defined in [RFC6643].
 
    CoMI and RESTCONF are intended to work in a stateless client-server
    fashion.  They use a single round-trip to complete a single editing
    transaction, where NETCONF needs up to 10 round trips.
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                 [Page 3]
-
-Internet-Draft                    CoMI                     February 2017
-
 
    To promote small packets, CoMI uses a YANG to CBOR mapping
    [I-D.ietf-core-yang-cbor] and numeric identifiers [I-D.ietf-core-sid]
@@ -190,25 +197,34 @@ Internet-Draft                    CoMI                     February 2017
    [RFC7950]: anydata, anyxml, container, data node, key, key leaf,
    leaf, leaf-list, and list.
 
-   The following terms are defined in RESTCONF protocol
-   [I-D.ietf-netconf-restconf]: data resource, datastore resource, edit
-   operation, query parameter, and target resource.
+   The following terms are defined in RESTCONF protocol [RFC8040]: data
+   resource, datastore resource, edit operation, query parameter, and
+   target resource.
 
    The following terms are defined in this document:
 
    data node instance:  An instance of a data node specified in a YANG
-      module present in the server.  The instance is stored in the
-      memory of the server.
+      module and stored in the server.
 
    Notification instance:  An instance of a schema node of type
       notification, specified in a YANG module present in the server.
       The instance is generated in the server at the occurrence of the
       corresponding event and appended to a stream.
 
-   YANG schema item identifier:  Numeric identifier which replaces the
-      name identifying a YANG item (see section 6.2 of [RFC7950])
-      (anydata, anyxml, data node, RPC, Action, Notification, Identity,
-      Module name, Submodule name, Feature).
+   YANG schema item identifier (SID):  Numeric identifier which replaces
+      the name identifying a YANG item (see section 6.2 of [RFC7950])
+      (anydata, anyxml, data node, RPC, action, notification, identity,
+      module name, submodule name, feature).
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018                [Page 4]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    list instance identifier:  Handle used to identify a YANG data node
       that is an instance of a YANG "list" specified with the values of
@@ -217,15 +233,6 @@ Internet-Draft                    CoMI                     February 2017
    single instance identifier:  Handle used to identify a specific data
       node which can be instantiated only once.  This includes data
       nodes defined at the root of a YANG module or submodule and data
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                 [Page 4]
-
-Internet-Draft                    CoMI                     February 2017
-
-
       nodes defined within a container.  This excludes data nodes
       defined within a list or any children of these data nodes.
 
@@ -233,18 +240,8 @@ Internet-Draft                    CoMI                     February 2017
       identifier.
 
    data node value:  Value assigned to a data node instance.  Data node
-      values are encoded based on the rules defined in section 4 of
-      [I-D.ietf-core-yang-cbor].
-
-   set of data node instances:  Represents the payload of CoAP methods
-      when a collection is sent or returned.  There are two
-      possibilities, dependent on Request context:
-
-      1.  CBOR array of pair(s) <instance identifier, data node value >
-
-      2.  CBOR map of pair(s) <instance identifier, data node value >
-
-      TODO: Reduce to one, if possible
+      values are serialized into the payload according to the rules
+      defined in section 4 of [I-D.ietf-core-yang-cbor].
 
    The following list contains the abbreviations used in this document.
 
@@ -277,9 +274,12 @@ Internet-Draft                    CoMI                     February 2017
 
 
 
-van der Stok, et al.     Expires August 5, 2017                 [Page 5]
+
+
+
+van der Stok, et al.     Expires January 1, 2018                [Page 5]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
    +--------------------------------------------------------------+
@@ -294,8 +294,8 @@ Internet-Draft                    CoMI                     February 2017
    client   \|/      [===========================]    \|/    Server
    +--------------------+                       +------------------+
    |                    |                       |                  |
-   | Request generation +--> CoAP request(3) -->| Request retrieval|
-   | answer retrieval   |<-- CoAP response(3)<--| answer generation|
+   | Request sending    |--> CoAP request(3) -->| Request reception|
+   | Response reception |<-- CoAP response(3)<--| Response sending |
    |       (4)          |                       |       (4)        |
    +--------------------+                       | +---------------+|
                                                 | | datastore (5) ||
@@ -322,20 +322,20 @@ Internet-Draft                    CoMI                     February 2017
       and "conceptual tables".  There is an algorithm to translate SMIv2
       specifications to YANG specifications.
 
-   (3) CoMI messages:  The CoMI client sends request messages to and
-      receives response messages from the CoMI server.
+   (3) CoAP request/response messages:  The CoMI client sends request
+      messages to and receives response messages from the CoMI server.
 
-   (4) Retrieval, generation:  The server and client parse the CoMI
-      request/response and identify the corresponding instances in the
-      datastore based on YANG specification.
-
-
+   (4) Sending, reception:  The server and client parse the CoMI
+      request/response payload and the server identifies the
+      corresponding instances in the datastore.
 
 
 
-van der Stok, et al.     Expires August 5, 2017                 [Page 6]
+
+
+van der Stok, et al.     Expires January 1, 2018                [Page 6]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
    (5) Datastore:  The store is composed of two parts: Operational state
@@ -351,74 +351,173 @@ Internet-Draft                    CoMI                     February 2017
 
 2.1.  Major differences between RESTCONF and CoMI
 
-   CoMI uses CoAP/UDP as transport protocol and CBOR as payload format
-   [I-D.ietf-core-yang-cbor].  RESTCONF uses HTTP/TCP as transport
-   protocol and JSON [RFC7159] or XML [XML] as payload formats.  CoMI
-   encodes YANG identifier strings as numbers, where RESTCONF does not.
+   CoMI is a RESTful protocol for small devices where saving bytes to
+   transport counts.  Contrary to RESTCONF, many design decisions are
+   motivated by the saving of bytes.  Consequently, CoMI is not a
+   RESTCONF over CoAP protocol, but differs more significantly from
+   RESTCONF.  Some major differences are cited below:
 
-   CoMI uses the methods FETCH and iPATCH, not used by RESTCONF.
-   RESTCONF uses the HTTP methods HEAD, and OPTIONS, which are not used
-   by CoMI.
+   o  CoMI uses CoAP/UDP as transport protocol and CBOR as payload
+      format [I-D.ietf-core-yang-cbor].  RESTCONF uses HTTP/TCP as
+      transport protocol and JSON [RFC7159] or XML [XML] as payload
+      formats.
 
-   CoMI servers cannot change the order of user-ordered data.  CoMI does
-   not support insert-mode (first, last, before, after) and insertion-
-   point (before, after) which are supported by RESTCONF.  Many CoAP
-   servers will not support date and time functions.  For that reason
-   CoMI does not support the start, stop options for events.
+   o  CoMI encodes YANG identifier strings as numbers, where RESTCONF
+      does not.
 
-   CoMI servers only implement the efficient "trim" mode for default
-   values.
+   o  CoMI uses the methods FETCH and iPATCH, not used by RESTCONF.
+      RESTCONF uses the HTTP methods HEAD, and OPTIONS, which are not
+      used by CoMI.
 
-   The CoMI servers do not support the following RESTCONF functionality:
+   o  CoMI servers cannot change the order of user-ordered data.  CoMI
+      does not support insert-mode (first, last, before, after) and
+      insertion-point (before, after) which are supported by RESTCONF.
 
-   o  The "fields" query parameter to query multiple instances.
+   o  CoMI and RESTCONF also differ in the handling of:
 
-   o  The 'filter' query that involves XML parsing, 'content', and
-      'depth', query parameters.
+      *  notifications.
+
+      *  default values.
 
 2.2.  Compression of YANG identifiers
 
-   In the YANG specification items are identified with a name string.
+   In the YANG specification, items are identified with a name string.
    In order to significantly reduce the size of identifiers used in
-   CoMI, numeric object identifiers are used instead of these strings.
-   The specific encoding of the object identifiers is not hard-wired in
-   the protocol.
+   CoMI, numeric object identifiers, SIDs, are used instead of these
+   strings.
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018                [Page 7]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    Examples of object identifier encoding formats are described in
    [I-D.ietf-core-sid].
 
+2.3.  Content-Formats
+
+   ComI uses Content-formats based on the YANG to CBOR mapping specified
+   in [I-D.ietf-core-yang-cbor].  The transported CBOR YANG document
+   contains data node instances or data node values.
+
+   A YANG data node instance is mapped to a CBOR (key, value) pair with
+   the key mapping specified in section 15.3.1 of [I-D.ietf-core-sid]
+   and the value mapping specified in section 4 of
+   [I-D.ietf-core-yang-cbor].  The key can be a SID or a CBOR array with
+   the structure [SID, key1, key2], where SID is a list identifier and
+   the keyx values specify the list instance.  Delta encoding is used to
+   further reduce the size of the SIDs.  Two types of encoding exists:
+   array- and map- delta encoding:
+
+   Map delta  -encoding is used for the SID values of the map.  The
+      delta value DEL of data node instance is equal to the SID value of
+      the node minus the SID value of the parent node: DEL_node =
+      SID_node - SID_parent.  The root parent is the SID of the
+      containing module, or the SID specified in the URI of the request.
+
+   Array delta  -encoding is used for the SID values of an array of data
+      node instances.  The delta value DEL_1 of the first array element
+      is equal to the SID value SID_1: DEL_1 = SID_1.  The nth delta
+      value DEL_n of the nth SID value, SID_n, in the array is given by
+      DEL_N = SID_n - SID_n-1.
+
+   The following Content-formats are used:
+
+   application/yang-data+cbor  represents a CBOR YANG document
+      containing a CBOR map of data node instances or a CBOR array of
+      data node instances.  The latter is used for notification data
+      nodes.
+
+   application/yang-value+cbor  represents a CBOR YANG document
+      containing one data node value or a CBOR array of data node
+      values.  The latter is used for list elements and FETCH response
+      payload.
+
+   application/yang-sid+cbor  represents a CBOR YANG document containing
+      an array of instance identifiers.
+
+   application/yang-patch+cbor  represents a CBOR YANG document
+      containing an array of data node instances with the following
+      semantics: for each data node instance, D, for which the instance
 
 
-van der Stok, et al.     Expires August 5, 2017                 [Page 7]
+
+van der Stok, et al.     Expires January 1, 2018                [Page 8]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
+
+
+      identifier is the same as for a data node instance, I, in the
+      targeted resource: the data node value of D replaces the data node
+      value of I.  When the data node value of D is null, the data node
+      instance I is removed.  When the targeted resource does not
+      contain a data node instance with the same instance identifier as
+      D, a new data node instance is created in the targeted resource
+      with the same instance identifier and data node value as D.
+
+   The allocation of Content-formats to method request- or response-
+   payloads is described in the table below:
+
+   +-------------------------+----------+------------------------------+
+   | Method+URI              | Req/Resp | Content-format               |
+   +-------------------------+----------+------------------------------+
+   | GET /c/instance-        | response | /application/yang-value+cbor |
+   | identifier              |          |                              |
+   |                         |          |                              |
+   | PUT /c/instance-        | request  | /application/yang-value+cbor |
+   | identifier              |          |                              |
+   |                         |          |                              |
+   | POST /c/instance-       | request  | /application/yang-value+cbor |
+   | identifier              |          |                              |
+   |                         |          |                              |
+   | DELETE /c/instance-     | n/a      |                              |
+   | identifier              |          |                              |
+   |                         |          |                              |
+   | GET /c                  | response | /application/yang-data+cbor  |
+   |                         |          |                              |
+   | PUT /c                  | request  | /application/yang-data+cbor  |
+   |                         |          |                              |
+   | POST /c                 | request  | /application/yang-data+cbor  |
+   |                         |          |                              |
+   | FETCH /c                | request  | /application/yang-sid+cbor   |
+   |                         |          |                              |
+   | FETCH /c                | response | /application/yang-value+cbor |
+   |                         |          |                              |
+   | iPATCH /c               | request  | /application/yang-patch+cbor |
+   |                         |          |                              |
+   | GET /s (notification)   | response | /application/yang-data+cbor  |
+   |                         |          |                              |
+   | POST /c/rpc-identifier  | request  | /application/yang-value+cbor |
+   |                         |          |                              |
+   | POST /c/rpc-identifier  | response | /application/yang-value+cbor |
+   +-------------------------+----------+------------------------------+
+
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018                [Page 9]
+
+Internet-Draft                    CoMI                         June 2017
 
 
 3.  Example syntax
 
    This section presents the notation used for the examples.  The YANG
-   specifications that are used throughout this document are shown in
-   Appendix A.  The example specifications are taken over from existing
-   modules and annotated with SIDs.  The values of the SIDs are taken
-   over from [yang-cbor].
+   modules that are used throughout this document are shown in
+   Appendix A.  The example modules are copied from existing modules and
+   annotated with SIDs.  The values of the SIDs are taken over from
+   [yang-cbor].
 
    CBOR is used to encode CoMI request- and response- payloads.  The
    CBOR syntax of the YANG payloads is specified in [RFC7049].  The
    payload examples are notated in Diagnostic notation (defined in
    section 6 of [RFC7049]) that can be automatically converted to CBOR.
-
-   A YANG (item identifier, item value) pair is mapped to a CBOR (key,
-   value) pair.  The YANG item value is encoded as specified in
-   [I-D.ietf-core-yang-cbor].  The YANG item identifier can be a SID
-   (single node identifier) or a CBOR array with the structure [SID,
-   key1, key2] (list node identifier), where SID is a list identifier
-   and the key values specify the list instance.  The YANG item value
-   can be any CBOR major type.
-
-   Delta encoding is used for the SIDs.  The notation +n is used when
-   the SID has the value PREC+n where PREC is the SID of the parent
-   container, or PREC is the SID of the preceding entity in a CBOR
-   array.
 
    In all examples the resource path in the URI is expressed as a SID,
    represented as a base64 number.  SIDs in the payload are represented
@@ -426,84 +525,97 @@ Internet-Draft                    CoMI                     February 2017
 
 4.  CoAP Interface
 
-   In CoAP a group of links can constitute a Function Set.
-
-   TODO: what will happen to term Function Set ?
+   In CoAP a set of links can constitute a Collection Interface.
 
    The format of the links is specified in [I-D.ietf-core-interfaces].
-   This note specifies a Management Function Set. CoMI end-points that
-   implement the CoMI management protocol support at least one
-   discoverable management resource of resource type (rt): core.c, with
-   path: /c, where c is short-hand for CoMI.  The path root /c is
-   recommended but not compulsory (see Section 8).
+   This note specifies a Management Collection Interface.  CoMI end-
+   points that implement the CoMI management protocol, support at least
+   one discoverable management resource of resource type (rt): core.c,
+   with example path: /c, where c is short-hand for CoMI.  The path /c
+   is recommended but not compulsory (see Section 8).
 
-   The path prefix /c has resources accessible with the following three
+   Three CoMI resources are accessible with the following three example
    paths:
 
    /c:  YANG-based data with path "/c" and using CBOR content encoding
       format.  This path represents a datastore resource which contains
-
-
-
-van der Stok, et al.     Expires August 5, 2017                 [Page 8]
-
-Internet-Draft                    CoMI                     February 2017
-
-
       YANG data resources as its descendant nodes.  The data nodes are
       identified with their SID with format /c/SID.
 
-   /c/mod.uri:  URI identifying the location of the server module
-      information, with path "/c/mod.uri" and CBOR content format.  This
+   /mod.uri:  URI identifying the location of the server module
+      information, with path "/mod.uri" and CBOR content format.  This
       YANG data is encoded with plain identifier strings, not YANG
       encoded values.  An Entity Tag MUST be maintained for this
       resource by the server, which MUST be changed to a new value when
       the set of YANG modules in use by the server changes.
 
-   /c/s:  String identifying the default stream resource to which YANG
+   /s:  String identifying the default stream resource to which YANG
       notification instances are appended.  Notification support is
       optional, so this resource will not exist if the server does not
       support any notifications.
 
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 10]
+
+Internet-Draft                    CoMI                         June 2017
+
+
    The mapping of YANG data node instances to CoMI resources is as
-   follows: A YANG module describes a set of data trees composed of YANG
-   data nodes.  Every data node of the YANG modules loaded in the CoMI
-   server represents a resource of the datastore container (e.g.
-   /c/<sid>
+   follows: A YANG module describes a set of trees composed of YANG
+   nodes.  Every data node of the YANG modules loaded in the CoMI server
+   represents a resource of the datastore container (e.g. /c/<sid>
 
    When multiple instances of a list node exist, instance selection is
-   possible as described in Section 5.2.4 and Section 5.2.3.1.
+   possible as described in Section 5.2, Section 5.3.4, and
+   Section 5.3.3.1.
 
-   TODO; reference to fetch and patch content formats.
-
-   The profile of the management function set, with IF=core.c, is shown
-   in the table below, following the guidelines of
+   The description of the management collection interface, with
+   if=core.c, is shown in the table below, following the guidelines of
    [I-D.ietf-core-interfaces]:
 
-    +----------------+------------+---------------+------------------+
-    | name           | path       | rt            | Data Type        |
-    +----------------+------------+---------------+------------------+
-    | Management     | /c         | core.c        | n/a              |
-    |                |            |               |                  |
-    | Data           | /c         | core.c.data   | application/cbor |
-    |                |            |               |                  |
-    | Module Set URI | /c/mod.uri | core.c.moduri | application/cbor |
-    |                |            |               |                  |
-    | Events         | /c/s       | core.c.stream | application/cbor |
-    +----------------+------------+---------------+------------------+
+   +-----------+---------+---------------+-----------------------------+
+   | name      | path    | rt            | Data Type                   |
+   +-----------+---------+---------------+-----------------------------+
+   | Managemen | /c      | core.c        | n/a                         |
+   | t         |         |               |                             |
+   |           |         |               |                             |
+   | Data      | /c/sid  | core.c.data   | application/yang-data+cbor  |
+   |           |         |               |                             |
+   |           |         |               | application/yang-value+cbor |
+   |           |         |               |                             |
+   | Module    | /mod.ur | core.c.moduri | application/cbor            |
+   | Set URI   | i       |               |                             |
+   |           |         |               |                             |
+   | Events    | /s      | core.c.stream | application/yang-data+cbor  |
+   +-----------+---------+---------------+-----------------------------+
 
-5.  /c Function Set
+   The path values are example values.  On discovery the server makes
+   the actual path values known for these four resource types.
 
-   The /c Function Set provides a CoAP interface to manage YANG servers.
+5.  CoMI Collection Interface
+
+   The CoMI Collection Interface provides a CoAP interface to manage
+   YANG servers.
 
    The methods used by CoMI are:
 
 
 
 
-van der Stok, et al.     Expires August 5, 2017                 [Page 9]
+
+
+
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 11]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
    +-----------+-------------------------------------------------------+
@@ -535,12 +647,53 @@ Internet-Draft                    CoMI                     February 2017
    This parameter is not used for FETCH and iPATCH, because their
    request payloads support list instance selection.
 
-5.1.  Using the 'k' query parameter
+5.1.  Comi specific errors
+
+   Next to the standard NETCONF server errors specified in section 8 of
+   [RFC7950], this specification specifies errors which are specific to
+   the CoMI syntax.  The relation between CoAP error and CoMI error are
+   specified in Section 9.  The syntax specific CoMI errors are:
+
+   Unknown-SID  When the URI or the request payload specifies a SID that
+      is unknown to the server.  (Non existent in the loaded YANG
+      modules)
+
+   Invalid-value  When the value in the request payload does not
+      correspond with a bit pattern allowed by the type of the value
+      associated with the SID.
+
+   Access-denied  When the client is not authenticated or not authorized
+      to execute the specified action.
+
+   Bad-SID  When a SID occurs more than once in the request payload.
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 12]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+   Wrong-SID  When the request payload specifies a SID that is not an
+      attribute of the enveloping container or list.
+
+   Missing-SID  When the payload of the Request misses a SID specified
+      by the enveloping container or list.
+
+5.2.  Using the 'k' query parameter
 
    The "k" (key) parameter specifies the instance of a list node.  The
    SID in the URI is followed by the (?k=key1, key2,..).  Where SID
    identifies a list node, and key1, key2 are the values of the key
-   leaves that specify an instance of the list.
+   leaves that specify an instance of the list.  List can have multiple
+   keys, and lists can be part of lists.  The order of key value
+   generation are given recursively by:
+
+   o  For a given list, all keys of the list in the order specified in
+      the YANG module
+
+   o  For a given list, generate key values for all embedded lists in
+      the order of specification in the YANG module.
 
    Key values are encoded using the rules defined in the following
    table:
@@ -557,9 +710,24 @@ Internet-Draft                    CoMI                     February 2017
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 10]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 13]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
    +-----------------------+------------------+------------------------+
@@ -572,8 +740,8 @@ Internet-Draft                    CoMI                     February 2017
    | int8, int16,int32,    | CBOR negative    | base64 (CBOR           |
    | int64                 | integer          | representation)        |
    |                       |                  |                        |
-   | decimal64             | CBOR decimal     | base64  (CBOR          |
-   |                       | fractions        | representation         |
+   | decimal64             | CBOR decimal     | base64 (CBOR           |
+   |                       | fractions        | representation)        |
    |                       |                  |                        |
    | string                | CBOR text or     | text                   |
    |                       | string           |                        |
@@ -598,32 +766,31 @@ Internet-Draft                    CoMI                     February 2017
    | List instance         | CBOR unsigned    | base64 (CBOR           |
    | identifier            | integer          | representation)        |
    |                       |                  |                        |
-   | List instance         | CBOR array       | Base64 (CBOR           |
+   | List instance         | CBOR array       | base64 (CBOR           |
    | identifier            |                  | representation)        |
    +-----------------------+------------------+------------------------+
 
-5.2.  Data Retrieval
+5.3.  Data Retrieval
 
    One or more data node instances can be retrieved by the client.  The
    operation is mapped to the GET method defined in section 5.8.1 of
-   [RFC7252] and to the FETCH method defined in section 2 of
-   [I-D.ietf-core-etch].
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 11]
-
-Internet-Draft                    CoMI                     February 2017
-
+   [RFC7252] and to the FETCH method defined in section 2 of [RFC8132].
 
    It is possible that the size of the payload is too large to fit in a
    single message.  In the case that management data is bigger than the
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 14]
+
+Internet-Draft                    CoMI                         June 2017
+
+
    maximum supported payload size, the Block mechanism from [RFC7959] is
    used, as explained in more detail in Section 7.
 
-   CoMI uses the FETCH payload for retrieving a subset of the datastore.
+   CoMI uses the FETCH payload for retrieving a set of data node
+   instances from multiple resources.
 
    There are two additional query parameters for the GET and FETCH
    methods.
@@ -638,7 +805,7 @@ Internet-Draft                    CoMI                     February 2017
    | d          | Control retrieval of default values.                 |
    +------------+------------------------------------------------------+
 
-5.2.1.  Using the 'c' query parameter
+5.3.1.  Using the 'c' query parameter
 
    The 'c' (content) parameter controls how descendant nodes of the
    requested data nodes will be processed in the reply.
@@ -661,25 +828,24 @@ Internet-Draft                    CoMI                     February 2017
 
    If this query parameter is not present, the default value is "a".
 
-5.2.2.  Using the 'd' query parameter
+5.3.2.  Using the 'd' query parameter
 
    The "d" (with-defaults) parameter controls how the default values of
    the descendant nodes of the requested data nodes will be processed.
 
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 12]
-
-Internet-Draft                    CoMI                     February 2017
-
-
    The allowed values are:
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 15]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    +-------+-----------------------------------------------------------+
    | Value | Description                                               |
    +-------+-----------------------------------------------------------+
-   | a     | All data nodes are reported.  Defined as 'report-all' in  |
+   | a     | All data nodes are reported. Defined as 'report-all' in   |
    |       | section 3.1 of [RFC6243].                                 |
    |       |                                                           |
    | t     | Data nodes set to the YANG default are not reported.      |
@@ -688,55 +854,63 @@ Internet-Draft                    CoMI                     February 2017
 
    If the target of a GET or FETCH method is a data node that represents
    a leaf that has a default value, and the leaf has not been given a
-   value yet, the server MUST return the leaf.
+   value by any client yet, the server MUST return the default value of
+   the leaf.
 
    If the target of a GET method is a data node that represents a
-   container or list that has any child resources with default values,
-   for the child resources that have not been given value yet, the
-   server MUST not return the child resource if this query parameter is
-   set to 't' and MUST return the child resource if this query parameter
-   is set to 'a'.
+   container or list that has child resources with default values, and
+   these have not been given value yet,
+
+      The server MUST not return the child resource if d= 't'
+
+      The server MUST return the child resource if d= 'a'.
 
    If this query parameter is not present, the default value is 't'.
 
-5.2.3.  GET
+5.3.3.  GET
 
    A request to read the values of a data node instance is sent with a
    confirmable CoAP GET message.  A single instance identifier is
-   specified in the URI path prefixed with /c.
+   specified in the URI path prefixed with the example path /c.
 
    FORMAT:
        GET /c/<instance identifier>
 
-       2.05 Content (Content-Format: application/cbor)
-       <data node value>
+       2.05 Content (Content-Format: application/yang-value+cbor)
+       <(CBOR array of) data node value>
 
    The returned payload is composed of all the children associated with
-   the specified data node instance.
+   the specified data node instance.  A single data node value is
+   returned, unless the instance identifier is a list or an attribute of
+   a list element, and multiple instance values are returned.  In the
+   latter case, a CBOR array of data node values is returned.
 
    The instance identifier is a SID or a SID followed by the "k" query
    parameter.
 
-5.2.3.1.  GET Examples
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 16]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+5.3.3.1.  GET Examples
 
    Using for example the current-datetime leaf from Appendix A.1, a
    request is sent to retrieve the value of system-state/clock/current-
    datetime specified in container system-state.  The ID of system-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 13]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-   state/clock/current-datetime is 1719, encoded in base64 this yields
-   a3.  The answer to the request returns a <value>, transported as a
-   single CBOR string item.
+   state/clock/current-datetime is 1719, encoded in octal 3267, yields
+   two 6 bit decimal numbers 26 and 55, encoded in base64, (according to
+   table 2 of [RFC4648]) yields a3.  The answer to the request returns a
+   <value>, transported as a single CBOR string item.
 
    REQ: GET example.com/c/a3
 
-   RES: 2.05 Content (Content-Format: application/cbor)
+   RES: 2.05 Content (Content-Format: application/yang-value+cbor)
    "2014-10-26T12:16:31Z"
 
    For example, the GET of the clock node (ID = 1717; base64: a1), sent
@@ -745,7 +919,7 @@ Internet-Draft                    CoMI                     February 2017
 
    REQ: GET example.com/c/a1
 
-   RES: 2.05 Content (Content-Format: application/cbor)
+   RES: 2.05 Content (Content-Format: application/yang-value+cbor)
    {
          +2 : "2014-10-26T12:16:51Z",   / ID 1719 /
          +1 : "2014-10-21T03:00:00Z"    / ID 1718 /
@@ -753,16 +927,36 @@ Internet-Draft                    CoMI                     February 2017
 
    A "list" node can have multiple instances.  Accordingly, the returned
    payload of GET is composed of all the instances associated with the
-   selected list node.
+   selected list node, and a CBOR array is used to transport one or more
+   list instances.
 
    For example, look at the example in Appendix A.3.  The GET of the
    /interfaces/interface/ (with identifier 1533, base64: X9) results in
    the following returned payload, transported as a CBOR array with 2
    elements.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 17]
+
+Internet-Draft                    CoMI                         June 2017
+
+
    REQ: GET example.com/c/X9
 
-   RES: 2.05 Content (Content-Format: application/cbor)
+   RES: 2.05 Content (Content-Format: application/yang-value+cbor)
    [
     {+4 : "eth0",                / name  (ID 1537) /
      +1 : "Ethernet adaptor",    / description (ID 1534) /
@@ -778,76 +972,63 @@ Internet-Draft                    CoMI                     February 2017
      }
    ]
 
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 14]
-
-Internet-Draft                    CoMI                     February 2017
-
-
    It is equally possible to select a leaf of one instance of a list or
-   a complete instance container with GET.  The instance identifier is
-   the numeric identifier of the list followed by the specification of
-   the values for the key leaves that uniquely identify the list
-   instance.  The instance identifier looks like: SID?k=key-value.  The
-   key of "interface" is the "name" leaf.  The example below requests
-   the description leaf of the instance with name="eth0" (ID=1534,
-   base64: X-).  The value of the description leaf is returned.
+   a complete instance container with GET.  The instance identifier of
+   the instance container is the numeric identifier of the list followed
+   by the specification of the values for the key leaves that uniquely
+   identify the list instance.  The instance identifier looks like:
+   SID?k=key-value.  The key of "interface" is the "name" leaf.
+
+   The example below requests a leaf of the list instance: the
+   description leaf with SID=1534 of the list instance with name="eth0"
+   (ID=1534, base64: X-).  The value of the description leaf is
+   returned.
 
    REQ: GET example.com/c/X-?k="eth0"
 
-   RES: 2.05 Content (Content-Format: application/cbor)
+   RES: 2.05 Content (Content-Format: application/yang-value+cbor)
+   [
    "Ethernet adaptor"
+   ]
 
-5.2.4.  FETCH
+5.3.4.  FETCH
 
    The FETCH is used to retrieve a list of data node values.  The FETCH
    Request payload contains a CBOR list of instance identifiers.
 
    FORMAT:
-       FETCH /c/ Content-Format (application/YANG-fetch+cbor)
+       FETCH /c/ (Content-Format :application/yang-sid+cbor)
        <CBOR array of instance identifiers>
 
-       2.05 Content (Content-Format: application/YANG-patch+cbor)
+       2.05 Content (Content-Format: application/yang-value+cbor)
        <CBOR array of data node values>
 
-   The instance identifier is a SID or a CBOR array containing the SID
-   followed by key values that identify the list instance (sec 5.13.1 of
-   [I-D.ietf-core-yang-cbor].  In the payload of the returned data node
-   values, delta encoding is used as described in
-   [I-D.ietf-core-yang-cbor].
 
-5.2.4.1.  FETCH examples
+
+van der Stok, et al.     Expires January 1, 2018               [Page 18]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+   The server returns all values of the SIDs that exist in the server.
+   The instance identifier is a SID or a CBOR array containing the SID
+   followed by key values that identify the list instance (see section
+   5.13.1 of [I-D.ietf-core-yang-cbor].  In the payload of the returned
+   data node values, delta encoding is used as described in Section 2.3.
+
+5.3.4.1.  FETCH examples
 
    The example uses the current-datetime leaf and the interface list
    from Appendix A.1.  In the following example the value of current-
-   datetime (ID 1719)and the interface list (ID 1533) instance
+   datetime (ID 1719 and the interface list (ID 1533) instance
    identified with name="eth0" are queried.
 
-
-
-
-
-
-
-
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 15]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-   REQ:  FETCH /c Content-Format (application/YANG-fetch+cbor)
+   REQ:  FETCH /c (Content-Format :application/yang-sid+cbor)
          [ 1719,            / ID 1719 /
          [-186, "eth0"]   / ID 1533 with name = "eth0" /
          ]
 
-   RES:  2.05 Content Content-Format (application/YANG-patch+cbor)
+   RES:  2.05 Content (Content-Format :application/yang-value+cbor)
    [
      "2014-10-26T12:16:31Z",
     {
@@ -859,102 +1040,110 @@ Internet-Draft                    CoMI                     February 2017
      }
    ]
 
-   TODO: align with future FETCH content format.
-
-5.3.  Data Editing
+5.4.  Data Editing
 
    CoMI allows datastore contents to be created, modified and deleted
    using CoAP methods.
 
-5.3.1.  Data Ordering
+5.4.1.  Data Ordering
 
    A CoMI server SHOULD preserve the relative order of all user-ordered
    list and leaf-list entries that are received in a single edit
-   request.  These YANG data node types are encoded as arrays so
+   request.  These YANG data node types are encoded as CBOR arrays so
    messages will preserve their order.
 
-5.3.2.  POST
+5.4.2.  POST
 
    Data resources are created with the POST method.  The CoAP POST
    operation is used in CoMI for creation of data resources and the
-   invocation of "ACTION" and "RPC" resources.  Refer to Section 5.6 for
+   invocation of "ACTION" and "RPC" resources.  Refer to Section 5.7 for
    details on "ACTION" and "RPC" resources.
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 19]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    A request to create the values of an instance of a container or leaf
    is sent with a confirmable CoAP POST message.  A single SID is
    specified in the URI path prefixed with /c.
 
    FORMAT:
-       POST /c/<instance identifier> Content-Format(application/cbor)
-       <data node value>
+       POST /c/<instance identifier>
+                  (Content-Format :application/yang-value+cbor)
+       <(CBOR array) of data node value>
 
-       2.01 Created (Content-Format: application/cbor)
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 16]
-
-Internet-Draft                    CoMI                     February 2017
-
+       2.01 Created
 
    If the data resource already exists, then the POST request MUST fail
-   and a "4.09 Conflict" status-line MUST be returned
+   and a "4.09 Conflict" response code MUST be returned
 
    The instance identifier is a SID or a SID followed by the "k" query
    parameter.
 
-5.3.2.1.  Post example
+   The payload format choice between data node value and CBOR array of
+   data node value is governed by the same rules as specified for GET.
+
+5.4.2.1.  Post example
 
    The example uses the interface list from Appendix A.1.  Example is
-   creating a new version of the container interface (ID = 1533):
+   creating a new list instance of the container interface (ID = 1533):
 
-   REQ: POST /c/X9 Content-Format(application/cbor)
+   REQ: POST /c/X9 (Content-Format :application/yang-value+cbor)
+        [
          {
-           +4 : "eth0",             / name (ID 1537) /
+           +4 : "eth5",             / name (ID 1537) /
            +1 : "Ethernet adaptor", / description (ID 1534) /
            +5 : 1179,               / type (ID 1538), identity /
                                     / ethernetCsmacd (ID 1179) /
            +2 : true                / enabled (ID 1535) /
          }
+        [
 
-   RES: 2.01 Created (Content-Format: application/cbor)
+   RES: 2.01 Created
 
-5.3.3.  PUT
+5.4.3.  PUT
 
    Data resource instances are created or replaced with the PUT method.
    The PUT operation is supported in CoMI.  A request to set the value
    of a data node instance is sent with a confirmable CoAP PUT message.
 
+
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 20]
+
+Internet-Draft                    CoMI                         June 2017
+
+
    FORMAT:
-       PUT /c/<instance identifier> Content-Format(application/cbor)
-       <data node value>
+       PUT /c/<instance identifier>
+                (Content-Format :application/yang-value+cbor)
+       <(CBOR array) of data node value>
 
        2.01 Created
 
    The instance identifier is a SID or a SID followed by the "k" query
    parameter.
 
-5.3.3.1.  PUT example
+   The choice between data node value and CBOR array of data node value
+   is governed by the same rules as specified for GET.
+
+5.4.3.1.  PUT example
 
    The example uses the interface list from Appendix A.1.  Example is
    renewing an instance of the list interface (ID = 1533) with key
    name="eth0":
 
-
-
-
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 17]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-   REQ:  PUT /c/X9?k="eth0" Content-Format(application/cbor)
+   REQ:  PUT /c/X9?k="eth0"
+                 (Content-Format :application/yang-value+cbor)
+        [
          {
            +4 : "eth0",             / name (ID 1537) /
            +1 : "Ethernet adaptor", / description (ID 1534) /
@@ -962,75 +1151,67 @@ Internet-Draft                    CoMI                     February 2017
                                     / ethernetCsmacd ( ID 1179) /
            +2 : true                / enabled (ID 1535) /
          }
+        ]
    RES:  2.04 Changed
 
-5.3.4.  iPATCH
+5.4.4.  iPATCH
 
    One or multiple data resource instances are replaced with the idem-
-   potent iPATCH method [I-D.ietf-core-etch].  A request is sent with a
-   confirmable CoAP iPATCH message.
+   potent iPATCH method [RFC8132].  A request is sent with a confirmable
+   CoAP iPATCH message.
 
    There are no query parameters for the iPATCH method.
 
    The processing of the iPATCH command is specified by the CBOR
    payload.  The CBOR patch payload describes the changes to be made to
-   target YANG data nodes [I-D.bormann-appsawg-cbor-merge-patch].  If
-   the CBOR patch payload contains data node instances that are not
-   present in the target, these instances are added or silently ignored
-   dependent of the payload information.  If the target contains the
-   specified instance, the contents of the instances are replaced with
-   the values of the payload.  Null values indicate the removal of
-   existing values.
+   target YANG data nodes.  The payload is an array of (data node
+   identifier, value) pairs.  The data node identifier is specified in
+   section 5.13.1 of [I-D.ietf-core-yang-cbor].  If the CBOR patch
+   payload contains data node instances that are not present in the
+   target, these instances are added or silently ignored dependent of
+   the payload information.  If the target contains the specified
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 21]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+   instance, the contents of the instances are replaced with the values
+   of the payload.  Null values indicate the removal of existing values.
 
    FORMAT:
-       iPATCH /c Content-Format(application/YANG-patch+cbor)
-       <set of data node instances>
+       iPATCH /c (Content-Format :application/yang-patch+cbor)
+       <CBOR array of data node instance>
 
        2.04 Changed
 
-5.3.4.1.  iPATCH example
+5.4.4.1.  iPATCH example
 
    The example uses the interface list from Appendix A.3, and the
    timezone-utc-offset leaf from Appendix A.1.  In the example one leaf
    (timezone-utc-offset ) and one container (interface) instance are
    changed.
 
-
-
-
-
-
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 18]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-   REQ: iPATCH /c Content-Format(application/YANG-patch+cbor)
+   REQ: iPATCH /c (Content-Format :application/yang-patch+cbor)
    [
-     [1533, "eth0"] ,                / interface (ID = 1533) /
+      {[1533, "eth0"] :                / interface (ID = 1533) /
        {
          +4 : "eth0",                / name (ID 1537) /
          +1 : "Ethernet adaptor",    / description (ID 1534) /
          +5 : 1179,                  / type (ID 1538), identity /
                                      / ethernetCsmacd (ID 1179) /
          +2 : true                   / enabled (ID 1535) /
-       },
-     +203 , 60          / timezone-utc-offset (delta = 1736-1533) /
+       }},
+     {+203 : 60 }        / timezone-utc-offset (delta = 1736-1533) /
    ]
 
    RES: 2.04 Changed
 
-   TODO: Align with future cbor-merge-patch content format.
+5.4.5.  DELETE
 
-5.3.5.  DELETE
-
-   Data resource instances are deleted with the DELETE method.  The
-   RESTCONF DELETE operation is supported in CoMI.
+   Data resource instances are deleted with the DELETE method.
 
    FORMAT:
        Delete /c/<instance identifier>
@@ -1040,71 +1221,85 @@ Internet-Draft                    CoMI                     February 2017
    The instance identifier is a SID or a SID followed by the "k" query
    parameter.
 
-5.3.5.1.  DELETE example
+5.4.5.1.  DELETE example
 
    The example uses the interface list from Appendix A.3.  Example is
    deleting an instance of the container interface (ID = 1533):
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 22]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    REQ:   DELETE /c/X9?k="eth0"
 
    RES:   2.02 Deleted
 
-5.4.  Full Data Store access
+5.5.  Full Data Store access
 
    The methods GET, PUT, POST, and DELETE can be used to return,
    replace, create, and delete the whole data store respectively.
 
-
-
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 19]
-
-Internet-Draft                    CoMI                     February 2017
-
-
    FORMAT:
-       GET /c
-       2.05 Content (Content-Format: application/cbor)
-       <array of data node instances>
+      GET /c
+      2.05 Content (Content-Format: application/yang-data+cbor)
+      <CBOR map of data node instance>
 
       PUT /c
-      (Content-Format: application/cbor)
-       <array of data node instances>
+      (Content-Format: application/yang-data+cbor)
+       <CBOR map of data node instance>
       2.04 Changed
 
       POST /c
-      (Content-Format: application/cbor)
-       <array of data node instances>
+      (Content-Format: application/yang-data+cbor)
+       <CBOR map of data node instance>
       2.01 Created
 
       DELETE /c
       2.02 Deleted
 
 
-   The array of data node instances represents an array of all root
-   nodes in the data store after the PUT, POST and GET method
-   invocations.
+   The map of data node instances represents the complete data store of
+   the server after the PUT, POST invocations and before the GET
+   invocation.  The map contains (identifier, value) pairs with as
+   identifier the SID of the modules, and as value the contents of the
+   module.
 
-5.4.1.  Full Data Store examples
+5.5.1.  Full Data Store examples
 
    The example uses the interface list and the clock container from
-   Appendix A.3.  Assume that the data store contains two root objects:
-   the list interface (ID 1533) with one instance and the container
-   Clock (ID 1717).  After invocation of GET an array with these two
-   objects is returned:
+   Appendix A.3.  Assume that the data store contains two modules ietf-
+   system (ID 1700) and ietf-interfaces (ID 1500); they contain the list
+   interface (ID 1533) with one instance and the container Clock (ID
+   1717).  After invocation of GET a map with these two modules is
+   returned:
+
+
+
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 23]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    RQ:  GET /c
-   RES: 2.05 Content Content-Format (application/YANG-patch+cbor)
-   [
-     {1717:
+   RES: 2.05 Content (Content-Format :application/yang-data+cbor)
+   {1700:                             / ietf-system (ID 1700) /
+     {+17:                            / clock (ID 1717) /
         { +2: "2016-10-26T12:16:31Z", / current-datetime (ID 1719) /
           +1: "2014-10-05T09:00:00Z"  / boot-datetime (ID 1718) /
-        },
-     -186:                            / clock (ID 1533) /
+        }
+      },
+    1500:                             / ietf-interfaces (ID 1500) /
+      {+33:                           / clock (ID 1533) /
         {
           +4 : "eth0",                / name (ID 1537) /
           +1 : "Ethernet adaptor",    / description (ID 1534) /
@@ -1113,23 +1308,16 @@ Internet-Draft                    CoMI                     February 2017
           +2 : true                   / enabled (ID 1535) /
          }
        }
-   ]
+   }
 
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 20]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-5.5.  Notify functions
+5.6.  Notify functions
 
    Notification by the server to a selection of clients when an event
    occurs in the server is an essential function for the management of
    servers.  CoMI allows events specified in YANG [RFC5277] to be
    notified to a selection of requesting clients.  The server appends
    newly generated events to a stream.  There is one, so-called
-   "default", stream in a CoMI server.  The /c/s resource identifies the
+   "default", stream in a CoMI server.  The /s resource identifies the
    default stream.  The server MAY create additional stream resources.
    When a CoMI server generates an internal event, it is appended to the
    chosen stream, and the content of a notification instance is ready to
@@ -1138,62 +1326,63 @@ Internet-Draft                    CoMI                     February 2017
    Reception of generated notification instances is enabled with the
    CoAP Observe [RFC7641] function.  The client subscribes to the
    notifications by sending a GET request with an "Observe" option,
-   specifying the /c/s resource when the default stream is selected.
+   specifying the /s resource when the default stream is selected.
 
-   Every time an event is generated, the chosen stream is cleared, and
-   the generated notification instance is appended to the chosen
-   stream(s).  After appending the instance, the contents of the
-   instance is sent to all clients observing the modified stream.
+   The storing and removal of notifications is left to the
+   implementation of the comi server.  An example implementation is:
+
+      Every time an event is generated, the generated notification
+      instance is appended to the chosen stream(s).  After appending the
+      instance, the contents of the instance is sent to all clients
+      observing the modified stream.
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 24]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+      Dependent on the storage space allocated to the notification
+      stream, the oldest notifications that do not fit inside the
+      notification steam storage space are removed.
 
    FORMAT:
      Get /<stream-resource>
-         Content-Format(application/YANG-patch+cbor) Observe(0)
+      Observe(0)
 
-   2.05 Content Content-Format(application/YANG-patch+cbor)
-   <set of data node instances>
+   2.05 Content (Content-Format :application/yang-data+cbor)
+   <CBOR array of data node instance>
 
 
-5.5.1.  Notify Examples
+   The array of data node instances may contain identical entries which
+   have been generated at different times.
+
+5.6.1.  Notify Examples
 
    Suppose the server generates the event specified in Appendix A.4.  By
-   executing a GET on the /c/s resource the client receives the
-   following response:
+   executing a GET on the /s resource the client receives the following
+   response:
 
+   REQ:  GET /s Observe(0) Token(0x93)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 21]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-   REQ:  GET /c/s Observe(0) Token(0x93)
-
-   RES:  2.05 Content Content-Format(application/YANG-patch+cbor)
+   RES:  2.05 Content (Content-Format :application/yang-data+cbor)
                            Observe(12) Token(0x93)
-   {
-      60010 :                  / example-port-fault (ID 60010) /
+   [
+      {60010 :                  / example-port-fault (ID 60010) /
        {
          +1 : "0/4/21",       / port-name (ID 60011) /
          +2 : "Open pin 2"    / port-fault (ID 60012) /
-       },
-      60010 :                  / example-port-fault (ID 60010) /
+       }},
+      {+0 :                  / example-port-fault (ID 60010) /
        {
          +1 : "1/4/21",       / port-name (ID 60011) /
          +2 : "Open pin 5"    / port-fault (ID 60012) /
-       }
-   }
+       }}
+   ]
 
 
    In the example, the request returns a success response with the
@@ -1205,39 +1394,41 @@ Internet-Draft                    CoMI                     February 2017
    confirm the notification from the server, the server will remove the
    client from the list of observers [RFC7641].
 
-5.6.  RPC statements
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 25]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+5.7.  RPC statements
 
    The YANG "action" and "RPC" statements specify the execution of a
    Remote procedure Call (RPC) in the server.  It is invoked using a
    POST method to an "Action" or "RPC" resource instance.  The Request
    payload contains the values assigned to the input container when
-   specified with the action station.  The Response payload contains the
-   values of the output container when specified.
+   specified with the action statement.  The Response payload contains
+   the values of the output container when specified.
 
    The returned success response code is 2.05 Content.
 
    FORMAT:
     POST /c/<instance identifier>
-              Content-Format(application/YANG-patch+cbor)
-   <input node value>
+              (Content-Format :application/yang-value+cbor)
+   <input: (CBOR array of) node value>
 
-   2.05 Content Content-Format (application/YANG-patch+cbor)
-   <output node value>
-
-
+   2.05 Content (Content-Format :application/yang-value+cbor)
+   <output: (CBOR array of) node value>
 
 
+   The "k" query parameter is allowed for the POST method when used for
+   an action invocation.
 
+   The choice between data node value and CBOR array of data node value
+   is governed by the same rules as specified for GET.
 
-van der Stok, et al.     Expires August 5, 2017                [Page 22]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-   There "k" query parameter is allowed for the POST method when used
-   for an action invocation.
-
-5.6.1.  RPC Example
+5.7.1.  RPC Example
 
    The example is based on the YANG action specification of
    Appendix A.2.  A server list is specified and the action "reset" (ID
@@ -1245,15 +1436,27 @@ Internet-Draft                    CoMI                     February 2017
    value "myserver", is invoked.
 
    REQ:  POST /c/Opq?k="myserver"
-                 Content-Format(application/YANG-patch+cbor)
+                 (Content-Format :application/yang-value+cbor)
    {
-     +1 : "2016-02-08T14:10:08Z09:00" / reset-at (ID 60003) /
-   }
+     {
+       +1 : "2016-02-08T14:10:08Z09:00" / reset-at (ID 60003) /
+     }
+   ]
 
-   RES:  2.05 Content Content-Format(application/YANG-patch+cbor)
-   {
-     +2 : "2016-02-08T14:10:08Z09:18" / reset-finished-at (ID 60004)/
-   }
+   RES:  2.05 Content (Content-Format :application/yang-value+cbor)
+   [
+     {
+       +2 : "2016-02-08T14:10:08Z09:18" / reset-finished-at (ID 60004)/
+     }
+   ]
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 26]
+
+Internet-Draft                    CoMI                         June 2017
+
 
 6.  Access to MIB Data
 
@@ -1262,59 +1465,33 @@ Internet-Draft                    CoMI                     February 2017
    "ipNetToPhysicalEntry" list with 2 instances, using diagnostic
    notation without delta encoding.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 23]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-  {
-     60021 :                     / list ipNetToPhysicalEntry /
-     [
-       {
-         60022 : 1,              / ipNetToPhysicalIfIndex /
-         60023 : 1,              / ipNetToPhysicalNetAddressType: ipv4 /
-         60024 : h'0A000033',    / ipNetToPhysicalNetAddress /
-         60025 : h'00000A01172D',/ ipNetToPhysicalPhysAddress /
-         60026 : 2333943,        / ipNetToPhysicalLastUpdated /
-         60027 : 4,              / ipNetToPhysicalType: static /
-         60028 : 1,              / ipNetToPhysicalState: reachable /
-         60029 : 1               / ipNetToPhysicalRowStatus: active /
-       },
-       {
-         60022 : 1,              / ipNetToPhysicalIfIndex /
-         60023 : 1,              / ipNetToPhysicalNetAddressType: ipv4 /
-         60024 : h'09020304',    / ipNetToPhysicalNetAddress  /
-         60025 : h'00000A36200A',/ ipNetToPhysicalPhysAddress /
-         60026 : 2329836,        / ipNetToPhysicalLastUpdated /
-         60027 : 3,              / ipNetToPhysicalType: dynamic /
-         60028 : 6,              / ipNetToPhysicalState: unknown /
-         60029 : 1               / ipNetToPhysicalRowStatus: active /
-       }
-     ]
-  }
+   {
+      60021 :                     / list ipNetToPhysicalEntry /
+      [
+        {
+          60022 : 1,              / ipNetToPhysicalIfIndex /
+          60023 : 1,              / ipNetToPhysicalNetAddressType:
+                                                           ipv4 /
+          60024 : h'0A000033',    / ipNetToPhysicalNetAddress /
+          60025 : h'00000A01172D',/ ipNetToPhysicalPhysAddress /
+          60026 : 2333943,        / ipNetToPhysicalLastUpdated /
+          60027 : 4,              / ipNetToPhysicalType: static /
+          60028 : 1,              / ipNetToPhysicalState: reachable /
+          60029 : 1               / ipNetToPhysicalRowStatus: active /
+        },
+        {
+          60022 : 1,              / ipNetToPhysicalIfIndex /
+          60023 : 1,              / ipNetToPhysicalNetAddressType:
+                                                           ipv4 /
+          60024 : h'09020304',    / ipNetToPhysicalNetAddress  /
+          60025 : h'00000A36200A',/ ipNetToPhysicalPhysAddress /
+          60026 : 2329836,        / ipNetToPhysicalLastUpdated /
+          60027 : 3,              / ipNetToPhysicalType: dynamic /
+          60028 : 6,              / ipNetToPhysicalState: unknown /
+          60029 : 1               / ipNetToPhysicalRowStatus: active /
+        }
+      ]
+   }
 
    The IPv4 addresses A.0.0.33 and 9.2.3.4 are encoded in CBOR as
    h'0A000033' and h'09020304' respectively.  In the following example
@@ -1325,31 +1502,23 @@ Internet-Draft                    CoMI                     February 2017
    In this example one instance of /ip/ipNetToPhysicalEntry that matches
    the keys ipNetToPhysicalIfIndex = 1, ipNetToPhysicalNetAddressType =
    ipv4 and ipNetToPhysicalNetAddress = 9.2.3.4 (h'09020304', base64:
-   AJAgME).
+   CQIDBA).
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 24]
+van der Stok, et al.     Expires January 1, 2018               [Page 27]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
-   REQ: GET example.com/c/Oz1?k="1,1,AJAgME"
+   REQ: GET example.com/c/Oz1?k="1,1,CQIDBA
 
-   RES: 2.05 Content (Content-Format: application/YANG-patch+cbor)
-   {
+   RES: 2.05 Content (Content-Format: application/yang-data+cbor)
+   [
+    {
       +1 : 1,                  / ( SID 60022 ) /
       +2 : 1,                  / ( SID 60023 ) /
       +3 : h'09020304',        / ( SID 60024 ) /
@@ -1358,7 +1527,8 @@ Internet-Draft                    CoMI                     February 2017
       +6 : 3,                  / ( SID 60027 ) /
       +7 : 6,                  / ( SID 60028 ) /
       +8 : 1                   / ( SID 60029 ) /
-   }
+     }
+   ]
 
 7.  Use of Block
 
@@ -1382,31 +1552,33 @@ Internet-Draft                    CoMI                     February 2017
    multiple blocks sequentially without interruption.  In the server,
    values are changed, lists are re-ordered, extended or reduced.  When
    these actions happen during the serialization of the contents of the
-   variables, the transported results do not correspond with a state
+   resource, the transported results do not correspond with a state
    having occurred in the server; or worse the returned values are
    inconsistent.  For example: array length does not correspond with
    actual number of items.  It may be advisable to use CBOR maps or CBOR
    arrays of undefined length which are foreseen for data streaming
    purposes.
 
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 28]
+
+Internet-Draft                    CoMI                         June 2017
+
+
 8.  Resource Discovery
 
    The presence and location of (path to) the management data are
    discovered by sending a GET request to "/.well-known/core" including
    a resource type (RT) parameter with the value "core.c" [RFC6690].
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 25]
-
-Internet-Draft                    CoMI                     February 2017
-
-
    Upon success, the return payload will contain the root resource of
    the management data.  It is up to the implementation to choose its
-   root resource, but it is recommended that the value "/c" is used,
-   where possible.  The example below shows the discovery of the
-   presence and location of management data.
+   root resource, the value "/c" is used as example.  The example below
+   shows the discovery of the presence and location of management data.
 
      REQ: GET /.well-known/core?rt=core.c
 
@@ -1434,7 +1606,7 @@ Internet-Draft                    CoMI                     February 2017
    Therefore, it is recommended that details about management objects
    are discovered by reading the YANG module information stored in for
    example the "ietf-comi-yang-library" module
-   [I-D.veillette-core-cool-library].  The resource "/c/mod.uri" is used
+   [I-D.veillette-core-cool-library].  The resource "/mod.uri" is used
    to retrieve the location of the YANG module library.
 
    The module list can be stored locally on each server, or remotely on
@@ -1449,18 +1621,14 @@ Internet-Draft                    CoMI                     February 2017
 
 
 
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 26]
+van der Stok, et al.     Expires January 1, 2018               [Page 29]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
      Local in example.com server:
 
-     REQ: GET example.com/c/mod.uri
+     REQ: GET example.com/mod.uri
 
      RES: 2.05 Content (Content-Format: application/cbor)
      {
@@ -1470,7 +1638,7 @@ Internet-Draft                    CoMI                     February 2017
 
      Remote in example-remote-server:
 
-     REQ: GET example.com/c/mod.uri
+     REQ: GET example.com/mod.uri
 
      RES: 2.05 Content (Content-Format: application/cbor)
      {
@@ -1509,52 +1677,47 @@ Internet-Draft                    CoMI                     February 2017
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 27]
+van der Stok, et al.     Expires January 1, 2018               [Page 30]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
-   +----------------+----------------+---------------------------------+
-   | CoMI Error     | CoAP Error     | Description                     |
-   | Code           | Code           |                                 |
-   +----------------+----------------+---------------------------------+
-   | 0              | 4.xx           | General error                   |
-   |                |                |                                 |
-   | 1              | 4.13           | Request too big                 |
-   |                |                |                                 |
-   | 2              | 4.00           | Response too big                |
-   |                |                |                                 |
-   | 3              | 4.00           | Unknown identifier              |
-   |                |                |                                 |
-   | 4              | 4.00           | Invalid value                   |
-   |                |                |                                 |
-   | 5              | 4.05           | Attempt to write read-only      |
-   |                |                | variable                        |
-   |                |                |                                 |
-   | 6              | 5.01           | No access                       |
-   |                |                |                                 |
-   | 7              | 4.00           | Wrong type                      |
-   |                |                |                                 |
-   | 8              | 4.15           | Unknown encoding                |
-   |                |                |                                 |
-   | 9              | 4.0            | Wrong value                     |
-   |                |                |                                 |
-   | 10             | 4.0            | Not created                     |
-   |                |                |                                 |
-   | 11             | 4.04           | Resource unavailable            |
-   |                |                |                                 |
-   | 12             | 4.01           | Authorization error             |
-   |                |                |                                 |
-   | 13             | 4.0            | Bad attribute                   |
-   |                |                |                                 |
-   | 14             | 4.0            | Unknown attribute               |
-   |                |                |                                 |
-   | 15             | 4.0            | Missing attribute               |
-   +----------------+----------------+---------------------------------+
+         +-----------------+-----------------+-------------------+
+         | CoMI Error Code | CoAP Error Code | Description       |
+         +-----------------+-----------------+-------------------+
+         | 0               | 4.xx            | General error     |
+         |                 |                 |                   |
+         | 1               | 4.13            | Request too big   |
+         |                 |                 |                   |
+         | 2               | 4.00            | Response too big  |
+         |                 |                 |                   |
+         | 3               | 4.00            | Unknown-SID       |
+         |                 |                 |                   |
+         | 4               | 4.00            | Invalid-value     |
+         |                 |                 |                   |
+         | 5               | 5.01            | Access-denied     |
+         |                 |                 |                   |
+         | 6               | 4.0             | Bad-attribute     |
+         |                 |                 |                   |
+         | 7               | 4.0             | Unknown-attribute |
+         |                 |                 |                   |
+         | 8               | 4.0             | Missing-element   |
+         |                 |                 |                   |
+         | 9               | 4.0             | Bad-element       |
+         |                 |                 |                   |
+         | 10              | 4.0             | Unknown-element   |
+         |                 |                 |                   |
+         | 11              | 4.0             | Missing-element   |
+         |                 |                 |                   |
+         | 12              | 4.0             | Bad-SID           |
+         |                 |                 |                   |
+         | 13              | 4.0             | Wrong-SID         |
+         |                 |                 |                   |
+         | 14              | 4.0             | Missing-SID       |
+         +-----------------+-----------------+-------------------+
 
    The CoMI error codes are motivated by the error-status values defined
-   in [RFC3416], and the error tags defined in
-   [I-D.ietf-netconf-restconf].
+   in [RFC7950], and the error tags defined in [RFC8040].
 
 10.  Security Considerations
 
@@ -1563,17 +1726,17 @@ Internet-Draft                    CoMI                     February 2017
    integrity protection of both requests and responses, and depending on
    the application encryption.
 
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 28]
-
-Internet-Draft                    CoMI                     February 2017
-
-
    CoMI re-uses the security mechanisms already available to CoAP as
    much as possible.  This includes DTLS [RFC6347] for protected access
    to resources, as well suitable authentication and authorization
    mechanisms.
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 31]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    Among the security decisions that need to be made are selecting
    security modes and encryption mechanisms (see [RFC7252]).  This
@@ -1590,19 +1753,136 @@ Internet-Draft                    CoMI                     February 2017
 
 11.  IANA Considerations
 
-   'rt="core.c"' needs registration with IANA.
+11.1.  coap considerations
 
-   'rt="core.c.data"' needs registration with IANA.
+   Additions to the sub-registry "CoAP Resource Type", within the "CoRE
+   Parameters" registry are needed for a new resource type.
 
-   'rt="core.c.moduri"' needs registration with IANA.
+   o  rt="core.c"' needs registration with IANA.
 
-   'rt="core.c.stream"' needs registration with IANA.
+   o  rt="core.c.data"' needs registration with IANA.
 
-   Content types to be registered:
+   o  rt="core.c.moduri"' needs registration with IANA.
 
-   o  application/YANG-patch+cbor
+   o  rt="core.c.stream"' needs registration with IANA.
 
-   o  application/YANG-fetch+cbor
+   Additions to the sub-registry "CoAP Content-Formats", within the
+   "CoRE Parameters" registry are needed for the below media types.
+   These can be registered either in the Expert Review range (0-255) or
+   IETF Review range (256-9999).
+
+   1.
+
+       *  application/yang-data+cbor
+
+       *  Type name: application
+
+       *  Subtype name: yang-data+cbor
+
+       *  ID: TBD1
+
+       *  Required parameters: None
+
+       *  Optional parameters: None
+
+       *  Encoding considerations: binary
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 32]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+       *  Security considerations: As defined in this specification
+
+       *  Published specification: this specification
+
+       *  Applications that use this media type: CoMI
+
+   2.
+
+       *  application/yang-value+cbor
+
+       *  Type name: application
+
+       *  Subtype name: yang-value+cbor
+
+       *  ID: TBD2
+
+       *  Required parameters: None
+
+       *  Optional parameters: None
+
+       *  Encoding considerations: binary
+
+       *  Security considerations: As defined in this specification
+
+       *  Published specification: this specification
+
+       *  Applications that use this media type: CoMI
+
+   3.
+
+       *  application/yang-sid+cbor
+
+       *  Type name: application
+
+       *  Subtype name: yang-sid+cbor
+
+       *  ID: TBD3
+
+       *  Required parameters: None
+
+       *  Optional parameters: None
+
+       *  Encoding considerations: binary
+
+       *  Security considerations: As defined in this specification
+
+       *  Published specification: this specification
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 33]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+       *  Applications that use this media type: CoMI
+
+   4.
+
+       *  application/yang-patch+cbor
+
+       *  Type name: application
+
+       *  Subtype name: yang-patch+cbor
+
+       *  ID: TBD4
+
+       *  Required parameters: None
+
+       *  Optional parameters: None
+
+       *  Encoding considerations: binary
+
+       *  Security considerations: As defined in this specification
+
+       *  Published specification: this specification
+
+       *  Applications that use this media type: CoMI
+
+11.2.  Media types
+
+11.2.1.  application/yang-data+cbor
+
+11.2.2.  application/yang-value+cbor
+
+11.2.3.  application/yang-sid+cbor
+
+11.2.4.  application/yang-patch+cbor
 
 12.  Acknowledgements
 
@@ -1617,34 +1897,70 @@ Internet-Draft                    CoMI                     February 2017
    Timothy Carey has provided the text for Appendix B.
 
    The draft has benefited from comments (alphabetical order) by Rodney
-   Cummings, Dee Denteneer, Esko Dijk, Michael van Hartskamp, Juergen
+   Cummings, Dee Denteneer, Esko Dijk, Michael van Hartskamp, Tanguy
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 29]
+van der Stok, et al.     Expires January 1, 2018               [Page 34]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
-   Schoenwaelder, Anuj Sehgal, Zach Shelby, Hannes Tschofenig, Michael
-   Verschoor, and Thomas Watteyne.
+   Ropitault, Juergen Schoenwaelder, Anuj Sehgal, Zach Shelby, Hannes
+   Tschofenig, Michael Verschoor, and Thomas Watteyne.
 
 13.  Changelog
 
    Copy of vanderstok-core-comi-11.
 
+   From -00 to -01:
+
+   o  application/comi cbor content formats defined
+
+   o  used SID identifiers as specified in [I-D.ietf-core-yang-cbor]
+
+   o  replaced Function Set with Collection Interface
+
+   o  array may contain a single item
+
+   o  explained CoMI specific errors
+
+   o  Specification of content formats and mime types
+
+   o  Order of key values specified
+
+   o  Storage space associated with notification stream
+
 14.  References
 
 14.1.  Normative References
+
+   [I-D.ietf-core-yang-cbor]
+              Veillette, M., Pelov, A., Somaraju, A., Turner, R., and A.
+              Minaburo, "CBOR Encoding of Data Modeled with YANG",
+              draft-ietf-core-yang-cbor-04 (work in progress), February
+              2017.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <http://www.rfc-editor.org/info/rfc2119>.
 
+   [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
+              Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
+              <http://www.rfc-editor.org/info/rfc4648>.
+
    [RFC5277]  Chisholm, S. and H. Trevino, "NETCONF Event
               Notifications", RFC 5277, DOI 10.17487/RFC5277, July 2008,
               <http://www.rfc-editor.org/info/rfc5277>.
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 35]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    [RFC6243]  Bierman, A. and B. Lengyel, "With-defaults Capability for
               NETCONF", RFC 6243, DOI 10.17487/RFC6243, June 2011,
@@ -1659,6 +1975,11 @@ Internet-Draft                    CoMI                     February 2017
               DOI 10.17487/RFC7252, June 2014,
               <http://www.rfc-editor.org/info/rfc7252>.
 
+   [RFC7641]  Hartke, K., "Observing Resources in the Constrained
+              Application Protocol (CoAP)", RFC 7641,
+              DOI 10.17487/RFC7641, September 2015,
+              <http://www.rfc-editor.org/info/rfc7641>.
+
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <http://www.rfc-editor.org/info/rfc7950>.
@@ -1668,42 +1989,63 @@ Internet-Draft                    CoMI                     February 2017
               DOI 10.17487/RFC7959, August 2016,
               <http://www.rfc-editor.org/info/rfc7959>.
 
-   [RFC7641]  Hartke, K., "Observing Resources in the Constrained
-              Application Protocol (CoAP)", RFC 7641,
-              DOI 10.17487/RFC7641, September 2015,
-              <http://www.rfc-editor.org/info/rfc7641>.
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <http://www.rfc-editor.org/info/rfc8040>.
 
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 30]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-   [I-D.ietf-netconf-restconf]
-              Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
-              Protocol", draft-ietf-netconf-restconf-18 (work in
-              progress), October 2016.
-
-   [I-D.ietf-core-etch]
-              Stok, P., Bormann, C., and A. Sehgal, "Patch and Fetch
-              Methods for Constrained Application Protocol (CoAP)",
-              draft-ietf-core-etch-04 (work in progress), November 2016.
-
-   [I-D.bormann-appsawg-cbor-merge-patch]
-              Bormann, C. and P. Stok, "CBOR Merge Patch", draft-
-              bormann-appsawg-cbor-merge-patch-00 (work in progress),
-              March 2016.
-
-   [I-D.ietf-core-yang-cbor]
-              Veillette, M., Pelov, A., Somaraju, A., Turner, R., and A.
-              Minaburo, "CBOR Encoding of Data Modeled with YANG",
-              draft-ietf-core-yang-cbor-03 (work in progress), October
-              2016.
+   [RFC8132]  van der Stok, P., Bormann, C., and A. Sehgal, "PATCH and
+              FETCH Methods for the Constrained Application Protocol
+              (CoAP)", RFC 8132, DOI 10.17487/RFC8132, April 2017,
+              <http://www.rfc-editor.org/info/rfc8132>.
 
 14.2.  Informative References
+
+   [I-D.ietf-core-interfaces]
+              Shelby, Z., Vial, M., Koster, M., and C. Groves, "Reusable
+              Interface Definitions for Constrained RESTful
+              Environments", draft-ietf-core-interfaces-09 (work in
+              progress), March 2017.
+
+   [I-D.ietf-core-sid]
+              Veillette, M., Pelov, A., Turner, R., Minaburo, A., and A.
+              Somaraju, "YANG Schema Item iDentifier (SID)", draft-ietf-
+              core-sid-01 (work in progress), May 2017.
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 36]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+   [I-D.veillette-core-cool]
+              Veillette, M., Pelov, A., Somaraju, A., Turner, R., and A.
+              Minaburo, "Constrained Objects Language", draft-veillette-
+              core-cool-02 (work in progress), July 2016.
+
+   [I-D.veillette-core-cool-library]
+              Veillette, M., "Constrained YANG Module Library", draft-
+              veillette-core-cool-library-00 (work in progress), August
+              2016.
+
+   [mibreg]   IANA, "Structure of Management Information (SMI) Numbers
+              (MIB Module Registrations)", Web
+              http://www.iana.org/assignments/smi-numbers/
+              smi-numbers.xhtml/.
+
+   [netconfcentral]
+              YUMAworks, "NETCONF Central: library of YANG modules",
+              Web http://www.netconfcentral.org/modulelist.
+
+   [OMA]      Open Mobile Alliance (OMA), "OMA-TS-LightweightM2M-
+              V1_0-20131210-C", Web
+              http://technical.openmobilealliance.org/Technical/
+              current_releases.aspx.
+
+   [OMNA]     Open Mobile Alliance (OMA), "Open Mobile Naming Authority
+              (OMNA)", Web
+              http://http://technical.openmobilealliance.org/Technical/
+              technical-information/omna.
 
    [RFC2578]  McCloghrie, K., Ed., Perkins, D., Ed., and J.
               Schoenwaelder, Ed., "Structure of Management Information
@@ -1722,6 +2064,16 @@ Internet-Draft                    CoMI                     February 2017
               STD 62, RFC 3416, DOI 10.17487/RFC3416, December 2002,
               <http://www.rfc-editor.org/info/rfc3416>.
 
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 37]
+
+Internet-Draft                    CoMI                         June 2017
+
+
    [RFC4293]  Routhier, S., Ed., "Management Information Base for the
               Internet Protocol (IP)", RFC 4293, DOI 10.17487/RFC4293,
               April 2006, <http://www.rfc-editor.org/info/rfc4293>.
@@ -1730,13 +2082,6 @@ Internet-Draft                    CoMI                     February 2017
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
               <http://www.rfc-editor.org/info/rfc6241>.
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 31]
-
-Internet-Draft                    CoMI                     February 2017
-
 
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
@@ -1763,55 +2108,8 @@ Internet-Draft                    CoMI                     February 2017
               System Management", RFC 7317, DOI 10.17487/RFC7317, August
               2014, <http://www.rfc-editor.org/info/rfc7317>.
 
-   [I-D.ietf-core-interfaces]
-              Shelby, Z., Vial, M., Koster, M., and C. Groves, "Reusable
-              Interface Definitions for Constrained RESTful
-              Environments", draft-ietf-core-interfaces-07 (work in
-              progress), December 2016.
-
-   [I-D.ietf-core-sid]
-              Somaraju, A., Veillette, M., Pelov, A., Turner, R., and A.
-              Minaburo, "YANG Schema Item iDentifier (SID)", draft-ietf-
-              core-sid-00 (work in progress), October 2016.
-
-   [I-D.veillette-core-cool]
-              Veillette, M., Pelov, A., Somaraju, A., Turner, R., and A.
-              Minaburo, "Constrained Objects Language", draft-veillette-
-              core-cool-02 (work in progress), July 2016.
-
-   [I-D.veillette-core-cool-library]
-              Veillette, M., "Constrained YANG Module Library", draft-
-              veillette-core-cool-library-00 (work in progress), August
-              2016.
-
    [XML]      W3C, "Extensible Markup Language (XML)",
               Web http://www.w3.org/xml.
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 32]
-
-Internet-Draft                    CoMI                     February 2017
-
-
-   [OMA]      Open Mobile Alliance (OMA), "OMA-TS-LightweightM2M-
-              V1_0-20131210-C", Web
-              http://technical.openmobilealliance.org/Technical/
-              current_releases.aspx.
-
-   [OMNA]     Open Mobile Alliance (OMA), "Open Mobile Naming Authority
-              (OMNA)", Web
-              http://http://technical.openmobilealliance.org/Technical/
-              technical-information/omna.
-
-   [netconfcentral]
-              YUMAworks, "NETCONF Central: library of YANG modules",
-              Web http://www.netconfcentral.org/modulelist.
-
-   [mibreg]   IANA, "Structure of Management Information (SMI) Numbers
-              (MIB Module Registrations)", Web
-              http://www.iana.org/assignments/smi-numbers/
-              smi-numbers.xhtml/.
 
    [yang-cbor]
               Veillette, M., "yang-cbor Registry", Web
@@ -1825,11 +2123,18 @@ Appendix A.  YANG example specifications
    [netconfcentral].  Each YANG item identifier is accompanied by its
    SID shown after the "//" comment sign, taken from [yang-cbor].
 
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 38]
+
+Internet-Draft                    CoMI                         June 2017
+
+
 A.1.  ietf-system
 
    Excerpt of the YANG module ietf-system [RFC7317].
 
-   module ietf-system {
+   module ietf-system {                   // SID 1700
      container system {                   // SID 1715
        container clock {                  // SID 1734
          choice timezone {
@@ -1842,14 +2147,6 @@ A.1.  ietf-system
              leaf timezone-utc-offset {   // SID 1736
                type int16 {
                }
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 33]
-
-Internet-Draft                    CoMI                     February 2017
-
-
              }
            }
          }
@@ -1881,6 +2178,14 @@ Internet-Draft                    CoMI                     February 2017
                enum server {
                }
                enum peer {
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 39]
+
+Internet-Draft                    CoMI                         June 2017
+
+
                }
                enum pool {
                }
@@ -1898,14 +2203,6 @@ Internet-Draft                    CoMI                     February 2017
      container system-state {             // SID 1716
        container clock {                  // SID 1717
          leaf current-datetime {          // SID 1719
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 34]
-
-Internet-Draft                    CoMI                     February 2017
-
-
            type yang:date-and-time;
          }
          leaf boot-datetime {             // SID 1718
@@ -1919,6 +2216,31 @@ Internet-Draft                    CoMI                     February 2017
 A.2.  server list
 
    Taken over from [RFC7950] section 7.15.3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 40]
+
+Internet-Draft                    CoMI                         June 2017
+
 
    module example-server-farm {
      yang-version 1.1;
@@ -1952,21 +2274,31 @@ A.2.  server list
    }
 
 
-
-
-
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 35]
-
-Internet-Draft                    CoMI                     February 2017
-
-
 A.3.  interfaces
 
    Excerpt of the YANG module ietf-interfaces [RFC7223].
 
-   module ietf-interfaces {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 41]
+
+Internet-Draft                    CoMI                         June 2017
+
+
+   module ietf-interfaces {               // SID 1500
      container interfaces {               // SID 1505
        list interface {                   // SID 1533
          key "name";
@@ -2013,9 +2345,13 @@ A.4.  Example-port
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 36]
+
+
+
+
+van der Stok, et al.     Expires January 1, 2018               [Page 42]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
    module example-port {
@@ -2040,111 +2376,113 @@ A.5.  IP-MIB
    The YANG translation of the SMI specifying the IP-MIB [RFC4293],
    extended with example SID numbers, yields:
 
-module IP-MIB {
-  import IF-MIB {
-    prefix if-mib;
-  }
-  import INET-ADDRESS-MIB {
-    prefix inet-address;
-  }
-  import SNMPv2-TC {
-    prefix smiv2;
-  }
-  import ietf-inet-types {
-    prefix inet;
-  }
-  import yang-smi {
-    prefix smi;
-  }
-  import ietf-yang-types {
-    prefix yang;
-  }
+   module IP-MIB {
+     import IF-MIB {
+       prefix if-mib;
+     }
+     import INET-ADDRESS-MIB {
+       prefix inet-address;
+     }
+     import SNMPv2-TC {
+       prefix smiv2;
+     }
+     import ietf-inet-types {
+       prefix inet;
+     }
+     import yang-smi {
+       prefix smi;
+     }
+     import ietf-yang-types {
+       prefix yang;
+     }
 
-  container ip {                            // SID 60020
-    list ipNetToPhysicalEntry {             // SID 60021
-      key "ipNetToPhysicalIfIndex ipNetToPhysicalNetAddressType ipNetToPhysicalNetAddress";
-      leaf ipNetToPhysicalIfIndex {         // SID 60022
-        type if-mib:InterfaceIndex;
-      }
+     container ip {                            // SID 60020
+       list ipNetToPhysicalEntry {             // SID 60021
+         key "ipNetToPhysicalIfIndex
+              ipNetToPhysicalNetAddressType
+              ipNetToPhysicalNetAddress";
+         leaf ipNetToPhysicalIfIndex {         // SID 60022
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 37]
+van der Stok, et al.     Expires January 1, 2018               [Page 43]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
-      leaf ipNetToPhysicalNetAddressType {  // SID 60023
-        type inet-address:InetAddressType;
-      }
-      leaf ipNetToPhysicalNetAddress {      // SID 60024
-        type inet-address:InetAddress;
-      }
-      leaf ipNetToPhysicalPhysAddress {     // SID 60025
-        type yang:phys-address {
-          length "0..65535";
-        }
-      }
-      leaf ipNetToPhysicalLastUpdated {     // SID 60026
-        type yang:timestamp;
-      }
-      leaf ipNetToPhysicalType {            // SID 60027
-        type enumeration {
-          enum "other" {
-            value 1;
-          }
-          enum "invalid" {
-            value 2;
-          }
-          enum "dynamic" {
-            value 3;
-          }
-          enum "static" {
-            value 4;
-          }
-          enum "local" {
-            value 5;
-          }
-        }
-      }
-      leaf ipNetToPhysicalState {           // SID 60028
-        type enumeration {
-          enum "reachable" {
-            value 1;
-          }
-          enum "stale" {
-            value 2;
-          }
-          enum "delay" {
-            value 3;
-          }
-          enum "probe" {
-            value 4;
-          }
-          enum "invalid" {
+           type if-mib:InterfaceIndex;
+         }
+         leaf ipNetToPhysicalNetAddressType {  // SID 60023
+           type inet-address:InetAddressType;
+         }
+         leaf ipNetToPhysicalNetAddress {      // SID 60024
+           type inet-address:InetAddress;
+         }
+         leaf ipNetToPhysicalPhysAddress {     // SID 60025
+           type yang:phys-address {
+             length "0..65535";
+           }
+         }
+         leaf ipNetToPhysicalLastUpdated {     // SID 60026
+           type yang:timestamp;
+         }
+         leaf ipNetToPhysicalType {            // SID 60027
+           type enumeration {
+             enum "other" {
+               value 1;
+             }
+             enum "invalid" {
+               value 2;
+             }
+             enum "dynamic" {
+               value 3;
+             }
+             enum "static" {
+               value 4;
+             }
+             enum "local" {
+               value 5;
+             }
+           }
+         }
+         leaf ipNetToPhysicalState {           // SID 60028
+           type enumeration {
+             enum "reachable" {
+               value 1;
+             }
+             enum "stale" {
+               value 2;
+             }
+             enum "delay" {
+               value 3;
+             }
+             enum "probe" {
+               value 4;
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 38]
+van der Stok, et al.     Expires January 1, 2018               [Page 44]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
-            value 5;
-          }
-          enum "unknown" {
-            value 6;
-          }
-          enum "incomplete" {
-            value 7;
-          }
-        }
-      }
-      leaf ipNetToPhysicalRowStatus {       // SID 60029
-        type smiv2:RowStatus;
-    }  // list ipNetToPhysicalEntry
-  }  // container ip
-}  // module IP-MIB
+             }
+             enum "invalid" {
+               value 5;
+             }
+             enum "unknown" {
+               value 6;
+             }
+             enum "incomplete" {
+               value 7;
+             }
+           }
+         }
+         leaf ipNetToPhysicalRowStatus {       // SID 60029
+           type smiv2:RowStatus;
+       }  // list ipNetToPhysicalEntry
+     }  // container ip
+   }  // module IP-MIB
 
 
 Appendix B.  Comparison with LWM2M
@@ -2179,11 +2517,9 @@ B.1.  Introduction
 
 
 
-
-
-van der Stok, et al.     Expires August 5, 2017                [Page 39]
+van der Stok, et al.     Expires January 1, 2018               [Page 45]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
 B.2.  Defining Management Resources
@@ -2237,9 +2573,9 @@ B.3.  Identifying Management Resources
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 40]
+van der Stok, et al.     Expires January 1, 2018               [Page 46]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
    identify the data stores and event streams of the CoMI agent.
@@ -2293,9 +2629,9 @@ Authors' Addresses
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 41]
+van der Stok, et al.     Expires January 1, 2018               [Page 47]
 
-Internet-Draft                    CoMI                     February 2017
+Internet-Draft                    CoMI                         June 2017
 
 
    Michel Veillette
@@ -2349,4 +2685,4 @@ Internet-Draft                    CoMI                     February 2017
 
 
 
-van der Stok, et al.     Expires August 5, 2017                [Page 42]
+van der Stok, et al.     Expires January 1, 2018               [Page 48]
