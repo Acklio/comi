@@ -337,7 +337,7 @@ address {
 
   <meta name="dct.creator" content="Veillette, M., Ed., van der Stok, P., Ed., Pelov, A., and A. Bierman" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-01" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-7-10" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-7-11" />
   <meta name="dct.abstract" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
   <meta name="description" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
 
@@ -361,7 +361,7 @@ address {
 <td class="right">P. van der Stok, Ed.</td>
 </tr>
 <tr>
-<td class="left">Expires: January 11, 2018</td>
+<td class="left">Expires: January 12, 2018</td>
 <td class="right">consultant</td>
 </tr>
 <tr>
@@ -382,7 +382,7 @@ address {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">July 10, 2017</td>
+<td class="right">July 11, 2017</td>
 </tr>
 
     	
@@ -400,7 +400,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on January 11, 2018.</p>
+<p>This Internet-Draft will expire on January 12, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -675,7 +675,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <li>The ordering of the pairs of data items are preserved from serialization to deserialization.</li>
 <li>Duplicate keys are allowed</li>
 </ul>
-<p id="rfc.section.2.4.p.3">This schematic is constructed using a CBOR array comprising pairs of data items, each pair consisting of a key that is immediately followed by a value. Unlike a CBOR map for which the length denotes the number of pairs, the length of the Ordered map denotes the number of items.</p>
+<p id="rfc.section.2.4.p.3">This schematic is constructed using a CBOR array comprising pairs of data items, each pair consisting of a key that is immediately followed by a value. Unlike a CBOR map for which the length denotes the number of pairs, the length of the Ordered map denotes the number of items (i.e. number of keys plus number of values).</p>
 <p id="rfc.section.2.4.p.4">The use of this schematic can be inferred from its context or by the presence of a preceding tag. The tag assigned to the Ordered map is defined in <a href="#tags-registry" class="xref">Section 11.4</a>.</p>
 <p id="rfc.section.2.4.p.5">In the case of CoMI, the used of the Ordered map as root container of the application/yang-ids-values+cbor Content-Format is inferred, the Ordered map tag is not used.</p>
 <h1 id="rfc.section.2.5">
@@ -1302,19 +1302,19 @@ FORMAT:
   GET /c
    
   2.05 Content (Content-Format: application/yang-map+cbor)
-  ordered map of instance-identifier, data-node-value
+  ordered map of single-instance-identifier, data-node-value
 </pre>
 <pre>
 FORMAT:
   PUT /c (Content-Format: application/yang-map+cbor)
-  ordered map of instance-identifier, data-node-value
+  ordered map of single-instance-identifier, data-node-value
    
   2.04 Changed
 </pre>
 <pre>
 FORMAT:
   POST /c (Content-Format: application/yang-map+cbor)
-  ordered map of instance-identifier, data-node-value
+  ordered map of single-instance-identifier, data-node-value
     
   2.01 Created
 </pre>
@@ -1324,7 +1324,7 @@ FORMAT:
    
   2.02 Deleted
 </pre>
-<p id="rfc.section.5.4.p.2">The content of the ordered map represents the complete datastore of the server at the GET indication of after a successful processing of a PUT or POST request.</p>
+<p id="rfc.section.5.4.p.2">The content of the ordered map represents the complete datastore of the server at the GET indication of after a successful processing of a PUT or POST request.  When an Ordered map is used to carry a whole datastore, all data nodes MUST be identified using single instance identifiers (i.e. a SID), list instance identifiers are not allowed.</p>
 <h1 id="rfc.section.5.4.1">
 <a href="#rfc.section.5.4.1">5.4.1.</a> <a href="#datastore-example" id="datastore-example">Full datastore examples</a>
 </h1>

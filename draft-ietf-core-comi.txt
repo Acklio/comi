@@ -5,12 +5,12 @@
 CoRE                                                   M. Veillette, Ed.
 Internet-Draft                                   Trilliant Networks Inc.
 Intended status: Standards Track                    P. van der Stok, Ed.
-Expires: January 11, 2018                                     consultant
+Expires: January 12, 2018                                     consultant
                                                                 A. Pelov
                                                                   Acklio
                                                               A. Bierman
                                                                YumaWorks
-                                                           July 10, 2017
+                                                           July 11, 2017
 
 
                        CoAP Management Interface
@@ -48,12 +48,12 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 11, 2018.
+   This Internet-Draft will expire on January 12, 2018.
 
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 1]
+Veillette, et al.       Expires January 12, 2018                [Page 1]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -101,7 +101,7 @@ Table of Contents
      5.4.  Full datastore access . . . . . . . . . . . . . . . . . .  23
        5.4.1.  Full datastore examples . . . . . . . . . . . . . . .  24
      5.5.  Event stream  . . . . . . . . . . . . . . . . . . . . . .  25
-       5.5.1.  Notify Examples . . . . . . . . . . . . . . . . . . .  25
+       5.5.1.  Notify Examples . . . . . . . . . . . . . . . . . . .  26
      5.6.  RPC statements  . . . . . . . . . . . . . . . . . . . . .  26
        5.6.1.  RPC Example . . . . . . . . . . . . . . . . . . . . .  27
    6.  Access to MIB Data  . . . . . . . . . . . . . . . . . . . . .  27
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 2]
+Veillette, et al.       Expires January 12, 2018                [Page 2]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -165,7 +165,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 3]
+Veillette, et al.       Expires January 12, 2018                [Page 3]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -221,7 +221,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 4]
+Veillette, et al.       Expires January 12, 2018                [Page 4]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -277,7 +277,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 5]
+Veillette, et al.       Expires January 12, 2018                [Page 5]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -333,7 +333,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 6]
+Veillette, et al.       Expires January 12, 2018                [Page 6]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -389,7 +389,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 7]
+Veillette, et al.       Expires January 12, 2018                [Page 7]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -425,7 +425,7 @@ Internet-Draft                    CoMI                         July 2017
    data items, each pair consisting of a key that is immediately
    followed by a value.  Unlike a CBOR map for which the length denotes
    the number of pairs, the length of the Ordered map denotes the number
-   of items.
+   of items (i.e. number of keys plus number of values).
 
    The use of this schematic can be inferred from its context or by the
    presence of a preceding tag.  The tag assigned to the Ordered map is
@@ -445,7 +445,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 8]
+Veillette, et al.       Expires January 12, 2018                [Page 8]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -501,7 +501,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018                [Page 9]
+Veillette, et al.       Expires January 12, 2018                [Page 9]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -557,7 +557,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 10]
+Veillette, et al.       Expires January 12, 2018               [Page 10]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -613,7 +613,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 11]
+Veillette, et al.       Expires January 12, 2018               [Page 11]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -669,7 +669,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 12]
+Veillette, et al.       Expires January 12, 2018               [Page 12]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -725,7 +725,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 13]
+Veillette, et al.       Expires January 12, 2018               [Page 13]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -781,7 +781,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 14]
+Veillette, et al.       Expires January 12, 2018               [Page 14]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -837,7 +837,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 15]
+Veillette, et al.       Expires January 12, 2018               [Page 15]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -893,7 +893,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 16]
+Veillette, et al.       Expires January 12, 2018               [Page 16]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -949,7 +949,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 17]
+Veillette, et al.       Expires January 12, 2018               [Page 17]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1005,7 +1005,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 18]
+Veillette, et al.       Expires January 12, 2018               [Page 18]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1061,7 +1061,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 19]
+Veillette, et al.       Expires January 12, 2018               [Page 19]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1117,7 +1117,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 20]
+Veillette, et al.       Expires January 12, 2018               [Page 20]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1173,7 +1173,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 21]
+Veillette, et al.       Expires January 12, 2018               [Page 21]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1229,7 +1229,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 22]
+Veillette, et al.       Expires January 12, 2018               [Page 22]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1277,7 +1277,7 @@ Internet-Draft                    CoMI                         July 2017
      GET /c
 
      2.05 Content (Content-Format: application/yang-map+cbor)
-     ordered map of instance-identifier, data-node-value
+     ordered map of single-instance-identifier, data-node-value
 
 
 
@@ -1285,20 +1285,20 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 23]
+Veillette, et al.       Expires January 12, 2018               [Page 23]
 
 Internet-Draft                    CoMI                         July 2017
 
 
    FORMAT:
      PUT /c (Content-Format: application/yang-map+cbor)
-     ordered map of instance-identifier, data-node-value
+     ordered map of single-instance-identifier, data-node-value
 
      2.04 Changed
 
    FORMAT:
      POST /c (Content-Format: application/yang-map+cbor)
-     ordered map of instance-identifier, data-node-value
+     ordered map of single-instance-identifier, data-node-value
 
      2.01 Created
 
@@ -1309,7 +1309,9 @@ Internet-Draft                    CoMI                         July 2017
 
    The content of the ordered map represents the complete datastore of
    the server at the GET indication of after a successful processing of
-   a PUT or POST request.
+   a PUT or POST request.  When an Ordered map is used to carry a whole
+   datastore, all data nodes MUST be identified using single instance
+   identifiers (i.e. a SID), list instance identifiers are not allowed.
 
 5.4.1.  Full datastore examples
 
@@ -1319,6 +1321,30 @@ Internet-Draft                    CoMI                         July 2017
    list interface (SID 1533) with one instance and the container Clock
    (SID 1717).  After invocation of GET, a map with these two modules is
    returned:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires January 12, 2018               [Page 24]
+
+Internet-Draft                    CoMI                         July 2017
+
 
    REQ:  GET /c
 
@@ -1338,13 +1364,6 @@ Internet-Draft                    CoMI                         July 2017
          +2 : true                   / enabled (SID 1535) /
        }
    ]
-
-
-
-Veillette, et al.       Expires January 11, 2018               [Page 24]
-
-Internet-Draft                    CoMI                         July 2017
-
 
 5.5.  Event stream
 
@@ -1376,6 +1395,13 @@ Internet-Draft                    CoMI                         July 2017
       stream, the oldest notifications that do not fit inside the
       notification stream storage space are removed.
 
+
+
+Veillette, et al.       Expires January 12, 2018               [Page 25]
+
+Internet-Draft                    CoMI                         July 2017
+
+
    FORMAT:
      Get /<stream-resource> Observe(0)
 
@@ -1390,17 +1416,6 @@ Internet-Draft                    CoMI                         July 2017
    Suppose the server generates the event specified in Appendix C.4.  By
    executing a GET on the /s resource the client receives the following
    response:
-
-
-
-
-
-
-
-Veillette, et al.       Expires January 11, 2018               [Page 25]
-
-Internet-Draft                    CoMI                         July 2017
-
 
    REQ:  GET /s Observe(0) Token(0x93)
 
@@ -1435,6 +1450,14 @@ Internet-Draft                    CoMI                         July 2017
    Remote procedure Call (RPC) in the server.  It is invoked using a
    POST method to an "Action" or "RPC" resource instance.  The request
    payload contains the values assigned to the input container when
+
+
+
+Veillette, et al.       Expires January 12, 2018               [Page 26]
+
+Internet-Draft                    CoMI                         July 2017
+
+
    specified.  The response payload contains the values of the output
    container when specified.  Both the input and output containers are
    encoded in CBOR using the rules defined in [I-D.ietf-core-yang-cbor]
@@ -1443,20 +1466,6 @@ Internet-Draft                    CoMI                         July 2017
    specified by the URI.
 
    The returned success response code is 2.05 Content.
-
-
-
-
-
-
-
-
-
-
-Veillette, et al.       Expires January 11, 2018               [Page 26]
-
-Internet-Draft                    CoMI                         July 2017
-
 
    FORMAT:
      POST /c/<instance identifier>
@@ -1500,16 +1509,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-
-
-
-
-
-
-
-
-
-Veillette, et al.       Expires January 11, 2018               [Page 27]
+Veillette, et al.       Expires January 12, 2018               [Page 27]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1565,7 +1565,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 28]
+Veillette, et al.       Expires January 12, 2018               [Page 28]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1621,7 +1621,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 29]
+Veillette, et al.       Expires January 12, 2018               [Page 29]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1677,7 +1677,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 30]
+Veillette, et al.       Expires January 12, 2018               [Page 30]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1733,7 +1733,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 31]
+Veillette, et al.       Expires January 12, 2018               [Page 31]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1789,7 +1789,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 32]
+Veillette, et al.       Expires January 12, 2018               [Page 32]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1845,7 +1845,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 33]
+Veillette, et al.       Expires January 12, 2018               [Page 33]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1901,7 +1901,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 34]
+Veillette, et al.       Expires January 12, 2018               [Page 34]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -1957,7 +1957,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 35]
+Veillette, et al.       Expires January 12, 2018               [Page 35]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2013,7 +2013,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 36]
+Veillette, et al.       Expires January 12, 2018               [Page 36]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2069,7 +2069,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 37]
+Veillette, et al.       Expires January 12, 2018               [Page 37]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2125,7 +2125,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 38]
+Veillette, et al.       Expires January 12, 2018               [Page 38]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2181,7 +2181,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 39]
+Veillette, et al.       Expires January 12, 2018               [Page 39]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2237,7 +2237,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 40]
+Veillette, et al.       Expires January 12, 2018               [Page 40]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2293,7 +2293,7 @@ Appendix A.  ietf-comi YANG module
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 41]
+Veillette, et al.       Expires January 12, 2018               [Page 41]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2349,7 +2349,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 42]
+Veillette, et al.       Expires January 12, 2018               [Page 42]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2405,7 +2405,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 43]
+Veillette, et al.       Expires January 12, 2018               [Page 43]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2461,7 +2461,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 44]
+Veillette, et al.       Expires January 12, 2018               [Page 44]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2517,7 +2517,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 45]
+Veillette, et al.       Expires January 12, 2018               [Page 45]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2573,7 +2573,7 @@ Appendix B.  ietf-comi .sid file
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 46]
+Veillette, et al.       Expires January 12, 2018               [Page 46]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2629,7 +2629,7 @@ C.1.  ietf-system
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 47]
+Veillette, et al.       Expires January 12, 2018               [Page 47]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2685,7 +2685,7 @@ C.2.  server list
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 48]
+Veillette, et al.       Expires January 12, 2018               [Page 48]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2741,7 +2741,7 @@ C.3.  interfaces
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 49]
+Veillette, et al.       Expires January 12, 2018               [Page 49]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2797,7 +2797,7 @@ C.4.  Example-port
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 50]
+Veillette, et al.       Expires January 12, 2018               [Page 50]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2853,7 +2853,7 @@ C.5.  IP-MIB
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 51]
+Veillette, et al.       Expires January 12, 2018               [Page 51]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2909,7 +2909,7 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 52]
+Veillette, et al.       Expires January 12, 2018               [Page 52]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -2965,7 +2965,7 @@ Authors' Addresses
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 53]
+Veillette, et al.       Expires January 12, 2018               [Page 53]
 
 Internet-Draft                    CoMI                         July 2017
 
@@ -3021,4 +3021,4 @@ Internet-Draft                    CoMI                         July 2017
 
 
 
-Veillette, et al.       Expires January 11, 2018               [Page 54]
+Veillette, et al.       Expires January 12, 2018               [Page 54]
