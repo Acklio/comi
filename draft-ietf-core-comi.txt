@@ -562,35 +562,37 @@ Veillette, et al.       Expires January 13, 2018               [Page 10]
 Internet-Draft                    CoMI                         July 2017
 
 
-   +----------------+-------------+------------------------------------+
-   | Method         | Resource    | Content-Format                     |
-   +----------------+-------------+------------------------------------+
-   | GET response   | data node   | /application/yang-value+cbor       |
-   |                |             |                                    |
-   | PUT request    | data node   | /application/yang-value+cbor       |
-   |                |             |                                    |
-   | POST request   | data node   | /application/yang-value+cbor       |
-   |                |             |                                    |
-   | DELETE         | data node   | n/a                                |
-   |                |             |                                    |
-   | GET response   | datastore   | /application/yang-tree+cbor        |
-   |                |             |                                    |
-   | PUT request    | datastore   | /application/yang-tree+cbor        |
-   |                |             |                                    |
-   | POST request   | datastore   | /application/yang-tree+cbor        |
-   |                |             |                                    |
-   | FETCH request  | datastore   | /application/yang-identifiers+cbor |
-   |                |             |                                    |
-   | FETCH response | datastore   | /application/yang-values+cbor      |
-   |                |             |                                    |
-   | iPATCH request | datastore   | /application/yang-patch+cbor       |
-   |                |             |                                    |
-   | GET response   | even stream | /application/yang-tree+cbor        |
-   |                |             |                                    |
-   | POST request   | rpc, action | /application/yang-value+cbor       |
-   |                |             |                                    |
-   | POST response  | rpc, action | /application/yang-value+cbor       |
-   +----------------+-------------+------------------------------------+
+   +---------------+--------------+------------------------------------+
+   | Method        | Resource     | Content-Format                     |
+   +---------------+--------------+------------------------------------+
+   | GET response  | data node    | /application/yang-value+cbor       |
+   |               |              |                                    |
+   | PUT request   | data node    | /application/yang-value+cbor       |
+   |               |              |                                    |
+   | POST request  | data node    | /application/yang-value+cbor       |
+   |               |              |                                    |
+   | DELETE        | data node    | n/a                                |
+   |               |              |                                    |
+   | GET response  | datastore    | /application/yang-tree+cbor        |
+   |               |              |                                    |
+   | PUT request   | datastore    | /application/yang-tree+cbor        |
+   |               |              |                                    |
+   | POST request  | datastore    | /application/yang-tree+cbor        |
+   |               |              |                                    |
+   | FETCH request | datastore    | /application/yang-identifiers+cbor |
+   |               |              |                                    |
+   | FETCH         | datastore    | /application/yang-values+cbor      |
+   | response      |              |                                    |
+   |               |              |                                    |
+   | iPATCH        | datastore    | /application/yang-patch+cbor       |
+   | request       |              |                                    |
+   |               |              |                                    |
+   | GET response  | event stream | /application/yang-tree+cbor        |
+   |               |              |                                    |
+   | POST request  | rpc, action  | /application/yang-value+cbor       |
+   |               |              |                                    |
+   | POST response | rpc, action  | /application/yang-value+cbor       |
+   +---------------+--------------+------------------------------------+
 
 3.  Example syntax
 
@@ -607,8 +609,6 @@ Internet-Draft                    CoMI                         July 2017
 
    SIDs in URIs are represented as a base64 number, SIDs in the payload
    are represented as decimal numbers.
-
-
 
 
 
@@ -641,7 +641,7 @@ Internet-Draft                    CoMI                         July 2017
       resource by the server, which MUST be changed to a new value when
       the set of YANG modules in use by the server changes.
 
-   /s:  Even stream resource to which YANG notification instances are
+   /s:  Event stream resource to which YANG notification instances are
       reported.  Notification support is optional, so this resource will
       not exist if the server does not support any notifications.
 

@@ -790,7 +790,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 </tr>
 <tr>
 <td class="left">GET response</td>
-<td class="left">even stream</td>
+<td class="left">event stream</td>
 <td class="left">/application/yang-tree+cbor</td>
 </tr>
 <tr>
@@ -824,7 +824,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <dt>/mod.uri:</dt>
 <dd style="margin-left: 8">URI identifying the location of the YANG module library uses by this server, with path &#8220;/mod.uri&#8221; and Content-Format &#8220;text/plain; charset=utf-8&#8221;. An ETag MUST be maintained for this resource by the server, which MUST be changed to a new value when the set of YANG modules in use by the server changes.</dd>
 <dt>/s:</dt>
-<dd style="margin-left: 8">Even stream resource to which YANG notification instances are reported.  Notification support is optional, so this resource will not exist if the server does not support any notifications.</dd>
+<dd style="margin-left: 8">Event stream resource to which YANG notification instances are reported.  Notification support is optional, so this resource will not exist if the server does not support any notifications.</dd>
 </dl>
 <p id="rfc.section.4.p.4">The mapping of YANG data node instances to CoMI resources is as follows.  Every data node of the YANG modules loaded in the CoMI server represents a sub-resource of the datastore resource (e.g. /c/instance- identifier) .</p>
 <p id="rfc.section.4.p.5">When multiple instances of a list node exist, instance selection is possible as described in <a href="#query" class="xref">Section 5.1</a>, <a href="#fetch" class="xref">Section 5.2.4</a>, and <a href="#get-example" class="xref">Section 5.2.3.1</a>.</p>
