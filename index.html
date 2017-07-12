@@ -668,7 +668,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <h1 id="rfc.section.2.4">
 <a href="#rfc.section.2.4">2.4.</a> <a href="#ordered-map" id="ordered-map">CBOR Ordered map schematic</a>
 </h1>
-<p id="rfc.section.2.4.p.1">An Ordered map is used as root container of the application/yang-ids-values+cbor Content-Format. This datatype share the same functionalities as a CBOR map without the following limitations:</p>
+<p id="rfc.section.2.4.p.1">An Ordered map is used as root container of the application/yang-tree+cbor Content-Format. This datatype share the same functionalities as a CBOR map without the following limitations:</p>
 <p></p>
 
 <ul>
@@ -677,7 +677,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 </ul>
 <p id="rfc.section.2.4.p.3">This schematic is constructed using a CBOR array comprising pairs of data items, each pair consisting of a key that is immediately followed by a value. Unlike a CBOR map for which the length denotes the number of pairs, the length of the Ordered map denotes the number of items (i.e. number of keys plus number of values).</p>
 <p id="rfc.section.2.4.p.4">The use of this schematic can be inferred from its context or by the presence of a preceding tag. The tag assigned to the Ordered map is defined in <a href="#tags-registry" class="xref">Section 11.4</a>.</p>
-<p id="rfc.section.2.4.p.5">In the case of CoMI, the used of the Ordered map as root container of the application/yang-ids-values+cbor Content-Format is inferred, the Ordered map tag is not used.</p>
+<p id="rfc.section.2.4.p.5">In the case of CoMI, the used of the Ordered map as root container of the application/yang-tree+cbor Content-Format is inferred, the Ordered map tag is not used.</p>
 <h1 id="rfc.section.2.5">
 <a href="#rfc.section.2.5">2.5.</a> <a href="#content-format" id="content-format">Content-Formats</a>
 </h1>
@@ -709,13 +709,13 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <p></p>
 
 <dl>
-<dt>application/yang-map+cbor:</dt>
+<dt>application/yang-tree+cbor:</dt>
 <dd style="margin-left: 8">represents a CBOR YANG document containing a YANG data tree.</dd>
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: ordered map of single-instance-identifier, data-node-value</dd>
 <dt></dt>
 <dd style="margin-left: 8">DELTA ENCODING: The SID part of the first instance-identifier within the ordered map is encoded using its absolute value. Subsequent instance-identifiers are encoded using a delta value equal to the SID of the current instance-identifiers minus the SID of the previous instance-identifier.</dd>
-<dt>application/yang-ids+cbor:</dt>
+<dt>application/yang-identifiers+cbor:</dt>
 <dd style="margin-left: 8">represents a CBOR YANG document containing a list of data node selectors (i.e. instance identifier).</dd>
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: CBOR array of instance-identifier</dd>
@@ -728,7 +728,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: CBOR array of instance-identifier, data-node-value</dd>
 <dt></dt>
-<dd style="margin-left: 8">DELTA ENCODING: Same as Content-Format application/yang-map+cbor</dd>
+<dd style="margin-left: 8">DELTA ENCODING: Same as Content-Format application/yang-tree+cbor</dd>
 </dl>
 <p id="rfc.section.2.5.p.7">The different usage of Content-formats is summarized in the table below:</p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
@@ -767,25 +767,25 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <td class="left">GET</td>
 <td class="left">datastore</td>
 <td class="left">response</td>
-<td class="left">/application/yang-map+cbor</td>
+<td class="left">/application/yang-tree+cbor</td>
 </tr>
 <tr>
 <td class="left">PUT</td>
 <td class="left">datastore</td>
 <td class="left">request</td>
-<td class="left">/application/yang-map+cbor</td>
+<td class="left">/application/yang-tree+cbor</td>
 </tr>
 <tr>
 <td class="left">POST</td>
 <td class="left">datastore</td>
 <td class="left">request</td>
-<td class="left">/application/yang-map+cbor</td>
+<td class="left">/application/yang-tree+cbor</td>
 </tr>
 <tr>
 <td class="left">FETCH</td>
 <td class="left">datastore</td>
 <td class="left">request</td>
-<td class="left">/application/yang-ids+cbor</td>
+<td class="left">/application/yang-identifiers+cbor</td>
 </tr>
 <tr>
 <td class="left">FETCH</td>
@@ -803,7 +803,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <td class="left">GET</td>
 <td class="left">even stream</td>
 <td class="left">response</td>
-<td class="left">/application/yang-map+cbor</td>
+<td class="left">/application/yang-tree+cbor</td>
 </tr>
 <tr>
 <td class="left">POST</td>
@@ -1137,10 +1137,10 @@ RES: 2.05 Content (Content-Format: application/yang-value+cbor)
 <h1 id="rfc.section.5.2.4">
 <a href="#rfc.section.5.2.4">5.2.4.</a> <a href="#fetch" id="fetch">FETCH</a>
 </h1>
-<p id="rfc.section.5.2.4.p.1">The FETCH is used to retrieve multiple data node values. The FETCH request payload contains a list of instance-identifier encoded based on the rules defined by Content-Format application/yang-ids+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  The return response payload contains a list of values  encoded based on the rules defined by Content-Format application/yang-values+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  A value MUST be returned for each instance-identifier specified in the request.  A CBOR null is returned for each data node requested by the client, supported by the server but not currently instantiated.</p>
+<p id="rfc.section.5.2.4.p.1">The FETCH is used to retrieve multiple data node values. The FETCH request payload contains a list of instance-identifier encoded based on the rules defined by Content-Format application/yang-identifiers+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  The return response payload contains a list of values  encoded based on the rules defined by Content-Format application/yang-values+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  A value MUST be returned for each instance-identifier specified in the request.  A CBOR null is returned for each data node requested by the client, supported by the server but not currently instantiated.</p>
 <pre>
 FORMAT:
-  FETCH /c (Content-Format :application/yang-ids+cbor)
+  FETCH /c (Content-Format :application/yang-identifiers+cbor)
   CBOR array of instance-identifier
 
   2.05 Content (Content-Format: application/yang-values+cbor)
@@ -1151,7 +1151,7 @@ FORMAT:
 </h1>
 <p id="rfc.section.5.2.4.1.p.1">The example uses the current-datetime leaf and the interface list from <a href="#ietf-system" class="xref">Appendix C.1</a>.  In the following example the value of current-datetime (SID 1719 and the interface list (SID 1533) instance identified with name=&#8221;eth0&#8221; are queried.</p>
 <pre>
-REQ:  FETCH /c (Content-Format :application/yang-ids+cbor)
+REQ:  FETCH /c (Content-Format :application/yang-identifiers+cbor)
 [
   1719,            / SID 1719 /
   [-186, "eth0"]   / SID 1533 with name = "eth0" /
@@ -1305,19 +1305,19 @@ RES:   2.02 Deleted
 FORMAT:
   GET /c
    
-  2.05 Content (Content-Format: application/yang-map+cbor)
+  2.05 Content (Content-Format: application/yang-tree+cbor)
   ordered map of single-instance-identifier, data-node-value
 </pre>
 <pre>
 FORMAT:
-  PUT /c (Content-Format: application/yang-map+cbor)
+  PUT /c (Content-Format: application/yang-tree+cbor)
   ordered map of single-instance-identifier, data-node-value
    
   2.04 Changed
 </pre>
 <pre>
 FORMAT:
-  POST /c (Content-Format: application/yang-map+cbor)
+  POST /c (Content-Format: application/yang-tree+cbor)
   ordered map of single-instance-identifier, data-node-value
     
   2.01 Created
@@ -1336,7 +1336,7 @@ FORMAT:
 <pre>
 REQ:  GET /c
 
-RES: 2.05 Content (Content-Format :application/yang-map+cbor)
+RES: 2.05 Content (Content-Format :application/yang-tree+cbor)
 [
   1717,                           / Clock (SID 1717) /
     {
@@ -1370,7 +1370,7 @@ RES: 2.05 Content (Content-Format :application/yang-map+cbor)
 FORMAT:
   Get /&lt;stream-resource&gt; Observe(0)
 
-  2.05 Content (Content-Format :application/yang-map+cbor)
+  2.05 Content (Content-Format :application/yang-tree+cbor)
   ordered map of instance-identifier, data-node-value
 </pre>
 <p id="rfc.section.5.5.p.7">The array of data node instances may contain identical entries which have been generated at different times.</p>
@@ -1381,7 +1381,7 @@ FORMAT:
 <pre>
 REQ:  GET /s Observe(0) Token(0x93)
 
-RES:  2.05 Content (Content-Format :application/yang-map+cbor)
+RES:  2.05 Content (Content-Format :application/yang-tree+cbor)
                         Observe(12) Token(0x93)
 [
   60010,                  / example-port-fault (SID 60010) /
@@ -1655,12 +1655,12 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
-<td class="left">application/yang-ids+cbor</td>
+<td class="left">application/yang-identifiers+cbor</td>
 <td class="left">XXX</td>
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
-<td class="left">application/yang-ids-values+cbor</td>
+<td class="left">application/yang-tree+cbor</td>
 <td class="left">XXX</td>
 <td class="left">RFC XXXX</td>
 </tr>
@@ -1694,13 +1694,13 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
-<td class="left">yang-ids+cbor</td>
-<td class="left">application/yang-ids+cbor</td>
+<td class="left">yang-identifiers+cbor</td>
+<td class="left">application/yang-identifiers+cbor</td>
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
-<td class="left">yang-ids-values+cbor</td>
-<td class="left">application/yang-ids-values+cbor</td>
+<td class="left">yang-tree+cbor</td>
+<td class="left">application/yang-tree+cbor</td>
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
