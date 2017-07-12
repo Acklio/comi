@@ -715,7 +715,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <dd style="margin-left: 8">FORMAT: ordered map of single-instance-identifier, data-node-value</dd>
 <dt></dt>
 <dd style="margin-left: 8">DELTA ENCODING: The SID part of the first instance-identifier within the ordered map is encoded using its absolute value. Subsequent instance-identifiers are encoded using a delta value equal to the SID of the current instance-identifiers minus the SID of the previous instance-identifier.</dd>
-<dt>application/yang-identifiers+cbor:</dt>
+<dt>application/yang-selectors+cbor:</dt>
 <dd style="margin-left: 8">represents a CBOR YANG document containing a list of data node selectors (i.e. instance identifier).</dd>
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: CBOR array of instance-identifier</dd>
@@ -776,7 +776,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <tr>
 <td class="left">FETCH request</td>
 <td class="left">datastore</td>
-<td class="left">/application/yang-identifiers+cbor</td>
+<td class="left">/application/yang-selectors+cbor</td>
 </tr>
 <tr>
 <td class="left">FETCH response</td>
@@ -1123,10 +1123,10 @@ RES: 2.05 Content (Content-Format: application/yang-value+cbor)
 <h1 id="rfc.section.5.2.4">
 <a href="#rfc.section.5.2.4">5.2.4.</a> <a href="#fetch" id="fetch">FETCH</a>
 </h1>
-<p id="rfc.section.5.2.4.p.1">The FETCH is used to retrieve multiple data node values. The FETCH request payload contains a list of instance-identifier encoded based on the rules defined by Content-Format application/yang-identifiers+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  The return response payload contains a list of values  encoded based on the rules defined by Content-Format application/yang-values+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  A value MUST be returned for each instance-identifier specified in the request.  A CBOR null is returned for each data node requested by the client, supported by the server but not currently instantiated.</p>
+<p id="rfc.section.5.2.4.p.1">The FETCH is used to retrieve multiple data node values. The FETCH request payload contains a list of instance-identifier encoded based on the rules defined by Content-Format application/yang-selectors+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  The return response payload contains a list of values  encoded based on the rules defined by Content-Format application/yang-values+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  A value MUST be returned for each instance-identifier specified in the request.  A CBOR null is returned for each data node requested by the client, supported by the server but not currently instantiated.</p>
 <pre>
 FORMAT:
-  FETCH /c (Content-Format :application/yang-identifiers+cbor)
+  FETCH /c (Content-Format :application/yang-selectors+cbor)
   CBOR array of instance-identifier
 
   2.05 Content (Content-Format: application/yang-values+cbor)
@@ -1137,7 +1137,7 @@ FORMAT:
 </h1>
 <p id="rfc.section.5.2.4.1.p.1">The example uses the current-datetime leaf and the interface list from <a href="#ietf-system" class="xref">Appendix C.1</a>.  In the following example the value of current-datetime (SID 1719 and the interface list (SID 1533) instance identified with name=&#8221;eth0&#8221; are queried.</p>
 <pre>
-REQ:  FETCH /c (Content-Format :application/yang-identifiers+cbor)
+REQ:  FETCH /c (Content-Format :application/yang-selectors+cbor)
 [
   1719,            / SID 1719 /
   [-186, "eth0"]   / SID 1533 with name = "eth0" /
@@ -1641,7 +1641,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
-<td class="left">application/yang-identifiers+cbor</td>
+<td class="left">application/yang-selectors+cbor</td>
 <td class="left">XXX</td>
 <td class="left">RFC XXXX</td>
 </tr>
@@ -1680,8 +1680,8 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
-<td class="left">yang-identifiers+cbor</td>
-<td class="left">application/yang-identifiers+cbor</td>
+<td class="left">yang-selectors+cbor</td>
+<td class="left">application/yang-selectors+cbor</td>
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
