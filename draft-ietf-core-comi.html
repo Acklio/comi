@@ -283,7 +283,7 @@ address {
 <link href="#rfc.section.2.1" rel="Chapter" title="2.1 Major differences between RESTCONF and CoMI">
 <link href="#rfc.section.2.2" rel="Chapter" title="2.2 Compression of YANG identifiers">
 <link href="#rfc.section.2.3" rel="Chapter" title="2.3 Instance identifier">
-<link href="#rfc.section.2.4" rel="Chapter" title="2.4 CBOR Ordered map schematic">
+<link href="#rfc.section.2.4" rel="Chapter" title="2.4 CBOR ordered map schematic">
 <link href="#rfc.section.2.5" rel="Chapter" title="2.5 Content-Formats">
 <link href="#rfc.section.3" rel="Chapter" title="3 Example syntax">
 <link href="#rfc.section.4" rel="Chapter" title="4 CoAP Interface">
@@ -337,7 +337,7 @@ address {
 
   <meta name="dct.creator" content="Veillette, M., Ed., van der Stok, P., Ed., Pelov, A., and A. Bierman" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-01" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-7-12" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-7-18" />
   <meta name="dct.abstract" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
   <meta name="description" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
 
@@ -361,7 +361,7 @@ address {
 <td class="right">P. van der Stok, Ed.</td>
 </tr>
 <tr>
-<td class="left">Expires: January 13, 2018</td>
+<td class="left">Expires: January 19, 2018</td>
 <td class="right">consultant</td>
 </tr>
 <tr>
@@ -382,7 +382,7 @@ address {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">July 12, 2017</td>
+<td class="right">July 18, 2017</td>
 </tr>
 
     	
@@ -400,7 +400,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on January 13, 2018.</p>
+<p>This Internet-Draft will expire on January 19, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -422,7 +422,7 @@ address {
 </li>
 <li>2.3.   <a href="#rfc.section.2.3">Instance identifier</a>
 </li>
-<li>2.4.   <a href="#rfc.section.2.4">CBOR Ordered map schematic</a>
+<li>2.4.   <a href="#rfc.section.2.4">CBOR ordered map schematic</a>
 </li>
 <li>2.5.   <a href="#rfc.section.2.5">Content-Formats</a>
 </li>
@@ -523,11 +523,11 @@ address {
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
-<p id="rfc.section.1.p.1">The Constrained Application Protocol (CoAP) <a href="#RFC7252" class="xref">[RFC7252]</a> is designed for Machine to Machine (M2M) applications such as smart energy, smart city and building control.  Constrained devices need to be managed in an automatic fashion to handle the large quantities of devices that are expected in future installations. The messages between devices need to be as small and infrequent as possible. The implementation complexity and runtime resources need to be as small as possible.</p>
+<p id="rfc.section.1.p.1">The Constrained Application Protocol (CoAP) <a href="#RFC7252" class="xref">[RFC7252]</a> is designed for Machine to Machine (M2M) applications such as smart energy, smart city and building control.  Constrained devices need to be managed in an automatic fashion to handle the large quantities of devices that are expected in future installations. Messages between devices need to be as small and infrequent as possible. The implementation complexity and runtime resources need to be as small as possible.</p>
 <p id="rfc.section.1.p.2">This draft describes the CoAP Management Interface which uses CoAP methods to access structured data defined in YANG <a href="#RFC7950" class="xref">[RFC7950]</a>. This draft is complementary to <a href="#RFC8040" class="xref">[RFC8040]</a> which describes a REST-like interface called RESTCONF, which uses HTTP methods to access structured data defined in YANG.</p>
-<p id="rfc.section.1.p.3">The use of standardized data sets, specified in a standardized language such as YANG, promotes interoperability between devices and applications from different manufacturers.</p>
+<p id="rfc.section.1.p.3">The use of standardized data models specified in a standardized language, such as YANG, promotes interoperability between devices and applications from different manufacturers.</p>
 <p id="rfc.section.1.p.4">CoMI and RESTCONF are intended to work in a stateless client-server fashion.  They use a single round-trip to complete a single editing transaction, where NETCONF needs up to 10 round trips.</p>
-<p id="rfc.section.1.p.5">To promote small packets, CoMI uses a YANG to CBOR mapping <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> and numeric identifiers <a href="#I-D.ietf-core-sid" class="xref">[I-D.ietf-core-sid]</a> to minimize CBOR payloads and URI length.</p>
+<p id="rfc.section.1.p.5">To promote small messges, CoMI uses a YANG to CBOR mapping <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> and numeric identifiers <a href="#I-D.ietf-core-sid" class="xref">[I-D.ietf-core-sid]</a> to minimize CBOR payloads and URI length.</p>
 <h1 id="rfc.section.1.1">
 <a href="#rfc.section.1.1">1.1.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -558,12 +558,12 @@ address {
 <dt>instance identifier:</dt>
 <dd style="margin-left: 8">List instance identifier or single instance identifier.</dd>
 <dt>data node value:</dt>
-<dd style="margin-left: 8">Value assigned to a data node instance. Data node values are serialized into the payload according to the rules defined in section 4 of <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a>.</dd>
+<dd style="margin-left: 8">The value assigned to a data node instance. Data node values are serialized into the payload according to the rules defined in section 4 of <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a>.</dd>
 </dl>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#comi-architecture" id="comi-architecture">CoMI Architecture</a>
 </h1>
-<p id="rfc.section.2.p.1">This section describes the CoMI architecture to use CoAP for the reading and modifying the content of a datastore used for the management of the instrumented node.</p>
+<p id="rfc.section.2.p.1">This section describes the CoMI architecture to use CoAP for reading and modifying the content of datastore(s) used for the management of the instrumented node.</p>
 <div id="rfc.figure.1"></div>
 <div id="archit"></div>
 <pre>
@@ -601,11 +601,11 @@ Client   V                               Server     V
 <dt>(3) CoAP request/response messages:</dt>
 <dd style="margin-left: 8">The CoMI client sends request messages to and receives response messages from the CoMI server.</dd>
 <dt>(4) Request, Indication, Response, Confirm:</dt>
-<dd style="margin-left: 8">Processes performed by the CoMI clients and servers.</dd>
+<dd style="margin-left: 8">The processes performed by the CoMI clients and servers.</dd>
 <dt>(5) Datastore:</dt>
-<dd style="margin-left: 8">Resource used to access configuration data, state data, RPCs and actions. A CoMI server may support multiple datastores to support more complex operations such as configuration rollback, scheduled update.</dd>
+<dd style="margin-left: 8">A resource used to access configuration data, state data, RPCs and actions. A CoMI server may support multiple datastores to support more complex operations such as configuration rollback, scheduled update.</dd>
 <dt>(6) Event stream:</dt>
-<dd style="margin-left: 8">Observable resource used to get real time notifications. A CoMI server may support multiple Event streams serving different purposes such as normal monitoring, diagnostic, syslog, security monitoring.</dd>
+<dd style="margin-left: 8">An observable resource used to get real time notifications. A CoMI server may support multiple Event streams serving different purposes such as normal monitoring, diagnostic, syslog, security monitoring.</dd>
 <dt>(7) Security:</dt>
 <dd style="margin-left: 8">The server MUST prevent unauthorized users from reading or writing any CoMI resources. CoMI relies on security protocols such as DTLS <a href="#RFC6347" class="xref">[RFC6347]</a> to secure CoAP communication.</dd>
 </dl>
@@ -628,10 +628,10 @@ Client   V                               Server     V
 </li>
 </ul>
 <h1 id="rfc.section.2.2">
-<a href="#rfc.section.2.2">2.2.</a> <a href="#object-id-compression" id="object-id-compression">Compression of YANG identifiers</a>
+<a href="#rfc.section.2.2">2.2.</a> <a href="#id-compression" id="id-compression">Compression of YANG identifiers</a>
 </h1>
-<p id="rfc.section.2.2.p.1">In the YANG specification, items are identified with a name string. In order to significantly reduce the size of identifiers used in CoMI, numeric object identifiers, SIDs, are used instead of these strings.  YANG Schema Item iDentifier (SID) is defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 2.1.</p>
-<p id="rfc.section.2.2.p.2">When used in a URI, SIDs are encoded in based64 using the URL and Filename safe alphabet as defined by <a href="#RFC4648" class="xref">[RFC4648]</a> section 5. The last 6 bits encoded is always aligned with the least significant 6 bits of the SID represented using an unsigned integer.  &#8216;A&#8217; characters (value 0) at the start of the resulting stirng are removed.</p>
+<p id="rfc.section.2.2.p.1">In the YANG specification, items are identified with a name string. In order to significantly reduce the size of identifiers used in CoMI, numeric identifiers are used instead of these strings.  YANG Schema Item iDentifier (SID) is defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 2.1.</p>
+<p id="rfc.section.2.2.p.2">When used in a URI, SIDs are encoded in based64 using the URL and Filename safe alphabet as defined by <a href="#RFC4648" class="xref">[RFC4648]</a> section 5. The last 6 bits encoded is always aligned with the least significant 6 bits of the SID represented using an unsigned integer.  &#8216;A&#8217; characters (value 0) at the start of the resulting string are removed.</p>
 <pre>
 SID in basae64 = URLsafeChar[SID &gt;&gt; 60 &amp; 0x3F] |
                  URLsafeChar[SID &gt;&gt; 54 &amp; 0x3F] | 
@@ -663,21 +663,21 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <h1 id="rfc.section.2.3">
 <a href="#rfc.section.2.3">2.3.</a> <a href="#instance-identifier" id="instance-identifier">Instance identifier</a>
 </h1>
-<p id="rfc.section.2.3.p.1">A instance identifier is used to uniquely identify a particular data node instance within a datastore. This YANG built-in type is defined in <a href="#RFC7950" class="xref">[RFC7950]</a> section 9.13. An instance identifier is composed of the data node identifier (i.e. a SID) and for data nodes within list(s) the keys used to index within these list(s).</p>
+<p id="rfc.section.2.3.p.1">Instance identifiers are used to uniquely identify data node instances within a datastore. This YANG built-in type is defined in <a href="#RFC7950" class="xref">[RFC7950]</a> section 9.13. An instance identifier is composed of the data node identifier (i.e. a SID) and for data nodes within list(s) the keys used to index within these list(s).</p>
 <p id="rfc.section.2.3.p.2">When part of a payload, instance identifiers are encoded in CBOR based on the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 5.13.1. When part of a URI, the SID is appended to the URI of the targeted datastore, the keys are specified using the &#8216;k&#8217; URI-Query as defined in <a href="#query" class="xref">Section 5.1</a>.</p>
 <h1 id="rfc.section.2.4">
-<a href="#rfc.section.2.4">2.4.</a> <a href="#ordered-map" id="ordered-map">CBOR Ordered map schematic</a>
+<a href="#rfc.section.2.4">2.4.</a> <a href="#ordered-map" id="ordered-map">CBOR ordered map schematic</a>
 </h1>
-<p id="rfc.section.2.4.p.1">An Ordered map is used as root container of the application/yang-tree+cbor Content-Format. This datatype share the same functionalities as a CBOR map without the following limitations:</p>
+<p id="rfc.section.2.4.p.1">An ordered map is used as a root container of the application/yang-tree+cbor Content-Format. This datatype share the same functionalities as a CBOR map without the following limitations:</p>
 <p></p>
 
 <ul>
-<li>The ordering of the pairs of data items are preserved from serialization to deserialization.</li>
+<li>The ordering of the pairs of data items is preserved from serialization to deserialization.</li>
 <li>Duplicate keys are allowed</li>
 </ul>
-<p id="rfc.section.2.4.p.3">This schematic is constructed using a CBOR array comprising pairs of data items, each pair consisting of a key that is immediately followed by a value. Unlike a CBOR map for which the length denotes the number of pairs, the length of the Ordered map denotes the number of items (i.e. number of keys plus number of values).</p>
+<p id="rfc.section.2.4.p.3">This schematic is constructed using a CBOR array comprising pairs of data items, each pair consisting of a key that is immediately followed by a value. Unlike a CBOR map for which the length denotes the number of pairs, the length of the ordered map denotes the number of items (i.e. number of keys plus number of values).</p>
 <p id="rfc.section.2.4.p.4">The use of this schematic can be inferred from its context or by the presence of a preceding tag. The tag assigned to the Ordered map is defined in <a href="#tags-registry" class="xref">Section 11.4</a>.</p>
-<p id="rfc.section.2.4.p.5">In the case of CoMI, the used of the Ordered map as root container of the application/yang-tree+cbor Content-Format is inferred, the Ordered map tag is not used.</p>
+<p id="rfc.section.2.4.p.5">In the case of CoMI, the use of the ordered map as the root container of the application/yang-tree+cbor Content-Format is inferred, the Ordered map tag is not used.</p>
 <h1 id="rfc.section.2.5">
 <a href="#rfc.section.2.5">2.5.</a> <a href="#content-format" id="content-format">Content-Formats</a>
 </h1>
@@ -693,22 +693,17 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 
 <dl>
 <dt>application/yang-value+cbor:</dt>
-<dd style="margin-left: 8">represents a CBOR YANG document containing one YANG data node value.  A YANG data node instance can be a leaf, a container, a list, a list instance, a RPC input, a RPC output, an action input, an action output, a leaf-list, an anydata or an anyxml. The CBOR encoding for each of these YANG data node instances are defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.</dd>
+<dd style="margin-left: 8">represents a CBOR YANG document containing one YANG data node value.  The YANG data node instance can be a leaf, a container, a list, a list instance, a RPC input, a RPC output, an action input, an action output, a leaf-list, an anydata or an anyxml. The CBOR encoding for each of these YANG data node instances are defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.</dd>
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: data-node-value</dd>
 <dt></dt>
-<dd style="margin-left: 8">DELTA ENCODING: SIDs included in YANG containers, list instances, RPC inputs, RPC outputs, action inputs, actions output and anydata are encoding using a delta value equal to the SID of the current schema node minus the SID of the parent. The parent SID of root data nodes is defined by the URI carried in the associated request (i.e. GET, PUT, POST).</dd>
+<dd style="margin-left: 8">DELTA ENCODING: SIDs included in a YANG container, a list instance, a RPC input, a RPC output, an action input, an actions output and an anydata are encoded using a delta value equal to the SID of the current schema node minus the SID of the parent. The parent SID of root data nodes is defined by the URI carried in the associated request (i.e. GET, PUT, POST).</dd>
 <dt>application/yang-values+cbor:</dt>
-<dd style="margin-left: 8">represents a YANG document containing a list of data node value.</dd>
+<dd style="margin-left: 8">represents a YANG document containing a list of data node values.</dd>
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: CBOR array of data-node-value</dd>
 <dt></dt>
-<dd style="margin-left: 8">DELTA ENCODING: SIDs included in YANG containers and list instances</dd>
-</dl>
-<p id="rfc.section.2.5.p.5">The parent SID used by root data nodes of each data node value are encoding using a delta value equal to the SID of the current schema node minus the SID of the parent. The parent SID of root data node are defined by the coresponding instance-identifier carried in the FETCH request.</p>
-<p></p>
-
-<dl>
+<dd style="margin-left: 8">DELTA ENCODING: SIDs included in a YANG container, a list instance and an anydata are encoded using a delta value equal to the SID of the current schema node minus the SID of the parent.  The parent SID of root data nodes is defined by the corresponding instance-identifier carried in the FETCH request.</dd>
 <dt>application/yang-tree+cbor:</dt>
 <dd style="margin-left: 8">represents a CBOR YANG document containing a YANG data tree.</dd>
 <dt></dt>
@@ -722,7 +717,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <dt></dt>
 <dd style="margin-left: 8">DELTA ENCODING: The SID part of the first instance-identifier within the CBOR array is encoded using its absolute value. Subsequent instance-identifiers are encoded using a delta value equal to the SID of the current instance-identifiers minus the SID of the previous instance-identifier.</dd>
 <dt>application/yang-patch+cbor:</dt>
-<dd style="margin-left: 8">represents a CBOR YANG document containing a list of data nodes to be replace, create, or delete.</dd>
+<dd style="margin-left: 8">represents a CBOR YANG document containing a list of data nodes to be replaced, created, or deleted.</dd>
 <dt></dt>
 <dd style="margin-left: 8">For each data node instance, D, for which the instance identifier is the same as for a data node instance, I, in the targeted resource: the data node value of D replaces the data node value of I. When the data node value of D is null, the data node instance I is removed. When the targeted resource does not contain a data node instance with the same instance identifier as D, a new data node instance is created in the targeted resource with the same instance identifier and data node value as D.</dd>
 <dt></dt>
@@ -730,8 +725,8 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <dt></dt>
 <dd style="margin-left: 8">DELTA ENCODING: Same as Content-Format application/yang-tree+cbor</dd>
 </dl>
-<p id="rfc.section.2.5.p.7">The different usage of Content-formats is summarized in the table below:</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<p id="rfc.section.2.5.p.5">The different Content-formats usage is  summarized in the table below:</p>
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Method</th>
 <th class="left">Resource</th>
@@ -822,17 +817,17 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <dt>/c:</dt>
 <dd style="margin-left: 8">Datastore resource with path &#8220;/c&#8221; and using CBOR content encoding format.  Sub-resouces of format /c/instance-identifier may be available to access directly each data node resource for this datastore.</dd>
 <dt>/mod.uri:</dt>
-<dd style="margin-left: 8">URI identifying the location of the YANG module library uses by this server, with path &#8220;/mod.uri&#8221; and Content-Format &#8220;text/plain; charset=utf-8&#8221;. An ETag MUST be maintained for this resource by the server, which MUST be changed to a new value when the set of YANG modules in use by the server changes.</dd>
+<dd style="margin-left: 8">URI identifying the location of the YANG module library used by this server, with path &#8220;/mod.uri&#8221; and Content-Format &#8220;text/plain; charset=utf-8&#8221;. An ETag MUST be maintained for this resource by the server, which MUST be changed to a new value when the set of YANG modules in use by the server changes.</dd>
 <dt>/s:</dt>
 <dd style="margin-left: 8">Event stream resource to which YANG notification instances are reported.  Notification support is optional, so this resource will not exist if the server does not support any notifications.</dd>
 </dl>
-<p id="rfc.section.4.p.4">The mapping of YANG data node instances to CoMI resources is as follows.  Every data node of the YANG modules loaded in the CoMI server represents a sub-resource of the datastore resource (e.g. /c/instance- identifier) .</p>
-<p id="rfc.section.4.p.5">When multiple instances of a list node exist, instance selection is possible as described in <a href="#query" class="xref">Section 5.1</a>, <a href="#fetch" class="xref">Section 5.2.4</a>, and <a href="#get-example" class="xref">Section 5.2.3.1</a>.</p>
+<p id="rfc.section.4.p.4">The mapping of YANG data node instances to CoMI resources is as follows.  Every data node of the YANG modules loaded in the CoMI server represents a sub-resource of the datastore resource (e.g. /c/instance-identifier).</p>
+<p id="rfc.section.4.p.5">When multiple instances of a list exist, instance selection is possible as described in <a href="#query" class="xref">Section 5.1</a>, <a href="#fetch" class="xref">Section 5.2.4</a>, and <a href="#get-example" class="xref">Section 5.2.3.1</a>.</p>
 <p id="rfc.section.4.p.6">The description of the management collection interface, with if=core.c, is shown in the table below, following the guidelines of <a href="#I-D.ietf-core-interfaces" class="xref">[I-D.ietf-core-interfaces]</a>:</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Function</th>
-<th class="left">Default path</th>
+<th class="left">Recommended path</th>
 <th class="left">rt</th>
 </tr></thead>
 <tbody>
@@ -864,7 +859,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 </h1>
 <p id="rfc.section.5.p.1">The CoMI Collection Interface provides a CoAP interface to manage YANG servers.</p>
 <p id="rfc.section.5.p.2">The methods used by CoMI are:</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Operation</th>
 <th class="left">Description</th>
@@ -880,7 +875,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 </tr>
 <tr>
 <td class="left">POST</td>
-<td class="left">Create a datastore resource or a data node resource, invoke a RPC or action</td>
+<td class="left">Create a datastore resource or a data node resource, invoke an RPC or action</td>
 </tr>
 <tr>
 <td class="left">PUT</td>
@@ -897,7 +892,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 </tbody>
 </table>
 <p id="rfc.section.5.p.3">There is one Uri-Query option for the GET, PUT, POST, and DELETE methods.</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Uri-Query option</th>
 <th class="left">Description</th>
@@ -911,7 +906,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <h1 id="rfc.section.5.1">
 <a href="#rfc.section.5.1">5.1.</a> <a href="#query" id="query">Using the &#8216;k&#8217; Uri-Query option</a>
 </h1>
-<p id="rfc.section.5.1.p.1">The &#8220;k&#8221; (key) parameter specifies a specific instance of a data node.  The SID in the URI is followed by the (?k=key1, key2,..). Where SID identifies a data node, and key1, key2 are the values of the key leaves that specify an instance. List can have multiple keys, and lists can be part of lists. The order of key value generation is given recursively by:</p>
+<p id="rfc.section.5.1.p.1">The &#8220;k&#8221; (key) parameter specifies a specific instance of a data node.  The SID in the URI is followed by the (?k=key1, key2,..). Where SID identifies a data node, and key1, key2 are the values of the key leaves that specify an instance. Lists can have multiple keys, and lists can be part of lists. The order of key value generation is given recursively by:</p>
 <p></p>
 
 <ul>
@@ -919,7 +914,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <li>For a given list, generate key values in the order specified in the YANG module.</li>
 </ul>
 <p id="rfc.section.5.1.p.3">Key values are encoded using the rules defined in the following table.</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">YANG datatype</th>
 <th class="left">Uri-Query text content</th>
@@ -975,18 +970,18 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <p></p>
 
 <ul>
-<li>The method int2str() is used to convert a integer value to a string. For example, int2str(0x0123) return  the string &#8220;291&#8221;.</li>
-<li>The method urlSafeBase64() is used to convert a binary string to base64 using the URL and Filename safe alphabet as defined by <a href="#RFC4648" class="xref">[RFC4648]</a> section 5. For example, urlSafeBase64(\xF9\x56\xA1\x3C) retrun the string &#8220;-VahPA&#8221;.</li>
+<li>The method int2str() is used to convert an integer value to a string. For example, int2str(0x0123) return  the string &#8220;291&#8221;.</li>
+<li>The method urlSafeBase64() is used to convert a binary string to base64 using the URL and Filename safe alphabet as defined by <a href="#RFC4648" class="xref">[RFC4648]</a> section 5. For example, urlSafeBase64(\xF9\x56\xA1\x3C) return the string &#8220;-VahPA&#8221;.</li>
 <li>The method CBORencode() is used to convert a YANG value to CBOR as specified in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 5, item 8.</li>
 </ul>
-<p id="rfc.section.5.1.p.6">The resulting key string is encoded in a Uri-Query as specify in <a href="#RFC7252" class="xref">[RFC7252]</a> section 6.5.</p>
+<p id="rfc.section.5.1.p.6">The resulting key string is encoded in a Uri-Query as specified in <a href="#RFC7252" class="xref">[RFC7252]</a> section 6.5.</p>
 <h1 id="rfc.section.5.2">
 <a href="#rfc.section.5.2">5.2.</a> <a href="#data-retrieval" id="data-retrieval">Data Retrieval</a>
 </h1>
 <p id="rfc.section.5.2.p.1">One or more data nodes can be retrieved by the client.  The operation is mapped to the GET method defined in section 5.8.1 of <a href="#RFC7252" class="xref">[RFC7252]</a> and to the FETCH method defined in section 2 of <a href="#RFC8132" class="xref">[RFC8132]</a>.</p>
 <p id="rfc.section.5.2.p.2">It is possible that the size of the payload is too large to fit in a single message. In the case that management data is bigger than the maximum supported payload size, the Block mechanism from <a href="#RFC7959" class="xref">[RFC7959]</a> may be used, as explained in more detail in <a href="#block" class="xref">Section 7</a>.</p>
 <p id="rfc.section.5.2.p.3">There are two additional Uri-Query options for the GET and FETCH methods.</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Uri-Query option</th>
 <th class="left">Description</th>
@@ -1007,7 +1002,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 </h1>
 <p id="rfc.section.5.2.1.p.1">The &#8216;c&#8217; (content) parameter controls how descendant nodes of the requested data nodes will be processed in the reply.</p>
 <p id="rfc.section.5.2.1.p.2">The allowed values are:</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Value</th>
 <th class="left">Description</th>
@@ -1034,7 +1029,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 </h1>
 <p id="rfc.section.5.2.2.p.1">The &#8220;d&#8221; (with-defaults) parameter controls how the default values of the descendant nodes of the requested data nodes will be processed.</p>
 <p id="rfc.section.5.2.2.p.2">The allowed values are:</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Value</th>
 <th class="left">Description</th>
@@ -1062,7 +1057,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <h1 id="rfc.section.5.2.3">
 <a href="#rfc.section.5.2.3">5.2.3.</a> <a href="#get-operation" id="get-operation">GET</a>
 </h1>
-<p id="rfc.section.5.2.3.p.1">A request to read the values of a data node instance is sent with a confirmable CoAP GET message. A instance identifier is specified in the URI path prefixed with the example path /c.</p>
+<p id="rfc.section.5.2.3.p.1">A request to read the values of a data node instance is sent with a confirmable CoAP GET message. An instance identifier is specified in the URI path prefixed with the example path /c.</p>
 <pre>
 FORMAT:
   GET /c/instance-identifier
@@ -1081,7 +1076,7 @@ REQ: GET example.com/c/a3
 RES: 2.05 Content (Content-Format: application/yang-value+cbor)
 "2014-10-26T12:16:31Z"
 </pre>
-<p id="rfc.section.5.2.3.1.p.2">The next example represents the retrieval of a YANG container. In this case, the CoMI client perform a GET request on the clock container (SID = 1717; base64: a1). The container returned is encoded using a CBOR map as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.2.</p>
+<p id="rfc.section.5.2.3.1.p.2">The next example represents the retrieval of a YANG container. In this case, the CoMI client performs a GET request on the clock container (SID = 1717; base64: a1). The container returned is encoded using a CBOR map as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.2.</p>
 <pre>
 REQ: GET example.com/c/a1
 
@@ -1091,7 +1086,7 @@ RES: 2.05 Content (Content-Format: application/yang-value+cbor)
   +1 : "2014-10-21T03:00:00Z"    / SID 1718 /
 }
 </pre>
-<p id="rfc.section.5.2.3.1.p.3">This example show the retrieval of the /interfaces/interface YANG list accessed using SID 1533 (base64: X9). The return payload is encoded using a CBOR array as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.4.1 containing 2 instances.</p>
+<p id="rfc.section.5.2.3.1.p.3">This example shows the retrieval of the /interfaces/interface YANG list accessed using SID 1533 (base64: X9). The return payload is encoded using a CBOR array as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.4.1 containing 2 instances.</p>
 <pre>
 REQ: GET example.com/c/X9
 
@@ -1123,7 +1118,7 @@ RES: 2.05 Content (Content-Format: application/yang-value+cbor)
 <h1 id="rfc.section.5.2.4">
 <a href="#rfc.section.5.2.4">5.2.4.</a> <a href="#fetch" id="fetch">FETCH</a>
 </h1>
-<p id="rfc.section.5.2.4.p.1">The FETCH is used to retrieve multiple data node values. The FETCH request payload contains a list of instance-identifier encoded based on the rules defined by Content-Format application/yang-selectors+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  The return response payload contains a list of values  encoded based on the rules defined by Content-Format application/yang-values+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  A value MUST be returned for each instance-identifier specified in the request.  A CBOR null is returned for each data node requested by the client, supported by the server but not currently instantiated.</p>
+<p id="rfc.section.5.2.4.p.1">The FETCH is used to retrieve multiple data node values. The FETCH request payload contains a list of instance-identifier encoded based on the rules defined by Content-Format application/yang-selectors+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  The return response payload contains a list of values encoded based on the rules defined by Content-Format application/yang-values+cbor in <a href="#content-format" class="xref">Section 2.5</a>.  A value MUST be returned for each instance-identifier specified in the request.  A CBOR null is returned for each data node requested by the client, not supported by the server or not currently instantiated.</p>
 <pre>
 FORMAT:
   FETCH /c (Content-Format :application/yang-selectors+cbor)
@@ -1167,7 +1162,7 @@ RES:  2.05 Content (Content-Format :application/yang-value+cbor)
 <a href="#rfc.section.5.3.2">5.3.2.</a> <a href="#post-operation" id="post-operation">POST</a>
 </h1>
 <p id="rfc.section.5.3.2.p.1">The CoAP POST operation is used in CoMI for creation of data node resources and the invocation of &#8220;ACTION&#8221; and &#8220;RPC&#8221; resources.  Refer to <a href="#rpc" class="xref">Section 5.6</a> for details on &#8220;ACTION&#8221; and &#8220;RPC&#8221; resources.</p>
-<p id="rfc.section.5.3.2.p.2">A request to create data node resource is sent with a confirmable CoAP POST message.  The URI specify the data node to be instantiated. In the case of a YANG list, the URI point on the list, not the list instance to be created.</p>
+<p id="rfc.section.5.3.2.p.2">A request to create a data node resource is sent with a confirmable CoAP POST message.  The URI specifies the data node to be instantiated at the exception of list intances.  In this case, for compactness, the URI specifies the list for which an instance is created.</p>
 <pre>
 FORMAT:
   POST /c/&lt;instance identifier&gt;
@@ -1226,9 +1221,9 @@ RES:  2.04 Changed
 <h1 id="rfc.section.5.3.4">
 <a href="#rfc.section.5.3.4">5.3.4.</a> <a href="#ipatch-operation" id="ipatch-operation">iPATCH</a>
 </h1>
-<p id="rfc.section.5.3.4.p.1">One or multiple data node instances are replaced with the idem-potent iPATCH method <a href="#RFC8132" class="xref">[RFC8132]</a>. A request is sent with a confirmable CoAP iPATCH message.</p>
+<p id="rfc.section.5.3.4.p.1">One or multiple data node instances are replaced with the idempotent iPATCH method <a href="#RFC8132" class="xref">[RFC8132]</a>. A request is sent with a confirmable CoAP iPATCH message.</p>
 <p id="rfc.section.5.3.4.p.2">There are no Uri-Query options for the iPATCH method.</p>
-<p id="rfc.section.5.3.4.p.3">The processing of the iPATCH command is specified by Content-Format application/yang-patch+cbor.  The CBOR patch payload describes the changes to be made to the targeted YANG data nodes.  The payload is an array of instance identifier, data node value pairs.  If the CBOR patch payload contains data node instances that are not present in the target, these instances are added. If the target contains the specified instance, the contents of the instances are replaced with the values of the payload.  Null values indicate the removal of existing values.</p>
+<p id="rfc.section.5.3.4.p.3">The processing of the iPATCH command is specified by Content-Format application/yang-patch+cbor.  In summary, if the CBOR patch payload contains a data node instance that is not present in the target, this instance is added. If the target contains the specified instance, the content of this instance is replaced with the value of the payload.  A null value indicates the removal of an existing data node instance.</p>
 <pre>
 FORMAT:
   iPATCH /c (Content-Format :application/yang-patch+cbor)
@@ -1343,15 +1338,15 @@ RES: 2.05 Content (Content-Format :application/yang-tree+cbor)
 <a href="#rfc.section.5.5">5.5.</a> <a href="#event-stream" id="event-stream">Event stream</a>
 </h1>
 <p id="rfc.section.5.5.p.1">Event notification is an essential function for the management of servers.  CoMI allows notifications specified in YANG <a href="#RFC5277" class="xref">[RFC5277]</a> to be reported to a list of clients. The recommended path of the default event stream is /s.  The server MAY support additional event stream resources to address different notification needs.</p>
-<p id="rfc.section.5.5.p.2">Reception of generated notification instances is enabled with the CoAP Observe <a href="#RFC7641" class="xref">[RFC7641]</a> function. Clients subscribe to the notifications by sending a GET request with an &#8220;Observe&#8221; option, specifying the /s resource when the default stream is selected.</p>
-<p id="rfc.section.5.5.p.3">Each response payload carry one or multiple notifications. The number of notification reported and the conditions used to remove notifications from the reported list is left to the implementation of the CoMI server.  When multiple notifications are reported, they MUST be ordered starting from the newest at index zero.</p>
+<p id="rfc.section.5.5.p.2">Reception of notification instances is enabled with the CoAP Observe <a href="#RFC7641" class="xref">[RFC7641]</a> function. Clients subscribe to the notifications by sending a GET request with an &#8220;Observe&#8221; option, specifying the /s resource when the default stream is selected.</p>
+<p id="rfc.section.5.5.p.3">Each response payload carries one or multiple notifications. The number of notification reported and the conditions used to remove notifications from the reported list is left to the implementers.  When multiple notifications are reported, they MUST be ordered starting from the newest notification at index zero.</p>
 <p id="rfc.section.5.5.p.4">An example implementation is:</p>
 <p></p>
 
-<ul class="empty"><li>Every time an event is generated, the generated notification instance is appended to the chosen stream(s). After appending the instance, the contents of the instance is sent to all clients observing the modified stream.</li></ul>
+<ul class="empty"><li>Every time an event is generated, the generated notification instance is appended to the chosen stream(s). After appending the instance, the content of the instance is sent to all clients observing the modified stream.</li></ul>
 <p></p>
 
-<ul class="empty"><li>Dependent on the storage space allocated to the notification stream, the oldest notifications that do not fit inside the notification stream storage space are removed.</li></ul>
+<ul class="empty"><li>Dependending on the storage space allocated to the notification stream, the oldest notifications that do not fit inside the notification stream storage space are removed.</li></ul>
 <pre>
 FORMAT:
   Get /&lt;stream-resource&gt; Observe(0)
@@ -1468,19 +1463,19 @@ RES: 2.05 Content (Content-Format: application/yang-value+cbor)
 </h1>
 <p id="rfc.section.7.p.1">The CoAP protocol provides reliability by acknowledging the UDP datagrams.  However, when large pieces of data need to be transported, datagrams get fragmented, thus creating constraints on the resources in the client, server and intermediate routers. The block option <a href="#RFC7959" class="xref">[RFC7959]</a> allows the transport of the total payload in individual blocks of which the size can be adapted to the underlying transport sizes such as: (UDP datagram size ~64KiB, IPv6 MTU of 1280, IEEE 802.15.4 payload of 60-80 bytes). Each block is individually acknowledged to guarantee reliability.</p>
 <p id="rfc.section.7.p.2">Notice that the Block mechanism splits the data at fixed positions, such that individual data fields may become fragmented. Therefore, assembly of multiple blocks may be required to process the complete data field.</p>
-<p id="rfc.section.7.p.3">Beware of race conditions. Blocks are filled one at a time and care should be taken that the whole data representation is sent in multiple blocks sequentially without interruption. In the server, values are changed, lists are re-ordered, extended or reduced. When these actions happen during the serialization of the contents of the resource, the transported results do not correspond with a state having occurred in the server; or worse the returned values are inconsistent.  For example: array length does not correspond with actual number of items.  It may be advisable to use CBOR maps or CBOR arrays of undefined length which are foreseen for data streaming purposes.</p>
+<p id="rfc.section.7.p.3">Beware of race conditions. Blocks are filled one at a time and care should be taken that the whole data representation is sent in multiple blocks sequentially without interruption. On the server, values are changed, lists are re-ordered, extended or reduced. When these actions happen during the serialization of the contents of the resource, the transported results do not correspond with a state having occurred in the server; or worse the returned values are inconsistent.  For example: array length does not correspond with the actual number of items.  It may be advisable to use CBOR maps or CBOR arrays of undefined length, which are foreseen for data streaming purposes.</p>
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> <a href="#discovery" id="discovery">Resource Discovery</a>
 </h1>
-<p id="rfc.section.8.p.1">The presence and location of (path to) the management data are discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.datastore&#8221; <a href="#RFC6690" class="xref">[RFC6690]</a>.  Upon success, the return payload will contain the root resource of the management data. It is up to the implementation to choose its root resource, the value &#8220;/c&#8221; is used as example. The example below shows the discovery of the presence and location of management data.</p>
+<p id="rfc.section.8.p.1">The presence and location of (path to) the management data are discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.datastore&#8221; <a href="#RFC6690" class="xref">[RFC6690]</a>.  Upon success, the return payload will contain the root resource of the management data. It is up to the implementation to choose its root resource, the value &#8220;/c&#8221; is used as an example. The example below shows the discovery of the presence and location of management data.</p>
 <pre>
 REQ: GET /.well-known/core?rt=core.c.datastore
 
 RES: 2.05 Content
 &lt;/c&gt;; rt="core.c.datastore"
 </pre>
-<p id="rfc.section.8.p.2">Management objects MAY be discovered with the standard CoAP resource discovery.  The implementation can add the encoded values of the object identifiers to /.well-known/core with rt=&#8221;core.c.datanode&#8221;. The available objects identified by the encoded values can be discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (rt) parameter with the value &#8220;core.c.datanode&#8221;. Upon success, the return payload will contain the registered encoded values and their location.</p>
-<p id="rfc.section.8.p.3">The example below shows the discovery of the presence and location of management objects.</p>
+<p id="rfc.section.8.p.2">Implemented data nodes MAY be discovered using the standard CoAP resource discovery.  The implementation can add the data node identifiers (SID) supported to /.well-known/core with rt=&#8221;core.c.datanode&#8221;. The available SIDs can be discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (rt) parameter with the value &#8220;core.c.datanode&#8221;. Upon success, the return payload will contain the registered SIDs and their location.</p>
+<p id="rfc.section.8.p.3">The example below shows the discovery of the presence and location of data nodes.</p>
 <pre>
 REQ: GET /.well-known/core?rt=core.c.datanode
 
@@ -1489,16 +1484,16 @@ RES: 2.05 Content
 &lt;/c/CF_fA&gt;; rt="core.c.datanode"
 
 </pre>
-<p id="rfc.section.8.p.4">Lists of encoded values may become prohibitively long. It is discouraged to provide long lists of objects on discovery. Therefore, it is recommended that details about management objects are discovered by reading the YANG module information stored in for example the &#8220;ietf-comi-yang-library&#8221; module <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a>. The resource &#8220;/mod.uri&#8221; is used to retrieve the location of the YANG module library.</p>
-<p id="rfc.section.8.p.5">The module list can be stored locally on each server, or remotely on a different server. The latter is advised when the deployment of many servers are identical.</p>
-<p id="rfc.section.8.p.6">The following example show the URI of a local instance of container modules-state (SID=1802) as defined in <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a>.</p>
+<p id="rfc.section.8.p.4">The list of data nodes may become prohibitively long. Therefore, it is recommended to discover the details about the YANG modules implemented by reading a YANG module library (e.g. &#8220;ietf-comi-yang-library&#8221; ad defined by <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a>).</p>
+<p id="rfc.section.8.p.5">The resource &#8220;/mod.uri&#8221; is used to retrieve the location of the YANG module library.  This library can be stored locally on each server, or remotely on a different server. The latter is advised when the deployment of many servers are identical.</p>
+<p id="rfc.section.8.p.6">The following example shows the URI of a local instance of container modules-state (SID=1802) as defined in <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a>.</p>
 <pre>
 REQ: GET example.com/mod.uri
 
 RES: 2.05 Content (Content-Format: text/plain; charset=utf-8)
 example.com/c/cK
 </pre>
-<p id="rfc.section.8.p.7">The following example show the URI of a remote instance of same container.</p>
+<p id="rfc.section.8.p.7">The following example shows the URI of a remote instance of same container.</p>
 <pre>
 REQ: GET example.com/mod.uri
 
@@ -1510,7 +1505,7 @@ example-remote-server.com/group17/cK
 <a href="#rfc.section.9">9.</a> <a href="#error-handling" id="error-handling">Error Handling</a>
 </h1>
 <p id="rfc.section.9.p.1">In case a request is received which cannot be processed properly, the CoMI server MUST return an error message. This error message MUST contain a CoAP 4.xx or 5.xx response code.</p>
-<p id="rfc.section.9.p.2">Errors returned by a CoMI server can be broken in two categories, those associated to the CoAP protocol itself and those generated during the validation of the YANG data model constrains as described in <a href="#RFC7950" class="xref">[RFC7950]</a> section 8.</p>
+<p id="rfc.section.9.p.2">Errors returned by a CoMI server can be broken into two categories, those associated to the CoAP protocol itself and those generated during the validation of the YANG data model constrains as described in <a href="#RFC7950" class="xref">[RFC7950]</a> section 8.</p>
 <p id="rfc.section.9.p.3">The following list of common CoAP errors should be implemented by CoMI servers. This list is not exhaustive, other errors defined by CoAP and associated RFCs may be applicable.</p>
 <p></p>
 
@@ -1518,70 +1513,70 @@ example-remote-server.com/group17/cK
 <li>Error 4.01 (Unauthorized) is returned by the CoMI server when the CoMI client is not authorized to perform the requested action on the targeted resource (i.e. data node, datastore, rpc, action or event stream).</li>
 <li>Error 4.02 (Bad Option) is returned by the CoMI server when one or more CoAP options are unknown or malformed.</li>
 <li>Error 4.04 (Not Found) is returned by the CoMI server when the CoMI client is requesting a non-instantiated resource (i.e. data node, datastore, rpc, action or event stream).</li>
-<li>Error 4.05 (Method Not Allowed) is returned by the CoMI server when the CoMI client is requesting a method not supported on the targeted resource. (e.g. GET on a rpc, PUT or POST on a data node with &#8220;config&#8221; set to false).</li>
+<li>Error 4.05 (Method Not Allowed) is returned by the CoMI server when the CoMI client is requesting a method not supported on the targeted resource. (e.g. GET on an rpc, PUT or POST on a data node with &#8220;config&#8221; set to false).</li>
 <li>Error 4.08 (Request Entity Incomplete) is returned by the CoMI server if one or multiple blocks of a block transfer request is missing, see <a href="#RFC7959" class="xref">[RFC7959]</a> for more details.</li>
 <li>Error 4.13 (Request Entity Too Large) may be returned by the CoMI server during a block transfer request, see <a href="#RFC7959" class="xref">[RFC7959]</a> for more details.</li>
 <li>Error 4.15 (Unsupported Content-Format) is returned by the CoMI server when the Content-Format used in the request don&#8217;t match those specified in section 2.3.</li>
 </ul>
-<p id="rfc.section.9.p.5">CoMI server MUST also enforce the different constrains associated to the YANG data models implemented. These constrains are describe in <a href="#RFC7950" class="xref">[RFC7950]</a> section 8. These errors are reported using the CoAP error code 4.00 (Bad Request) and may have the following error container as payload. The YANG definition and associated .sid file are available in <a href="#ietf-comi-yang" class="xref">Appendix A</a> and <a href="#ietf-comi-sid" class="xref">Appendix B</a>. The error container is encoded using delta value equal to the SID of the current schema node minus the SID of the parent container (i.e 1001).</p>
+<p id="rfc.section.9.p.5">CoMI server MUST also enforce the different constraints associated to the YANG data models implemented. These constraints are described in <a href="#RFC7950" class="xref">[RFC7950]</a> section 8. These errors are reported using the CoAP error code 4.00 (Bad Request) and may have the following error container as payload. The YANG definition and associated .sid file are available in <a href="#ietf-comi-yang" class="xref">Appendix A</a> and <a href="#ietf-comi-sid" class="xref">Appendix B</a>. The error container is encoded using delta value equal to the SID of the current schema node minus the SID of the parent container (i.e 1024).</p>
 <pre>
 +--rw error!
-   +--rw error-tag             union
-   +--rw error-app-tag?        union
+   +--rw error-tag             identityref
+   +--rw error-app-tag?        identityref
    +--rw data-node-in-error?   instance-identifier
    +--rw error-message?        string
 </pre>
-<p id="rfc.section.9.p.6">The following error-tag and error-app-tag are supported as compact binary value. Other tags must be reported as text.</p>
+<p id="rfc.section.9.p.6">The following error-tag and error-app-tag are defined by the ietf-comi YANG module, these tags are implemented as YANG identity and can be extended as needed.</p>
 <p></p>
 
 <ul>
-<li>error-tag 0 (operation-failed) is returned by the CoMI server when the operation request can&#8217;t be processed succesfully.  <ul>
-<li>error-app-tag 0 (malformed-message) is returned by the CoMI server when the payload received from the CoMI client don&#8217;t contain a well-formed CBOR content as defined in <a href="#RFC7049" class="xref">[RFC7049]</a> section 3.3 or don&#8217;t comply with the CBOR structure defined within this document.</li>
-<li>error-app-tag 1 (data-not-unique) is returned by the CoMI server when the validation of the &#8216;unique&#8217; constraint of a list or leaf-list fail.</li>
-<li>error-app-tag 2 (too-many-elements) is returned by the CoMI server when the validation of the &#8216;max-elements&#8217; constraint of a list or leaf-list fail.</li>
-<li>error-app-tag 3 (too-few-elements) is returned by the CoMI server when the validation of the &#8216;min-elements&#8217; constraint of a list or leaf-list fail.</li>
-<li>error-app-tag 4 (must-violation) is returned by the CoMI server when the restrictions imposed by a &#8216;must&#8217; statement are violated.</li>
-<li>error-app-tag 5 (duplicate) is returned by the CoMI server when a client try to create a duplicate list or leaf-list entry.</li>
+<li>error-tag operation-failed is returned by the CoMI server when the operation request cannot be processed successfully.  <ul>
+<li>error-app-tag malformed-message is returned by the CoMI server when the payload received from the CoMI client don&#8217;t contain a well-formed CBOR content as defined in <a href="#RFC7049" class="xref">[RFC7049]</a> section 3.3 or don&#8217;t comply with the CBOR structure defined within this document.</li>
+<li>error-app-tag data-not-unique is returned by the CoMI server when the validation of the &#8216;unique&#8217; constraint of a list or leaf-list fails.</li>
+<li>error-app-tag too-many-elements is returned by the CoMI server when the validation of the &#8216;max-elements&#8217; constraint of a list or leaf-list fails.</li>
+<li>error-app-tag too-few-elements is returned by the CoMI server when the validation of the &#8216;min-elements&#8217; constraint of a list or leaf-list fails.</li>
+<li>error-app-tag must-violation is returned by the CoMI server when the restrictions imposed by a &#8216;must&#8217; statement are violated.</li>
+<li>error-app-tag duplicate is returned by the CoMI server when a client tries to create a duplicate list or leaf-list entry.</li>
 </ul>
 </li>
-<li>error-tag 1 (invalid-value) is returned by the CoMI server when the CoMI client try to update or create a leaf with a value encoded using an invalid CBOR datatype or if the &#8216;range&#8217;, &#8216;length&#8217;, &#8216;pattern&#8217; or &#8216;require-instance&#8217; constrain is not fulfilled.  <ul>
-<li>error-app-tag 10 (invalid-datatype) is returned by the CoMI server when CBOR encoding don&#8217;t follow the rules set by or when the value is incompatible with the YANG Built-In type. (e.g. value greater than 127 for a int8, undefined enumeration)</li>
-<li>error-app-tag 11 (not-in-range) is returned by the CoMI server when the validation of the &#8216;range&#8217; property fail.</li>
-<li>error-app-tag 12 (invalid-length) is returned by the CoMI server when the validation of the &#8216;length&#8217; property fail.</li>
-<li>error-app-tag 13 (pattern-test-failed) is returned by the CoMI server when the validation of the &#8216;pattern&#8217; property fail.</li>
+<li>error-tag invalid-value is returned by the CoMI server when the CoMI client tries to update or create a leaf with a value encoded using an invalid CBOR datatype or if the &#8216;range&#8217;, &#8216;length&#8217;, &#8216;pattern&#8217; or &#8216;require-instance&#8217; constrain is not fulfilled.  <ul>
+<li>error-app-tag invalid-datatype is returned by the CoMI server when CBOR encoding don&#8217;t follow the rules set by or when the value is incompatible with the YANG Built-In type. (e.g. a value greater than 127 for an int8, undefined enumeration)</li>
+<li>error-app-tag not-in-range is returned by the CoMI server when the validation of the &#8216;range&#8217; property fails.</li>
+<li>error-app-tag invalid-length is returned by the CoMI server when the validation of the &#8216;length&#8217; property fails.</li>
+<li>error-app-tag pattern-test-failed is returned by the CoMI server when the validation of the &#8216;pattern&#8217; property fails.</li>
 </ul>
 </li>
-<li>error-tag 2 (missing-element) is returned by the CoMI server when the operation requested by a CoMI client fail to comply with the &#8216;mandatory&#8217; constraint defined. The &#8216;mandatory&#8217; constraint is enforced for leafs and choices, unless the node or any of its ancestors has a &#8216;when&#8217; condition or &#8216;if-feature&#8217; expression that evaluates to &#8216;false&#8217;.  <ul>
-<li>error-app-tag 20 (missing-key) is returned by the CoMI server to further qualify an missing-element error. This error is returned when the CoMI client try to create or list instance without all the &#8216;key&#8217; specified or when the CoMI client try to delete a leaf listed as a &#8216;key&#8217;.</li>
-<li>error-app-tag 21 (missing-input-parameter) is returned by the CoMI server when the input parameters of a RPC or action are incomplete.</li>
+<li>error-tag missing-element is returned by the CoMI server when the operation requested by a CoMI client fail to comply with the &#8216;mandatory&#8217; constraint defined. The &#8216;mandatory&#8217; constraint is enforced for leafs and choices, unless the node or any of its ancestors have a &#8216;when&#8217; condition or &#8216;if-feature&#8217; expression that evaluates to &#8216;false&#8217;.  <ul>
+<li>error-app-tag missing-key is returned by the CoMI server to further qualify an missing-element error. This error is returned when the CoMI client  tries to create or list instance, without all the &#8216;key&#8217; specified or when the CoMI client  tries to delete a leaf listed as a &#8216;key&#8217;.</li>
+<li>error-app-tag missing-input-parameter is returned by the CoMI server when the input parameters of an RPC or action are incomplete.</li>
 </ul>
 </li>
-<li>error-tag 3 (unknown-element) is returned by the CoMI server when the CoMI client try to access a data node of a YANG module not supported, of a data node associated to a &#8216;if-feature&#8217; expression evaluated to &#8216;false&#8217; or to a &#8216;when&#8217; condition evaluated to &#8216;false&#8217;.</li>
-<li>error-tag 4 (bad-element) is returned by the CoMI server when the CoMI client try to create data nodes for more than one case in a choice.</li>
-<li>error-tag 5 (data-missing) is returned by the CoMI server when a data node required to accept the request is not present.  <ul>
-<li>error-app-tag 50 (instance-required) is returned by the CoMI server when a leaf of type &#8216;instance-identifier&#8217; or &#8216;leafref&#8217; marked with require-instance set to &#8216;true&#8217; refers to an instance that does not exist.</li>
-<li>error-app-tag 51 (missing-choice) is returned by the CoMI server when no nodes exist in a mandatory choice.</li>
+<li>error-tag unknown-element is returned by the CoMI server when the CoMI client  tries to access a data node of a YANG module not supported, of a data node associated to an &#8216;if-feature&#8217; expression evaluated to &#8216;false&#8217; or to a &#8216;when&#8217; condition evaluated to &#8216;false&#8217;.</li>
+<li>error-tag bad-element is returned by the CoMI server when the CoMI client  tries to create data nodes for more than one case in a choice.</li>
+<li>error-tag data-missing is returned by the CoMI server when a data node required to accept the request is not present.  <ul>
+<li>error-app-tag instance-required is returned by the CoMI server when a leaf of type &#8216;instance-identifier&#8217; or &#8216;leafref&#8217; marked with require-instance set to &#8216;true&#8217; refers to an instance that does not exist.</li>
+<li>error-app-tag missing-choice is returned by the CoMI server when no nodes exist in a mandatory choice.</li>
 </ul>
 </li>
+<li>error-tag error is returned by the CoMI server when an unspecified error has occurred.</li>
 </ul>
 <p id="rfc.section.9.p.8">For example, the CoMI server might return the following error.</p>
 <pre>
 RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 {
- +0 : 1,        / error-tag = invalid-value /
- +1 : 1,        / error-app-tag = not-in-range /
- +2 : 1736,     / data-node-in-error = timezone-utc-offset /
+ +4 : 1020,        / error-tag = invalid-value /
+ +2 : 1012,        / error-app-tag = not-in-range /
+ +1 : 1736,        / data-node-in-error = timezone-utc-offset /
  +3 : "maximum value exceeded" / error-message /
 }
 </pre>
 <h1 id="rfc.section.10">
 <a href="#rfc.section.10">10.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
-<p id="rfc.section.10.p.1">For secure network management, it is important to restrict access to configuration variables only to authorized parties. This requires integrity protection of both requests and responses, and depending on the application encryption.</p>
-<p id="rfc.section.10.p.2">CoMI re-uses the security mechanisms already available to CoAP as much as possible.  This includes DTLS <a href="#RFC6347" class="xref">[RFC6347]</a> for protected access to resources, as well suitable authentication and authorization mechanisms.</p>
-<p id="rfc.section.10.p.3">Among the security decisions that need to be made are selecting security modes and encryption mechanisms (see <a href="#RFC7252" class="xref">[RFC7252]</a>). This requires a trade-off, as the NoKey mode gives no protection at all, but is easy to implement, whereas the X.509 mode is quite secure, but may be too complex for constrained devices.</p>
-<p id="rfc.section.10.p.4">In addition, mechanisms for authentication and authorization may need to be selected.</p>
-<p id="rfc.section.10.p.5">CoMI avoids defining new security mechanisms as much as possible.  However some adaptations may still be required, to cater for CoMI&#8217;s specific requirements.</p>
+<p id="rfc.section.10.p.1">For secure network management, it is important to restrict access to configuration variables only to authorized parties. CoMI re-uses the security mechanisms already available to CoAP, this includes DTLS <a href="#RFC6347" class="xref">[RFC6347]</a> for protected access to resources, as well suitable authentication and authorization mechanisms.</p>
+<p id="rfc.section.10.p.2">Among the security decisions that need to be made are selecting security modes and encryption mechanisms (see <a href="#RFC7252" class="xref">[RFC7252]</a>). This requires a trade-off, as the NoKey mode gives no protection at all, but is easy to implement, whereas the X.509 mode is quite secure, but may be too complex for constrained devices.</p>
+<p id="rfc.section.10.p.3">In addition, mechanisms for authentication and authorization may need to be selected.</p>
+<p id="rfc.section.10.p.4">CoMI avoids defining new security mechanisms as much as possible.  However, some adaptations may still be required, to cater for CoMI&#8217;s specific requirements.</p>
 <h1 id="rfc.section.11">
 <a href="#rfc.section.11">11.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
@@ -1589,7 +1584,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <a href="#rfc.section.11.1">11.1.</a> <a href="#resource-type-rt-link-target-attribute-values-registry" id="resource-type-rt-link-target-attribute-values-registry">Resource Type (rt=) Link Target Attribute Values Registry</a>
 </h1>
 <p id="rfc.section.11.1.p.1">This document adds the following resource type to the &#8220;Resource Type (rt=) Link Target Attribute Values&#8221;, within the &#8220;Constrained RESTful Environments (CoRE) Parameters&#8221; registry.</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Value</th>
 <th class="left">Description</th>
@@ -1623,7 +1618,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <a href="#rfc.section.11.2">11.2.</a> <a href="#coap-content-formats-registry" id="coap-content-formats-registry">CoAP Content-Formats Registry</a>
 </h1>
 <p id="rfc.section.11.2.p.1">This document adds the following Content-Format to the &#8220;CoAP Content-Formats&#8221;, within the &#8220;Constrained RESTful Environments (CoRE) Parameters&#8221; registry.</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Media Type</th>
 <th class="left">Excoding ID</th>
@@ -1662,7 +1657,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <a href="#rfc.section.11.3">11.3.</a> <a href="#media-types-registry" id="media-types-registry">Media Types Registry</a>
 </h1>
 <p id="rfc.section.11.3.p.1">This document adds the following media types to the &#8220;Media Types&#8221; registry.</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Name</th>
 <th class="left">Template</th>
@@ -1696,7 +1691,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.11.3.p.2">Each of these media types are  with the following information</p>
+<p id="rfc.section.11.3.p.2">Each of these media types share the following information:</p>
 <p></p>
 
 <ul>
@@ -1735,7 +1730,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <a href="#rfc.section.11.4">11.4.</a> <a href="#tags-registry" id="tags-registry">Concise Binary Object Representation (CBOR) Tags Registry</a>
 </h1>
 <p id="rfc.section.11.4.p.1">This document adds the following tags to the &#8220;Concise Binary Object Representation (CBOR) Tags&#8221;  registry.</p>
-<table cellpadding="3" cellspacing="0" class="tt full center">
+<table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Tag</th>
 <th class="left">Data Item</th>
@@ -1842,24 +1837,9 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <a>Shelby, Z.</a>, <a>Vial, M.</a>, <a>Koster, M.</a> and <a>C. Groves</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-interfaces-09">Reusable Interface Definitions for Constrained RESTful Environments</a>", Internet-Draft draft-ietf-core-interfaces-09, March 2017.</td>
 </tr>
 <tr>
-<td class="reference"><b id="mibreg">[mibreg]</b></td>
-<td class="top">
-<a>IANA</a>, "<a>Structure of Management Information (SMI) Numbers (MIB Module Registrations)</a>", Web http://www.iana.org/assignments/smi-numbers/smi-numbers.xhtml/</td>
-</tr>
-<tr>
 <td class="reference"><b id="netconfcentral">[netconfcentral]</b></td>
 <td class="top">
 <a>YUMAworks</a>, "<a>NETCONF Central: library of YANG modules</a>", Web http://www.netconfcentral.org/modulelist</td>
-</tr>
-<tr>
-<td class="reference"><b id="OMA">[OMA]</b></td>
-<td class="top">
-<a>Open Mobile Alliance (OMA)</a>, "<a>OMA-TS-LightweightM2M-V1_0-20131210-C</a>", Web http://technical.openmobilealliance.org/Technical/current_releases.aspx</td>
-</tr>
-<tr>
-<td class="reference"><b id="OMNA">[OMNA]</b></td>
-<td class="top">
-<a>Open Mobile Alliance (OMA)</a>, "<a>Open Mobile Naming Authority (OMNA)</a>", Web http://http://technical.openmobilealliance.org/Technical/technical-information/omna</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC4293">[RFC4293]</b></td>
@@ -1867,19 +1847,9 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <a>Routhier, S.</a>, "<a href="http://tools.ietf.org/html/rfc4293">Management Information Base for the Internet Protocol (IP)</a>", RFC 4293, DOI 10.17487/RFC4293, April 2006.</td>
 </tr>
 <tr>
-<td class="reference"><b id="RFC6241">[RFC6241]</b></td>
-<td class="top">
-<a>Enns, R.</a>, <a>Bjorklund, M.</a>, <a>Schoenwaelder, J.</a> and <a>A. Bierman</a>, "<a href="http://tools.ietf.org/html/rfc6241">Network Configuration Protocol (NETCONF)</a>", RFC 6241, DOI 10.17487/RFC6241, June 2011.</td>
-</tr>
-<tr>
 <td class="reference"><b id="RFC6347">[RFC6347]</b></td>
 <td class="top">
 <a>Rescorla, E.</a> and <a>N. Modadugu</a>, "<a href="http://tools.ietf.org/html/rfc6347">Datagram Transport Layer Security Version 1.2</a>", RFC 6347, DOI 10.17487/RFC6347, January 2012.</td>
-</tr>
-<tr>
-<td class="reference"><b id="RFC6643">[RFC6643]</b></td>
-<td class="top">
-<a>Schoenwaelder, J.</a>, "<a href="http://tools.ietf.org/html/rfc6643">Translation of Structure of Management Information Version 2 (SMIv2) MIB Modules to YANG Modules</a>", RFC 6643, DOI 10.17487/RFC6643, July 2012.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC6690">[RFC6690]</b></td>
@@ -1950,7 +1920,184 @@ module ietf-comi {
       "draft-ietf-core-comi";
   }
 
+  identity error-tag {
+    description
+      "Base identity for error-tag.";
+  }
 
+  identity operation-failed {
+    base error-tag;
+    description
+      "Returned by the CoMI server when the operation request
+       can't be processed successfully.";
+  }
+
+  identity invalid-value {
+    base error-tag;
+    description
+      "Returned by the CoMI server when the CoMI client tries to
+       update or create a leaf with a value encoded using an
+       invalid CBOR datatype or if the 'range', 'length',
+       'pattern' or 'require-instance' constrain is not
+       fulfilled.";
+  }
+  
+  identity missing-element {
+    base error-tag;
+    description
+      "Returned by the CoMI server when the operation requested
+       by a CoMI client fails to comply with the 'mandatory'
+       constraint defined. The 'mandatory' constraint is
+       enforced for leafs and choices, unless the node or any of
+       its ancestors have a 'when' condition or 'if-feature'
+       expression that evaluates to 'false'.";
+  }
+  
+  identity unknown-element {
+    base error-tag;
+    description
+      "Returned by the CoMI server when the CoMI client tries to
+       access a data node of a YANG module not supported, of a
+       data node associated with an 'if-feature' expression
+       evaluated to 'false' or to a 'when' condition evaluated
+       to 'false'.";
+  }
+  
+  identity bad-element {
+    base error-tag;
+    description
+      "Returned by the CoMI server when the CoMI client tries to
+       create data nodes for more than one case in a choice.";
+  }
+
+  identity data-missing {
+    base error-tag;
+    description
+      "Returned by the CoMI server when a data node required to
+       accept the request is not present.";
+  }
+  
+  identity error {
+    base error-tag;
+    description
+      "Returned by the CoMI server when an unspecified error has
+      occurred.";
+  }
+  
+  identity error-app-tag {
+    description
+      "Base identity for error-app-tag.";
+  }
+
+
+  identity malformed-message {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the payload received
+       from the CoMI client don't contain a well-formed CBOR
+       content as defined in [RFC7049] section 3.3 or don't
+       comply with the CBOR structure defined within this
+       document.";
+  }
+
+  identity data-not-unique {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the validation of the
+       'unique' constraint of a list or leaf-list fails.";
+  }
+
+  identity too-many-elements {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the validation of the
+       'max-elements' constraint of a list or leaf-list fails.";
+  }
+
+  identity too-few-elements {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the validation of the
+       'min-elements' constraint of a list or leaf-list fails.";
+  }
+
+  identity must-violation {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the restrictions
+       imposed by a 'must' statement are violated.";
+  }
+
+  identity duplicate {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when a client tries to create
+       a duplicate list or leaf-list entry.";
+  }
+
+  identity invalid-datatype {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when CBOR encoding is
+       incorect or when the value encoded is incompatible with
+       the YANG Built-In type. (e.g. value greater than 127
+       for an int8, undefined enumeration).";
+  }
+
+  identity not-in-range {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the validation of the
+       'range' property fails.";
+  }
+
+  identity invalid-length {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the validation of the
+       'length' property fails.";
+  }
+
+  identity pattern-test-failed {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the validation of the
+       'pattern' property fails.";
+  }
+
+  identity missing-key {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server to further qualify a
+       missing-element error. This error is returned when the
+       CoMI client tries to create or list instance, without all
+       the 'key' specified or when the CoMI client tries to
+       delete a leaf listed as a 'key'.";
+  }
+
+  identity missing-input-parameter {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when the input parameters
+       of a RPC or action are incomplete.";
+  }
+
+  identity instance-required {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when a leaf of type
+       'instance-identifier' or 'leafref' marked with
+       require-instance set to 'true' refers to an instance
+       that does not exist.";
+  }
+
+  identity missing-choice {
+    base error-app-tag;
+    description
+      "Returned by the CoMI server when no nodes exist in a
+       mandatory choice.";
+  }
+        
   container error {
     presence "Error paylaod";
     
@@ -1958,61 +2105,8 @@ module ietf-comi {
       "Optional payload of a 4.00 Bad Request CoAP error.";
 
     leaf error-tag {
-      type union {
-        type string;
-        type enumeration {
-          enum operation-failed {
-            value 0;
-            description
-              "Returned by the CoMI server when the operation request
-               can't be processed succesfully.";
-          }
-        
-          enum invalid-value {
-            value 1;
-            description
-              "Returned by the CoMI server when the CoMI client try to
-              update or create a leaf with a value encoded using an
-              invalid CBOR datatype or if the 'range', 'length',
-              'pattern' or 'require-instance' constrain is not
-              fulfilled.";
-          }
-
-          enum missing-element {
-            value 2;
-            description
-              "Returned by the CoMI server when the operation requested
-              by a CoMI client fail to comply with the 'mandatory'
-              constraint defined. The 'mandatory' constraint is
-              enforced for leafs and choices, unless the node or any of
-              its ancestors has a 'when' condition or 'if-feature'
-              expression that evaluates to 'false'";
-          }
-
-          enum unknown-element {
-            value 3;
-            description
-              "Returned by the CoMI server when the CoMI client try to
-              access a data node of a YANG module not supported, of a
-              data node associated to a 'if-feature' expression
-              evaluated to 'false' or to a 'when' condition evaluated
-              to 'false'.";
-          }
-
-          enum bad-element {
-            value 4;
-            description
-              "Returned by the CoMI server when the CoMI client try to
-               create data nodes for more than one case in a choice.";
-          }
-
-          enum data-missing {
-            value 5;
-            description
-              "Returned by the CoMI server when a data node required to
-              accept the request is not present.";
-          }
-        }
+      type identityref {
+        base error-tag;
       }
       mandatory true;
       description
@@ -2020,134 +2114,22 @@ module ietf-comi {
     }
 
     leaf error-app-tag {
-      type union {
-        type string;
-        type enumeration {
-          enum malformed-message {
-            value 0;
-            description
-              "Returned by the CoMI server when the payload received
-              from the CoMI client don't contain a well-formed CBOR
-              content as defined in [RFC7049] section 3.3 or don't
-              comply with the CBOR structure defined within this
-              document.";
-          }
-        
-          enum data-not-unique {
-            value 1;
-            description
-              "Returned by the CoMI server when the validation of the
-              'unique' constraint of a list or leaf-list fail.";
-          }
-
-          enum too-many-elements {
-            value 2;
-            description
-              "Returned by the CoMI server when the validation of the
-              'max-elements' constraint of a list or leaf-list fail.";
-          }
-
-          enum too-few-elements {
-            value 3;
-            description
-              "Returned by the CoMI server when the validation of the
-              'min-elements' constraint of a list or leaf-list fail.";
-          }
-
-          enum must-violation {
-            value 4;
-            description
-              "Returned by the CoMI server when the restrictions
-              imposed by a 'must' statement are violated.";
-          }
-
-          enum duplicate {
-            value 5;
-            description
-              "Returned by the CoMI server when a client try to create
-              a duplicate list or leaf-list entry.";
-          }
-
-          enum invalid-datatype {
-            value 10;
-            description
-              "Returned by the CoMI server when CBOR encoding is
-              incorect or when the value encoded is incompatible with
-              the YANG Built-In type. (e.g. value greater than 127
-              for a int8, undefined enumeration)";
-          }
-
-          enum not-in-range {
-            value 11;
-            description
-              "Returned by the CoMI server when the validation of the
-              'range' property fail.";
-          }
-
-          enum invalid-length {
-            value 12;
-            description
-              "Returned by the CoMI server when the validation of the
-              'length' property fail.";
-          }
-
-          enum pattern-test-failed {
-            value 13;
-            description
-              "Returned by the CoMI server when the validation of the
-              'pattern' property fail.";
-          }
-
-          enum missing-key {
-            value 20;
-            description
-              "Returned by the CoMI server to further qualify an
-              missing-element error. This error is returned when the
-              CoMI client try to create or list instance without all
-              the 'key' specified or when the CoMI client try to
-              delete a leaf listed as a 'key'.";
-          }
-
-          enum missing-input-parameter {
-            value 21;
-            description
-              "Returned by the CoMI server when the input parameters
-              of a RPC or action are incomplete.";
-          }
-
-          enum instance-required {
-            value 50;
-            description
-              "Returned by the CoMI server when a leaf of type
-              'instance-identifier' or 'leafref' marked with
-              require-instance set to 'true' refers to an instance
-              that does not exist.";
-          }
-
-          enum missing-choice {
-            value 51;
-            description
-              "Returned by the CoMI server when no nodes exist in a
-              mandatory choice.";
-          }
-        }
+      type identityref {
+        base error-app-tag;
       }
-      mandatory false;
       description
         "The application-specific error-tag.";
-    }    
+    }   
 
     leaf data-node-in-error {
       type instance-identifier;
-      mandatory false;
       description
-        "when the error reported is caused by a specific data node,
-         this leaf identify the data node in error.";
+        "When the error reported is caused by a specific data node,
+         this leaf identifies the data node in error.";
     }
 
     leaf error-message {
       type string;
-      mandatory false;
       description
         "A message describing the error.";
     }
@@ -2175,29 +2157,144 @@ module ietf-comi {
       "sid": 1000
     },
     {
-      "type": "node",
-      "label": "/error",
+      "type": "identity",
+      "label": "/error-app-tag",
       "sid": 1001
     },
     {
-      "type": "node",
-      "label": "/error/error-tag",
+      "type": "identity",
+      "label": "/error-app-tag/data-not-unique",
       "sid": 1002
     },
     {
-      "type": "node",
-      "label": "/error/error-app-tag",
+      "type": "identity",
+      "label": "/error-app-tag/duplicate",
       "sid": 1003
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/instance-required",
+      "sid": 1004
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/invalid-datatype",
+      "sid": 1005
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/invalid-length",
+      "sid": 1006
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/malformed-message",
+      "sid": 1007
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/missing-choice",
+      "sid": 1008
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/missing-input-parameter",
+      "sid": 1009
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/missing-key",
+      "sid": 1010
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/must-violation",
+      "sid": 1011
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/not-in-range",
+      "sid": 1012
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/pattern-test-failed",
+      "sid": 1013
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/too-few-elements",
+      "sid": 1014
+    },
+    {
+      "type": "identity",
+      "label": "/error-app-tag/too-many-elements",
+      "sid": 1015
+    },
+    {
+      "type": "identity",
+      "label": "/error-tag",
+      "sid": 1016
+    },
+    {
+      "type": "identity",
+      "label": "/error-tag/bad-element",
+      "sid": 1017
+    },
+    {
+      "type": "identity",
+      "label": "/error-tag/data-missing",
+      "sid": 1018
+    },
+    {
+      "type": "identity",
+      "label": "/error-tag/error",
+      "sid": 1019
+    },
+    {
+      "type": "identity",
+      "label": "/error-tag/invalid-value",
+      "sid": 1020
+    },
+    {
+      "type": "identity",
+      "label": "/error-tag/missing-element",
+      "sid": 1021
+    },
+    {
+      "type": "identity",
+      "label": "/error-tag/operation-failed",
+      "sid": 1022
+    },
+    {
+      "type": "identity",
+      "label": "/error-tag/unknown-element",
+      "sid": 1023
+    },
+    {
+      "type": "node",
+      "label": "/error",
+      "sid": 1024
     },
     {
       "type": "node",
       "label": "/error/data-node-in-error",
-      "sid": 1004
+      "sid": 1025
+    },
+    {
+      "type": "node",
+      "label": "/error/error-app-tag",
+      "sid": 1026
     },
     {
       "type": "node",
       "label": "/error/error-message",
-      "sid": 1005
+      "sid": 1027
+    },
+    {
+      "type": "node",
+      "label": "/error/error-tag",
+      "sid": 1028
     }
   ]
 }
@@ -2506,7 +2603,7 @@ module IP-MIB {
 	  </span>
 	  <span class="country-name vcardline">Canada</span>
 	</span>
-	<span class="vcardline">Phone: +14503750556</span>
+	<span class="vcardline">EMail: <a href="mailto:michel.veillette@trilliantinc.com">michel.veillette@trilliantinc.com</a></span>
 
   </address>
 </div><div class="avoidbreak">
@@ -2576,7 +2673,7 @@ module IP-MIB {
 	  </span>
 	  <span class="country-name vcardline">USA</span>
 	</span>
-	<span class="vcardline">EMail: <a href="mailto:michel.veillette@trilliantinc.com">michel.veillette@trilliantinc.com</a></span>
+	<span class="vcardline">EMail: <a href="mailto:andy@yumaworks.com">andy@yumaworks.com</a></span>
 
   </address>
 </div>
