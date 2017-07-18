@@ -721,7 +721,7 @@ URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
 <dt></dt>
 <dd style="margin-left: 8">For each data node instance, D, for which the instance identifier is the same as for a data node instance, I, in the targeted resource: the data node value of D replaces the data node value of I. When the data node value of D is null, the data node instance I is removed. When the targeted resource does not contain a data node instance with the same instance identifier as D, a new data node instance is created in the targeted resource with the same instance identifier and data node value as D.</dd>
 <dt></dt>
-<dd style="margin-left: 8">FORMAT: CBOR array of instance-identifier, data-node-value</dd>
+<dd style="margin-left: 8">FORMAT: ordered map of instance-identifier, data-node-value</dd>
 <dt></dt>
 <dd style="margin-left: 8">DELTA ENCODING: Same as Content-Format application/yang-tree+cbor</dd>
 </dl>
