@@ -328,16 +328,15 @@ address {
 <link href="#rfc.appendix.C.3" rel="Chapter" title="C.3 interfaces">
 <link href="#rfc.appendix.C.4" rel="Chapter" title="C.4 Example-port">
 <link href="#rfc.appendix.C.5" rel="Chapter" title="C.5 IP-MIB">
-<link href="#rfc.appendix.D" rel="Chapter" title="D Comparison with LWM2M">
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.7.0 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.8.2 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Veillette, M., Ed., van der Stok, P., Ed., Pelov, A., and A. Bierman" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-01" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-7-19" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-02" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-12-01" />
   <meta name="dct.abstract" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
   <meta name="description" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
 
@@ -361,7 +360,7 @@ address {
 <td class="right">P. van der Stok, Ed.</td>
 </tr>
 <tr>
-<td class="left">Expires: January 20, 2018</td>
+<td class="left">Expires: June 4, 2018</td>
 <td class="right">consultant</td>
 </tr>
 <tr>
@@ -382,7 +381,7 @@ address {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">July 19, 2017</td>
+<td class="right">December 01, 2017</td>
 </tr>
 
     	
@@ -390,7 +389,7 @@ address {
   </table>
 
   <p class="title">CoAP Management Interface<br />
-  <span class="filename">draft-ietf-core-comi-01</span></p>
+  <span class="filename">draft-ietf-core-comi-02</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
 <p>This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks.</p>
@@ -398,12 +397,12 @@ address {
 <p>Discussion and suggestions for improvement are requested, and should be sent to core@ietf.org.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
-<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on January 20, 2018.</p>
+<p>This Internet-Draft will expire on June 4, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
-<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
   <hr class="noprint" />
@@ -512,9 +511,7 @@ address {
 </li>
 <li>C.5.   <a href="#rfc.appendix.C.5">IP-MIB</a>
 </li>
-</ul><li>Appendix D.   <a href="#rfc.appendix.D">Comparison with LWM2M</a>
-</li>
-<li><a href="#rfc.authors">Authors' Addresses</a>
+</ul><li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
 
 
@@ -645,21 +642,21 @@ SID in basae64 = URLsafeChar[SID &gt;&gt; 60 &amp; 0x3F] |
                  URLsafeChar[SID &gt;&gt; 6 &amp; 0x3F] | 
                  URLsafeChar[SID &amp; 0x3F]
 </pre>
-<p id="rfc.section.2.2.p.3">For example, SID 1717 is encoded as follow.</p>
+<p id="rfc.section.2.2.p.3">For example, SID 1721 is encoded as follow.</p>
 <pre>
-URLsafeChar[1717 &gt;&gt; 60 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 54 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 48 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 42 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 36 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 30 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 24 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 18 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 12 &amp; 0x3F] = URLsafeChar[0] = 'A'
-URLsafeChar[1717 &gt;&gt; 6 &amp; 0x3F]  = URLsafeChar[26] = 'a' 
-URLsafeChar[1717 &amp; 0x3F]       = URLsafeChar[53] = '1'
+URLsafeChar[1721 &gt;&gt; 60 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 54 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 48 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 42 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 36 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 30 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 24 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 18 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 12 &amp; 0x3F] = URLsafeChar[0] = 'A'
+URLsafeChar[1721 &gt;&gt; 6 &amp; 0x3F]  = URLsafeChar[26] = 'a' 
+URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 </pre>
-<p id="rfc.section.2.2.p.4">The resulting base64 representation of SID 1717 is &#8220;a1&#8221;</p>
+<p id="rfc.section.2.2.p.4">The resulting base64 representation of SID 1721 is &#8220;a5&#8221;</p>
 <h1 id="rfc.section.2.3">
 <a href="#rfc.section.2.3">2.3.</a> <a href="#instance-identifier" id="instance-identifier">Instance identifier</a>
 </h1>
@@ -1069,21 +1066,21 @@ FORMAT:
 <h1 id="rfc.section.5.2.3.1">
 <a href="#rfc.section.5.2.3.1">5.2.3.1.</a> <a href="#get-example" id="get-example">GET Examples</a>
 </h1>
-<p id="rfc.section.5.2.3.1.p.1">Using for example the current-datetime leaf from <a href="#ietf-system" class="xref">Appendix C.1</a>, a request is sent to retrieve the value of system-state/clock/current-datetime specified in container system-state.  The SID of system-state/clock/current-datetime is 1719, encoded in octal 3267, yields two 6 bit decimal numbers 26 and 55, encoded in base64, (according to table 2 of <a href="#RFC4648" class="xref">[RFC4648]</a>) yields a3. The response to the request returns the CBOR encoding of this leaf of type &#8216;string&#8217; as defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 5.4.</p>
+<p id="rfc.section.5.2.3.1.p.1">Using for example the current-datetime leaf from <a href="#ietf-system" class="xref">Appendix C.1</a>, a request is sent to retrieve the value of system-state/clock/current-datetime specified in container system-state.  The SID of system-state/clock/current-datetime is 1723, encoded in octal 3273, yields two 6 bit decimal numbers 32 and 73, encoded in base64, (according to table 2 of <a href="#RFC4648" class="xref">[RFC4648]</a>) yields a7. The response to the request returns the CBOR encoding of this leaf of type &#8216;string&#8217; as defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 5.4.</p>
 <pre>
 REQ: GET example.com/c/a3
 
 RES: 2.05 Content (Content-Format: application/yang-value+cbor)
 "2014-10-26T12:16:31Z"
 </pre>
-<p id="rfc.section.5.2.3.1.p.2">The next example represents the retrieval of a YANG container. In this case, the CoMI client performs a GET request on the clock container (SID = 1717; base64: a1). The container returned is encoded using a CBOR map as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.2.</p>
+<p id="rfc.section.5.2.3.1.p.2">The next example represents the retrieval of a YANG container. In this case, the CoMI client performs a GET request on the clock container (SID = 1721; base64: a5). The container returned is encoded using a CBOR map as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.2.</p>
 <pre>
-REQ: GET example.com/c/a1
+REQ: GET example.com/c/a5
 
 RES: 2.05 Content (Content-Format: application/yang-value+cbor)
 {
-  +2 : "2014-10-26T12:16:51Z",   / SID 1719 /
-  +1 : "2014-10-21T03:00:00Z"    / SID 1718 /
+  +2 : "2014-10-26T12:16:51Z",   / current-datetime SID 1723 /
+  +1 : "2014-10-21T03:00:00Z"    / boot-datetime SID 1722 /
 }
 </pre>
 <p id="rfc.section.5.2.3.1.p.3">This example shows the retrieval of the /interfaces/interface YANG list accessed using SID 1533 (base64: X9). The return payload is encoded using a CBOR array as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.4.1 containing 2 instances.</p>
@@ -1095,15 +1092,15 @@ RES: 2.05 Content (Content-Format: application/yang-value+cbor)
   {
     +4 : "eth0",                / name  (SID 1537) /
     +1 : "Ethernet adaptor",    / description (SID 1534) /
-    +5 : 1179,                  / type, (SID 1538) identity /
-                                / ethernetCsmacd (SID 1179) /
+    +5 : 1880,                  / type, (SID 1538) identity /
+                                / ethernetCsmacd (SID 1880) /
     +2 : true                   / enabled ( SID 1535) /
   },
   {
     +4 : "eth1",                / name (SID 1537) /
     +1 : "Ethernet adaptor",    / description (SID 1534) /
-    +5 : 1179,                  / type, (SID 1538) identity /
-                                / ethernetCsmacd (SID 1179) /
+    +5 : 1880,                  / type, (SID 1538) identity /
+                                / ethernetCsmacd (SID 1880) /
     +2 : false                  / enabled /
   }
 ]
@@ -1130,22 +1127,22 @@ FORMAT:
 <h1 id="rfc.section.5.2.4.1">
 <a href="#rfc.section.5.2.4.1">5.2.4.1.</a> <a href="#fetch-example" id="fetch-example">FETCH examples</a>
 </h1>
-<p id="rfc.section.5.2.4.1.p.1">The example uses the current-datetime leaf and the interface list from <a href="#ietf-system" class="xref">Appendix C.1</a>.  In the following example the value of current-datetime (SID 1719 and the interface list (SID 1533) instance identified with name=&#8221;eth0&#8221; are queried.</p>
+<p id="rfc.section.5.2.4.1.p.1">The example uses the current-datetime leaf and the interface list from <a href="#ietf-system" class="xref">Appendix C.1</a>.  In the following example the value of current-datetime (SID 1723 and the interface list (SID 1533) instance identified with name=&#8221;eth0&#8221; are queried.</p>
 <pre>
 REQ:  FETCH /c (Content-Format :application/yang-selectors+cbor)
 [
-  1719,            / SID 1719 /
-  [-186, "eth0"]   / SID 1533 with name = "eth0" /
+  1723,            / current-datetime SID 1723 /
+  [-190, "eth0"]   / interface SID 1533 with name = "eth0" /
 ]
 
 RES:  2.05 Content (Content-Format :application/yang-value+cbor)
 [
-  "2014-10-26T12:16:31Z",
+  "2014-10-26T12:16:31Z",       / current-datetime (SID 1723) /
   {
     +4 : "eth0",                / name (SID 1537) /
     +1 : "Ethernet adaptor",    / description (SID 1534) /
-    +5 : 1179,                  / type (SID 1538), identity /
-                                / ethernetCsmacd (SID 1179) /
+    +5 : 1880,                  / type (SID 1538), identity /
+                                / ethernetCsmacd (SID 1880) /
     +2 : true                   / enabled (SID 1535) /
   }
 ]
@@ -1181,8 +1178,8 @@ REQ: POST /c/X9 (Content-Format :application/yang-value+cbor)
 {
   +4 : "eth5",              / name (SID 1537) /
   +1 : "Ethernet adaptor",  / description (SID 1534) /
-  +5 : 1179,                / type (SID 1538), identity /
-                            / ethernetCsmacd (SID 1179) /
+  +5 : 1880,                / type (SID 1538), identity /
+                            / ethernetCsmacd (SID 1880) /
   +2 : true                 / enabled (SID 1535) /
 }
 
@@ -1211,8 +1208,8 @@ REQ: PUT /c/X9?k="eth0"
 {
   +4 : "eth0",             / name (SID 1537) /
   +1 : "Ethernet adaptor", / description (SID 1534) /
-  +5 : 1179,               / type (SID 1538), identity /
-                           / ethernetCsmacd ( SID 1179) /
+  +5 : 1880,               / type (SID 1538), identity /
+                           / ethernetCsmacd (SID 1880) /
   +2 : true                / enabled (SID 1535) /
 }
 
@@ -1238,21 +1235,21 @@ FORMAT:
 <p></p>
 
 <ul>
-<li>Set &#8220;/system/ntp/enabled&#8221; (SID 1751) to true.</li>
-<li>Remove the server &#8220;tac.nrc.ca&#8221; from the&#8221;/system/ntp/server&#8221; (SID 1752) list.</li>
-<li>Add the server &#8220;NTP Pool server 2&#8221; to the list &#8220;/system/ntp/server&#8221; (SID 1752).</li>
+<li>Set &#8220;/system/ntp/enabled&#8221; (SID 1755) to true.</li>
+<li>Remove the server &#8220;tac.nrc.ca&#8221; from the&#8221;/system/ntp/server&#8221; (SID 1756) list.</li>
+<li>Add the server &#8220;NTP Pool server 2&#8221; to the list &#8220;/system/ntp/server&#8221; (SID 1756).</li>
 </ul>
 <pre>
 REQ: iPATCH /c (Content-Format :application/yang-patch+cbor)
 [
-  1751 , true,                          / enabled (1751) /
-  [+1, "tac.nrc.ca"], null,             / server (SID 1752) /
-  +0,                                   / server (SID 1752) /
+  1751 , true,                          / enabled (1755) /
+  [+1, "tac.nrc.ca"], null,             / server (SID 1756) /
+  +0,                                   / server (SID 1756) /
     {
-      +3 : "tic.nrc.ca",                / name (SID 1755) /
-      +4 : true,                        / prefer (SID 1756) /
-      +5 : {                            / udp (SID 1757) /
-        +1 : "132.246.11.231"           / address (SID 1758) /
+      +3 : "tic.nrc.ca",                / name (SID 1759) /
+      +4 : true,                        / prefer (SID 1760) /
+      +5 : {                            / udp (SID 1761) /
+        +1 : "132.246.11.231"           / address (SID 1762) /
       }
     }
 ]
@@ -1313,23 +1310,23 @@ FORMAT:
 <h1 id="rfc.section.5.4.1">
 <a href="#rfc.section.5.4.1">5.4.1.</a> <a href="#datastore-example" id="datastore-example">Full datastore examples</a>
 </h1>
-<p id="rfc.section.5.4.1.p.1">The example uses the interface list and the clock container from <a href="#interfaces" class="xref">Appendix C.3</a>.  Assume that the datastore contains two modules ietf-system (SID 1700) and ietf-interfaces (SID 1500); they contain the list interface (SID 1533) with one instance and the container Clock (SID 1717). After invocation of GET, a map with these two modules is returned:</p>
+<p id="rfc.section.5.4.1.p.1">The example uses the interface list and the clock container from <a href="#interfaces" class="xref">Appendix C.3</a>.  Assume that the datastore contains two modules ietf-system (SID 1700) and ietf-interfaces (SID 1500); they contain the list interface (SID 1533) with one instance and the container Clock (SID 1721). After invocation of GET, a map with these two modules is returned:</p>
 <pre>
 REQ:  GET /c
 
 RES: 2.05 Content (Content-Format :application/yang-tree+cbor)
 [
-  1717,                           / Clock (SID 1717) /
+  1721,                           / Clock (SID 1721) /
     {
-      +2: "2016-10-26T12:16:31Z", / current-datetime (SID 1719) /
-      +1: "2014-10-05T09:00:00Z"  / boot-datetime (SID 1718) /
+      +2: "2016-10-26T12:16:31Z", / current-datetime (SID 1723) /
+      +1: "2014-10-05T09:00:00Z"  / boot-datetime (SID 1722) /
     },
-  -186,                            / clock (SID 1533) /
+  -188,                            / clock (SID 1533) /
     {
       +4 : "eth0",                / name (SID 1537) /
       +1 : "Ethernet adaptor",    / description (SID 1534) /
-      +5 : 1179,                  / type (SID 1538), identity: /
-                                  / ethernetCsmacd (SID 1179) /
+      +5 : 1880,                  / type (SID 1538), identity: /
+                                  / ethernetCsmacd (SID 1880) /
       +2 : true                   / enabled (SID 1535) /
     }
 ]
@@ -1564,10 +1561,13 @@ example-remote-server.com/group17/cK
 <pre>
 RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 {
- +4 : 1020,        / error-tag = invalid-value /
- +1 : 1012,        / error-app-tag = not-in-range /
- +2 : 1736,        / error-data-node = timezone-utc-offset /
- +3 : "maximum value exceeded" / error-message /
+  +4 : 1011,       / error-tag (SID 1028) /
+                   /   = invalid-value (SID 1011) /
+  +1 : 1018,       / error-app-tag (SID 1025) /
+                   /   = not-in-range (SID 1018) /
+  +2 : 1740,       / error-data-node (SID 1026) /
+                   /   = timezone-utc-offset (SID 1740) /
+  +3 : "maximum value exceeded" / error-message (SID 1027) /
 }
 </pre>
 <h1 id="rfc.section.10">
@@ -1750,8 +1750,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 </h1>
 <p id="rfc.section.12.p.1">We are very grateful to Bert Greevenbosch who was one of the original authors of the CoMI specification and specified CBOR encoding and use of hashes.</p>
 <p id="rfc.section.12.p.2">Mehmet Ersue and Bert Wijnen explained the encoding aspects of PDUs transported under SNMP. Carsten Bormann has given feedback on the use of CBOR.</p>
-<p id="rfc.section.12.p.3">Timothy Carey has provided the text for <a href="#lwm2m" class="xref">Appendix D</a>.</p>
-<p id="rfc.section.12.p.4">The draft has benefited from comments (alphabetical order) by Rodney Cummings, Dee Denteneer, Esko Dijk, Michael van Hartskamp, Tanguy Ropitault, Juergen Schoenwaelder, Anuj Sehgal, Zach Shelby, Hannes Tschofenig, Michael Verschoor, and Thomas Watteyne.</p>
+<p id="rfc.section.12.p.3">The draft has benefited from comments (alphabetical order) by Rodney Cummings, Dee Denteneer, Esko Dijk, Michael van Hartskamp, Tanguy Ropitault, Juergen Schoenwaelder, Anuj Sehgal, Zach Shelby, Hannes Tschofenig, Michael Verschoor, and Thomas Watteyne.</p>
 <h1 id="rfc.references">
 <a href="#rfc.references">13.</a> References</h1>
 <h1 id="rfc.references.1">
@@ -1760,72 +1759,72 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <tr>
 <td class="reference"><b id="I-D.ietf-core-sid">[I-D.ietf-core-sid]</b></td>
 <td class="top">
-<a>Veillette, M.</a>, <a>Pelov, A.</a>, <a>Turner, R.</a>, <a>Minaburo, A.</a> and <a>A. Somaraju</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-sid-01">YANG Schema Item iDentifier (SID)</a>", Internet-Draft draft-ietf-core-sid-01, May 2017.</td>
+<a>Veillette, M.</a> and <a>A. Pelov</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-sid-02">YANG Schema Item iDentifier (SID)</a>", Internet-Draft draft-ietf-core-sid-02, October 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-core-yang-cbor">[I-D.ietf-core-yang-cbor]</b></td>
 <td class="top">
-<a>Veillette, M.</a>, <a>Pelov, A.</a>, <a>Somaraju, A.</a>, <a>Turner, R.</a> and <a>A. Minaburo</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-yang-cbor-04">CBOR Encoding of Data Modeled with YANG</a>", Internet-Draft draft-ietf-core-yang-cbor-04, February 2017.</td>
+<a>Veillette, M.</a>, <a>Pelov, A.</a>, <a>Somaraju, A.</a>, <a>Turner, R.</a> and <a>A. Minaburo</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-yang-cbor-05">CBOR Encoding of Data Modeled with YANG</a>", Internet-Draft draft-ietf-core-yang-cbor-05, August 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.veillette-core-yang-library">[I-D.veillette-core-yang-library]</b></td>
 <td class="top">
-<a>Veillette, M.</a>, "<a href="http://tools.ietf.org/html/draft-veillette-core-yang-library-00">Constrained YANG Module Library</a>", Internet-Draft draft-veillette-core-yang-library-00, January 2017.</td>
+<a>Veillette, M.</a>, "<a href="https://tools.ietf.org/html/draft-veillette-core-yang-library-01">Constrained YANG Module Library</a>", Internet-Draft draft-veillette-core-yang-library-01, July 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC2119">[RFC2119]</b></td>
 <td class="top">
-<a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC4648">[RFC4648]</b></td>
 <td class="top">
-<a>Josefsson, S.</a>, "<a href="http://tools.ietf.org/html/rfc4648">The Base16, Base32, and Base64 Data Encodings</a>", RFC 4648, DOI 10.17487/RFC4648, October 2006.</td>
+<a>Josefsson, S.</a>, "<a href="https://tools.ietf.org/html/rfc4648">The Base16, Base32, and Base64 Data Encodings</a>", RFC 4648, DOI 10.17487/RFC4648, October 2006.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC5277">[RFC5277]</b></td>
 <td class="top">
-<a>Chisholm, S.</a> and <a>H. Trevino</a>, "<a href="http://tools.ietf.org/html/rfc5277">NETCONF Event Notifications</a>", RFC 5277, DOI 10.17487/RFC5277, July 2008.</td>
+<a>Chisholm, S.</a> and <a>H. Trevino</a>, "<a href="https://tools.ietf.org/html/rfc5277">NETCONF Event Notifications</a>", RFC 5277, DOI 10.17487/RFC5277, July 2008.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC6243">[RFC6243]</b></td>
 <td class="top">
-<a>Bierman, A.</a> and <a>B. Lengyel</a>, "<a href="http://tools.ietf.org/html/rfc6243">With-defaults Capability for NETCONF</a>", RFC 6243, DOI 10.17487/RFC6243, June 2011.</td>
+<a>Bierman, A.</a> and <a>B. Lengyel</a>, "<a href="https://tools.ietf.org/html/rfc6243">With-defaults Capability for NETCONF</a>", RFC 6243, DOI 10.17487/RFC6243, June 2011.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7049">[RFC7049]</b></td>
 <td class="top">
-<a>Bormann, C.</a> and <a>P. Hoffman</a>, "<a href="http://tools.ietf.org/html/rfc7049">Concise Binary Object Representation (CBOR)</a>", RFC 7049, DOI 10.17487/RFC7049, October 2013.</td>
+<a>Bormann, C.</a> and <a>P. Hoffman</a>, "<a href="https://tools.ietf.org/html/rfc7049">Concise Binary Object Representation (CBOR)</a>", RFC 7049, DOI 10.17487/RFC7049, October 2013.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7252">[RFC7252]</b></td>
 <td class="top">
-<a>Shelby, Z.</a>, <a>Hartke, K.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/rfc7252">The Constrained Application Protocol (CoAP)</a>", RFC 7252, DOI 10.17487/RFC7252, June 2014.</td>
+<a>Shelby, Z.</a>, <a>Hartke, K.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/rfc7252">The Constrained Application Protocol (CoAP)</a>", RFC 7252, DOI 10.17487/RFC7252, June 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7641">[RFC7641]</b></td>
 <td class="top">
-<a>Hartke, K.</a>, "<a href="http://tools.ietf.org/html/rfc7641">Observing Resources in the Constrained Application Protocol (CoAP)</a>", RFC 7641, DOI 10.17487/RFC7641, September 2015.</td>
+<a>Hartke, K.</a>, "<a href="https://tools.ietf.org/html/rfc7641">Observing Resources in the Constrained Application Protocol (CoAP)</a>", RFC 7641, DOI 10.17487/RFC7641, September 2015.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7950">[RFC7950]</b></td>
 <td class="top">
-<a>Bjorklund, M.</a>, "<a href="http://tools.ietf.org/html/rfc7950">The YANG 1.1 Data Modeling Language</a>", RFC 7950, DOI 10.17487/RFC7950, August 2016.</td>
+<a>Bjorklund, M.</a>, "<a href="https://tools.ietf.org/html/rfc7950">The YANG 1.1 Data Modeling Language</a>", RFC 7950, DOI 10.17487/RFC7950, August 2016.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7959">[RFC7959]</b></td>
 <td class="top">
-<a>Bormann, C.</a> and <a>Z. Shelby</a>, "<a href="http://tools.ietf.org/html/rfc7959">Block-Wise Transfers in the Constrained Application Protocol (CoAP)</a>", RFC 7959, DOI 10.17487/RFC7959, August 2016.</td>
+<a>Bormann, C.</a> and <a>Z. Shelby</a>, "<a href="https://tools.ietf.org/html/rfc7959">Block-Wise Transfers in the Constrained Application Protocol (CoAP)</a>", RFC 7959, DOI 10.17487/RFC7959, August 2016.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC8040">[RFC8040]</b></td>
 <td class="top">
-<a>Bierman, A.</a>, <a>Bjorklund, M.</a> and <a>K. Watsen</a>, "<a href="http://tools.ietf.org/html/rfc8040">RESTCONF Protocol</a>", RFC 8040, DOI 10.17487/RFC8040, January 2017.</td>
+<a>Bierman, A.</a>, <a>Bjorklund, M.</a> and <a>K. Watsen</a>, "<a href="https://tools.ietf.org/html/rfc8040">RESTCONF Protocol</a>", RFC 8040, DOI 10.17487/RFC8040, January 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC8132">[RFC8132]</b></td>
 <td class="top">
-<a>van der Stok, P.</a>, <a>Bormann, C.</a> and <a>A. Sehgal</a>, "<a href="http://tools.ietf.org/html/rfc8132">PATCH and FETCH Methods for the Constrained Application Protocol (CoAP)</a>", RFC 8132, DOI 10.17487/RFC8132, April 2017.</td>
+<a>van der Stok, P.</a>, <a>Bormann, C.</a> and <a>A. Sehgal</a>, "<a href="https://tools.ietf.org/html/rfc8132">PATCH and FETCH Methods for the Constrained Application Protocol (CoAP)</a>", RFC 8132, DOI 10.17487/RFC8132, April 2017.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.references.2">
@@ -1834,7 +1833,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <tr>
 <td class="reference"><b id="I-D.ietf-core-interfaces">[I-D.ietf-core-interfaces]</b></td>
 <td class="top">
-<a>Shelby, Z.</a>, <a>Vial, M.</a>, <a>Koster, M.</a> and <a>C. Groves</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-interfaces-09">Reusable Interface Definitions for Constrained RESTful Environments</a>", Internet-Draft draft-ietf-core-interfaces-09, March 2017.</td>
+<a>Shelby, Z.</a>, <a>Vial, M.</a>, <a>Koster, M.</a>, <a>Groves, C.</a>, <a>Zhu, J.</a> and <a>B. Silverajan</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-interfaces-10">Reusable Interface Definitions for Constrained RESTful Environments</a>", Internet-Draft draft-ietf-core-interfaces-10, September 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="netconfcentral">[netconfcentral]</b></td>
@@ -1844,32 +1843,32 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <tr>
 <td class="reference"><b id="RFC4293">[RFC4293]</b></td>
 <td class="top">
-<a>Routhier, S.</a>, "<a href="http://tools.ietf.org/html/rfc4293">Management Information Base for the Internet Protocol (IP)</a>", RFC 4293, DOI 10.17487/RFC4293, April 2006.</td>
+<a>Routhier, S.</a>, "<a href="https://tools.ietf.org/html/rfc4293">Management Information Base for the Internet Protocol (IP)</a>", RFC 4293, DOI 10.17487/RFC4293, April 2006.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC6347">[RFC6347]</b></td>
 <td class="top">
-<a>Rescorla, E.</a> and <a>N. Modadugu</a>, "<a href="http://tools.ietf.org/html/rfc6347">Datagram Transport Layer Security Version 1.2</a>", RFC 6347, DOI 10.17487/RFC6347, January 2012.</td>
+<a>Rescorla, E.</a> and <a>N. Modadugu</a>, "<a href="https://tools.ietf.org/html/rfc6347">Datagram Transport Layer Security Version 1.2</a>", RFC 6347, DOI 10.17487/RFC6347, January 2012.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC6690">[RFC6690]</b></td>
 <td class="top">
-<a>Shelby, Z.</a>, "<a href="http://tools.ietf.org/html/rfc6690">Constrained RESTful Environments (CoRE) Link Format</a>", RFC 6690, DOI 10.17487/RFC6690, August 2012.</td>
+<a>Shelby, Z.</a>, "<a href="https://tools.ietf.org/html/rfc6690">Constrained RESTful Environments (CoRE) Link Format</a>", RFC 6690, DOI 10.17487/RFC6690, August 2012.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7159">[RFC7159]</b></td>
 <td class="top">
-<a>Bray, T.</a>, "<a href="http://tools.ietf.org/html/rfc7159">The JavaScript Object Notation (JSON) Data Interchange Format</a>", RFC 7159, DOI 10.17487/RFC7159, March 2014.</td>
+<a>Bray, T.</a>, "<a href="https://tools.ietf.org/html/rfc7159">The JavaScript Object Notation (JSON) Data Interchange Format</a>", RFC 7159, DOI 10.17487/RFC7159, March 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7223">[RFC7223]</b></td>
 <td class="top">
-<a>Bjorklund, M.</a>, "<a href="http://tools.ietf.org/html/rfc7223">A YANG Data Model for Interface Management</a>", RFC 7223, DOI 10.17487/RFC7223, May 2014.</td>
+<a>Bjorklund, M.</a>, "<a href="https://tools.ietf.org/html/rfc7223">A YANG Data Model for Interface Management</a>", RFC 7223, DOI 10.17487/RFC7223, May 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7317">[RFC7317]</b></td>
 <td class="top">
-<a>Bierman, A.</a> and <a>M. Bjorklund</a>, "<a href="http://tools.ietf.org/html/rfc7317">A YANG Data Model for System Management</a>", RFC 7317, DOI 10.17487/RFC7317, August 2014.</td>
+<a>Bierman, A.</a> and <a>M. Bjorklund</a>, "<a href="https://tools.ietf.org/html/rfc7317">A YANG Data Model for System Management</a>", RFC 7317, DOI 10.17487/RFC7317, August 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="XML">[XML]</b></td>
@@ -1917,7 +1916,31 @@ module ietf-comi {
      description
       "Initial revision.";
     reference
-      "draft-ietf-core-comi";
+      "[I-D.ietf-core-comi] CoAP Management Interface";
+  }
+  
+  typedef sid {
+    type uint64;
+    description
+      "YANG Schema Item iDentifier";
+    reference
+      "[I-D.ietf-core-sid] YANG Schema Item iDentifier (SID)";
+  }
+  
+  typedef date_and_time_b {
+    type int64;
+    description
+      "Binary representation of a date and time. This value is
+       encoded using a positive or negative value representing
+       a number of seconds relative to 1970-01-01T00:00Z in UTC
+       time (i.e. the epoch). Negative values represent a date
+       and time before the epoch, positive values represent a
+       date and time after the epoch.
+       This representation is defined in [RFC 7049] section
+       2.4.1. When implemented using CoMI, tag 0 is assumed
+       and not encoded.";
+    reference
+      "[RFC 7049] Concise Binary Object Representation (CBOR)";
   }
 
   identity error-tag {
@@ -2152,148 +2175,148 @@ module ietf-comi {
   "module-revision": "2017-07-01",
   "items": [
     {
-      "type": "Module",
-      "label": "ietf-comi",
+      "namespace": "module",
+      "identifier": "ietf-comi",
       "sid": 1000
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag",
+      "namespace": "identity",
+      "identifier": "bad-element",
       "sid": 1001
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/data-not-unique",
+      "namespace": "identity",
+      "identifier": "data-missing",
       "sid": 1002
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/duplicate",
+      "namespace": "identity",
+      "identifier": "data-not-unique",
       "sid": 1003
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/instance-required",
+      "namespace": "identity",
+      "identifier": "duplicate",
       "sid": 1004
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/invalid-datatype",
+      "namespace": "identity",
+      "identifier": "error",
       "sid": 1005
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/invalid-length",
+      "namespace": "identity",
+      "identifier": "error-app-tag",
       "sid": 1006
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/malformed-message",
+      "namespace": "identity",
+      "identifier": "error-tag",
       "sid": 1007
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/missing-choice",
+      "namespace": "identity",
+      "identifier": "instance-required",
       "sid": 1008
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/missing-input-parameter",
+      "namespace": "identity",
+      "identifier": "invalid-datatype",
       "sid": 1009
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/missing-key",
+      "namespace": "identity",
+      "identifier": "invalid-length",
       "sid": 1010
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/must-violation",
+      "namespace": "identity",
+      "identifier": "invalid-value",
       "sid": 1011
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/not-in-range",
+      "namespace": "identity",
+      "identifier": "malformed-message",
       "sid": 1012
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/pattern-test-failed",
+      "namespace": "identity",
+      "identifier": "missing-choice",
       "sid": 1013
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/too-few-elements",
+      "namespace": "identity",
+      "identifier": "missing-element",
       "sid": 1014
     },
     {
-      "type": "identity",
-      "label": "/error-app-tag/too-many-elements",
+      "namespace": "identity",
+      "identifier": "missing-input-parameter",
       "sid": 1015
     },
     {
-      "type": "identity",
-      "label": "/error-tag",
+      "namespace": "identity",
+      "identifier": "missing-key",
       "sid": 1016
     },
     {
-      "type": "identity",
-      "label": "/error-tag/bad-element",
+      "namespace": "identity",
+      "identifier": "must-violation",
       "sid": 1017
     },
     {
-      "type": "identity",
-      "label": "/error-tag/data-missing",
+      "namespace": "identity",
+      "identifier": "not-in-range",
       "sid": 1018
     },
     {
-      "type": "identity",
-      "label": "/error-tag/error",
+      "namespace": "identity",
+      "identifier": "operation-failed",
       "sid": 1019
     },
     {
-      "type": "identity",
-      "label": "/error-tag/invalid-value",
+      "namespace": "identity",
+      "identifier": "pattern-test-failed",
       "sid": 1020
     },
     {
-      "type": "identity",
-      "label": "/error-tag/missing-element",
+      "namespace": "identity",
+      "identifier": "too-few-elements",
       "sid": 1021
     },
     {
-      "type": "identity",
-      "label": "/error-tag/operation-failed",
+      "namespace": "identity",
+      "identifier": "too-many-elements",
       "sid": 1022
     },
     {
-      "type": "identity",
-      "label": "/error-tag/unknown-element",
+      "namespace": "identity",
+      "identifier": "unknown-element",
       "sid": 1023
     },
     {
-      "type": "node",
-      "label": "/error",
+      "namespace": "data",
+      "identifier": "/ietf-comi:error",
       "sid": 1024
     },
     {
-      "type": "node",
-      "label": "/error/error-app-tag",
+      "namespace": "data",
+      "identifier": "/ietf-comi:error/error-app-tag",
       "sid": 1025
     },
     {
-      "type": "node",
-      "label": "/error/error-data-node",
+      "namespace": "data",
+      "identifier": "/ietf-comi:error/error-data-node",
       "sid": 1026
     },
     {
-      "type": "node",
-      "label": "/error/error-message",
+      "namespace": "data",
+      "identifier": "/ietf-comi:error/error-message",
       "sid": 1027
     },
     {
-      "type": "node",
-      "label": "/error/error-tag",
+      "namespace": "data",
+      "identifier": "/ietf-comi:error/error-tag",
       "sid": 1028
     }
   ]
@@ -2309,45 +2332,45 @@ module ietf-comi {
 <p id="rfc.section.C.1.p.1">Excerpt of the YANG module ietf-system <a href="#RFC7317" class="xref">[RFC7317]</a>.</p>
 <pre>
 module ietf-system {                   // SID 1700
-  container system {                   // SID 1715
-    container clock {                  // SID 1734
+  container system {                   // SID 1717
+    container clock {                  // SID 1738
       choice timezone {
         case timezone-name {
-          leaf timezone-name {         // SID 1735
+          leaf timezone-name {         // SID 1739
             type timezone-name;
           }
         }
         case timezone-utc-offset {
-          leaf timezone-utc-offset {   // SID 1736
+          leaf timezone-utc-offset {   // SID 1740
             type int16 {
             }
           }
         }
       }
     }
-    container ntp {                    // SID 1750
-      leaf enabled {                   // SID 1751
+    container ntp {                    // SID 1754
+      leaf enabled {                   // SID 1755
         type boolean;
         default true;
       }
-      list server {                    // SID 1752
+      list server {                    // SID 1756
         key name;
-        leaf name {                    // SID 1755
+        leaf name {                    // SID 1759
           type string;
         }
         choice transport {
           case udp {
-            container udp {            // SID 1757
-              leaf address {           // SID 1758
+            container udp {            // SID 1761
+              leaf address {           // SID 1762
                 type inet:host;
               }
-              leaf port {              // SID 1759
+              leaf port {              // SID 1763
                 type inet:port-number;
               }
             }
           }
         }
-        leaf association-type {        // SID 1753
+        leaf association-type {        // SID 1757
           type enumeration {
             enum server {
             }
@@ -2357,27 +2380,26 @@ module ietf-system {                   // SID 1700
             }
           }
         }
-        leaf iburst {                  // SID 1754
+        leaf iburst {                  // SID 1758
           type boolean;
         }
-        leaf prefer {                  // SID 1756
+        leaf prefer {                  // SID 1760
           type boolean;
           default false;
         }
       }
     }
-  container system-state {             // SID 1716
-    container clock {                  // SID 1717
-      leaf current-datetime {          // SID 1719
+  container system-state {             // SID 1720
+    container clock {                  // SID 1721
+      leaf current-datetime {          // SID 1723
         type yang:date-and-time;
       }
-      leaf boot-datetime {             // SID 1718
+      leaf boot-datetime {             // SID 1722
         type yang:date-and-time;
       }
     }
   }
 }
-
 </pre>
 <h1 id="rfc.appendix.C.2">
 <a href="#rfc.appendix.C.2">C.2.</a> <a href="#server" id="server">server list</a>
@@ -2457,7 +2479,6 @@ module ietf-interfaces {               // SID 1500
     }
   }
 }
-
 </pre>
 <h1 id="rfc.appendix.C.4">
 <a href="#rfc.appendix.C.4">C.4.</a> <a href="#notify-ex" id="notify-ex">Example-port</a>
@@ -2577,12 +2598,7 @@ module IP-MIB {
     }  // list ipNetToPhysicalEntry
   }  // container ip
 }  // module IP-MIB
-
 </pre>
-<h1 id="rfc.appendix.D">
-<a href="#rfc.appendix.D">Appendix D.</a> <a href="#lwm2m" id="lwm2m">Comparison with LWM2M</a>
-</h1>
-<p id="rfc.section.D.p.1">TO DO Need updated text based on the current version of CoMI.  Multiple assumptions used in the original text are no more valid.</p>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
