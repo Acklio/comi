@@ -335,8 +335,8 @@ address {
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Veillette, M., Ed., van der Stok, P., Ed., Pelov, A., and A. Bierman" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-02" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-03-28" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-03" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-06-04" />
   <meta name="dct.abstract" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
   <meta name="description" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
 
@@ -360,7 +360,7 @@ address {
 <td class="right">P. van der Stok, Ed.</td>
 </tr>
 <tr>
-<td class="left">Expires: September 29, 2018</td>
+<td class="left">Expires: December 6, 2018</td>
 <td class="right">consultant</td>
 </tr>
 <tr>
@@ -381,7 +381,7 @@ address {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">March 28, 2018</td>
+<td class="right">June 04, 2018</td>
 </tr>
 
     	
@@ -389,7 +389,7 @@ address {
   </table>
 
   <p class="title">CoAP Management Interface<br />
-  <span class="filename">draft-ietf-core-comi-02</span></p>
+  <span class="filename">draft-ietf-core-comi-03</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
 <p>This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks.</p>
@@ -399,7 +399,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 29, 2018.</p>
+<p>This Internet-Draft will expire on December 6, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -525,6 +525,10 @@ address {
 <p id="rfc.section.1.p.3">The use of standardized data models specified in a standardized language, such as YANG, promotes interoperability between devices and applications from different manufacturers.</p>
 <p id="rfc.section.1.p.4">CoMI and RESTCONF are intended to work in a stateless client-server fashion.  They use a single round-trip to complete a single editing transaction, where NETCONF needs up to 10 round trips.</p>
 <p id="rfc.section.1.p.5">To promote small messges, CoMI uses a YANG to CBOR mapping <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> and numeric identifiers <a href="#I-D.ietf-core-sid" class="xref">[I-D.ietf-core-sid]</a> to minimize CBOR payloads and URI length.</p>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<thead><tr><th class="left">WARNING:</th></tr></thead>
+<tbody><tr><td class="left">Mapping between data nodes and CoAP resources should be extended in order to support the &#8220;Network Management Datastore Architecture&#8221; (NMDA) <a href="#RFC8342" class="xref">[RFC8342]</a> and <a href="#RFC8342" class="xref">[RFC8342]</a> and the YANG Schema Mount <a href="#I-D.ietf-netmod-schema-mount" class="xref">[I-D.ietf-netmod-schema-mount]</a>.</td></tr></tbody>
+</table>
 <h1 id="rfc.section.1.1">
 <a href="#rfc.section.1.1">1.1.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -1836,6 +1840,11 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <a>Shelby, Z.</a>, <a>Vial, M.</a>, <a>Koster, M.</a>, <a>Groves, C.</a>, <a>Zhu, J.</a> and <a>B. Silverajan</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-interfaces-11">Reusable Interface Definitions for Constrained RESTful Environments</a>", Internet-Draft draft-ietf-core-interfaces-11, March 2018.</td>
 </tr>
 <tr>
+<td class="reference"><b id="I-D.ietf-netmod-schema-mount">[I-D.ietf-netmod-schema-mount]</b></td>
+<td class="top">
+<a>Bjorklund, M.</a> and <a>L. Lhotka</a>, "<a href="https://tools.ietf.org/html/draft-ietf-netmod-schema-mount-10">YANG Schema Mount</a>", Internet-Draft draft-ietf-netmod-schema-mount-10, April 2018.</td>
+</tr>
+<tr>
 <td class="reference"><b id="netconfcentral">[netconfcentral]</b></td>
 <td class="top">
 <a>YUMAworks</a>, "<a>NETCONF Central: library of YANG modules</a>", Web http://www.netconfcentral.org/modulelist</td>
@@ -1871,6 +1880,11 @@ RES:  4.00 Bad Request (Content-Format :application/yang-value+cbor)
 <a>Bierman, A.</a> and <a>M. Bjorklund</a>, "<a href="https://tools.ietf.org/html/rfc7317">A YANG Data Model for System Management</a>", RFC 7317, DOI 10.17487/RFC7317, August 2014.</td>
 </tr>
 <tr>
+<td class="reference"><b id="RFC8342">[RFC8342]</b></td>
+<td class="top">
+<a>Bjorklund, M.</a>, <a>Schoenwaelder, J.</a>, <a>Shafer, P.</a>, <a>Watsen, K.</a> and <a>R. Wilton</a>, "<a href="https://tools.ietf.org/html/rfc8342">Network Management Datastore Architecture (NMDA)</a>", RFC 8342, DOI 10.17487/RFC8342, March 2018.</td>
+</tr>
+<tr>
 <td class="reference"><b id="XML">[XML]</b></td>
 <td class="top">
 <a>W3C</a>, "<a>Extensible Markup Language (XML)</a>", Web http://www.w3.org/xml</td>
@@ -1897,7 +1911,7 @@ module ietf-comi {
 
   contact
     "Michel Veillette
-     &lt;mailto:michel.veillette@trilliantinc.com&gt;
+     &lt;mailto:michel.veillette@trilliant.com&gt;
 
      Alexander Pelov
      &lt;mailto:alexander@ackl.io&gt;
@@ -2619,7 +2633,7 @@ module IP-MIB {
 	  </span>
 	  <span class="country-name vcardline">Canada</span>
 	</span>
-	<span class="vcardline">EMail: <a href="mailto:michel.veillette@trilliantinc.com">michel.veillette@trilliantinc.com</a></span>
+	<span class="vcardline">EMail: <a href="mailto:michel.veillette@trilliant.com">michel.veillette@trilliant.com</a></span>
 
   </address>
 </div><div class="avoidbreak">

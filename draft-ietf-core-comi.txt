@@ -5,16 +5,16 @@
 CoRE                                                   M. Veillette, Ed.
 Internet-Draft                                   Trilliant Networks Inc.
 Intended status: Standards Track                    P. van der Stok, Ed.
-Expires: September 29, 2018                                   consultant
+Expires: December 6, 2018                                     consultant
                                                                 A. Pelov
                                                                   Acklio
                                                               A. Bierman
                                                                YumaWorks
-                                                          March 28, 2018
+                                                           June 04, 2018
 
 
                        CoAP Management Interface
-                        draft-ietf-core-comi-02
+                        draft-ietf-core-comi-03
 
 Abstract
 
@@ -48,14 +48,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 29, 2018.
+   This Internet-Draft will expire on December 6, 2018.
 
 
 
 
-Veillette, et al.      Expires September 29, 2018               [Page 1]
+Veillette, et al.       Expires December 6, 2018                [Page 1]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
 Copyright Notice
@@ -78,11 +78,11 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
      1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   4
    2.  CoMI Architecture . . . . . . . . . . . . . . . . . . . . . .   5
-     2.1.  Major differences between RESTCONF and CoMI . . . . . . .   6
+     2.1.  Major differences between RESTCONF and CoMI . . . . . . .   7
      2.2.  Compression of YANG identifiers . . . . . . . . . . . . .   7
      2.3.  Instance identifier . . . . . . . . . . . . . . . . . . .   8
-     2.4.  CBOR ordered map schematic  . . . . . . . . . . . . . . .   8
-     2.5.  Content-Formats . . . . . . . . . . . . . . . . . . . . .   8
+     2.4.  CBOR ordered map schematic  . . . . . . . . . . . . . . .   9
+     2.5.  Content-Formats . . . . . . . . . . . . . . . . . . . . .   9
    3.  Example syntax  . . . . . . . . . . . . . . . . . . . . . . .  11
    4.  CoAP Interface  . . . . . . . . . . . . . . . . . . . . . . .  12
    5.  CoMI Collection Interface . . . . . . . . . . . . . . . . . .  13
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Veillette, et al.      Expires September 29, 2018               [Page 2]
+Veillette, et al.       Expires December 6, 2018                [Page 2]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    8.  Resource Discovery  . . . . . . . . . . . . . . . . . . . . .  29
@@ -133,10 +133,10 @@ Internet-Draft                    CoMI                        March 2018
    Appendix C.  YANG example specifications  . . . . . . . . . . . .  49
      C.1.  ietf-system . . . . . . . . . . . . . . . . . . . . . . .  49
      C.2.  server list . . . . . . . . . . . . . . . . . . . . . . .  51
-     C.3.  interfaces  . . . . . . . . . . . . . . . . . . . . . . .  51
-     C.4.  Example-port  . . . . . . . . . . . . . . . . . . . . . .  52
-     C.5.  IP-MIB  . . . . . . . . . . . . . . . . . . . . . . . . .  53
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  55
+     C.3.  interfaces  . . . . . . . . . . . . . . . . . . . . . . .  52
+     C.4.  Example-port  . . . . . . . . . . . . . . . . . . . . . .  53
+     C.5.  IP-MIB  . . . . . . . . . . . . . . . . . . . . . . . . .  54
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  56
 
 1.  Introduction
 
@@ -165,14 +165,23 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018               [Page 3]
+Veillette, et al.       Expires December 6, 2018                [Page 3]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    To promote small messges, CoMI uses a YANG to CBOR mapping
    [I-D.ietf-core-yang-cbor] and numeric identifiers [I-D.ietf-core-sid]
    to minimize CBOR payloads and URI length.
+
+   +-------------------------------------------------------------------+
+   | WARNING:                                                          |
+   +-------------------------------------------------------------------+
+   | Mapping between data nodes and CoAP resources should be extended  |
+   | in order to support the "Network Management Datastore             |
+   | Architecture" (NMDA) [RFC8342] and [RFC8342] and the YANG Schema  |
+   | Mount [I-D.ietf-netmod-schema-mount].                             |
+   +-------------------------------------------------------------------+
 
 1.1.  Terminology
 
@@ -209,6 +218,14 @@ Internet-Draft                    CoMI                        March 2018
 
    notification instance:  An instance of a schema node of type
       notification, specified in a YANG module implemented by the
+
+
+
+Veillette, et al.       Expires December 6, 2018                [Page 4]
+
+Internet-Draft                    CoMI                         June 2018
+
+
       server.  The instance is generated in the server at the occurrence
       of the corresponding event and reported by an event stream.
 
@@ -218,14 +235,6 @@ Internet-Draft                    CoMI                        March 2018
 
    single instance identifier:  Handle used to identify a specific data
       node which can be instantiated only once.  This includes data
-
-
-
-Veillette, et al.      Expires September 29, 2018               [Page 4]
-
-Internet-Draft                    CoMI                        March 2018
-
-
       nodes defined at the root of a YANG module or data nodes defined
       within a container.  This excludes data nodes defined within a
       list or any children of these data nodes.
@@ -242,6 +251,36 @@ Internet-Draft                    CoMI                        March 2018
    This section describes the CoMI architecture to use CoAP for reading
    and modifying the content of datastore(s) used for the management of
    the instrumented node.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires December 6, 2018                [Page 5]
+
+Internet-Draft                    CoMI                         June 2018
+
 
    +------------------------------------------------------------+
    |                     SMIv2 specification (2)                |
@@ -274,14 +313,6 @@ Internet-Draft                    CoMI                        March 2018
    (1) YANG specification:  contains a set of named and versioned
       modules.
 
-
-
-
-Veillette, et al.      Expires September 29, 2018               [Page 5]
-
-Internet-Draft                    CoMI                        March 2018
-
-
    (2) SMIv2 specification:  A named module specifies a set of variables
       and "conceptual tables".  There is an algorithm to translate SMIv2
       specifications to YANG specifications.
@@ -299,6 +330,14 @@ Internet-Draft                    CoMI                        March 2018
 
    (6) Event stream:  An observable resource used to get real time
       notifications.  A CoMI server may support multiple Event streams
+
+
+
+Veillette, et al.       Expires December 6, 2018                [Page 6]
+
+Internet-Draft                    CoMI                         June 2018
+
+
       serving different purposes such as normal monitoring, diagnostic,
       syslog, security monitoring.
 
@@ -330,14 +369,6 @@ Internet-Draft                    CoMI                        March 2018
       before, after) and the "point" query parameter which are supported
       by RESTCONF.
 
-
-
-
-Veillette, et al.      Expires September 29, 2018               [Page 6]
-
-Internet-Draft                    CoMI                        March 2018
-
-
    o  CoMI does not support the "start-time" and "stop-time" query
       parameters to retrieve past notifications.
 
@@ -354,6 +385,14 @@ Internet-Draft                    CoMI                        March 2018
    CoMI, numeric identifiers are used instead of these strings.  YANG
    Schema Item iDentifier (SID) is defined in [I-D.ietf-core-yang-cbor]
    section 2.1.
+
+
+
+
+Veillette, et al.       Expires December 6, 2018                [Page 7]
+
+Internet-Draft                    CoMI                         June 2018
+
 
    When used in a URI, SIDs are encoded in based64 using the URL and
    Filename safe alphabet as defined by [RFC4648] section 5.  The last 6
@@ -387,13 +426,6 @@ Internet-Draft                    CoMI                        March 2018
    URLsafeChar[1721 >> 6 & 0x3F]  = URLsafeChar[26] = 'a'
    URLsafeChar[1721 & 0x3F]       = URLsafeChar[57] = '5'
 
-
-
-Veillette, et al.      Expires September 29, 2018               [Page 7]
-
-Internet-Draft                    CoMI                        March 2018
-
-
    The resulting base64 representation of SID 1721 is "a5"
 
 2.3.  Instance identifier
@@ -409,6 +441,14 @@ Internet-Draft                    CoMI                        March 2018
    5.13.1.  When part of a URI, the SID is appended to the URI of the
    targeted datastore, the keys are specified using the 'k' URI-Query as
    defined in Section 5.1.
+
+
+
+
+Veillette, et al.       Expires December 6, 2018                [Page 8]
+
+Internet-Draft                    CoMI                         June 2018
+
 
 2.4.  CBOR ordered map schematic
 
@@ -441,15 +481,6 @@ Internet-Draft                    CoMI                        March 2018
    in [I-D.ietf-core-yang-cbor].  All Content-Formats defined hereafter
    are constructed using one or both of these constructs:
 
-
-
-
-
-Veillette, et al.      Expires September 29, 2018               [Page 8]
-
-Internet-Draft                    CoMI                        March 2018
-
-
    o  YANG data node value, encoded based on the rules defined in
       [I-D.ietf-core-yang-cbor] section 4.
 
@@ -467,6 +498,13 @@ Internet-Draft                    CoMI                        March 2018
       section 4.
 
       FORMAT: data-node-value
+
+
+
+Veillette, et al.       Expires December 6, 2018                [Page 9]
+
+Internet-Draft                    CoMI                         June 2018
+
 
       DELTA ENCODING: SIDs included in a YANG container, a list
       instance, a RPC input, a RPC output, an action input, an actions
@@ -497,15 +535,6 @@ Internet-Draft                    CoMI                        March 2018
       equal to the SID of the current instance-identifiers minus the SID
       of the previous instance-identifier.
 
-
-
-
-
-Veillette, et al.      Expires September 29, 2018               [Page 9]
-
-Internet-Draft                    CoMI                        March 2018
-
-
    application/yang-selectors+cbor:  represents a CBOR YANG document
       containing a list of data node selectors (i.e. instance
       identifier).
@@ -525,6 +554,14 @@ Internet-Draft                    CoMI                        March 2018
       For each data node instance, D, for which the instance identifier
       is the same as for a data node instance, I, in the targeted
       resource: the data node value of D replaces the data node value of
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 10]
+
+Internet-Draft                    CoMI                         June 2018
+
+
       I.  When the data node value of D is null, the data node instance
       I is removed.  When the targeted resource does not contain a data
       node instance with the same instance identifier as D, a new data
@@ -536,31 +573,6 @@ Internet-Draft                    CoMI                        March 2018
       DELTA ENCODING: Same as Content-Format application/yang-tree+cbor
 
    The different Content-formats usage is summarized in the table below:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 10]
-
-Internet-Draft                    CoMI                        March 2018
-
 
    +----------------+--------------+----------------------------------+
    | Method         | Resource     | Content-Format                   |
@@ -597,6 +609,15 @@ Internet-Draft                    CoMI                        March 2018
    This section presents the notation used for the examples.  The YANG
    modules that are used throughout this document are shown in
    Appendix C.  The example modules are copied from existing modules and
+
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 11]
+
+Internet-Draft                    CoMI                         June 2018
+
+
    annotated with SIDs.  The values of the SIDs are taken over from
    [yang-cbor].
 
@@ -607,16 +628,6 @@ Internet-Draft                    CoMI                        March 2018
 
    SIDs in URIs are represented as a base64 number, SIDs in the payload
    are represented as decimal numbers.
-
-
-
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 11]
-
-Internet-Draft                    CoMI                        March 2018
-
 
 4.  CoAP Interface
 
@@ -654,25 +665,18 @@ Internet-Draft                    CoMI                        March 2018
    possible as described in Section 5.1, Section 5.2.4, and
    Section 5.2.3.1.
 
+
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 12]
+
+Internet-Draft                    CoMI                         June 2018
+
+
    The description of the management collection interface, with
    if=core.c, is shown in the table below, following the guidelines of
    [I-D.ietf-core-interfaces]:
-
-
-
-
-
-
-
-
-
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 12]
-
-Internet-Draft                    CoMI                        March 2018
-
 
    +---------------------+------------------------+--------------------+
    | Function            | Recommended path       | rt                 |
@@ -717,18 +721,17 @@ Internet-Draft                    CoMI                        March 2018
    | DELETE    | Delete a datastore resource or a data node resource   |
    +-----------+-------------------------------------------------------+
 
+
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 13]
+
+Internet-Draft                    CoMI                         June 2018
+
+
    There is one Uri-Query option for the GET, PUT, POST, and DELETE
    methods.
-
-
-
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 13]
-
-Internet-Draft                    CoMI                        March 2018
-
 
    +------------------+----------------------------------------+
    | Uri-Query option | Description                            |
@@ -778,12 +781,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 14]
+Veillette, et al.       Expires December 6, 2018               [Page 14]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    +-----------------------------+--------------------------------+
@@ -837,9 +837,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 15]
+Veillette, et al.       Expires December 6, 2018               [Page 15]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    It is possible that the size of the payload is too large to fit in a
@@ -893,9 +893,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 16]
+Veillette, et al.       Expires December 6, 2018               [Page 16]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    +-------+-----------------------------------------------------------+
@@ -949,9 +949,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 17]
+Veillette, et al.       Expires December 6, 2018               [Page 17]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    the CBOR encoding of this leaf of type 'string' as defined in
@@ -1005,9 +1005,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 18]
+Veillette, et al.       Expires December 6, 2018               [Page 18]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    It is equally possible to select a leaf of a specific instance of a
@@ -1061,9 +1061,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 19]
+Veillette, et al.       Expires December 6, 2018               [Page 19]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    REQ:  FETCH /c (Content-Format :application/yang-selectors+cbor)
@@ -1117,9 +1117,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 20]
+Veillette, et al.       Expires December 6, 2018               [Page 20]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    If the data node resource already exists, then the POST request MUST
@@ -1173,9 +1173,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 21]
+Veillette, et al.       Expires December 6, 2018               [Page 21]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    REQ: PUT /c/X9?k="eth0"
@@ -1229,9 +1229,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 22]
+Veillette, et al.       Expires December 6, 2018               [Page 22]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    REQ: iPATCH /c (Content-Format :application/yang-patch+cbor)
@@ -1285,9 +1285,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 23]
+Veillette, et al.       Expires December 6, 2018               [Page 23]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    FORMAT:
@@ -1341,9 +1341,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 24]
+Veillette, et al.       Expires December 6, 2018               [Page 24]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    REQ:  GET /c
@@ -1397,9 +1397,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 25]
+Veillette, et al.       Expires December 6, 2018               [Page 25]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    FORMAT:
@@ -1453,9 +1453,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 26]
+Veillette, et al.       Expires December 6, 2018               [Page 26]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    specified.  The response payload contains the values of the output
@@ -1509,9 +1509,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 27]
+Veillette, et al.       Expires December 6, 2018               [Page 27]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    {
@@ -1565,9 +1565,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 28]
+Veillette, et al.       Expires December 6, 2018               [Page 28]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
 7.  Use of Block
@@ -1621,9 +1621,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 29]
+Veillette, et al.       Expires December 6, 2018               [Page 29]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    rt="core.c.datanode".  The available SIDs can be discovered by
@@ -1677,9 +1677,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 30]
+Veillette, et al.       Expires December 6, 2018               [Page 30]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
 9.  Error Handling
@@ -1733,9 +1733,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 31]
+Veillette, et al.       Expires December 6, 2018               [Page 31]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    payload.  The YANG definition and associated .sid file are available
@@ -1789,9 +1789,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 32]
+Veillette, et al.       Expires December 6, 2018               [Page 32]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
       *  error-app-tag invalid-datatype is returned by the CoMI server
@@ -1845,9 +1845,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 33]
+Veillette, et al.       Expires December 6, 2018               [Page 33]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
       *  error-app-tag missing-choice is returned by the CoMI server
@@ -1901,9 +1901,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 34]
+Veillette, et al.       Expires December 6, 2018               [Page 34]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    +--------------------+---------------------+-----------+
@@ -1957,9 +1957,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 35]
+Veillette, et al.       Expires December 6, 2018               [Page 35]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    +---------------------+---------------------------------+-----------+
@@ -2013,9 +2013,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 36]
+Veillette, et al.       Expires December 6, 2018               [Page 36]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    o  Intended usage: COMMON
@@ -2069,9 +2069,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 37]
+Veillette, et al.       Expires December 6, 2018               [Page 37]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
 13.1.  Normative References
@@ -2125,9 +2125,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 38]
+Veillette, et al.       Expires December 6, 2018               [Page 38]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
@@ -2156,6 +2156,11 @@ Internet-Draft                    CoMI                        March 2018
               Constrained RESTful Environments", draft-ietf-core-
               interfaces-11 (work in progress), March 2018.
 
+   [I-D.ietf-netmod-schema-mount]
+              Bjorklund, M. and L. Lhotka, "YANG Schema Mount", draft-
+              ietf-netmod-schema-mount-10 (work in progress), April
+              2018.
+
    [netconfcentral]
               YUMAworks, "NETCONF Central: library of YANG modules",
               Web http://www.netconfcentral.org/modulelist.
@@ -2172,19 +2177,18 @@ Internet-Draft                    CoMI                        March 2018
               Format", RFC 6690, DOI 10.17487/RFC6690, August 2012,
               <https://www.rfc-editor.org/info/rfc6690>.
 
+
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 39]
+
+Internet-Draft                    CoMI                         June 2018
+
+
    [RFC7159]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
               Interchange Format", RFC 7159, DOI 10.17487/RFC7159, March
               2014, <https://www.rfc-editor.org/info/rfc7159>.
-
-
-
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 39]
-
-Internet-Draft                    CoMI                        March 2018
-
 
    [RFC7223]  Bjorklund, M., "A YANG Data Model for Interface
               Management", RFC 7223, DOI 10.17487/RFC7223, May 2014,
@@ -2193,6 +2197,11 @@ Internet-Draft                    CoMI                        March 2018
    [RFC7317]  Bierman, A. and M. Bjorklund, "A YANG Data Model for
               System Management", RFC 7317, DOI 10.17487/RFC7317, August
               2014, <https://www.rfc-editor.org/info/rfc7317>.
+
+   [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
+              and R. Wilton, "Network Management Datastore Architecture
+              (NMDA)", RFC 8342, DOI 10.17487/RFC8342, March 2018,
+              <https://www.rfc-editor.org/info/rfc8342>.
 
    [XML]      W3C, "Extensible Markup Language (XML)",
               Web http://www.w3.org/xml.
@@ -2216,7 +2225,7 @@ Appendix A.  ietf-comi YANG module
 
      contact
        "Michel Veillette
-        <mailto:michel.veillette@trilliantinc.com>
+        <mailto:michel.veillette@trilliant.com>
 
         Alexander Pelov
         <mailto:alexander@ackl.io>
@@ -2225,6 +2234,14 @@ Appendix A.  ietf-comi YANG module
         <mailto:consultancy@vanderstok.org>
 
         Andy Bierman
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 40]
+
+Internet-Draft                    CoMI                         June 2018
+
+
         <mailto:andy@yumaworks.com>";
 
      description
@@ -2234,14 +2251,6 @@ Appendix A.  ietf-comi YANG module
      revision 2017-07-01 {
         description
          "Initial revision.";
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 40]
-
-Internet-Draft                    CoMI                        March 2018
-
-
        reference
          "[I-D.ietf-core-comi] CoAP Management Interface";
      }
@@ -2282,6 +2291,13 @@ Internet-Draft                    CoMI                        March 2018
           can't be processed successfully.";
      }
 
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 41]
+
+Internet-Draft                    CoMI                         June 2018
+
+
      identity invalid-value {
        base error-tag;
        description
@@ -2290,14 +2306,6 @@ Internet-Draft                    CoMI                        March 2018
           invalid CBOR datatype or if the 'range', 'length',
           'pattern' or 'require-instance' constrain is not
           fulfilled.";
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 41]
-
-Internet-Draft                    CoMI                        March 2018
-
-
      }
 
      identity missing-element {
@@ -2338,6 +2346,14 @@ Internet-Draft                    CoMI                        March 2018
      identity error {
        base error-tag;
        description
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 42]
+
+Internet-Draft                    CoMI                         June 2018
+
+
          "Returned by the CoMI server when an unspecified error has
          occurred.";
      }
@@ -2346,12 +2362,6 @@ Internet-Draft                    CoMI                        March 2018
        description
          "Base identity for error-app-tag.";
      }
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 42]
-
-Internet-Draft                    CoMI                        March 2018
 
 
      identity malformed-message {
@@ -2392,6 +2402,14 @@ Internet-Draft                    CoMI                        March 2018
           imposed by a 'must' statement are violated.";
      }
 
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 43]
+
+Internet-Draft                    CoMI                         June 2018
+
+
      identity duplicate {
        base error-app-tag;
        description
@@ -2402,14 +2420,6 @@ Internet-Draft                    CoMI                        March 2018
      identity invalid-datatype {
        base error-app-tag;
        description
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 43]
-
-Internet-Draft                    CoMI                        March 2018
-
-
          "Returned by the CoMI server when CBOR encoding is
           incorect or when the value encoded is incompatible with
           the YANG Built-In type. (e.g. value greater than 127
@@ -2448,6 +2458,14 @@ Internet-Draft                    CoMI                        March 2018
      }
 
      identity missing-input-parameter {
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 44]
+
+Internet-Draft                    CoMI                         June 2018
+
+
        base error-app-tag;
        description
          "Returned by the CoMI server when the input parameters
@@ -2458,14 +2476,6 @@ Internet-Draft                    CoMI                        March 2018
        base error-app-tag;
        description
          "Returned by the CoMI server when a leaf of type
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 44]
-
-Internet-Draft                    CoMI                        March 2018
-
-
           'instance-identifier' or 'leafref' marked with
           require-instance set to 'true' refers to an instance
           that does not exist.";
@@ -2504,6 +2514,14 @@ Internet-Draft                    CoMI                        March 2018
        leaf error-data-node {
          type instance-identifier;
          description
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 45]
+
+Internet-Draft                    CoMI                         June 2018
+
+
            "When the error reported is caused by a specific data node,
             this leaf identifies the data node in error.";
        }
@@ -2514,14 +2532,6 @@ Internet-Draft                    CoMI                        March 2018
            "A message describing the error.";
        }
      }
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 45]
-
-Internet-Draft                    CoMI                        March 2018
-
-
    }
    <CODE ENDS>
 
@@ -2560,6 +2570,14 @@ Appendix B.  ietf-comi .sid file
        {
          "namespace": "identity",
          "identifier": "duplicate",
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 46]
+
+Internet-Draft                    CoMI                         June 2018
+
+
          "sid": 1004
        },
        {
@@ -2570,14 +2588,6 @@ Appendix B.  ietf-comi .sid file
        {
          "namespace": "identity",
          "identifier": "error-app-tag",
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 46]
-
-Internet-Draft                    CoMI                        March 2018
-
-
          "sid": 1006
        },
        {
@@ -2616,6 +2626,14 @@ Internet-Draft                    CoMI                        March 2018
          "sid": 1013
        },
        {
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 47]
+
+Internet-Draft                    CoMI                         June 2018
+
+
          "namespace": "identity",
          "identifier": "missing-element",
          "sid": 1014
@@ -2626,14 +2644,6 @@ Internet-Draft                    CoMI                        March 2018
          "sid": 1015
        },
        {
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 47]
-
-Internet-Draft                    CoMI                        March 2018
-
-
          "namespace": "identity",
          "identifier": "missing-key",
          "sid": 1016
@@ -2672,6 +2682,14 @@ Internet-Draft                    CoMI                        March 2018
          "namespace": "identity",
          "identifier": "unknown-element",
          "sid": 1023
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 48]
+
+Internet-Draft                    CoMI                         June 2018
+
+
        },
        {
          "namespace": "data",
@@ -2682,14 +2700,6 @@ Internet-Draft                    CoMI                        March 2018
          "namespace": "data",
          "identifier": "/ietf-comi:error/error-app-tag",
          "sid": 1025
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 48]
-
-Internet-Draft                    CoMI                        March 2018
-
-
        },
        {
          "namespace": "data",
@@ -2728,6 +2738,14 @@ C.1.  ietf-system
              leaf timezone-name {         // SID 1739
                type timezone-name;
              }
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 49]
+
+Internet-Draft                    CoMI                         June 2018
+
+
            }
            case timezone-utc-offset {
              leaf timezone-utc-offset {   // SID 1740
@@ -2738,14 +2756,6 @@ C.1.  ietf-system
          }
        }
        container ntp {                    // SID 1754
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 49]
-
-Internet-Draft                    CoMI                        March 2018
-
-
          leaf enabled {                   // SID 1755
            type boolean;
            default true;
@@ -2784,6 +2794,14 @@ Internet-Draft                    CoMI                        March 2018
              type boolean;
              default false;
            }
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 50]
+
+Internet-Draft                    CoMI                         June 2018
+
+
          }
        }
      container system-state {             // SID 1720
@@ -2794,14 +2812,6 @@ Internet-Draft                    CoMI                        March 2018
          leaf boot-datetime {             // SID 1722
            type yang:date-and-time;
          }
-
-
-
-Veillette, et al.      Expires September 29, 2018              [Page 50]
-
-Internet-Draft                    CoMI                        March 2018
-
-
        }
      }
    }
@@ -2809,6 +2819,44 @@ Internet-Draft                    CoMI                        March 2018
 C.2.  server list
 
    Taken over from [RFC7950] section 7.15.3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 51]
+
+Internet-Draft                    CoMI                         June 2018
+
 
    module example-server-farm {
      yang-version 1.1;
@@ -2853,9 +2901,17 @@ C.3.  interfaces
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 51]
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 52]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    module ietf-interfaces {               // SID 1500
@@ -2909,9 +2965,9 @@ C.4.  Example-port
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 52]
+Veillette, et al.       Expires December 6, 2018               [Page 53]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    module example-port {
@@ -2965,9 +3021,9 @@ C.5.  IP-MIB
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 53]
+Veillette, et al.       Expires December 6, 2018               [Page 54]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
            type if-mib:InterfaceIndex;
@@ -3021,9 +3077,9 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 54]
+Veillette, et al.       Expires December 6, 2018               [Page 55]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
              }
@@ -3052,7 +3108,7 @@ Authors' Addresses
    Granby, Quebec  J2J 2V2
    Canada
 
-   Email: michel.veillette@trilliantinc.com
+   Email: michel.veillette@trilliant.com
 
 
    Peter van der Stok (editor)
@@ -3077,9 +3133,9 @@ Authors' Addresses
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 55]
+Veillette, et al.       Expires December 6, 2018               [Page 56]
 
-Internet-Draft                    CoMI                        March 2018
+Internet-Draft                    CoMI                         June 2018
 
 
    Andy Bierman
@@ -3133,4 +3189,4 @@ Internet-Draft                    CoMI                        March 2018
 
 
 
-Veillette, et al.      Expires September 29, 2018              [Page 56]
+Veillette, et al.       Expires December 6, 2018               [Page 57]
