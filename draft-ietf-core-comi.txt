@@ -131,7 +131,7 @@ Internet-Draft                    CoMI                         June 2018
    Appendix A.  ietf-comi YANG module  . . . . . . . . . . . . . . .  40
    Appendix B.  ietf-comi .sid file  . . . . . . . . . . . . . . . .  46
    Appendix C.  YANG example specifications  . . . . . . . . . . . .  49
-     C.1.  ietf-system . . . . . . . . . . . . . . . . . . . . . . .  49
+     C.1.  ietf-system . . . . . . . . . . . . . . . . . . . . . . .  50
      C.2.  server list . . . . . . . . . . . . . . . . . . . . . . .  51
      C.3.  interfaces  . . . . . . . . . . . . . . . . . . . . . . .  52
      C.4.  Example-port  . . . . . . . . . . . . . . . . . . . . . .  53
@@ -2220,20 +2220,20 @@ Appendix A.  ietf-comi YANG module
      namespace "urn:ietf:params:xml:ns:yang:ietf-comi";
      prefix comi;
 
+     import ietf-restconf {
+       prefix rc;
+       description
+         "This import statement is only present to access
+          the yang-data extension defined in RFC 8040.";
+       reference "RFC 8040: RESTCONF Protocol";
+     }
+
      organization
        "IETF Core Working Group";
 
      contact
        "Michel Veillette
         <mailto:michel.veillette@trilliant.com>
-
-        Alexander Pelov
-        <mailto:alexander@ackl.io>
-
-        Peter van der Stok
-        <mailto:consultancy@vanderstok.org>
-
-        Andy Bierman
 
 
 
@@ -2242,13 +2242,20 @@ Veillette, et al.       Expires December 6, 2018               [Page 40]
 Internet-Draft                    CoMI                         June 2018
 
 
+        Alexander Pelov
+        <mailto:alexander@ackl.io>
+
+        Peter van der Stok
+        <mailto:consultancy@vanderstok.org>
+
+        Andy Bierman
         <mailto:andy@yumaworks.com>";
 
      description
        "This module contains the different definitions required
         by the CoMI protocol.";
 
-     revision 2017-07-01 {
+     revision 2018-06-01 {
         description
          "Initial revision.";
        reference
@@ -2284,19 +2291,19 @@ Internet-Draft                    CoMI                         June 2018
          "Base identity for error-tag.";
      }
 
-     identity operation-failed {
-       base error-tag;
-       description
-         "Returned by the CoMI server when the operation request
-          can't be processed successfully.";
-     }
-
 
 
 Veillette, et al.       Expires December 6, 2018               [Page 41]
 
 Internet-Draft                    CoMI                         June 2018
 
+
+     identity operation-failed {
+       base error-tag;
+       description
+         "Returned by the CoMI server when the operation request
+          can't be processed successfully.";
+     }
 
      identity invalid-value {
        base error-tag;
@@ -2339,13 +2346,6 @@ Internet-Draft                    CoMI                         June 2018
      identity data-missing {
        base error-tag;
        description
-         "Returned by the CoMI server when a data node required to
-          accept the request is not present.";
-     }
-
-     identity error {
-       base error-tag;
-       description
 
 
 
@@ -2354,6 +2354,13 @@ Veillette, et al.       Expires December 6, 2018               [Page 42]
 Internet-Draft                    CoMI                         June 2018
 
 
+         "Returned by the CoMI server when a data node required to
+          accept the request is not present.";
+     }
+
+     identity error {
+       base error-tag;
+       description
          "Returned by the CoMI server when an unspecified error has
          occurred.";
      }
@@ -2395,13 +2402,6 @@ Internet-Draft                    CoMI                         June 2018
           'min-elements' constraint of a list or leaf-list fails.";
      }
 
-     identity must-violation {
-       base error-app-tag;
-       description
-         "Returned by the CoMI server when the restrictions
-          imposed by a 'must' statement are violated.";
-     }
-
 
 
 
@@ -2409,6 +2409,13 @@ Veillette, et al.       Expires December 6, 2018               [Page 43]
 
 Internet-Draft                    CoMI                         June 2018
 
+
+     identity must-violation {
+       base error-app-tag;
+       description
+         "Returned by the CoMI server when the restrictions
+          imposed by a 'must' statement are violated.";
+     }
 
      identity duplicate {
        base error-app-tag;
@@ -2451,13 +2458,6 @@ Internet-Draft                    CoMI                         June 2018
        base error-app-tag;
        description
          "Returned by the CoMI server to further qualify a
-          missing-element error. This error is returned when the
-          CoMI client tries to create or list instance, without all
-          the 'key' specified or when the CoMI client tries to
-          delete a leaf listed as a 'key'.";
-     }
-
-     identity missing-input-parameter {
 
 
 
@@ -2466,6 +2466,13 @@ Veillette, et al.       Expires December 6, 2018               [Page 44]
 Internet-Draft                    CoMI                         June 2018
 
 
+          missing-element error. This error is returned when the
+          CoMI client tries to create or list instance, without all
+          the 'key' specified or when the CoMI client tries to
+          delete a leaf listed as a 'key'.";
+     }
+
+     identity missing-input-parameter {
        base error-app-tag;
        description
          "Returned by the CoMI server when the input parameters
@@ -2488,32 +2495,25 @@ Internet-Draft                    CoMI                         June 2018
           mandatory choice.";
      }
 
-     container error {
-       presence "Error paylaod";
+     rc:yang-data yang-errors {
+       container error {
+         description
+           "Optional payload of a 4.00 Bad Request CoAP error.";
 
-       description
-         "Optional payload of a 4.00 Bad Request CoAP error.";
-
-       leaf error-tag {
-         type identityref {
-           base error-tag;
+         leaf error-tag {
+           type identityref {
+             base error-tag;
+           }
+           mandatory true;
+           description
+             "The enumerated error-tag.";
          }
-         mandatory true;
-         description
-           "The enumerated error-tag.";
-       }
 
-       leaf error-app-tag {
-         type identityref {
-           base error-app-tag;
-         }
-         description
-           "The application-specific error-tag.";
-       }
-
-       leaf error-data-node {
-         type instance-identifier;
-         description
+         leaf error-app-tag {
+           type identityref {
+             base error-app-tag;
+           }
+           mandatory false;
 
 
 
@@ -2522,14 +2522,24 @@ Veillette, et al.       Expires December 6, 2018               [Page 45]
 Internet-Draft                    CoMI                         June 2018
 
 
-           "When the error reported is caused by a specific data node,
-            this leaf identifies the data node in error.";
-       }
+           description
+             "The application-specific error-tag.";
+         }
 
-       leaf error-message {
-         type string;
-         description
-           "A message describing the error.";
+         leaf error-data-node {
+           type instance-identifier;
+           mandatory false;
+           description
+             "When the error reported is caused by a specific data node,
+              this leaf identifies the data node in error.";
+         }
+
+         leaf error-message {
+           type string;
+           mandatory false;
+           description
+             "A message describing the error.";
+         }
        }
      }
    }
@@ -2545,7 +2555,7 @@ Appendix B.  ietf-comi .sid file
        }
      ],
      "module-name": "ietf-comi",
-     "module-revision": "2017-07-01",
+     "module-revision": "2018-06-01",
      "items": [
        {
          "namespace": "module",
@@ -2560,6 +2570,14 @@ Appendix B.  ietf-comi .sid file
        {
          "namespace": "identity",
          "identifier": "data-missing",
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 46]
+
+Internet-Draft                    CoMI                         June 2018
+
+
          "sid": 1002
        },
        {
@@ -2570,14 +2588,6 @@ Appendix B.  ietf-comi .sid file
        {
          "namespace": "identity",
          "identifier": "duplicate",
-
-
-
-Veillette, et al.       Expires December 6, 2018               [Page 46]
-
-Internet-Draft                    CoMI                         June 2018
-
-
          "sid": 1004
        },
        {
@@ -2616,6 +2626,14 @@ Internet-Draft                    CoMI                         June 2018
          "sid": 1011
        },
        {
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 47]
+
+Internet-Draft                    CoMI                         June 2018
+
+
          "namespace": "identity",
          "identifier": "malformed-message",
          "sid": 1012
@@ -2626,14 +2644,6 @@ Internet-Draft                    CoMI                         June 2018
          "sid": 1013
        },
        {
-
-
-
-Veillette, et al.       Expires December 6, 2018               [Page 47]
-
-Internet-Draft                    CoMI                         June 2018
-
-
          "namespace": "identity",
          "identifier": "missing-element",
          "sid": 1014
@@ -2672,6 +2682,14 @@ Internet-Draft                    CoMI                         June 2018
          "namespace": "identity",
          "identifier": "too-few-elements",
          "sid": 1021
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 48]
+
+Internet-Draft                    CoMI                         June 2018
+
+
        },
        {
          "namespace": "identity",
@@ -2682,14 +2700,6 @@ Internet-Draft                    CoMI                         June 2018
          "namespace": "identity",
          "identifier": "unknown-element",
          "sid": 1023
-
-
-
-Veillette, et al.       Expires December 6, 2018               [Page 48]
-
-Internet-Draft                    CoMI                         June 2018
-
-
        },
        {
          "namespace": "data",
@@ -2726,6 +2736,16 @@ Appendix C.  YANG example specifications
    [netconfcentral].  Each YANG item identifier is accompanied by its
    SID shown after the "//" comment sign.
 
+
+
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 49]
+
+Internet-Draft                    CoMI                         June 2018
+
+
 C.1.  ietf-system
 
    Excerpt of the YANG module ietf-system [RFC7317].
@@ -2738,14 +2758,6 @@ C.1.  ietf-system
              leaf timezone-name {         // SID 1739
                type timezone-name;
              }
-
-
-
-Veillette, et al.       Expires December 6, 2018               [Page 49]
-
-Internet-Draft                    CoMI                         June 2018
-
-
            }
            case timezone-utc-offset {
              leaf timezone-utc-offset {   // SID 1740
@@ -2782,6 +2794,14 @@ Internet-Draft                    CoMI                         June 2018
                enum server {
                }
                enum peer {
+
+
+
+Veillette, et al.       Expires December 6, 2018               [Page 50]
+
+Internet-Draft                    CoMI                         June 2018
+
+
                }
                enum pool {
                }
@@ -2794,14 +2814,6 @@ Internet-Draft                    CoMI                         June 2018
              type boolean;
              default false;
            }
-
-
-
-Veillette, et al.       Expires December 6, 2018               [Page 50]
-
-Internet-Draft                    CoMI                         June 2018
-
-
          }
        }
      container system-state {             // SID 1720
@@ -2819,18 +2831,6 @@ Internet-Draft                    CoMI                         June 2018
 C.2.  server list
 
    Taken over from [RFC7950] section 7.15.3.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
