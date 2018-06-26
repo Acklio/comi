@@ -5,12 +5,12 @@
 CoRE                                                   M. Veillette, Ed.
 Internet-Draft                                   Trilliant Networks Inc.
 Intended status: Standards Track                    P. van der Stok, Ed.
-Expires: December 6, 2018                                     consultant
+Expires: December 28, 2018                                    consultant
                                                                 A. Pelov
                                                                   Acklio
                                                               A. Bierman
                                                                YumaWorks
-                                                           June 04, 2018
+                                                           June 26, 2018
 
 
                        CoAP Management Interface
@@ -48,12 +48,12 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 6, 2018.
+   This Internet-Draft will expire on December 28, 2018.
 
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 1]
+Veillette, et al.       Expires December 28, 2018               [Page 1]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 2]
+Veillette, et al.       Expires December 28, 2018               [Page 2]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 3]
+Veillette, et al.       Expires December 28, 2018               [Page 3]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -221,7 +221,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 4]
+Veillette, et al.       Expires December 28, 2018               [Page 4]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -277,7 +277,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 5]
+Veillette, et al.       Expires December 28, 2018               [Page 5]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -333,7 +333,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 6]
+Veillette, et al.       Expires December 28, 2018               [Page 6]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -389,7 +389,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 7]
+Veillette, et al.       Expires December 28, 2018               [Page 7]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -445,7 +445,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 8]
+Veillette, et al.       Expires December 28, 2018               [Page 8]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -501,7 +501,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018                [Page 9]
+Veillette, et al.       Expires December 28, 2018               [Page 9]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 10]
+Veillette, et al.       Expires December 28, 2018              [Page 10]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -613,7 +613,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 11]
+Veillette, et al.       Expires December 28, 2018              [Page 11]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 12]
+Veillette, et al.       Expires December 28, 2018              [Page 12]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -725,7 +725,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 13]
+Veillette, et al.       Expires December 28, 2018              [Page 13]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -781,7 +781,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 14]
+Veillette, et al.       Expires December 28, 2018              [Page 14]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -837,7 +837,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 15]
+Veillette, et al.       Expires December 28, 2018              [Page 15]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -893,7 +893,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 16]
+Veillette, et al.       Expires December 28, 2018              [Page 16]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -949,7 +949,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 17]
+Veillette, et al.       Expires December 28, 2018              [Page 17]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 18]
+Veillette, et al.       Expires December 28, 2018              [Page 18]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1061,7 +1061,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 19]
+Veillette, et al.       Expires December 28, 2018              [Page 19]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 20]
+Veillette, et al.       Expires December 28, 2018              [Page 20]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 21]
+Veillette, et al.       Expires December 28, 2018              [Page 21]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1229,26 +1229,25 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 22]
+Veillette, et al.       Expires December 28, 2018              [Page 22]
 
 Internet-Draft                    CoMI                         June 2018
 
 
-   REQ: iPATCH /c (Content-Format :application/yang-patch+cbor)
-   [
-     1755 , true,                          / enabled (1755) /
-     [+1, "tac.nrc.ca"], null,             / server (SID 1756) /
-     +0,                                   / server (SID 1756) /
-       {
-         +3 : "tic.nrc.ca",                / name (SID 1759) /
-         +4 : true,                        / prefer (SID 1760) /
-         +5 : {                            / udp (SID 1761) /
-           +1 : "132.246.11.231"           / address (SID 1762) /
-         }
-       }
-   ]
+ REQ: iPATCH /c (Content-Format :application/yang-patch+cbor)
+ [
+   1755 , true,                                   / enabled (1755) /
+   [+1, "tac.nrc.ca"], null,                      / server (SID 1756) /
+   [+0, "tic.nrc.ca"], {                          / server (SID 1756) /
+                         +3 : "tic.nrc.ca",       / name (SID 1759) /
+                         +4 : true,               / prefer (SID 1760) /
+                         +5 : {                   / udp (SID 1761) /
+                           +1 : "132.246.11.231"  / address (SID 1762) /
+                         }
+                       }
+ ]
 
-   RES: 2.04 Changed
+ RES: 2.04 Changed
 
 5.3.5.  DELETE
 
@@ -1285,7 +1284,8 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 23]
+
+Veillette, et al.       Expires December 28, 2018              [Page 23]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1341,7 +1341,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 24]
+Veillette, et al.       Expires December 28, 2018              [Page 24]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1397,7 +1397,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 25]
+Veillette, et al.       Expires December 28, 2018              [Page 25]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1453,7 +1453,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 26]
+Veillette, et al.       Expires December 28, 2018              [Page 26]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1509,7 +1509,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 27]
+Veillette, et al.       Expires December 28, 2018              [Page 27]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1565,7 +1565,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 28]
+Veillette, et al.       Expires December 28, 2018              [Page 28]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 29]
+Veillette, et al.       Expires December 28, 2018              [Page 29]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1677,7 +1677,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 30]
+Veillette, et al.       Expires December 28, 2018              [Page 30]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1733,7 +1733,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 31]
+Veillette, et al.       Expires December 28, 2018              [Page 31]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 32]
+Veillette, et al.       Expires December 28, 2018              [Page 32]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 33]
+Veillette, et al.       Expires December 28, 2018              [Page 33]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 34]
+Veillette, et al.       Expires December 28, 2018              [Page 34]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 35]
+Veillette, et al.       Expires December 28, 2018              [Page 35]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 36]
+Veillette, et al.       Expires December 28, 2018              [Page 36]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 37]
+Veillette, et al.       Expires December 28, 2018              [Page 37]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2078,8 +2078,8 @@ Internet-Draft                    CoMI                         June 2018
 
    [I-D.ietf-core-sid]
               Veillette, M. and A. Pelov, "YANG Schema Item iDentifier
-              (SID)", draft-ietf-core-sid-03 (work in progress),
-              December 2017.
+              (SID)", draft-ietf-core-sid-04 (work in progress), June
+              2018.
 
    [I-D.ietf-core-yang-cbor]
               Veillette, M., Pelov, A., Somaraju, A., Turner, R., and A.
@@ -2125,7 +2125,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 38]
+Veillette, et al.       Expires December 28, 2018              [Page 38]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2181,7 +2181,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 39]
+Veillette, et al.       Expires December 28, 2018              [Page 39]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2237,7 +2237,7 @@ Appendix A.  ietf-comi YANG module
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 40]
+Veillette, et al.       Expires December 28, 2018              [Page 40]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2293,7 +2293,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 41]
+Veillette, et al.       Expires December 28, 2018              [Page 41]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2349,7 +2349,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 42]
+Veillette, et al.       Expires December 28, 2018              [Page 42]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2405,7 +2405,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 43]
+Veillette, et al.       Expires December 28, 2018              [Page 43]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2461,7 +2461,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 44]
+Veillette, et al.       Expires December 28, 2018              [Page 44]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2517,7 +2517,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 45]
+Veillette, et al.       Expires December 28, 2018              [Page 45]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2573,7 +2573,7 @@ Appendix B.  ietf-comi .sid file
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 46]
+Veillette, et al.       Expires December 28, 2018              [Page 46]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2629,7 +2629,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 47]
+Veillette, et al.       Expires December 28, 2018              [Page 47]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2685,7 +2685,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 48]
+Veillette, et al.       Expires December 28, 2018              [Page 48]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2741,7 +2741,7 @@ Appendix C.  YANG example specifications
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 49]
+Veillette, et al.       Expires December 28, 2018              [Page 49]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2797,7 +2797,7 @@ C.1.  ietf-system
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 50]
+Veillette, et al.       Expires December 28, 2018              [Page 50]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2853,7 +2853,7 @@ C.2.  server list
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 51]
+Veillette, et al.       Expires December 28, 2018              [Page 51]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2909,7 +2909,7 @@ C.3.  interfaces
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 52]
+Veillette, et al.       Expires December 28, 2018              [Page 52]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -2965,7 +2965,7 @@ C.4.  Example-port
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 53]
+Veillette, et al.       Expires December 28, 2018              [Page 53]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -3021,7 +3021,7 @@ C.5.  IP-MIB
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 54]
+Veillette, et al.       Expires December 28, 2018              [Page 54]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -3077,7 +3077,7 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 55]
+Veillette, et al.       Expires December 28, 2018              [Page 55]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -3133,7 +3133,7 @@ Authors' Addresses
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 56]
+Veillette, et al.       Expires December 28, 2018              [Page 56]
 
 Internet-Draft                    CoMI                         June 2018
 
@@ -3189,4 +3189,4 @@ Internet-Draft                    CoMI                         June 2018
 
 
 
-Veillette, et al.       Expires December 6, 2018               [Page 57]
+Veillette, et al.       Expires December 28, 2018              [Page 57]
