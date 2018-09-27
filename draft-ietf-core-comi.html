@@ -675,7 +675,7 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 
 <dl>
 <dt>application/yang-data+cbor:</dt>
-<dd style="margin-left: 8">This Content-Format represents a CBOR YANG document containing one or multiple data node values.  Each data node is identified by is associated SID.</dd>
+<dd style="margin-left: 8">This Content-Format represents a CBOR YANG document containing one or multiple data node values.  Each data node is identified by its associated SID.</dd>
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: CBOR map of SID, instance-value</dd>
 <dt></dt>
@@ -687,11 +687,11 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <dt></dt>
 <dd style="margin-left: 8">The message payload of Content-Format &#8216;application/yang-identifiers+cbor&#8217; is encoded using a CBOR array.  Each entry of this CBOR array contain an instance identifier encoded as defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 6.13.1.</dd>
 <dt>application/yang-instances+cbor:</dt>
-<dd style="margin-left: 8">This Content-Format represents a CBOR YANG document containing a list of data node instances.  Each data node instance is identified by is associated instance identifier.</dd>
+<dd style="margin-left: 8">This Content-Format represents a CBOR YANG document containing a list of data node instances.  Each data node instance is identified by its associated instance identifier.</dd>
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: CBOR array of CBOR map of instance-identifier, instance-value</dd>
 <dt></dt>
-<dd style="margin-left: 8">The message payload of Content-Format &#8216;application/yang-instances+cbor&#8217; is encoded using a CBOR array.  Each entry within this CBOR array contain a CBOR map carrying a single instance identifier and associated value.  Instance identifiers are encoded using the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 6.13.1, values are encoded using the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.</dd>
+<dd style="margin-left: 8">The message payload of Content-Format &#8216;application/yang-instances+cbor&#8217; is encoded using a CBOR array.  Each entry within this CBOR array contains a CBOR map carrying a single instance identifier and associated value.  Instance identifiers are encoded using the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 6.13.1, values are encoded using the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.</dd>
 <dt></dt>
 <dd style="margin-left: 8">When present in an iPATCH request payload, this Content-Format carry a list of data node instances to be replaced, created, or deleted.  For each data node instance D, for which the instance identifier is the same as a data node instance I, in the targeted datastore resource: the value of D replaces the value of I.  When the value of D is null, the data node instance I is removed.  When the targeted datastore resource does not contain a data node instance with the same instance identifier as D, a new instance is created with the same instance identifier and value as D.</dd>
 </dl>
@@ -773,7 +773,7 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <h1 id="rfc.section.2.5">
 <a href="#rfc.section.2.5">2.5.</a> <a href="#unified-datastore" id="unified-datastore">Unified datastore</a>
 </h1>
-<p id="rfc.section.2.5.p.1">CoMI supports a simple datastore model consisting of on a single unified datastore. This datasore provides access to both configuration and operational states. Configuration updates performed on this datastore are reflected immediately or with a minimal delay as operational states.</p>
+<p id="rfc.section.2.5.p.1">CoMI supports a simple datastore model consisting of on a single unified datastore. This datasore provides access to both configuration and operational data. Configuration updates performed on this datastore are reflected immediately or with a minimal delay as operational data.</p>
 <p id="rfc.section.2.5.p.2">Alternatively, CoMI servers MAY implement a more complex datastore model such as the Network Management Datastore Architecture (NMDA) as defined by <a href="#RFC8342" class="xref">[RFC8342]</a>. Each datastore supported is implemented as a datastore resource.</p>
 <p id="rfc.section.2.5.p.3">Characteristics of the unified datastore are summarized in the table below:</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
@@ -821,7 +821,7 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#coap-interface" id="coap-interface">CoAP Interface</a>
 </h1>
-<p id="rfc.section.4.p.1">This note specifies a Management Interface. CoAP endpoints that implement the CoMI management protocol, support at least one discoverable management resource of resource type (rt): core.c.ds, with example path: /c, where c is short-hand for CoMI. The path /c is recommended but not compulsory (see <a href="#discovery" class="xref">Section 7</a>).</p>
+<p id="rfc.section.4.p.1">This note specifies a Management Interface. CoAP endpoints that implement the CoMI management protocol, support at least one discoverable management resource of resource type (rt): core.c.ds, with example path: /c, where c is short-hand for CoMI. The path /c is recommended, but not compulsory (see <a href="#discovery" class="xref">Section 7</a>).</p>
 <p id="rfc.section.4.p.2">The mapping of YANG data node instances to CoMI resources is as follows.  Every data node of the YANG modules loaded in the CoMI server represents a sub-resource of the datastore resource (e.g. /c/sid).  When multiple instances of a list exist, instance selection is possible as described in <a href="#query" class="xref">Section 4.1</a>, <a href="#get-example" class="xref">Section 4.2.3.1</a>, and <a href="#fetch" class="xref">Section 4.2.4</a>.</p>
 <p id="rfc.section.4.p.3">CoMI also supports event stream resourced used to observe notification instances.  Event stream resources can be discovered using resource type (rt): core.c.ev.</p>
 <p id="rfc.section.4.p.4">The description of the CoMI management interface is shown in the table below:</p>
@@ -1106,7 +1106,7 @@ RES: 2.05 Content (Content-Format: application/yang-data+cbor)
   ]
 }
 </pre>
-<p id="rfc.section.4.2.3.1.p.4">To retrieve a specific instance within the /interfaces/interface YANG list, the CoMI client add the key of the targeted instance in its CoAP request using the &#8216;k&#8217; URI-Query. The return payload containing the instance requested is encoded using a CBOR array as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.4.1.</p>
+<p id="rfc.section.4.2.3.1.p.4">To retrieve a specific instance within the /interfaces/interface YANG list, the CoMI client adds the key of the targeted instance in its CoAP request using the &#8216;k&#8217; URI-Query. The return payload containing the instance requested is encoded using a CBOR array as specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.4.1.</p>
 <pre>
 REQ: GET example.com/c/X9?k="eth0" 
 
@@ -1137,7 +1137,7 @@ RES: 2.05 Content (Content-Format: application/yang-data+cbor)
 </h1>
 <p id="rfc.section.4.2.4.p.1">The FETCH is used to retrieve multiple data node instance values.  The FETCH request payload contains the list of instance identifier of the data node instances requested.</p>
 <p id="rfc.section.4.2.4.p.2">The return response payload contains a list of data node instance values in the order requested.  A CBOR null is returned for each data node requested by the client, not supported by the server or not currently instantiated.</p>
-<p id="rfc.section.4.2.4.p.3">For compactness, indexes of the list instance identifiers returned by the FETCH response MUST be elided.  This imply that format of each entry within the CBOR array of the FETCH response is identical to the format as a GET response.</p>
+<p id="rfc.section.4.2.4.p.3">For compactness, indexes of the list instance identifiers returned by the FETCH response MUST be elided.  This implies that the format of each entry within the CBOR array of the FETCH response is identical to the format as a GET response.</p>
 <pre>
 FORMAT:
   FETCH /c (Content-Format: application/yang-identifiers+cbor)
@@ -1378,7 +1378,7 @@ RES: 2.05 Content (Content-Format: application/yang-data+cbor)
 <p id="rfc.section.4.5.p.5">An example implementation is:</p>
 <p></p>
 
-<ul class="empty"><li>Every time an event is generated, the generated notification instance is appended to the chosen stream(s). After an aggregation period which may be adjusted an an exclusion delay and the number of notifications already aggregated, the content of the instance is sent to all clients observing the modified stream.</li></ul>
+<ul class="empty"><li>Every time an event is generated, the generated notification instance is appended to the chosen stream(s). After an aggregation period, which may be adjusted using an exclusion delay and limited by the maximum number of notifications supported, the content of the instance is sent to all clients observing the modified stream.</li></ul>
 <pre>
 FORMAT:
   GET /&lt;stream-resource&gt; Observe(0)
@@ -1495,8 +1495,8 @@ RES: 2.05 Content (Content-Format: application/yang-data+cbor)
 <h1 id="rfc.section.7.1">
 <a href="#rfc.section.7.1">7.1.</a> <a href="#yang-library" id="yang-library">YANG library</a>
 </h1>
-<p id="rfc.section.7.1.p.1">The YANG library data model <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a> provides a high level description of the resources available. The YANG library contains the list of modules, features and deviations supported by the CoMI server.  Form the information, CoMI clients can infer the list of data nodes supported and the interaction model to be used to access them. This module also contains the list of datastores implemented.</p>
-<p id="rfc.section.7.1.p.2">The location of the YANG library can be found by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.yl&#8221;. Upon success, the return payload will contain the root resource of YANG library module.</p>
+<p id="rfc.section.7.1.p.1">The YANG library data model <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a> provides a high level description of the resources available. The YANG library contains the list of modules, features and deviations supported by the CoMI server.  From this information, CoMI clients can infer the list of data nodes supported and the interaction model to be used to access them. This module also contains the list of datastores implemented.</p>
+<p id="rfc.section.7.1.p.2">The location of the YANG library can be found by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.yl&#8221;. Upon success, the return payload will contain the root resource of the YANG library module.</p>
 <pre>
 REQ: GET /.well-known/core?rt=core.c.yl
 
@@ -1512,7 +1512,7 @@ RES: 2.05 Content (Content-Format: application/link-format)
 </h1>
 <p id="rfc.section.7.2.1.p.1">The presence and location of (path to) each datastore implemented by the CoMI server can be discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.ds&#8221;.</p>
 <p id="rfc.section.7.2.1.p.2">Upon success, the return payload contains the list of datastore resources.</p>
-<p id="rfc.section.7.2.1.p.3">Each datastore returned is further qualified using the &#8220;ds&#8221; Link-Format attribute.  This attribute is set to the SID assigned to the datastore identity.  When a unified datastore is implement, as defined by the ietf-comi YANG module, the ds attribute is set to 1029. For other examples of datastores, see the Network Management Datastore Architecture (NMDA) <a href="#RFC7950" class="xref">[RFC7950]</a>.</p>
+<p id="rfc.section.7.2.1.p.3">Each datastore returned is further qualified using the &#8220;ds&#8221; Link-Format attribute.  This attribute is set to the SID assigned to the datastore identity.  When a unified datastore is implemented, the ds attribute is set to 1029.  For other examples of datastores, see the Network Management Datastore Architecture (NMDA) <a href="#RFC7950" class="xref">[RFC7950]</a>.</p>
 <pre>
 link-extension    = ( "ds" "=" sid ) )
                     ; SID assigned to the datastore identity

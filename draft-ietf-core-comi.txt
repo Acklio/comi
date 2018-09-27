@@ -431,7 +431,7 @@ Internet-Draft                    CoMI                    September 2018
 
    application/yang-data+cbor:  This Content-Format represents a CBOR
       YANG document containing one or multiple data node values.  Each
-      data node is identified by is associated SID.
+      data node is identified by its associated SID.
 
       FORMAT: CBOR map of SID, instance-value
 
@@ -463,7 +463,7 @@ Internet-Draft                    CoMI                    September 2018
 
    application/yang-instances+cbor:  This Content-Format represents a
       CBOR YANG document containing a list of data node instances.  Each
-      data node instance is identified by is associated instance
+      data node instance is identified by its associated instance
       identifier.
 
       FORMAT: CBOR array of CBOR map of instance-identifier, instance-
@@ -471,7 +471,7 @@ Internet-Draft                    CoMI                    September 2018
 
       The message payload of Content-Format 'application/yang-
       instances+cbor' is encoded using a CBOR array.  Each entry within
-      this CBOR array contain a CBOR map carrying a single instance
+      this CBOR array contains a CBOR map carrying a single instance
       identifier and associated value.  Instance identifiers are encoded
       using the rules defined in [I-D.ietf-core-yang-cbor] section
       6.13.1, values are encoded using the rules defined in
@@ -542,9 +542,9 @@ Internet-Draft                    CoMI                    September 2018
 
    CoMI supports a simple datastore model consisting of on a single
    unified datastore.  This datasore provides access to both
-   configuration and operational states.  Configuration updates
-   performed on this datastore are reflected immediately or with a
-   minimal delay as operational states.
+   configuration and operational data.  Configuration updates performed
+   on this datastore are reflected immediately or with a minimal delay
+   as operational data.
 
    Alternatively, CoMI servers MAY implement a more complex datastore
    model such as the Network Management Datastore Architecture (NMDA) as
@@ -603,7 +603,7 @@ Internet-Draft                    CoMI                    September 2018
    implement the CoMI management protocol, support at least one
    discoverable management resource of resource type (rt): core.c.ds,
    with example path: /c, where c is short-hand for CoMI.  The path /c
-   is recommended but not compulsory (see Section 7).
+   is recommended, but not compulsory (see Section 7).
 
    The mapping of YANG data node instances to CoMI resources is as
    follows.  Every data node of the YANG modules loaded in the CoMI
@@ -977,7 +977,7 @@ Internet-Draft                    CoMI                    September 2018
    }
 
    To retrieve a specific instance within the /interfaces/interface YANG
-   list, the CoMI client add the key of the targeted instance in its
+   list, the CoMI client adds the key of the targeted instance in its
    CoAP request using the 'k' URI-Query.  The return payload containing
    the instance requested is encoded using a CBOR array as specified by
    [I-D.ietf-core-yang-cbor] section 4.4.1.
@@ -1029,9 +1029,9 @@ Internet-Draft                    CoMI                    September 2018
    currently instantiated.
 
    For compactness, indexes of the list instance identifiers returned by
-   the FETCH response MUST be elided.  This imply that format of each
-   entry within the CBOR array of the FETCH response is identical to the
-   format as a GET response.
+   the FETCH response MUST be elided.  This implies that the format of
+   each entry within the CBOR array of the FETCH response is identical
+   to the format as a GET response.
 
    FORMAT:
      FETCH /c (Content-Format: application/yang-identifiers+cbor)
@@ -1392,8 +1392,8 @@ Internet-Draft                    CoMI                    September 2018
 
       Every time an event is generated, the generated notification
       instance is appended to the chosen stream(s).  After an
-      aggregation period which may be adjusted an an exclusion delay and
-
+      aggregation period, which may be adjusted using an exclusion delay
+      and limited by the maximum number of notifications supported, the
 
 
 
@@ -1402,8 +1402,8 @@ Veillette, et al.        Expires March 31, 2019                [Page 25]
 Internet-Draft                    CoMI                    September 2018
 
 
-      the number of notifications already aggregated, the content of the
-      instance is sent to all clients observing the modified stream.
+      content of the instance is sent to all clients observing the
+      modified stream.
 
    FORMAT:
      GET /<stream-resource> Observe(0)
@@ -1596,15 +1596,15 @@ Internet-Draft                    CoMI                    September 2018
    The YANG library data model [I-D.veillette-core-yang-library]
    provides a high level description of the resources available.  The
    YANG library contains the list of modules, features and deviations
-   supported by the CoMI server.  Form the information, CoMI clients can
-   infer the list of data nodes supported and the interaction model to
-   be used to access them.  This module also contains the list of
+   supported by the CoMI server.  From this information, CoMI clients
+   can infer the list of data nodes supported and the interaction model
+   to be used to access them.  This module also contains the list of
    datastores implemented.
 
    The location of the YANG library can be found by sending a GET
    request to "/.well-known/core" including a resource type (RT)
    parameter with the value "core.c.yl".  Upon success, the return
-   payload will contain the root resource of YANG library module.
+   payload will contain the root resource of the YANG library module.
 
    REQ: GET /.well-known/core?rt=core.c.yl
 
@@ -1638,10 +1638,9 @@ Internet-Draft                    CoMI                    September 2018
 
    Each datastore returned is further qualified using the "ds" Link-
    Format attribute.  This attribute is set to the SID assigned to the
-   datastore identity.  When a unified datastore is implement, as
-   defined by the ietf-comi YANG module, the ds attribute is set to
-   1029.  For other examples of datastores, see the Network Management
-   Datastore Architecture (NMDA) [RFC7950].
+   datastore identity.  When a unified datastore is implemented, the ds
+   attribute is set to 1029.  For other examples of datastores, see the
+   Network Management Datastore Architecture (NMDA) [RFC7950].
 
    link-extension    = ( "ds" "=" sid ) )
                        ; SID assigned to the datastore identity
@@ -1674,6 +1673,7 @@ Internet-Draft                    CoMI                    September 2018
    RES: 2.05 Content (Content-Format: application/link-format)
    </c/a6>;rt="core.c.dn",
    </c/a7>;rt="core.c.dn"
+
 
 
 
