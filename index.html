@@ -334,12 +334,12 @@ address {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.10.3 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.12.3 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Veillette, M., Ed., van der Stok, P., Ed., Pelov, A., and A. Bierman" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-04" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-09-28" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-11-13" />
   <meta name="dct.abstract" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
   <meta name="description" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
 
@@ -363,7 +363,7 @@ address {
 <td class="right">P. van der Stok, Ed.</td>
 </tr>
 <tr>
-<td class="left">Expires: April 1, 2019</td>
+<td class="left">Expires: May 17, 2019</td>
 <td class="right">consultant</td>
 </tr>
 <tr>
@@ -384,7 +384,7 @@ address {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">September 28, 2018</td>
+<td class="right">November 13, 2018</td>
 </tr>
 
     	
@@ -402,7 +402,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 1, 2019.</p>
+<p>This Internet-Draft will expire on May 17, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -1444,8 +1444,8 @@ REQ:  POST /c/Opq?k="myserver"
 
 RES:  2.05 Content (Content-Format :application/yang-data+cbor)
 {
-   60002 : {
-     +2 : "2016-02-08T14:10:08Z09:18" / reset-finished-at (SID 60004)/
+  60002 : {
+    +2 : "2016-02-08T14:10:08Z09:18" / reset-finished-at (SID 60004)/
   }
 }
 </pre>
@@ -1458,26 +1458,26 @@ REQ: GET example.com/c/Oz1
 
 RES: 2.05 Content (Content-Format: application/yang-data+cbor)
 {
-  60021 : [                 / ipNetToPhysicalEntry /
+  60021 : [             / ipNetToPhysicalEntry /
     {
-      +1 : 1,               / ipNetToPhysicalIfIndex (SID 60022) /
-      +2 : 1,               / ipNetToPhysicalNetAddressType (SID 60023) /
-      +3 : h'0A000033',     / ipNetToPhysicalNetAddress (SID 60024) /
-      +4 : h'00000A01172D', / ipNetToPhysicalPhysAddress (SID 60025) /
-      +5 : 2333943,         / ipNetToPhysicalLastUpdated (SID 60026) /
-      +6 : 4,               / ipNetToPhysicalType (SID 60027) /
-      +7 : 1,               / ipNetToPhysicalState (SID 60028) /
-      +8 : 1                / ipNetToPhysicalRowStatus (SID 60029) /
+      +1 : 1,           / ipNetToPhysicalIfIndex (SID 60022) /
+      +2 : 1,           / ipNetToPhysicalNetAddressType (SID 60023) /
+      +3 : h'0A000033', / ipNetToPhysicalNetAddress (SID 60024) /
+      +4 : h'00000A01172D',/ ipNetToPhysicalPhysAddress (SID 60025) /
+      +5 : 2333943,     / ipNetToPhysicalLastUpdated (SID 60026) /
+      +6 : 4,           / ipNetToPhysicalType (SID 60027) /
+      +7 : 1,           / ipNetToPhysicalState (SID 60028) /
+      +8 : 1            / ipNetToPhysicalRowStatus (SID 60029) /
     },
     {
-      +1 : 1,               / ipNetToPhysicalIfIndex (SID 60022) /
-      +2 : 1,               / ipNetToPhysicalNetAddressType (SID 60023) /
-      +3 : h'09020304',     / ipNetToPhysicalNetAddress  (SID 60024) /
-      +4 : h'00000A36200A', / ipNetToPhysicalPhysAddress (SID 60025) /
-      +5 : 2329836,         / ipNetToPhysicalLastUpdated (SID 60026) /
-      +6 : 3,               / ipNetToPhysicalType (SID 60027) /
-      +7 : 6,               / ipNetToPhysicalState (SID 60028) /
-      +8 : 1                / ipNetToPhysicalRowStatus (SID 60029) /
+      +1 : 1,           / ipNetToPhysicalIfIndex (SID 60022) /
+      +2 : 1,           / ipNetToPhysicalNetAddressType (SID 60023) /
+      +3 : h'09020304', / ipNetToPhysicalNetAddress  (SID 60024) /
+      +4 : h'00000A36200A',/ ipNetToPhysicalPhysAddress (SID 60025) /
+      +5 : 2329836,     / ipNetToPhysicalLastUpdated (SID 60026) /
+      +6 : 3,           / ipNetToPhysicalType (SID 60027) /
+      +7 : 6,           / ipNetToPhysicalState (SID 60028) /
+      +8 : 1            / ipNetToPhysicalRowStatus (SID 60029) /
     }
   ]
 }
@@ -1676,7 +1676,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 <table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Media Type</th>
-<th class="left">Excoding ID</th>
+<th class="left">Encoding ID</th>
 <th class="left">Reference</th>
 </tr></thead>
 <tbody>
@@ -1716,13 +1716,23 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 </tr>
 <tr>
 <td class="left">yang-identifiers+cbor</td>
-<td class="left">application/yang-identifiers+cbor</td>
+<td class="left">application/</td>
 <td class="left">RFC XXXX</td>
 </tr>
 <tr>
+<td class="left"></td>
+<td class="left">yang-identifiers+cbor</td>
+<td class="left"></td>
+</tr>
+<tr>
 <td class="left">yang-instances+cbor</td>
-<td class="left">application/yang-instances+cbor</td>
+<td class="left">application/</td>
 <td class="left">RFC XXXX</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="left">yang-instances+cbor</td>
+<td class="left"></td>
 </tr>
 </tbody>
 </table>
@@ -1780,7 +1790,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 <tr>
 <td class="reference"><b id="I-D.ietf-core-yang-cbor">[I-D.ietf-core-yang-cbor]</b></td>
 <td class="top">
-<a>Veillette, M.</a>, <a>Pelov, A.</a>, <a>Somaraju, A.</a>, <a>Turner, R.</a> and <a>A. Minaburo</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-yang-cbor-07">CBOR Encoding of Data Modeled with YANG</a>", Internet-Draft draft-ietf-core-yang-cbor-07, September 2018.</td>
+<a>Veillette, M.</a>, <a>Pelov, A.</a>, <a>Turner, R.</a> and <a>A. Minaburo</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-yang-cbor-07">CBOR Encoding of Data Modeled with YANG</a>", Internet-Draft draft-ietf-core-yang-cbor-07, September 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.veillette-core-yang-library">[I-D.veillette-core-yang-library]</b></td>

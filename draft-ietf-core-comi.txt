@@ -5,12 +5,12 @@
 CoRE                                                   M. Veillette, Ed.
 Internet-Draft                                   Trilliant Networks Inc.
 Intended status: Standards Track                    P. van der Stok, Ed.
-Expires: April 1, 2019                                        consultant
+Expires: May 17, 2019                                         consultant
                                                                 A. Pelov
                                                                   Acklio
                                                               A. Bierman
                                                                YumaWorks
-                                                      September 28, 2018
+                                                       November 13, 2018
 
 
                        CoAP Management Interface
@@ -48,14 +48,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 1, 2019.
+   This Internet-Draft will expire on May 17, 2019.
 
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 1]
+Veillette, et al.         Expires May 17, 2019                  [Page 1]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 2]
+Veillette, et al.         Expires May 17, 2019                  [Page 2]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
      7.1.  YANG library  . . . . . . . . . . . . . . . . . . . . . .  29
@@ -127,7 +127,7 @@ Internet-Draft                    CoMI                    September 2018
      10.2.  CoAP Content-Formats Registry  . . . . . . . . . . . . .  35
      10.3.  Media Types Registry . . . . . . . . . . . . . . . . . .  36
    11. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  37
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  37
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  38
      12.1.  Normative References . . . . . . . . . . . . . . . . . .  38
      12.2.  Informative References . . . . . . . . . . . . . . . . .  39
    Appendix A.  ietf-comi YANG module  . . . . . . . . . . . . . . .  40
@@ -165,9 +165,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 3]
+Veillette, et al.         Expires May 17, 2019                  [Page 3]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    CoMI and RESTCONF are intended to work in a stateless client-server
@@ -221,9 +221,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 4]
+Veillette, et al.         Expires May 17, 2019                  [Page 4]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
       nodes defined at the root of a YANG module and data nodes defined
@@ -277,9 +277,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 5]
+Veillette, et al.         Expires May 17, 2019                  [Page 5]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    (2) SMIv2 specification:  A named module specifies a set of variables
@@ -333,9 +333,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 6]
+Veillette, et al.         Expires May 17, 2019                  [Page 6]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    o  CoMI does not support "insert" query parameter (first, last,
@@ -389,9 +389,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 7]
+Veillette, et al.         Expires May 17, 2019                  [Page 7]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    URLsafeChar[1721 >> 60 & 0x3F] = URLsafeChar[0] = 'A'
@@ -445,9 +445,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 8]
+Veillette, et al.         Expires May 17, 2019                  [Page 8]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    application/yang-identifiers+cbor:  This Content-Format represents a
@@ -501,9 +501,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                 [Page 9]
+Veillette, et al.         Expires May 17, 2019                  [Page 9]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    +---------------+--------------+------------------------------------+
@@ -557,9 +557,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 10]
+Veillette, et al.         Expires May 17, 2019                 [Page 10]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    +-------------+-----------------------------------------------------+
@@ -613,9 +613,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 11]
+Veillette, et al.         Expires May 17, 2019                 [Page 11]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    possible as described in Section 4.1, Section 4.2.3.1, and
@@ -669,9 +669,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 12]
+Veillette, et al.         Expires May 17, 2019                 [Page 12]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    +------------------+----------------------------------------+
@@ -725,9 +725,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 13]
+Veillette, et al.         Expires May 17, 2019                 [Page 13]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    +-----------------------------+--------------------------------+
@@ -781,9 +781,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 14]
+Veillette, et al.         Expires May 17, 2019                 [Page 14]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    It is possible that the size of the payload is too large to fit in a
@@ -837,9 +837,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 15]
+Veillette, et al.         Expires May 17, 2019                 [Page 15]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    +-------+-----------------------------------------------------------+
@@ -893,9 +893,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 16]
+Veillette, et al.         Expires May 17, 2019                 [Page 16]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    1723) and the value encoded using a 'text string' as defined in
@@ -949,9 +949,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 17]
+Veillette, et al.         Expires May 17, 2019                 [Page 17]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    REQ: GET example.com/c/X9
@@ -1005,9 +1005,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 18]
+Veillette, et al.         Expires May 17, 2019                 [Page 18]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    REQ: GET example.com/c/X-?k="eth0"
@@ -1061,9 +1061,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 19]
+Veillette, et al.         Expires May 17, 2019                 [Page 19]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    REQ:  FETCH /c (Content-Format: application/yang-identifiers+cbor)
@@ -1117,9 +1117,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 20]
+Veillette, et al.         Expires May 17, 2019                 [Page 20]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    FORMAT:
@@ -1173,9 +1173,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 21]
+Veillette, et al.         Expires May 17, 2019                 [Page 21]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    REQ: PUT /c/X9?k="eth0" (Content-Format: application/yang-data+cbor)
@@ -1229,9 +1229,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 22]
+Veillette, et al.         Expires May 17, 2019                 [Page 22]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    REQ: iPATCH /c (Content-Format: application/yang-instances+cbor)
@@ -1285,9 +1285,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 23]
+Veillette, et al.         Expires May 17, 2019                 [Page 23]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    FORMAT:
@@ -1341,9 +1341,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 24]
+Veillette, et al.         Expires May 17, 2019                 [Page 24]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    REQ:  GET /c
@@ -1397,9 +1397,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 25]
+Veillette, et al.         Expires May 17, 2019                 [Page 25]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
       content of the instance is sent to all clients observing the
@@ -1453,9 +1453,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 26]
+Veillette, et al.         Expires May 17, 2019                 [Page 26]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
 4.6.  RPC statements
@@ -1488,20 +1488,20 @@ Internet-Draft                    CoMI                    September 2018
    60002, base64: Opq), that is part of a "server instance" with key
    value "myserver", is invoked.
 
-  REQ:  POST /c/Opq?k="myserver"
-                (Content-Format :application/yang-data+cbor)
-  {
-    60002 : {
-      +1 : "2016-02-08T14:10:08Z09:00" / reset-at (SID 60003) /
-    }
-  }
+   REQ:  POST /c/Opq?k="myserver"
+                 (Content-Format :application/yang-data+cbor)
+   {
+     60002 : {
+       +1 : "2016-02-08T14:10:08Z09:00" / reset-at (SID 60003) /
+     }
+   }
 
-  RES:  2.05 Content (Content-Format :application/yang-data+cbor)
-  {
+   RES:  2.05 Content (Content-Format :application/yang-data+cbor)
+   {
      60002 : {
        +2 : "2016-02-08T14:10:08Z09:18" / reset-finished-at (SID 60004)/
-    }
-  }
+     }
+   }
 
 
 
@@ -1509,9 +1509,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 27]
+Veillette, et al.         Expires May 17, 2019                 [Page 27]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
 5.  Access to MIB Data
@@ -1520,33 +1520,33 @@ Internet-Draft                    CoMI                    September 2018
    "IP-MIB" [RFC4293].  The following example shows the
    "ipNetToPhysicalEntry" list with 2 instances.
 
-REQ: GET example.com/c/Oz1
+   REQ: GET example.com/c/Oz1
 
-RES: 2.05 Content (Content-Format: application/yang-data+cbor)
-{
-  60021 : [                 / ipNetToPhysicalEntry /
-    {
-      +1 : 1,               / ipNetToPhysicalIfIndex (SID 60022) /
-      +2 : 1,               / ipNetToPhysicalNetAddressType (SID 60023) /
-      +3 : h'0A000033',     / ipNetToPhysicalNetAddress (SID 60024) /
-      +4 : h'00000A01172D', / ipNetToPhysicalPhysAddress (SID 60025) /
-      +5 : 2333943,         / ipNetToPhysicalLastUpdated (SID 60026) /
-      +6 : 4,               / ipNetToPhysicalType (SID 60027) /
-      +7 : 1,               / ipNetToPhysicalState (SID 60028) /
-      +8 : 1                / ipNetToPhysicalRowStatus (SID 60029) /
-    },
-    {
-      +1 : 1,               / ipNetToPhysicalIfIndex (SID 60022) /
-      +2 : 1,               / ipNetToPhysicalNetAddressType (SID 60023) /
-      +3 : h'09020304',     / ipNetToPhysicalNetAddress  (SID 60024) /
-      +4 : h'00000A36200A', / ipNetToPhysicalPhysAddress (SID 60025) /
-      +5 : 2329836,         / ipNetToPhysicalLastUpdated (SID 60026) /
-      +6 : 3,               / ipNetToPhysicalType (SID 60027) /
-      +7 : 6,               / ipNetToPhysicalState (SID 60028) /
-      +8 : 1                / ipNetToPhysicalRowStatus (SID 60029) /
-    }
-  ]
-}
+   RES: 2.05 Content (Content-Format: application/yang-data+cbor)
+   {
+     60021 : [             / ipNetToPhysicalEntry /
+       {
+         +1 : 1,           / ipNetToPhysicalIfIndex (SID 60022) /
+         +2 : 1,           / ipNetToPhysicalNetAddressType (SID 60023) /
+         +3 : h'0A000033', / ipNetToPhysicalNetAddress (SID 60024) /
+         +4 : h'00000A01172D',/ ipNetToPhysicalPhysAddress (SID 60025) /
+         +5 : 2333943,     / ipNetToPhysicalLastUpdated (SID 60026) /
+         +6 : 4,           / ipNetToPhysicalType (SID 60027) /
+         +7 : 1,           / ipNetToPhysicalState (SID 60028) /
+         +8 : 1            / ipNetToPhysicalRowStatus (SID 60029) /
+       },
+       {
+         +1 : 1,           / ipNetToPhysicalIfIndex (SID 60022) /
+         +2 : 1,           / ipNetToPhysicalNetAddressType (SID 60023) /
+         +3 : h'09020304', / ipNetToPhysicalNetAddress  (SID 60024) /
+         +4 : h'00000A36200A',/ ipNetToPhysicalPhysAddress (SID 60025) /
+         +5 : 2329836,     / ipNetToPhysicalLastUpdated (SID 60026) /
+         +6 : 3,           / ipNetToPhysicalType (SID 60027) /
+         +7 : 6,           / ipNetToPhysicalState (SID 60028) /
+         +8 : 1            / ipNetToPhysicalRowStatus (SID 60029) /
+       }
+     ]
+   }
 
 6.  Use of Block
 
@@ -1565,9 +1565,9 @@ RES: 2.05 Content (Content-Format: application/yang-data+cbor)
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 28]
+Veillette, et al.         Expires May 17, 2019                 [Page 28]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    assembly of multiple blocks may be required to process the complete
@@ -1621,9 +1621,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 29]
+Veillette, et al.         Expires May 17, 2019                 [Page 29]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
 7.2.1.  Datastore Resource Discovery
@@ -1677,9 +1677,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 30]
+Veillette, et al.         Expires May 17, 2019                 [Page 30]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    The list of data nodes may become prohibitively long.
@@ -1733,9 +1733,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 31]
+Veillette, et al.         Expires May 17, 2019                 [Page 31]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    o  Error 4.05 (Method Not Allowed) is returned by the CoMI server
@@ -1789,9 +1789,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 32]
+Veillette, et al.         Expires May 17, 2019                 [Page 32]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
       *  error-app-tag 'too-many-elements' is returned by the CoMI
@@ -1845,9 +1845,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 33]
+Veillette, et al.         Expires May 17, 2019                 [Page 33]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
       *  error-app-tag 'missing-input-parameter' is returned by the CoMI
@@ -1901,9 +1901,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 34]
+Veillette, et al.         Expires May 17, 2019                 [Page 34]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    [RFC6347] for protected access to resources, as well suitable
@@ -1957,13 +1957,13 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 35]
+Veillette, et al.         Expires May 17, 2019                 [Page 35]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    +-----------------------------------+-------------+-----------+
-   | Media Type                        | Excoding ID | Reference |
+   | Media Type                        | Encoding ID | Reference |
    +-----------------------------------+-------------+-----------+
    | application/yang-data+cbor        | XXX         | RFC XXXX  |
    |                                   |             |           |
@@ -1980,16 +1980,19 @@ Internet-Draft                    CoMI                    September 2018
    This document adds the following media types to the "Media Types"
    registry.
 
-   +---------------------+---------------------------------+-----------+
-   | Name                | Template                        | Reference |
-   +---------------------+---------------------------------+-----------+
-   | yang-data+cbor      | application/yang-data+cbor      | RFC XXXX  |
-   |                     |                                 |           |
-   | yang-               | application/yang-               | RFC XXXX  |
-   | identifiers+cbor    | identifiers+cbor                |           |
-   |                     |                                 |           |
-   | yang-instances+cbor | application/yang-instances+cbor | RFC XXXX  |
-   +---------------------+---------------------------------+-----------+
+   +-----------------------+----------------------------+-----------+
+   | Name                  | Template                   | Reference |
+   +-----------------------+----------------------------+-----------+
+   | yang-data+cbor        | application/yang-data+cbor | RFC XXXX  |
+   |                       |                            |           |
+   | yang-identifiers+cbor | application/               | RFC XXXX  |
+   |                       |                            |           |
+   |                       | yang-identifiers+cbor      |           |
+   |                       |                            |           |
+   | yang-instances+cbor   | application/               | RFC XXXX  |
+   |                       |                            |           |
+   |                       | yang-instances+cbor        |           |
+   +-----------------------+----------------------------+-----------+
 
    Each of these media types share the following information:
 
@@ -2008,15 +2011,14 @@ Internet-Draft                    CoMI                    September 2018
 
    o  Published specification: RFC XXXX
 
-   o  Applications that use this media type: CoMI
 
 
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 36]
+Veillette, et al.         Expires May 17, 2019                 [Page 36]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
+
+   o  Applications that use this media type: CoMI
 
    o  Fragment identifier considerations: N/A
 
@@ -2061,18 +2063,18 @@ Internet-Draft                    CoMI                    September 2018
    Ropitault, Juergen Schoenwaelder, Anuj Sehgal, Zach Shelby, Hannes
    Tschofenig, Michael Verschoor, and Thomas Watteyne.
 
-12.  References
 
 
 
 
 
 
-
-Veillette, et al.         Expires April 1, 2019                [Page 37]
+Veillette, et al.         Expires May 17, 2019                 [Page 37]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
+
+12.  References
 
 12.1.  Normative References
 
@@ -2082,10 +2084,9 @@ Internet-Draft                    CoMI                    September 2018
               2018.
 
    [I-D.ietf-core-yang-cbor]
-              Veillette, M., Pelov, A., Somaraju, A., Turner, R., and A.
-              Minaburo, "CBOR Encoding of Data Modeled with YANG",
-              draft-ietf-core-yang-cbor-07 (work in progress), September
-              2018.
+              Veillette, M., Pelov, A., Turner, R., and A. Minaburo,
+              "CBOR Encoding of Data Modeled with YANG", draft-ietf-
+              core-yang-cbor-07 (work in progress), September 2018.
 
    [I-D.veillette-core-yang-library]
               Veillette, M., "Constrained YANG Module Library", draft-
@@ -2118,17 +2119,21 @@ Internet-Draft                    CoMI                    September 2018
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
 
+
+
+
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 38]
+
+Internet-Draft                    CoMI                     November 2018
+
+
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
               Application Protocol (CoAP)", RFC 7252,
               DOI 10.17487/RFC7252, June 2014,
               <https://www.rfc-editor.org/info/rfc7252>.
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 38]
-
-Internet-Draft                    CoMI                    September 2018
-
 
    [RFC7641]  Hartke, K., "Observing Resources in the Constrained
               Application Protocol (CoAP)", RFC 7641,
@@ -2171,20 +2176,19 @@ Internet-Draft                    CoMI                    September 2018
               Management", RFC 7223, DOI 10.17487/RFC7223, May 2014,
               <https://www.rfc-editor.org/info/rfc7223>.
 
+
+
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 39]
+
+Internet-Draft                    CoMI                     November 2018
+
+
    [RFC7317]  Bierman, A. and M. Bjorklund, "A YANG Data Model for
               System Management", RFC 7317, DOI 10.17487/RFC7317, August
               2014, <https://www.rfc-editor.org/info/rfc7317>.
-
-
-
-
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 39]
-
-Internet-Draft                    CoMI                    September 2018
-
 
    [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
               and R. Wilton, "Network Management Datastore Architecture
@@ -2230,18 +2234,18 @@ Appendix A.  ietf-comi YANG module
 
      description
        "This module contains the different definitions required
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 40]
+
+Internet-Draft                    CoMI                     November 2018
+
+
         by the CoMI protocol.";
 
      revision 2018-09-26 {
        description
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 40]
-
-Internet-Draft                    CoMI                    September 2018
-
-
          "Use of YANG data template for the error payload.
           Definition of the unified datastore.";
      }
@@ -2286,18 +2290,18 @@ Internet-Draft                    CoMI                    September 2018
           invalid CBOR datatype or if the 'range', 'length',
           'pattern' or 'require-instance' constrain is not
           fulfilled.";
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 41]
+
+Internet-Draft                    CoMI                     November 2018
+
+
      }
 
      identity missing-element {
        base error-tag;
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 41]
-
-Internet-Draft                    CoMI                    September 2018
-
-
        description
          "Returned by the CoMI server when the operation requested
           by a CoMI client fails to comply with the 'mandatory'
@@ -2343,17 +2347,16 @@ Internet-Draft                    CoMI                    September 2018
          "Base identity for error-app-tag.";
      }
 
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 42]
+
+Internet-Draft                    CoMI                     November 2018
+
+
      identity malformed-message {
        base error-app-tag;
        description
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 42]
-
-Internet-Draft                    CoMI                    September 2018
-
-
          "Returned by the CoMI server when the payload received
           from the CoMI client don't contain a well-formed CBOR
           content as defined in [RFC7049] section 3.3 or don't
@@ -2399,17 +2402,17 @@ Internet-Draft                    CoMI                    September 2018
      identity invalid-datatype {
        base error-app-tag;
        description
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 43]
+
+Internet-Draft                    CoMI                     November 2018
+
+
          "Returned by the CoMI server when CBOR encoding is
           incorect or when the value encoded is incompatible with
           the YANG Built-In type. (e.g. value greater than 127
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 43]
-
-Internet-Draft                    CoMI                    September 2018
-
-
           for an int8, undefined enumeration).";
      }
 
@@ -2455,17 +2458,17 @@ Internet-Draft                    CoMI                    September 2018
        base error-app-tag;
        description
          "Returned by the CoMI server when a leaf of type
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 44]
+
+Internet-Draft                    CoMI                     November 2018
+
+
           'instance-identifier' or 'leafref' marked with
           require-instance set to 'true' refers to an instance
           that does not exist.";
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 44]
-
-Internet-Draft                    CoMI                    September 2018
-
-
      }
 
      identity missing-choice {
@@ -2511,17 +2514,17 @@ Internet-Draft                    CoMI                    September 2018
            mandatory false;
            description
              "A message describing the error.";
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 45]
+
+Internet-Draft                    CoMI                     November 2018
+
+
          }
        }
      }
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 45]
-
-Internet-Draft                    CoMI                    September 2018
-
-
    }
    <CODE ENDS>
 
@@ -2567,17 +2570,17 @@ Appendix B.  ietf-comi .sid file
          "identifier": "error",
          "sid": 1005
        },
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 46]
+
+Internet-Draft                    CoMI                     November 2018
+
+
        {
          "namespace": "identity",
          "identifier": "error-app-tag",
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 46]
-
-Internet-Draft                    CoMI                    September 2018
-
-
          "sid": 1006
        },
        {
@@ -2623,17 +2626,17 @@ Internet-Draft                    CoMI                    September 2018
        {
          "namespace": "identity",
          "identifier": "missing-input-parameter",
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 47]
+
+Internet-Draft                    CoMI                     November 2018
+
+
          "sid": 1015
        },
        {
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 47]
-
-Internet-Draft                    CoMI                    September 2018
-
-
          "namespace": "identity",
          "identifier": "missing-key",
          "sid": 1016
@@ -2679,17 +2682,17 @@ Internet-Draft                    CoMI                    September 2018
          "sid": 1023
        },
        {
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 48]
+
+Internet-Draft                    CoMI                     November 2018
+
+
          "namespace": "data",
          "identifier": "/ietf-comi:error",
          "sid": 1024
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 48]
-
-Internet-Draft                    CoMI                    September 2018
-
-
        },
        {
          "namespace": "data",
@@ -2735,17 +2738,17 @@ C.1.  ietf-system
            }
            case timezone-utc-offset {
              leaf timezone-utc-offset {   // SID 1740
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 49]
+
+Internet-Draft                    CoMI                     November 2018
+
+
                type int16 {
                }
              }
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 49]
-
-Internet-Draft                    CoMI                    September 2018
-
-
            }
          }
        }
@@ -2791,17 +2794,17 @@ Internet-Draft                    CoMI                    September 2018
          }
        }
      container system-state {             // SID 1720
+
+
+
+Veillette, et al.         Expires May 17, 2019                 [Page 50]
+
+Internet-Draft                    CoMI                     November 2018
+
+
        container clock {                  // SID 1721
          leaf current-datetime {          // SID 1723
            type yang:date-and-time;
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 50]
-
-Internet-Draft                    CoMI                    September 2018
-
-
          }
          leaf boot-datetime {             // SID 1722
            type yang:date-and-time;
@@ -2850,12 +2853,9 @@ C.2.  server list
 
 
 
-
-
-
-Veillette, et al.         Expires April 1, 2019                [Page 51]
+Veillette, et al.         Expires May 17, 2019                 [Page 51]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
 C.3.  interfaces
@@ -2909,9 +2909,9 @@ C.4.  Example-port
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 52]
+Veillette, et al.         Expires May 17, 2019                 [Page 52]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    module example-port {
@@ -2965,9 +2965,9 @@ C.5.  IP-MIB
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 53]
+Veillette, et al.         Expires May 17, 2019                 [Page 53]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
            type if-mib:InterfaceIndex;
@@ -3021,9 +3021,9 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 54]
+Veillette, et al.         Expires May 17, 2019                 [Page 54]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
              }
@@ -3077,9 +3077,9 @@ Authors' Addresses
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 55]
+Veillette, et al.         Expires May 17, 2019                 [Page 55]
 
-Internet-Draft                    CoMI                    September 2018
+Internet-Draft                    CoMI                     November 2018
 
 
    Andy Bierman
@@ -3133,4 +3133,4 @@ Internet-Draft                    CoMI                    September 2018
 
 
 
-Veillette, et al.         Expires April 1, 2019                [Page 56]
+Veillette, et al.         Expires May 17, 2019                 [Page 56]
