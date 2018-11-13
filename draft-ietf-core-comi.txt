@@ -2248,6 +2248,8 @@ Internet-Draft                    CoMI                     November 2018
        description
          "Use of YANG data template for the error payload.
           Definition of the unified datastore.";
+       reference
+         "[I-D.ietf-core-comi] CoAP Management Interface";
      }
      revision 2017-07-01 {
         description
@@ -2288,8 +2290,6 @@ Internet-Draft                    CoMI                     November 2018
          "Returned by the CoMI server when the CoMI client tries to
           update or create a leaf with a value encoded using an
           invalid CBOR datatype or if the 'range', 'length',
-          'pattern' or 'require-instance' constrain is not
-          fulfilled.";
 
 
 
@@ -2298,6 +2298,8 @@ Veillette, et al.         Expires May 17, 2019                 [Page 41]
 Internet-Draft                    CoMI                     November 2018
 
 
+          'pattern' or 'require-instance' constrain is not
+          fulfilled.";
      }
 
      identity missing-element {
@@ -2344,8 +2346,6 @@ Internet-Draft                    CoMI                     November 2018
 
      identity error-app-tag {
        description
-         "Base identity for error-app-tag.";
-     }
 
 
 
@@ -2353,6 +2353,9 @@ Veillette, et al.         Expires May 17, 2019                 [Page 42]
 
 Internet-Draft                    CoMI                     November 2018
 
+
+         "Base identity for error-app-tag.";
+     }
 
      identity malformed-message {
        base error-app-tag;
@@ -2399,9 +2402,6 @@ Internet-Draft                    CoMI                     November 2018
           a duplicate list or leaf-list entry.";
      }
 
-     identity invalid-datatype {
-       base error-app-tag;
-       description
 
 
 
@@ -2410,6 +2410,9 @@ Veillette, et al.         Expires May 17, 2019                 [Page 43]
 Internet-Draft                    CoMI                     November 2018
 
 
+     identity invalid-datatype {
+       base error-app-tag;
+       description
          "Returned by the CoMI server when CBOR encoding is
           incorect or when the value encoded is incompatible with
           the YANG Built-In type. (e.g. value greater than 127
@@ -2455,9 +2458,6 @@ Internet-Draft                    CoMI                     November 2018
      }
 
      identity instance-required {
-       base error-app-tag;
-       description
-         "Returned by the CoMI server when a leaf of type
 
 
 
@@ -2466,6 +2466,9 @@ Veillette, et al.         Expires May 17, 2019                 [Page 44]
 Internet-Draft                    CoMI                     November 2018
 
 
+       base error-app-tag;
+       description
+         "Returned by the CoMI server when a leaf of type
           'instance-identifier' or 'leafref' marked with
           require-instance set to 'true' refers to an instance
           that does not exist.";
@@ -2496,14 +2499,12 @@ Internet-Draft                    CoMI                     November 2018
            type identityref {
              base error-app-tag;
            }
-           mandatory false;
            description
              "The application-specific error-tag.";
          }
 
          leaf error-data-node {
            type instance-identifier;
-           mandatory false;
            description
              "When the error reported is caused by a specific data node,
               this leaf identifies the data node in error.";
@@ -2511,7 +2512,6 @@ Internet-Draft                    CoMI                     November 2018
 
          leaf error-message {
            type string;
-           mandatory false;
            description
              "A message describing the error.";
 
