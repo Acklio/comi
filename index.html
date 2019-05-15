@@ -303,34 +303,28 @@ address {
 <link href="#rfc.section.4.4.1" rel="Chapter" title="4.4.1 Full datastore examples">
 <link href="#rfc.section.4.5" rel="Chapter" title="4.5 Event stream">
 <link href="#rfc.section.4.5.1" rel="Chapter" title="4.5.1 Notify Examples">
+<link href="#rfc.section.4.5.2" rel="Chapter" title="4.5.2 The &#8216;f&#8217; Uri-Query option">
 <link href="#rfc.section.4.6" rel="Chapter" title="4.6 RPC statements">
 <link href="#rfc.section.4.6.1" rel="Chapter" title="4.6.1 RPC Example">
-<link href="#rfc.section.5" rel="Chapter" title="5 Access to MIB Data">
-<link href="#rfc.section.6" rel="Chapter" title="6 Use of Block">
-<link href="#rfc.section.7" rel="Chapter" title="7 Application Discovery">
-<link href="#rfc.section.7.1" rel="Chapter" title="7.1 YANG library">
-<link href="#rfc.section.7.2" rel="Chapter" title="7.2 Resource Discovery">
-<link href="#rfc.section.7.2.1" rel="Chapter" title="7.2.1 Datastore Resource Discovery">
-<link href="#rfc.section.7.2.2" rel="Chapter" title="7.2.2 Data node Resource Discovery">
-<link href="#rfc.section.7.2.3" rel="Chapter" title="7.2.3 Event stream Resource Discovery">
-<link href="#rfc.section.8" rel="Chapter" title="8 Error Handling">
-<link href="#rfc.section.9" rel="Chapter" title="9 Security Considerations">
-<link href="#rfc.section.10" rel="Chapter" title="10 IANA Considerations">
-<link href="#rfc.section.10.1" rel="Chapter" title="10.1 Resource Type (rt=) Link Target Attribute Values Registry">
-<link href="#rfc.section.10.2" rel="Chapter" title="10.2 CoAP Content-Formats Registry">
-<link href="#rfc.section.10.3" rel="Chapter" title="10.3 Media Types Registry">
-<link href="#rfc.section.11" rel="Chapter" title="11 Acknowledgements">
-<link href="#rfc.references" rel="Chapter" title="12 References">
-<link href="#rfc.references.1" rel="Chapter" title="12.1 Normative References">
-<link href="#rfc.references.2" rel="Chapter" title="12.2 Informative References">
+<link href="#rfc.section.5" rel="Chapter" title="5 Use of Block">
+<link href="#rfc.section.6" rel="Chapter" title="6 Application Discovery">
+<link href="#rfc.section.6.1" rel="Chapter" title="6.1 YANG library">
+<link href="#rfc.section.6.2" rel="Chapter" title="6.2 Resource Discovery">
+<link href="#rfc.section.6.2.1" rel="Chapter" title="6.2.1 Datastore Resource Discovery">
+<link href="#rfc.section.6.2.2" rel="Chapter" title="6.2.2 Data node Resource Discovery">
+<link href="#rfc.section.6.2.3" rel="Chapter" title="6.2.3 Event stream Resource Discovery">
+<link href="#rfc.section.7" rel="Chapter" title="7 Error Handling">
+<link href="#rfc.section.8" rel="Chapter" title="8 Security Considerations">
+<link href="#rfc.section.9" rel="Chapter" title="9 IANA Considerations">
+<link href="#rfc.section.9.1" rel="Chapter" title="9.1 Resource Type (rt=) Link Target Attribute Values Registry">
+<link href="#rfc.section.9.2" rel="Chapter" title="9.2 CoAP Content-Formats Registry">
+<link href="#rfc.section.9.3" rel="Chapter" title="9.3 Media Types Registry">
+<link href="#rfc.section.10" rel="Chapter" title="10 Acknowledgements">
+<link href="#rfc.references" rel="Chapter" title="11 References">
+<link href="#rfc.references.1" rel="Chapter" title="11.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="11.2 Informative References">
 <link href="#rfc.appendix.A" rel="Chapter" title="A ietf-comi YANG module">
 <link href="#rfc.appendix.B" rel="Chapter" title="B ietf-comi .sid file">
-<link href="#rfc.appendix.C" rel="Chapter" title="C YANG example specifications">
-<link href="#rfc.appendix.C.1" rel="Chapter" title="C.1 ietf-system">
-<link href="#rfc.appendix.C.2" rel="Chapter" title="C.2 server list">
-<link href="#rfc.appendix.C.3" rel="Chapter" title="C.3 interfaces">
-<link href="#rfc.appendix.C.4" rel="Chapter" title="C.4 Example-port">
-<link href="#rfc.appendix.C.5" rel="Chapter" title="C.5 IP-MIB">
 <link href="#rfc.authors" rel="Chapter">
 
 
@@ -338,10 +332,10 @@ address {
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Veillette, M., Ed., van der Stok, P., Ed., Pelov, A., and A. Bierman" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-04" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-05-14" />
-  <meta name="dct.abstract" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
-  <meta name="description" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-comi-05" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-05-15" />
+  <meta name="dct.abstract" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  The complete solution composed of CoMI,  and  is called CORECONF. CORECONF extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
+  <meta name="description" content="This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  The complete solution composed of CoMI,  and  is called CORECONF. CORECONF extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks." />
 
 </head>
 
@@ -363,7 +357,7 @@ address {
 <td class="right">P. van der Stok, Ed.</td>
 </tr>
 <tr>
-<td class="left">Expires: November 15, 2019</td>
+<td class="left">Expires: November 16, 2019</td>
 <td class="right">consultant</td>
 </tr>
 <tr>
@@ -384,7 +378,7 @@ address {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">May 14, 2019</td>
+<td class="right">May 15, 2019</td>
 </tr>
 
     	
@@ -392,17 +386,17 @@ address {
   </table>
 
   <p class="title">CoAP Management Interface<br />
-  <span class="filename">draft-ietf-core-comi-04</span></p>
+  <span class="filename">draft-ietf-core-comi-05</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  CoMI extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks.</p>
+<p>This document describes a network management interface for constrained devices and networks, called CoAP Management Interface (CoMI). The Constrained Application Protocol (CoAP) is used to access datastore and data node resources specified in YANG, or SMIv2 converted to YANG. CoMI uses the YANG to CBOR mapping and converts YANG identifier strings to numeric identifiers for payload size reduction.  The complete solution composed of CoMI, <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> and <a href="#I-D.ietf-core-sid" class="xref">[I-D.ietf-core-sid]</a> is called CORECONF. CORECONF extends the set of YANG based protocols, NETCONF and RESTCONF, with the capability to manage constrained devices and networks.</p>
 <h1><a>Note</a></h1>
 <p>Discussion and suggestions for improvement are requested, and should be sent to yot@ietf.org.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 15, 2019.</p>
+<p>This Internet-Draft will expire on November 16, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -464,63 +458,51 @@ address {
 </li>
 <ul><li>4.5.1.   <a href="#rfc.section.4.5.1">Notify Examples</a>
 </li>
+<li>4.5.2.   <a href="#rfc.section.4.5.2">The &#8216;f&#8217; Uri-Query option</a>
+</li>
 </ul><li>4.6.   <a href="#rfc.section.4.6">RPC statements</a>
 </li>
 <ul><li>4.6.1.   <a href="#rfc.section.4.6.1">RPC Example</a>
 </li>
-</ul></ul><li>5.   <a href="#rfc.section.5">Access to MIB Data</a>
+</ul></ul><li>5.   <a href="#rfc.section.5">Use of Block</a>
 </li>
-<li>6.   <a href="#rfc.section.6">Use of Block</a>
+<li>6.   <a href="#rfc.section.6">Application Discovery</a>
 </li>
-<li>7.   <a href="#rfc.section.7">Application Discovery</a>
+<ul><li>6.1.   <a href="#rfc.section.6.1">YANG library</a>
 </li>
-<ul><li>7.1.   <a href="#rfc.section.7.1">YANG library</a>
+<li>6.2.   <a href="#rfc.section.6.2">Resource Discovery</a>
 </li>
-<li>7.2.   <a href="#rfc.section.7.2">Resource Discovery</a>
+<ul><li>6.2.1.   <a href="#rfc.section.6.2.1">Datastore Resource Discovery</a>
 </li>
-<ul><li>7.2.1.   <a href="#rfc.section.7.2.1">Datastore Resource Discovery</a>
+<li>6.2.2.   <a href="#rfc.section.6.2.2">Data node Resource Discovery</a>
 </li>
-<li>7.2.2.   <a href="#rfc.section.7.2.2">Data node Resource Discovery</a>
+<li>6.2.3.   <a href="#rfc.section.6.2.3">Event stream Resource Discovery</a>
 </li>
-<li>7.2.3.   <a href="#rfc.section.7.2.3">Event stream Resource Discovery</a>
+</ul></ul><li>7.   <a href="#rfc.section.7">Error Handling</a>
 </li>
-</ul></ul><li>8.   <a href="#rfc.section.8">Error Handling</a>
+<li>8.   <a href="#rfc.section.8">Security Considerations</a>
 </li>
-<li>9.   <a href="#rfc.section.9">Security Considerations</a>
+<li>9.   <a href="#rfc.section.9">IANA Considerations</a>
 </li>
-<li>10.   <a href="#rfc.section.10">IANA Considerations</a>
+<ul><li>9.1.   <a href="#rfc.section.9.1">Resource Type (rt=) Link Target Attribute Values Registry</a>
 </li>
-<ul><li>10.1.   <a href="#rfc.section.10.1">Resource Type (rt=) Link Target Attribute Values Registry</a>
+<li>9.2.   <a href="#rfc.section.9.2">CoAP Content-Formats Registry</a>
 </li>
-<li>10.2.   <a href="#rfc.section.10.2">CoAP Content-Formats Registry</a>
+<li>9.3.   <a href="#rfc.section.9.3">Media Types Registry</a>
 </li>
-<li>10.3.   <a href="#rfc.section.10.3">Media Types Registry</a>
+</ul><li>10.   <a href="#rfc.section.10">Acknowledgements</a>
 </li>
-</ul><li>11.   <a href="#rfc.section.11">Acknowledgements</a>
+<li>11.   <a href="#rfc.references">References</a>
 </li>
-<li>12.   <a href="#rfc.references">References</a>
+<ul><li>11.1.   <a href="#rfc.references.1">Normative References</a>
 </li>
-<ul><li>12.1.   <a href="#rfc.references.1">Normative References</a>
-</li>
-<li>12.2.   <a href="#rfc.references.2">Informative References</a>
+<li>11.2.   <a href="#rfc.references.2">Informative References</a>
 </li>
 </ul><li>Appendix A.   <a href="#rfc.appendix.A">ietf-comi YANG module</a>
 </li>
 <li>Appendix B.   <a href="#rfc.appendix.B">ietf-comi .sid file</a>
 </li>
-<li>Appendix C.   <a href="#rfc.appendix.C">YANG example specifications</a>
-</li>
-<ul><li>C.1.   <a href="#rfc.appendix.C.1">ietf-system</a>
-</li>
-<li>C.2.   <a href="#rfc.appendix.C.2">server list</a>
-</li>
-<li>C.3.   <a href="#rfc.appendix.C.3">interfaces</a>
-</li>
-<li>C.4.   <a href="#rfc.appendix.C.4">Example-port</a>
-</li>
-<li>C.5.   <a href="#rfc.appendix.C.5">IP-MIB</a>
-</li>
-</ul><li><a href="#rfc.authors">Authors' Addresses</a>
+<li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
 
 
@@ -540,7 +522,7 @@ address {
 <p id="rfc.section.1.1.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
 <p id="rfc.section.1.1.p.2">The following terms are defined in the YANG data modelling language <a href="#RFC7950" class="xref">[RFC7950]</a>: action, anydata, anyxml, client, container, data model, data node, identity, instance identifier, leaf, leaf-list, list, module, RPC, schema node, server, submodule.</p>
 <p id="rfc.section.1.1.p.3">The following terms are defined in <a href="#RFC6241" class="xref">[RFC6241]</a>: configuration data, datastore, state data</p>
-<p id="rfc.section.1.1.p.4">The following term is defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a>: YANG schema item identifier (SID).</p>
+<p id="rfc.section.1.1.p.4">The following term is defined in <a href="#I-D.ietf-core-sid" class="xref">[I-D.ietf-core-sid]</a>: YANG schema item identifier (SID).</p>
 <p id="rfc.section.1.1.p.5">The following terms are defined in the CoAP protocol <a href="#RFC7252" class="xref">[RFC7252]</a>: Confirmable Message, Content-Format, Endpoint.</p>
 <p id="rfc.section.1.1.p.6">The following terms are defined in this document:</p>
 <p></p>
@@ -610,7 +592,7 @@ Client   V                               Server       V
 <dt>(6) Event stream:</dt>
 <dd style="margin-left: 8">A resource used to get real time notifications. A CoMI server may support multiple Event streams serving different purposes such as normal monitoring, diagnostic, syslog, security monitoring.</dd>
 <dt>(7) Security:</dt>
-<dd style="margin-left: 8">The server MUST prevent unauthorized users from reading or writing any CoMI resources. CoMI relies on security protocols such as DTLS <a href="#RFC6347" class="xref">[RFC6347]</a> to secure CoAP communication.</dd>
+<dd style="margin-left: 8">The server MUST prevent unauthorized users from reading or writing any CoMI resources. CoMI relies on security protocols such as DTLS <a href="#RFC6347" class="xref">[RFC6347]</a> to secure CoAP communications.</dd>
 </dl>
 <h1 id="rfc.section.2.1">
 <a href="#rfc.section.2.1">2.1.</a> <a href="#major-differences" id="major-differences">Major differences between RESTCONF and CoMI</a>
@@ -622,7 +604,7 @@ Client   V                               Server       V
 <li>CoMI uses CoAP/UDP as transport protocol and CBOR as payload format <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a>. RESTCONF uses HTTP/TCP as transport protocol and JSON or XML as payload formats.</li>
 <li>CoMI encodes YANG identifier strings as numbers, where RESTCONF does not.</li>
 <li>CoMI uses the methods FETCH and iPATCH to access multiple data nodes.  RESTCONF uses instead the HTTP method PATCH and the HTTP method GET with the &#8220;fields&#8221; Query parameter.</li>
-<li>RESTCONF uses the HTTP methods HEAD, and OPTIONS, which are not used by CoAP.</li>
+<li>RESTCONF uses the HTTP methods HEAD, and OPTIONS, which are not supported by CoAP.</li>
 <li>CoMI does not support &#8220;insert&#8221; query parameter (first, last, before, after) and the &#8220;point&#8221; query parameter which are supported by RESTCONF.</li>
 <li>CoMI does not support the &#8220;start-time&#8221; and &#8220;stop-time&#8221; query parameters to retrieve past notifications.</li>
 <li>CoMI does not support the &#8220;filter&#8221; query parameters to observe a specific set of notifications.</li>
@@ -691,11 +673,11 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <dt></dt>
 <dd style="margin-left: 8">FORMAT: CBOR array of CBOR map of instance-identifier, instance-value</dd>
 <dt></dt>
-<dd style="margin-left: 8">The message payload of Content-Format &#8216;application/yang-instances+cbor&#8217; is encoded using a CBOR array.  Each entry within this CBOR array contains a CBOR map carrying a single instance identifier and associated value.  Instance identifiers are encoded using the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 6.13.1, values are encoded using the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.</dd>
+<dd style="margin-left: 8">The message payload of Content-Format &#8216;application/yang-instances+cbor&#8217; is encoded using a CBOR array.  Each entry within this CBOR array contains a CBOR map carrying an instance identifier and associated instance value.  Instance identifiers are encoded using the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 6.13.1, values are encoded using the rules defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.</dd>
 <dt></dt>
 <dd style="margin-left: 8">When present in an iPATCH request payload, this Content-Format carry a list of data node instances to be replaced, created, or deleted.  For each data node instance D, for which the instance identifier is the same as a data node instance I, in the targeted datastore resource: the value of D replaces the value of I.  When the value of D is null, the data node instance I is removed.  When the targeted datastore resource does not contain a data node instance with the same instance identifier as D, a new instance is created with the same instance identifier and value as D.</dd>
 </dl>
-<p id="rfc.section.2.4.p.4">The different Content-formats usage are summarized in the table below:</p>
+<p id="rfc.section.2.4.p.4">The different Content-format usages are summarized in the table below:</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Method</th>
@@ -773,7 +755,7 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <h1 id="rfc.section.2.5">
 <a href="#rfc.section.2.5">2.5.</a> <a href="#unified-datastore" id="unified-datastore">Unified datastore</a>
 </h1>
-<p id="rfc.section.2.5.p.1">CoMI supports a simple datastore model consisting of on a single unified datastore. This datasore provides access to both configuration and operational data. Configuration updates performed on this datastore are reflected immediately or with a minimal delay as operational data.</p>
+<p id="rfc.section.2.5.p.1">CoMI supports a simple datastore model consisting of a single unified datastore. This datasore provides access to both configuration and operational data. Configuration updates performed on this datastore are reflected immediately or with a minimal delay as operational data.</p>
 <p id="rfc.section.2.5.p.2">Alternatively, CoMI servers MAY implement a more complex datastore model such as the Network Management Datastore Architecture (NMDA) as defined by <a href="#RFC8342" class="xref">[RFC8342]</a>. Each datastore supported is implemented as a datastore resource.</p>
 <p id="rfc.section.2.5.p.3">Characteristics of the unified datastore are summarized in the table below:</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
@@ -804,7 +786,7 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 </tr>
 <tr>
 <td class="left">Protocols</td>
-<td class="left">CoMI</td>
+<td class="left">CORECONF</td>
 </tr>
 <tr>
 <td class="left">Defined in</td>
@@ -815,13 +797,12 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#example-syntax" id="example-syntax">Example syntax</a>
 </h1>
-<p id="rfc.section.3.p.1">This section presents the notation used for the examples. The YANG modules that are used throughout this document are shown in <a href="#example-specifications" class="xref">Appendix C</a>.  The example modules are copied from existing modules and annotated with SIDs.</p>
-<p id="rfc.section.3.p.2">CBOR is used to encode CoMI request and response payloads. The CBOR syntax of the YANG payloads is specified in <a href="#RFC7049" class="xref">[RFC7049]</a>. The payload examples are notated in Diagnostic notation (defined in section 6 of <a href="#RFC7049" class="xref">[RFC7049]</a>) that can be automatically converted to CBOR.</p>
-<p id="rfc.section.3.p.3">SIDs in URIs are represented as a base64 number, SIDs in the payload are represented as decimal numbers.</p>
+<p id="rfc.section.3.p.1">CBOR is used to encode CoMI request and response payloads. The CBOR syntax of the YANG payloads is specified in <a href="#RFC7049" class="xref">[RFC7049]</a>. The payload examples are notated in Diagnostic notation (defined in section 6 of <a href="#RFC7049" class="xref">[RFC7049]</a>) that can be automatically converted to CBOR.</p>
+<p id="rfc.section.3.p.2">SIDs in URIs are represented as a base64 number, SIDs in the payload are represented as decimal numbers.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#coap-interface" id="coap-interface">CoAP Interface</a>
 </h1>
-<p id="rfc.section.4.p.1">This note specifies a Management Interface. CoAP endpoints that implement the CoMI management protocol, support at least one discoverable management resource of resource type (rt): core.c.ds, with example path: /c, where c is short-hand for CoMI. The path /c is recommended, but not compulsory (see <a href="#discovery" class="xref">Section 7</a>).</p>
+<p id="rfc.section.4.p.1">This note specifies a Management Interface. CoAP endpoints that implement the CoMI management protocol, support at least one discoverable management resource of resource type (rt): core.c.ds, with example path: /c, where c is short-hand for CoMI. The path /c is recommended, but not compulsory (see <a href="#discovery" class="xref">Section 6</a>).</p>
 <p id="rfc.section.4.p.2">The mapping of YANG data node instances to CoMI resources is as follows.  Every data node of the YANG modules loaded in the CoMI server represents a sub-resource of the datastore resource (e.g. /c/sid).  When multiple instances of a list exist, instance selection is possible as described in <a href="#query" class="xref">Section 4.1</a>, <a href="#get-example" class="xref">Section 4.2.3.1</a>, and <a href="#fetch" class="xref">Section 4.2.4</a>.</p>
 <p id="rfc.section.4.p.3">CoMI also supports event stream resourced used to observe notification instances.  Event stream resources can be discovered using resource type (rt): core.c.ev.</p>
 <p id="rfc.section.4.p.4">The description of the CoMI management interface is shown in the table below:</p>
@@ -898,7 +879,7 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <h1 id="rfc.section.4.1">
 <a href="#rfc.section.4.1">4.1.</a> <a href="#query" id="query">Using the &#8216;k&#8217; Uri-Query option</a>
 </h1>
-<p id="rfc.section.4.1.p.1">The &#8220;k&#8221; (key) parameter specifies a specific instance of a data node.  The SID in the URI is followed by the (?k=key1, key2,..). Where SID identifies a data node, and key1, key2 are the values of the key leaves that specify an instance. Lists can have multiple keys, and lists can be part of lists. The order of key value generation is given recursively by:</p>
+<p id="rfc.section.4.1.p.1">The &#8220;k&#8221; (key) parameter specifies a specific instance of a data node.  The SID in the URI is followed by the (?k=key1,key2,&#8230;). Where SID identifies a data node, and key1, key2 are the values of the key leaves that specify an instance. Lists can have multiple keys, and lists can be part of lists. The order of key value generation is given recursively by:</p>
 <p></p>
 
 <ul>
@@ -971,8 +952,7 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <a href="#rfc.section.4.2">4.2.</a> <a href="#data-retrieval" id="data-retrieval">Data Retrieval</a>
 </h1>
 <p id="rfc.section.4.2.p.1">One or more data nodes can be retrieved by the client.  The operation is mapped to the GET method defined in section 5.8.1 of <a href="#RFC7252" class="xref">[RFC7252]</a> and to the FETCH method defined in section 2 of <a href="#RFC8132" class="xref">[RFC8132]</a>.</p>
-<p id="rfc.section.4.2.p.2">It is possible that the size of the payload is too large to fit in a single message. In the case that management data is bigger than the maximum supported payload size, the Block mechanism from <a href="#RFC7959" class="xref">[RFC7959]</a> may be used, as explained in more detail in <a href="#block" class="xref">Section 6</a>.</p>
-<p id="rfc.section.4.2.p.3">There are two additional Uri-Query options for the GET and FETCH methods.</p>
+<p id="rfc.section.4.2.p.2">There are two additional Uri-Query options for the GET and FETCH methods.</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Uri-Query option</th>
@@ -992,7 +972,7 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 <h1 id="rfc.section.4.2.1">
 <a href="#rfc.section.4.2.1">4.2.1.</a> <a href="#content" id="content">Using the &#8216;c&#8217; Uri-Query option</a>
 </h1>
-<p id="rfc.section.4.2.1.p.1">The &#8216;c&#8217; (content) parameter controls how descendant nodes of the requested data nodes will be processed in the reply.</p>
+<p id="rfc.section.4.2.1.p.1">The &#8216;c&#8217; (content) option controls how descendant nodes of the requested data nodes will be processed in the reply.</p>
 <p id="rfc.section.4.2.1.p.2">The allowed values are:</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
@@ -1014,12 +994,12 @@ URLsafeChar[1721 &amp; 0x3F]       = URLsafeChar[57] = '5'
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.4.2.1.p.3">This parameter is only allowed for GET and FETCH methods on datastore and data node resources.  A 4.02 (Bad Option) error is returned if used for other methods or resource types.</p>
+<p id="rfc.section.4.2.1.p.3">This option is only allowed for GET and FETCH methods on datastore and data node resources.  A 4.02 (Bad Option) error is returned if used for other methods or resource types.</p>
 <p id="rfc.section.4.2.1.p.4">If this Uri-Query option is not present, the default value is &#8220;a&#8221;.</p>
 <h1 id="rfc.section.4.2.2">
 <a href="#rfc.section.4.2.2">4.2.2.</a> <a href="#dquery" id="dquery">Using the &#8216;d&#8217; Uri-Query option</a>
 </h1>
-<p id="rfc.section.4.2.2.p.1">The &#8220;d&#8221; (with-defaults) parameter controls how the default values of the descendant nodes of the requested data nodes will be processed.</p>
+<p id="rfc.section.4.2.2.p.1">The &#8220;d&#8221; (with-defaults) option controls how the default values of the descendant nodes of the requested data nodes will be processed.</p>
 <p id="rfc.section.4.2.2.p.2">The allowed values are:</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
@@ -1061,7 +1041,7 @@ FORMAT:
 <h1 id="rfc.section.4.2.3.1">
 <a href="#rfc.section.4.2.3.1">4.2.3.1.</a> <a href="#get-example" id="get-example">GET Examples</a>
 </h1>
-<p id="rfc.section.4.2.3.1.p.1">Using for example the current-datetime leaf from <a href="#ietf-system" class="xref">Appendix C.1</a>, a request is sent to retrieve the value of &#8216;system-state/clock/current-datetime&#8217; specified in container system-state.  The SID of &#8216;system-state/clock/current-datetime&#8217; is 1723, encoded in base64 according to <a href="#id-compression" class="xref">Section 2.2</a>, yields a7. The response to the request returns the CBOR map with the key set to the SID of the requested data node (i.e. 1723) and the value encoded using a &#8216;text string&#8217; as defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 6.4.</p>
+<p id="rfc.section.4.2.3.1.p.1">Using for example the current-datetime leaf from module ietf-system <a href="#RFC7317" class="xref">[RFC7317]</a>, a request is sent to retrieve the value of &#8216;system-state/clock/current-datetime&#8217; specified in container system-state.  The SID of &#8216;system-state/clock/current-datetime&#8217; is 1723, encoded in base64 according to <a href="#id-compression" class="xref">Section 2.2</a>, yields a7. The response to the request returns the CBOR map with the key set to the SID of the requested data node (i.e. 1723) and the value encoded using a &#8216;text string&#8217; as defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 6.4.</p>
 <pre>
 REQ: GET example.com/c/a7
 
@@ -1123,7 +1103,7 @@ RES: 2.05 Content (Content-Format: application/yang-data+cbor)
   ]
 }
 </pre>
-<p id="rfc.section.4.2.3.1.p.5">It is equally possible to select a leaf of a specific instance of a list.  The example below requests the description leaf (SID=1534, base64: X-) within the interface list corresponding to the interface name &#8220;eth0&#8221;.  The returned value is encoded in CBOR based on the rules specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 5.4.</p>
+<p id="rfc.section.4.2.3.1.p.5">It is equally possible to select a leaf of a specific instance of a list.  The example below requests the description leaf (SID=1534, base64: X-) within the interface list corresponding to the interface name &#8220;eth0&#8221;.  The returned value is encoded in CBOR based on the rules specified by <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 6.4.</p>
 <pre>
 REQ: GET example.com/c/X-?k="eth0"
 
@@ -1149,7 +1129,7 @@ FORMAT:
 <h1 id="rfc.section.4.2.4.1">
 <a href="#rfc.section.4.2.4.1">4.2.4.1.</a> <a href="#fetch-example" id="fetch-example">FETCH examples</a>
 </h1>
-<p id="rfc.section.4.2.4.1.p.1">This example uses the current-datetime leaf and the interface list from <a href="#ietf-system" class="xref">Appendix C.1</a>.  In this example the value of current-datetime (SID 1723) and the interface list (SID 1533) instance identified with name=&#8221;eth0&#8221; are queried.</p>
+<p id="rfc.section.4.2.4.1.p.1">This example uses the current-datetime leaf from module ietf-system <a href="#RFC7317" class="xref">[RFC7317]</a> and the interface list from module ietf-interfaces <a href="#RFC7223" class="xref">[RFC7223]</a>.  In this example the value of current-datetime (SID 1723) and the interface list (SID 1533) instance identified with name=&#8221;eth0&#8221; are queried.</p>
 <pre>
 REQ:  FETCH /c (Content-Format: application/yang-identifiers+cbor)
 [
@@ -1198,7 +1178,7 @@ FORMAT:
 <h1 id="rfc.section.4.3.2.1">
 <a href="#rfc.section.4.3.2.1">4.3.2.1.</a> <a href="#post-example" id="post-example">Post example</a>
 </h1>
-<p id="rfc.section.4.3.2.1.p.1">The example uses the interface list from <a href="#ietf-system" class="xref">Appendix C.1</a>.  Example is creating a new list instance within the interface list (SID = 1533):</p>
+<p id="rfc.section.4.3.2.1.p.1">The example uses the interface list from  module ietf-interfaces <a href="#RFC7223" class="xref">[RFC7223]</a>.  This example creates a new list instance within the interface list (SID = 1533):</p>
 <pre>
 REQ: POST /c/X9 (Content-Format: application/yang-data+cbor)
 {
@@ -1230,7 +1210,7 @@ FORMAT:
 <h1 id="rfc.section.4.3.3.1">
 <a href="#rfc.section.4.3.3.1">4.3.3.1.</a> <a href="#put-example" id="put-example">PUT example</a>
 </h1>
-<p id="rfc.section.4.3.3.1.p.1">The example uses the interface list from <a href="#ietf-system" class="xref">Appendix C.1</a>.  Example is renewing an instance of the list interface (SID = 1533) with key name=&#8221;eth0&#8221;:</p>
+<p id="rfc.section.4.3.3.1.p.1">The example uses the interface list from module ietf-interfaces <a href="#RFC7223" class="xref">[RFC7223]</a>.  Example updates the instance of the list interface (SID = 1533) with key name=&#8221;eth0&#8221;:</p>
 <pre>
 REQ: PUT /c/X9?k="eth0" (Content-Format: application/yang-data+cbor)
 {
@@ -1250,7 +1230,7 @@ RES:  2.04 Changed
 <h1 id="rfc.section.4.3.4">
 <a href="#rfc.section.4.3.4">4.3.4.</a> <a href="#ipatch-operation" id="ipatch-operation">iPATCH</a>
 </h1>
-<p id="rfc.section.4.3.4.p.1">One or multiple data node instances are replaced with the idempotent iPATCH method <a href="#RFC8132" class="xref">[RFC8132]</a>. A request is sent with a CoAP iPATCH message.</p>
+<p id="rfc.section.4.3.4.p.1">One or multiple data node instances are replaced with the idempotent CoAP iPATCH method <a href="#RFC8132" class="xref">[RFC8132]</a>.</p>
 <p id="rfc.section.4.3.4.p.2">There are no Uri-Query options for the iPATCH method.</p>
 <p id="rfc.section.4.3.4.p.3">The processing of the iPATCH command is specified by Content-Format &#8216;application/yang-instances+cbor&#8217;.  In summary, if the CBOR patch payload contains a data node instance that is not present in the target, this instance is added. If the target contains the specified instance, the content of this instance is replaced with the value of the payload.  A null value indicates the removal of an existing data node instance.</p>
 <pre>
@@ -1306,7 +1286,7 @@ FORMAT:
 <h1 id="rfc.section.4.3.5.1">
 <a href="#rfc.section.4.3.5.1">4.3.5.1.</a> <a href="#delete-example" id="delete-example">DELETE example</a>
 </h1>
-<p id="rfc.section.4.3.5.1.p.1">This example uses the interface list from <a href="#interfaces" class="xref">Appendix C.3</a>.  This example is deleting an instance of the interface list (SID = 1533):</p>
+<p id="rfc.section.4.3.5.1.p.1">This example uses the interface list from module ietf-interfaces <a href="#RFC7223" class="xref">[RFC7223]</a>.  This example deletes an instance of the interface list (SID = 1533):</p>
 <pre>
 REQ:   DELETE /c/X9?k="eth0"
 
@@ -1347,7 +1327,7 @@ FORMAT:
 <h1 id="rfc.section.4.4.1">
 <a href="#rfc.section.4.4.1">4.4.1.</a> <a href="#datastore-example" id="datastore-example">Full datastore examples</a>
 </h1>
-<p id="rfc.section.4.4.1.p.1">The example uses the interface list and the clock container from <a href="#interfaces" class="xref">Appendix C.3</a>.  Assume that the datastore contains two modules ietf-system (SID 1700) and ietf-interfaces (SID 1500); they contain the &#8216;interface&#8217; list (SID 1533) with one instance and the &#8216;clock&#8217; container (SID 1721). After invocation of GET, a CBOR map with data nodes from these two modules is returned:</p>
+<p id="rfc.section.4.4.1.p.1">The example uses the interface list from module ietf-interfaces <a href="#RFC7223" class="xref">[RFC7223]</a> and the clock container from module ietf-system <a href="#RFC7317" class="xref">[RFC7317]</a>.<br> We assume that the datastore contains two modules ietf-system (SID 1700) and ietf-interfaces (SID 1500); they contain the &#8216;interface&#8217; list (SID 1533) with one instance and the &#8216;clock&#8217; container (SID 1721). After invocation of GET, a CBOR map with data nodes from these two modules is returned:</p>
 <pre>
 REQ:  GET /c
 
@@ -1373,7 +1353,7 @@ RES: 2.05 Content (Content-Format: application/yang-data+cbor)
 </h1>
 <p id="rfc.section.4.5.p.1">Event notification is an essential function for the management of servers.  CoMI allows notifications specified in YANG <a href="#RFC5277" class="xref">[RFC5277]</a> to be reported to a list of clients. The recommended path of the default event stream is /s.  The server MAY support additional event stream resources to address different notification needs.</p>
 <p id="rfc.section.4.5.p.2">Reception of notification instances is enabled with the CoAP Observe <a href="#RFC7641" class="xref">[RFC7641]</a> function. Clients subscribe to the notifications by sending a GET request with an &#8220;Observe&#8221; option, specifying the /s resource when the default stream is selected.</p>
-<p id="rfc.section.4.5.p.3">Each response payload carries one or multiple notifications. The number of notification reported and the conditions used to remove notifications from the reported list is left to implementers.  When multiple notifications are reported, they MUST be ordered starting from the newest notification at index zero.</p>
+<p id="rfc.section.4.5.p.3">Each response payload carries one or multiple notifications. The number of notifications reported, and the conditions used to remove notifications from the reported list is left to implementers.  When multiple notifications are reported, they MUST be ordered starting from the newest notification at index zero.</p>
 <p id="rfc.section.4.5.p.4">The format of notification contents is defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 4.2.1. For notification without any content, a null value is returned.</p>
 <p id="rfc.section.4.5.p.5">An example implementation is:</p>
 <p></p>
@@ -1390,7 +1370,23 @@ FORMAT:
 <h1 id="rfc.section.4.5.1">
 <a href="#rfc.section.4.5.1">4.5.1.</a> <a href="#event-stream-example" id="event-stream-example">Notify Examples</a>
 </h1>
-<p id="rfc.section.4.5.1.p.1">Suppose the server generates the event specified in <a href="#notify-ex" class="xref">Appendix C.4</a>.  By executing a GET on the /s resource the client receives the following response:</p>
+<p id="rfc.section.4.5.1.p.1">Let suppose the server generates the example-port-fault event as defined below.</p>
+<pre>
+module example-port {
+  ...
+  notification example-port-fault {   // SID 60010
+    description
+      "Event generated if a hardware fault is detected";
+    leaf port-name {                  // SID 60011
+      type string;
+    }
+    leaf port-fault {                 // SID 60012
+      type string;
+    }
+  }
+}
+</pre>
+<p id="rfc.section.4.5.1.p.2">By executing a GET on the /s resource the client receives the following response:</p>
 <pre>
 REQ:  GET /s Observe(0) Token(0x93)
 
@@ -1411,8 +1407,17 @@ RES:  2.05 Content (Content-Format :application/yang-tree+cbor)
   }
 ]
 </pre>
-<p id="rfc.section.4.5.1.p.2">In the example, the request returns a success response with the contents of the last two generated events. Consecutively the server will regularly notify the client when a new event is generated.</p>
-<p id="rfc.section.4.5.1.p.3">To check that the client is still alive, the server MUST send Confirmable Message periodically. When the client does not confirm the notification from the server, the server will remove the client from the list of observers <a href="#RFC7641" class="xref">[RFC7641]</a>.</p>
+<p id="rfc.section.4.5.1.p.3">In the example, the request returns a success response with the contents of the last two generated events. Consecutively the server will regularly notify the client when a new event is generated.</p>
+<p id="rfc.section.4.5.1.p.4">To check that the client is still alive, the server MUST send Confirmable Message periodically. When the client does not confirm the notification from the server, the server will remove the client from the list of observers <a href="#RFC7641" class="xref">[RFC7641]</a>.</p>
+<h1 id="rfc.section.4.5.2">
+<a href="#rfc.section.4.5.2">4.5.2.</a> <a href="#the-f-uri-query-option" id="the-f-uri-query-option">The &#8216;f&#8217; Uri-Query option</a>
+</h1>
+<p id="rfc.section.4.5.2.p.1">The &#8216;f&#8217; (filter) option is used to indicate which subset of all possible notifications is of interest.  If not present, all events notifications supported by the event stream are reported.</p>
+<p id="rfc.section.4.5.2.p.2">When not supported by a CoMI server, this option shall be ignored, all events notifications are reported independently of the presence and content of the &#8216;f&#8217; (filter) option.</p>
+<p id="rfc.section.4.5.2.p.3">When present, this option contains a comma separated list of notification SIDs. For example, the following request returns notifications 60010 and 60020.</p>
+<pre>
+REQ:  GET /s?f=60010,60020 Observe(0) Token(0x241)
+</pre>
 <h1 id="rfc.section.4.6">
 <a href="#rfc.section.4.6">4.6.</a> <a href="#rpc" id="rpc">RPC statements</a>
 </h1>
@@ -1432,7 +1437,40 @@ FORMAT:
 <h1 id="rfc.section.4.6.1">
 <a href="#rfc.section.4.6.1">4.6.1.</a> <a href="#rpc-example" id="rpc-example">RPC Example</a>
 </h1>
-<p id="rfc.section.4.6.1.p.1">The example is based on the YANG action specification of <a href="#server" class="xref">Appendix C.2</a>.  A server list is specified and the action &#8220;reset&#8221; (SID 60002, base64: Opq), that is part of a &#8220;server instance&#8221; with key value &#8220;myserver&#8221;, is invoked.</p>
+<p id="rfc.section.4.6.1.p.1">The example is based on the YANG action reset as defined in <a href="#RFC7950" class="xref">[RFC7950]</a> section 7.15.3 and annotated below with SIDs.</p>
+<pre>
+module example-server-farm {
+  yang-version 1.1;
+  namespace "urn:example:server-farm";
+  prefix "sfarm";
+
+  import ietf-yang-types {
+    prefix "yang";
+  }
+
+  list server {                        // SID 60000
+    key name;
+    leaf name {                        // SID 60001
+      type string;
+    }
+    action reset {                     // SID 60002
+      input {
+        leaf reset-at {                // SID 60003
+          type yang:date-and-time;
+          mandatory true;
+         }
+       }
+       output {
+         leaf reset-finished-at {      // SID 60004
+           type yang:date-and-time;
+           mandatory true;
+         }
+       }
+     }
+   }
+ }
+</pre>
+<p id="rfc.section.4.6.1.p.2">This example invokes the &#8216;reset&#8217; action  (SID 60002, base64: Opq), of the server instance with name equal to &#8220;myserver&#8221;.</p>
 <pre>
 REQ:  POST /c/Opq?k="myserver"
               (Content-Format :application/yang-data+cbor)
@@ -1450,87 +1488,54 @@ RES:  2.05 Content (Content-Format :application/yang-data+cbor)
 }
 </pre>
 <h1 id="rfc.section.5">
-<a href="#rfc.section.5">5.</a> <a href="#mib" id="mib">Access to MIB Data</a>
+<a href="#rfc.section.5">5.</a> <a href="#block" id="block">Use of Block</a>
 </h1>
-<p><a href="#smi" class="xref">Appendix C.5</a> shows a YANG module mapped from the SMI specification &#8220;IP-MIB&#8221; <a href="#RFC4293" class="xref">[RFC4293]</a>.  The following example shows the &#8220;ipNetToPhysicalEntry&#8221; list with 2 instances.</p>
-<pre>
-REQ: GET example.com/c/Oz1
-
-RES: 2.05 Content (Content-Format: application/yang-data+cbor)
-{
-  60021 : [             / ipNetToPhysicalEntry /
-    {
-      +1 : 1,           / ipNetToPhysicalIfIndex (SID 60022) /
-      +2 : 1,           / ipNetToPhysicalNetAddressType (SID 60023) /
-      +3 : h'0A000033', / ipNetToPhysicalNetAddress (SID 60024) /
-      +4 : h'00000A01172D',/ ipNetToPhysicalPhysAddress (SID 60025) /
-      +5 : 2333943,     / ipNetToPhysicalLastUpdated (SID 60026) /
-      +6 : 4,           / ipNetToPhysicalType (SID 60027) /
-      +7 : 1,           / ipNetToPhysicalState (SID 60028) /
-      +8 : 1            / ipNetToPhysicalRowStatus (SID 60029) /
-    },
-    {
-      +1 : 1,           / ipNetToPhysicalIfIndex (SID 60022) /
-      +2 : 1,           / ipNetToPhysicalNetAddressType (SID 60023) /
-      +3 : h'09020304', / ipNetToPhysicalNetAddress  (SID 60024) /
-      +4 : h'00000A36200A',/ ipNetToPhysicalPhysAddress (SID 60025) /
-      +5 : 2329836,     / ipNetToPhysicalLastUpdated (SID 60026) /
-      +6 : 3,           / ipNetToPhysicalType (SID 60027) /
-      +7 : 6,           / ipNetToPhysicalState (SID 60028) /
-      +8 : 1            / ipNetToPhysicalRowStatus (SID 60029) /
-    }
-  ]
-}
-</pre>
+<p id="rfc.section.5.p.1">The CoAP protocol provides reliability by acknowledging the UDP datagrams.  However, when large pieces of data need to be transported, datagrams get fragmented, thus creating constraints on the resources in the client, server and intermediate routers. The block option <a href="#RFC7959" class="xref">[RFC7959]</a> allows the transport of the total payload in individual blocks of which the size can be adapted to the underlying transport sizes such as: (UDP datagram size ~64KiB, IPv6 MTU of 1280, IEEE 802.15.4 payload of 60-80 bytes). Each block is individually acknowledged to guarantee reliability.</p>
+<p id="rfc.section.5.p.2">Notice that the Block mechanism splits the data at fixed positions, such that individual data fields may become fragmented. Therefore, assembly of multiple blocks may be required to process the complete data field.</p>
+<p id="rfc.section.5.p.3">Beware of race conditions. Blocks are filled one at a time and care should be taken that the whole data representation is sent in multiple blocks sequentially without interruption. On the server, values are changed, lists are re-ordered, extended or reduced. When these actions happen during the serialization of the contents of the resource, the transported results do not correspond with a state having occurred in the server; or worse the returned values are inconsistent.  For example: array length does not correspond with the actual number of items.  It may be advisable to use Indefinite-length CBOR arrays and maps, which are foreseen for data streaming purposes.</p>
 <h1 id="rfc.section.6">
-<a href="#rfc.section.6">6.</a> <a href="#block" id="block">Use of Block</a>
+<a href="#rfc.section.6">6.</a> <a href="#discovery" id="discovery">Application Discovery</a>
 </h1>
-<p id="rfc.section.6.p.1">The CoAP protocol provides reliability by acknowledging the UDP datagrams.  However, when large pieces of data need to be transported, datagrams get fragmented, thus creating constraints on the resources in the client, server and intermediate routers. The block option <a href="#RFC7959" class="xref">[RFC7959]</a> allows the transport of the total payload in individual blocks of which the size can be adapted to the underlying transport sizes such as: (UDP datagram size ~64KiB, IPv6 MTU of 1280, IEEE 802.15.4 payload of 60-80 bytes). Each block is individually acknowledged to guarantee reliability.</p>
-<p id="rfc.section.6.p.2">Notice that the Block mechanism splits the data at fixed positions, such that individual data fields may become fragmented. Therefore, assembly of multiple blocks may be required to process the complete data field.</p>
-<p id="rfc.section.6.p.3">Beware of race conditions. Blocks are filled one at a time and care should be taken that the whole data representation is sent in multiple blocks sequentially without interruption. On the server, values are changed, lists are re-ordered, extended or reduced. When these actions happen during the serialization of the contents of the resource, the transported results do not correspond with a state having occurred in the server; or worse the returned values are inconsistent.  For example: array length does not correspond with the actual number of items.  It may be advisable to use Indefinite-length CBOR arrays and maps, which are foreseen for data streaming purposes.</p>
-<h1 id="rfc.section.7">
-<a href="#rfc.section.7">7.</a> <a href="#discovery" id="discovery">Application Discovery</a>
+<p id="rfc.section.6.p.1">Two application discovery mechanisms are supported by CoMI, the YANG library data model as defined by <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a> and the CORE resource discovery <a href="#RFC6690" class="xref">[RFC6690]</a>.  Implementers may choose to implement one or the other or both.</p>
+<h1 id="rfc.section.6.1">
+<a href="#rfc.section.6.1">6.1.</a> <a href="#yang-library" id="yang-library">YANG library</a>
 </h1>
-<p id="rfc.section.7.p.1">Two application discovery mechanisms are supported by CoMI, the YANG library data model as defined by <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a> and the CORE resource discovery <a href="#RFC6690" class="xref">[RFC6690]</a>.  Implementers may choose to implement one or the other or both.</p>
-<h1 id="rfc.section.7.1">
-<a href="#rfc.section.7.1">7.1.</a> <a href="#yang-library" id="yang-library">YANG library</a>
-</h1>
-<p id="rfc.section.7.1.p.1">The YANG library data model <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a> provides a high level description of the resources available. The YANG library contains the list of modules, features and deviations supported by the CoMI server.  From this information, CoMI clients can infer the list of data nodes supported and the interaction model to be used to access them. This module also contains the list of datastores implemented.</p>
-<p id="rfc.section.7.1.p.2">The location of the YANG library can be found by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.yl&#8221;. Upon success, the return payload will contain the root resource of the YANG library module.</p>
+<p id="rfc.section.6.1.p.1">The YANG library data model <a href="#I-D.veillette-core-yang-library" class="xref">[I-D.veillette-core-yang-library]</a> provides a high level description of the resources available. The YANG library contains the list of modules, features and deviations supported by the CoMI server.  From this information, CoMI clients can infer the list of data nodes supported and the interaction model to be used to access them. This module also contains the list of datastores implemented.</p>
+<p id="rfc.section.6.1.p.2">The location of the YANG library can be found by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.yl&#8221;. Upon success, the return payload will contain the root resource of the YANG library module.</p>
 <pre>
 REQ: GET /.well-known/core?rt=core.c.yl
 
 RES: 2.05 Content (Content-Format: application/link-format)
 &lt;/c/kv &gt;;rt="core.c.yl"
 </pre>
-<h1 id="rfc.section.7.2">
-<a href="#rfc.section.7.2">7.2.</a> <a href="#resource-discovery" id="resource-discovery">Resource Discovery</a>
+<h1 id="rfc.section.6.2">
+<a href="#rfc.section.6.2">6.2.</a> <a href="#resource-discovery" id="resource-discovery">Resource Discovery</a>
 </h1>
-<p id="rfc.section.7.2.p.1">Even if the YANG library provides all the information needed for application discovery, the implementation of Resource discovery as defined by <a href="#RFC6690" class="xref">[RFC6690]</a> can be desirable for a seamless integration with other CoAP interfaces and services.</p>
-<h1 id="rfc.section.7.2.1">
-<a href="#rfc.section.7.2.1">7.2.1.</a> <a href="#datastore-resource-discovery" id="datastore-resource-discovery">Datastore Resource Discovery</a>
+<p id="rfc.section.6.2.p.1">Even if the YANG library provides all the information needed for application discovery, the implementation of Resource discovery as defined by <a href="#RFC6690" class="xref">[RFC6690]</a> can be desirable for a seamless integration with other CoAP interfaces and services.</p>
+<h1 id="rfc.section.6.2.1">
+<a href="#rfc.section.6.2.1">6.2.1.</a> <a href="#datastore-resource-discovery" id="datastore-resource-discovery">Datastore Resource Discovery</a>
 </h1>
-<p id="rfc.section.7.2.1.p.1">The presence and location of (path to) each datastore implemented by the CoMI server can be discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.ds&#8221;.</p>
-<p id="rfc.section.7.2.1.p.2">Upon success, the return payload contains the list of datastore resources.</p>
-<p id="rfc.section.7.2.1.p.3">Each datastore returned is further qualified using the &#8220;ds&#8221; Link-Format attribute.  This attribute is set to the SID assigned to the datastore identity.  When a unified datastore is implemented, the ds attribute is set to 1029.  For other examples of datastores, see the Network Management Datastore Architecture (NMDA) <a href="#RFC7950" class="xref">[RFC7950]</a>.</p>
+<p id="rfc.section.6.2.1.p.1">The presence and location of (path to) each datastore implemented by the CoMI server can be discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.ds&#8221;.</p>
+<p id="rfc.section.6.2.1.p.2">Upon success, the return payload contains the list of datastore resources.</p>
+<p id="rfc.section.6.2.1.p.3">Each datastore returned is further qualified using the &#8220;ds&#8221; Link-Format attribute.  This attribute is set to the SID assigned to the datastore identity.  When a unified datastore is implemented, the ds attribute is set to 1029.  For other examples of datastores, see the Network Management Datastore Architecture (NMDA) <a href="#RFC7950" class="xref">[RFC7950]</a>.</p>
 <pre>
 link-extension    = ( "ds" "=" sid ) )
                     ; SID assigned to the datastore identity
 sid               = 1*DIGIT
 </pre>
-<p id="rfc.section.7.2.1.p.4">For example:</p>
+<p id="rfc.section.6.2.1.p.4">For example:</p>
 <pre>
 REQ: GET /.well-known/core?rt=core.c.ds
 
 RES: 2.05 Content (Content-Format: application/link-format)
 &lt;/c&gt;; rt="core.c.ds";ds= 1029
 </pre>
-<h1 id="rfc.section.7.2.2">
-<a href="#rfc.section.7.2.2">7.2.2.</a> <a href="#data-node-resource-discovery" id="data-node-resource-discovery">Data node Resource Discovery</a>
+<h1 id="rfc.section.6.2.2">
+<a href="#rfc.section.6.2.2">6.2.2.</a> <a href="#data-node-resource-discovery" id="data-node-resource-discovery">Data node Resource Discovery</a>
 </h1>
-<p id="rfc.section.7.2.2.p.1">The presence and location of (path to) each data node implemented by the CoMI server are discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.dn&#8221;.</p>
-<p id="rfc.section.7.2.2.p.2">Upon success, the return payload contains the SID assigned to each data node and their location.</p>
-<p id="rfc.section.7.2.2.p.3">The example below shows the discovery of the presence and location of data nodes. Data nodes &#8216;/ietf-system:system-state/clock/boot-datetime&#8217; (SID 1722) and &#8216;/ietf-system:system-state/clock/current-datetime&#8217; (SID 1723) are returned.</p>
+<p id="rfc.section.6.2.2.p.1">The presence and location of (path to) each data node implemented by the CoMI server are discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.dn&#8221;.</p>
+<p id="rfc.section.6.2.2.p.2">Upon success, the return payload contains the SID assigned to each data node and their location.</p>
+<p id="rfc.section.6.2.2.p.3">The example below shows the discovery of the presence and location of data nodes. Data nodes &#8216;/ietf-system:system-state/clock/boot-datetime&#8217; (SID 1722) and &#8216;/ietf-system:system-state/clock/current-datetime&#8217; (SID 1723) are returned.</p>
 <pre>
 REQ: GET /.well-known/core?rt=core.c.dn
 
@@ -1538,25 +1543,25 @@ RES: 2.05 Content (Content-Format: application/link-format)
 &lt;/c/a6&gt;;rt="core.c.dn",
 &lt;/c/a7&gt;;rt="core.c.dn"
 </pre>
-<p id="rfc.section.7.2.2.p.4">The list of data nodes may become prohibitively long. Implementations MAY return a subset of this list or can rely solely on the YANG library.</p>
-<h1 id="rfc.section.7.2.3">
-<a href="#rfc.section.7.2.3">7.2.3.</a> <a href="#event-stream-resource-discovery" id="event-stream-resource-discovery">Event stream Resource Discovery</a>
+<p id="rfc.section.6.2.2.p.4">The list of data nodes may become prohibitively long. Implementations MAY return a subset of this list or can rely solely on the YANG library.</p>
+<h1 id="rfc.section.6.2.3">
+<a href="#rfc.section.6.2.3">6.2.3.</a> <a href="#event-stream-resource-discovery" id="event-stream-resource-discovery">Event stream Resource Discovery</a>
 </h1>
-<p id="rfc.section.7.2.3.p.1">The presence and location of (path to) each event stream implemented by the CoMI server are discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.es&#8221;.</p>
-<p id="rfc.section.7.2.3.p.2">Upon success, the return payload contains the list of event stream resources.</p>
-<p id="rfc.section.7.2.3.p.3">For example:</p>
+<p id="rfc.section.6.2.3.p.1">The presence and location of (path to) each event stream implemented by the CoMI server are discovered by sending a GET request to &#8220;/.well-known/core&#8221; including a resource type (RT) parameter with the value &#8220;core.c.es&#8221;.</p>
+<p id="rfc.section.6.2.3.p.2">Upon success, the return payload contains the list of event stream resources.</p>
+<p id="rfc.section.6.2.3.p.3">For example:</p>
 <pre>
 REQ: GET /.well-known/core?rt=core.c.es
 
 RES: 2.05 Content (Content-Format: application/link-format)
 &lt;/s&gt;;rt="core.c.es"
 </pre>
-<h1 id="rfc.section.8">
-<a href="#rfc.section.8">8.</a> <a href="#error-handling" id="error-handling">Error Handling</a>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#error-handling" id="error-handling">Error Handling</a>
 </h1>
-<p id="rfc.section.8.p.1">In case a request is received which cannot be processed properly, the CoMI server MUST return an error message. This error message MUST contain a CoAP 4.xx or 5.xx response code.</p>
-<p id="rfc.section.8.p.2">Errors returned by a CoMI server can be broken into two categories, those associated to the CoAP protocol itself and those generated during the validation of the YANG data model constrains as described in <a href="#RFC7950" class="xref">[RFC7950]</a> section 8.</p>
-<p id="rfc.section.8.p.3">The following list of common CoAP errors should be implemented by CoMI servers. This list is not exhaustive, other errors defined by CoAP and associated RFCs may be applicable.</p>
+<p id="rfc.section.7.p.1">In case a request is received which cannot be processed properly, the CoMI server MUST return an error message. This error message MUST contain a CoAP 4.xx or 5.xx response code.</p>
+<p id="rfc.section.7.p.2">Errors returned by a CoMI server can be broken into two categories, those associated to the CoAP protocol itself and those generated during the validation of the YANG data model constrains as described in <a href="#RFC7950" class="xref">[RFC7950]</a> section 8.</p>
+<p id="rfc.section.7.p.3">The following list of common CoAP errors should be implemented by CoMI servers. This list is not exhaustive, other errors defined by CoAP and associated RFCs may be applicable.</p>
 <p></p>
 
 <ul>
@@ -1568,7 +1573,7 @@ RES: 2.05 Content (Content-Format: application/link-format)
 <li>Error 4.13 (Request Entity Too Large) may be returned by the CoMI server during a block transfer request, see <a href="#RFC7959" class="xref">[RFC7959]</a> for more details.</li>
 <li>Error 4.15 (Unsupported Content-Format) is returned by the CoMI server when the Content-Format used in the request don&#8217;t match those specified in section <a href="#content-format" class="xref">Section 2.4</a>.</li>
 </ul>
-<p id="rfc.section.8.p.5">CoMI server MUST also enforce the different constraints associated to the YANG data models implemented. These constraints are described in <a href="#RFC7950" class="xref">[RFC7950]</a> section 8. These errors are reported using the CoAP error code 4.00 (Bad Request) and may have the following error container as payload. The YANG definition and associated .sid file are available in <a href="#ietf-comi-yang" class="xref">Appendix A</a> and <a href="#ietf-comi-sid" class="xref">Appendix B</a>. The error container is encoded using the encoding rules of a YANG data template as defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 5.</p>
+<p id="rfc.section.7.p.5">CoMI server MUST also enforce the different constraints associated to the YANG data models implemented. These constraints are described in <a href="#RFC7950" class="xref">[RFC7950]</a> section 8. These errors are reported using the CoAP error code 4.00 (Bad Request) and may have the following error container as payload. The YANG definition and associated .sid file are available in <a href="#ietf-comi-yang" class="xref">Appendix A</a> and <a href="#ietf-comi-sid" class="xref">Appendix B</a>. The error container is encoded using the encoding rules of a YANG data template as defined in <a href="#I-D.ietf-core-yang-cbor" class="xref">[I-D.ietf-core-yang-cbor]</a> section 5.</p>
 <pre>
 +--rw error!
    +--rw error-tag             identityref
@@ -1576,7 +1581,7 @@ RES: 2.05 Content (Content-Format: application/link-format)
    +--rw error-data-node?      instance-identifier
    +--rw error-message?        string
 </pre>
-<p id="rfc.section.8.p.6">The following &#8216;error-tag&#8217; and &#8216;error-app-tag&#8217; are defined by the ietf-comi YANG module, these tags are implemented as YANG identity and can be extended as needed.</p>
+<p id="rfc.section.7.p.6">The following &#8216;error-tag&#8217; and &#8216;error-app-tag&#8217; are defined by the ietf-comi YANG module, these tags are implemented as YANG identity and can be extended as needed.</p>
 <p></p>
 
 <ul>
@@ -1597,7 +1602,7 @@ RES: 2.05 Content (Content-Format: application/link-format)
 </ul>
 </li>
 <li>error-tag &#8216;missing-element&#8217; is returned by the CoMI server when the operation requested by a CoMI client fail to comply with the &#8216;mandatory&#8217; constraint defined. The &#8216;mandatory&#8217; constraint is enforced for leafs and choices, unless the node or any of its ancestors have a &#8216;when&#8217; condition or &#8216;if-feature&#8217; expression that evaluates to &#8216;false&#8217;.  <ul>
-<li>error-app-tag &#8216;missing-key&#8217; is returned by the CoMI server to further qualify an missing-element error. This error is returned when the CoMI client  tries to create or list instance, without all the &#8216;key&#8217; specified or when the CoMI client  tries to delete a leaf listed as a &#8216;key&#8217;.</li>
+<li>error-app-tag &#8216;missing-key&#8217; is returned by the CoMI server to further qualify a missing-element error. This error is returned when the CoMI client  tries to create or list instance, without all the &#8216;key&#8217; specified or when the CoMI client  tries to delete a leaf listed as a &#8216;key&#8217;.</li>
 <li>error-app-tag &#8216;missing-input-parameter&#8217; is returned by the CoMI server when the input parameters of an RPC or action are incomplete.</li>
 </ul>
 </li>
@@ -1610,7 +1615,7 @@ RES: 2.05 Content (Content-Format: application/link-format)
 </li>
 <li>error-tag &#8216;error&#8217; is returned by the CoMI server when an unspecified error has occurred.</li>
 </ul>
-<p id="rfc.section.8.p.8">For example, the CoMI server might return the following error.</p>
+<p id="rfc.section.7.p.8">For example, the CoMI server might return the following error.</p>
 <pre>
 RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 {
@@ -1625,20 +1630,20 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
   }
 }
 </pre>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
+</h1>
+<p id="rfc.section.8.p.1">For secure network management, it is important to restrict access to configuration variables only to authorized parties. CoMI re-uses the security mechanisms already available to CoAP, this includes DTLS <a href="#RFC6347" class="xref">[RFC6347]</a> for protected access to resources, as well suitable authentication and authorization mechanisms.</p>
+<p id="rfc.section.8.p.2">Among the security decisions that need to be made are selecting security modes and encryption mechanisms (see <a href="#RFC7252" class="xref">[RFC7252]</a>). This requires a trade-off, as the NoKey mode gives no protection at all, but is easy to implement, whereas the X.509 mode is quite secure, but may be too complex for constrained devices.</p>
+<p id="rfc.section.8.p.3">In addition, mechanisms for authentication and authorization may need to be selected.</p>
+<p id="rfc.section.8.p.4">CoMI avoids defining new security mechanisms as much as possible.  However, some adaptations may still be required, to cater for CoMI&#8217;s specific requirements.</p>
 <h1 id="rfc.section.9">
-<a href="#rfc.section.9">9.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
+<a href="#rfc.section.9">9.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
-<p id="rfc.section.9.p.1">For secure network management, it is important to restrict access to configuration variables only to authorized parties. CoMI re-uses the security mechanisms already available to CoAP, this includes DTLS <a href="#RFC6347" class="xref">[RFC6347]</a> for protected access to resources, as well suitable authentication and authorization mechanisms.</p>
-<p id="rfc.section.9.p.2">Among the security decisions that need to be made are selecting security modes and encryption mechanisms (see <a href="#RFC7252" class="xref">[RFC7252]</a>). This requires a trade-off, as the NoKey mode gives no protection at all, but is easy to implement, whereas the X.509 mode is quite secure, but may be too complex for constrained devices.</p>
-<p id="rfc.section.9.p.3">In addition, mechanisms for authentication and authorization may need to be selected.</p>
-<p id="rfc.section.9.p.4">CoMI avoids defining new security mechanisms as much as possible.  However, some adaptations may still be required, to cater for CoMI&#8217;s specific requirements.</p>
-<h1 id="rfc.section.10">
-<a href="#rfc.section.10">10.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
+<h1 id="rfc.section.9.1">
+<a href="#rfc.section.9.1">9.1.</a> <a href="#resource-type-rt-link-target-attribute-values-registry" id="resource-type-rt-link-target-attribute-values-registry">Resource Type (rt=) Link Target Attribute Values Registry</a>
 </h1>
-<h1 id="rfc.section.10.1">
-<a href="#rfc.section.10.1">10.1.</a> <a href="#resource-type-rt-link-target-attribute-values-registry" id="resource-type-rt-link-target-attribute-values-registry">Resource Type (rt=) Link Target Attribute Values Registry</a>
-</h1>
-<p id="rfc.section.10.1.p.1">This document adds the following resource type to the &#8220;Resource Type (rt=) Link Target Attribute Values&#8221;, within the &#8220;Constrained RESTful Environments (CoRE) Parameters&#8221; registry.</p>
+<p id="rfc.section.9.1.p.1">This document adds the following resource type to the &#8220;Resource Type (rt=) Link Target Attribute Values&#8221;, within the &#8220;Constrained RESTful Environments (CoRE) Parameters&#8221; registry.</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Value</th>
@@ -1668,11 +1673,11 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.10.1.p.2">// RFC Ed.: replace RFC XXXX with this RFC number and remove this note.</p>
-<h1 id="rfc.section.10.2">
-<a href="#rfc.section.10.2">10.2.</a> <a href="#coap-content-formats-registry" id="coap-content-formats-registry">CoAP Content-Formats Registry</a>
+<p id="rfc.section.9.1.p.2">// RFC Ed.: replace RFC XXXX with this RFC number and remove this note.</p>
+<h1 id="rfc.section.9.2">
+<a href="#rfc.section.9.2">9.2.</a> <a href="#coap-content-formats-registry" id="coap-content-formats-registry">CoAP Content-Formats Registry</a>
 </h1>
-<p id="rfc.section.10.2.p.1">This document adds the following Content-Format to the &#8220;CoAP Content-Formats&#8221;, within the &#8220;Constrained RESTful Environments (CoRE) Parameters&#8221; registry.</p>
+<p id="rfc.section.9.2.p.1">This document adds the following Content-Format to the &#8220;CoAP Content-Formats&#8221;, within the &#8220;Constrained RESTful Environments (CoRE) Parameters&#8221; registry.</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Media Type</th>
@@ -1697,11 +1702,11 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.10.2.p.2">// RFC Ed.: replace XXX with assigned IDs and remove this note.  // RFC Ed.: replace RFC XXXX with this RFC number and remove this note.</p>
-<h1 id="rfc.section.10.3">
-<a href="#rfc.section.10.3">10.3.</a> <a href="#media-types-registry" id="media-types-registry">Media Types Registry</a>
+<p id="rfc.section.9.2.p.2">// RFC Ed.: replace XXX with assigned IDs and remove this note.  // RFC Ed.: replace RFC XXXX with this RFC number and remove this note.</p>
+<h1 id="rfc.section.9.3">
+<a href="#rfc.section.9.3">9.3.</a> <a href="#media-types-registry" id="media-types-registry">Media Types Registry</a>
 </h1>
-<p id="rfc.section.10.3.p.1">This document adds the following media types to the &#8220;Media Types&#8221; registry.</p>
+<p id="rfc.section.9.3.p.1">This document adds the following media types to the &#8220;Media Types&#8221; registry.</p>
 <table cellpadding="3" cellspacing="0" class="tt full left">
 <thead><tr>
 <th class="left">Name</th>
@@ -1736,7 +1741,7 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.10.3.p.2">Each of these media types share the following information:</p>
+<p id="rfc.section.9.3.p.2">Each of these media types share the following information:</p>
 <p></p>
 
 <ul>
@@ -1770,17 +1775,17 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 <li>Change Controller: IESG</li>
 <li>Provisional registration?  No</li>
 </ul>
-<p id="rfc.section.10.3.p.5">// RFC Ed.: replace RFC XXXX with this RFC number and remove this note.</p>
-<h1 id="rfc.section.11">
-<a href="#rfc.section.11">11.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
+<p id="rfc.section.9.3.p.5">// RFC Ed.: replace RFC XXXX with this RFC number and remove this note.</p>
+<h1 id="rfc.section.10">
+<a href="#rfc.section.10">10.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
 </h1>
-<p id="rfc.section.11.p.1">We are very grateful to Bert Greevenbosch who was one of the original authors of the CoMI specification and specified CBOR encoding and use of hashes.</p>
-<p id="rfc.section.11.p.2">Mehmet Ersue and Bert Wijnen explained the encoding aspects of PDUs transported under SNMP. Carsten Bormann has given feedback on the use of CBOR.</p>
-<p id="rfc.section.11.p.3">The draft has benefited from comments (alphabetical order) by Rodney Cummings, Dee Denteneer, Esko Dijk, Michael van Hartskamp, Tanguy Ropitault, Juergen Schoenwaelder, Anuj Sehgal, Zach Shelby, Hannes Tschofenig, Michael Verschoor, and Thomas Watteyne.</p>
+<p id="rfc.section.10.p.1">We are very grateful to Bert Greevenbosch who was one of the original authors of the CoMI specification.</p>
+<p id="rfc.section.10.p.2">Mehmet Ersue and Bert Wijnen explained the encoding aspects of PDUs transported under SNMP. Carsten Bormann has given feedback on the use of CBOR.</p>
+<p id="rfc.section.10.p.3">The draft has benefited from comments (alphabetical order) by Rodney Cummings, Dee Denteneer, Esko Dijk, Michael van Hartskamp, Tanguy Ropitault, Juergen Schoenwaelder, Anuj Sehgal, Zach Shelby, Hannes Tschofenig, Michael Verschoor, and Thomas Watteyne.</p>
 <h1 id="rfc.references">
-<a href="#rfc.references">12.</a> References</h1>
+<a href="#rfc.references">11.</a> References</h1>
 <h1 id="rfc.references.1">
-<a href="#rfc.references.1">12.1.</a> Normative References</h1>
+<a href="#rfc.references.1">11.1.</a> Normative References</h1>
 <table><tbody>
 <tr>
 <td class="reference"><b id="I-D.ietf-core-sid">[I-D.ietf-core-sid]</b></td>
@@ -1859,13 +1864,8 @@ RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
 </tr>
 </tbody></table>
 <h1 id="rfc.references.2">
-<a href="#rfc.references.2">12.2.</a> Informative References</h1>
+<a href="#rfc.references.2">11.2.</a> Informative References</h1>
 <table><tbody>
-<tr>
-<td class="reference"><b id="RFC4293">[RFC4293]</b></td>
-<td class="top">
-<a>Routhier, S.</a>, "<a href="https://tools.ietf.org/html/rfc4293">Management Information Base for the Internet Protocol (IP)</a>", RFC 4293, DOI 10.17487/RFC4293, April 2006.</td>
-</tr>
 <tr>
 <td class="reference"><b id="RFC6347">[RFC6347]</b></td>
 <td class="top">
@@ -1910,7 +1910,7 @@ module ietf-comi {
   import ietf-restconf {
     prefix rc;
     description
-      "This import statement is only present to access
+      "This import statement is required to access
        the yang-data extension defined in RFC 8040.";
     reference "RFC 8040: RESTCONF Protocol";
   }
@@ -1936,20 +1936,6 @@ module ietf-comi {
      by the CoMI protocol.";
 
   revision 2019-03-28 {
-    description
-      "typedef sid moved to ietf-sid-file.yang.";
-    reference
-      "[I-D.ietf-core-comi] CoAP Management Interface";
-  }
-  
-  revision 2018-09-26 {
-    description
-      "Use of YANG data template for the error payload.
-       Definition of the unified datastore.";
-    reference
-      "[I-D.ietf-core-comi] CoAP Management Interface";
-  }
-  revision 2017-07-01 {
      description
       "Initial revision.";
     reference
@@ -1959,7 +1945,8 @@ module ietf-comi {
   identity unified {
     base ds:datastore;
     description
-      "The unified configuration and operational state datastore.";
+      "Identifier of the unified configuration and operational
+       state datastore.";
   }
 
   identity error-tag {
@@ -2190,7 +2177,7 @@ module ietf-comi {
     }
   ],
   "module-name": "ietf-comi",
-  "module-revision": "2018-09-26",
+  "module-revision": "2019-03-28",
   "items": [
     {
       "namespace": "module",
@@ -2344,283 +2331,6 @@ module ietf-comi {
     }
   ]
 }
-</pre>
-<h1 id="rfc.appendix.C">
-<a href="#rfc.appendix.C">Appendix C.</a> <a href="#example-specifications" id="example-specifications">YANG example specifications</a>
-</h1>
-<p id="rfc.section.C.p.1">This appendix shows five YANG example specifications taken over from as many existing YANG modules.  Each YANG item identifier is accompanied by its SID shown after the &#8220;//&#8221; comment sign.</p>
-<h1 id="rfc.appendix.C.1">
-<a href="#rfc.appendix.C.1">C.1.</a> <a href="#ietf-system" id="ietf-system">ietf-system</a>
-</h1>
-<p id="rfc.section.C.1.p.1">Excerpt of the YANG module ietf-system <a href="#RFC7317" class="xref">[RFC7317]</a>.</p>
-<pre>
-module ietf-system {                   // SID 1700
-  container system {                   // SID 1717
-    container clock {                  // SID 1738
-      choice timezone {
-        case timezone-name {
-          leaf timezone-name {         // SID 1739
-            type timezone-name;
-          }
-        }
-        case timezone-utc-offset {
-          leaf timezone-utc-offset {   // SID 1740
-            type int16 {
-            }
-          }
-        }
-      }
-    }
-    container ntp {                    // SID 1754
-      leaf enabled {                   // SID 1755
-        type boolean;
-        default true;
-      }
-      list server {                    // SID 1756
-        key name;
-        leaf name {                    // SID 1759
-          type string;
-        }
-        choice transport {
-          case udp {
-            container udp {            // SID 1761
-              leaf address {           // SID 1762
-                type inet:host;
-              }
-              leaf port {              // SID 1763
-                type inet:port-number;
-              }
-            }
-          }
-        }
-        leaf association-type {        // SID 1757
-          type enumeration {
-            enum server {
-            }
-            enum peer {
-            }
-            enum pool {
-            }
-          }
-        }
-        leaf iburst {                  // SID 1758
-          type boolean;
-        }
-        leaf prefer {                  // SID 1760
-          type boolean;
-          default false;
-        }
-      }
-    }
-  container system-state {             // SID 1720
-    container clock {                  // SID 1721
-      leaf current-datetime {          // SID 1723
-        type yang:date-and-time;
-      }
-      leaf boot-datetime {             // SID 1722
-        type yang:date-and-time;
-      }
-    }
-  }
-}
-</pre>
-<h1 id="rfc.appendix.C.2">
-<a href="#rfc.appendix.C.2">C.2.</a> <a href="#server" id="server">server list</a>
-</h1>
-<p id="rfc.section.C.2.p.1">Taken over from <a href="#RFC7950" class="xref">[RFC7950]</a> section 7.15.3.</p>
-<pre>
-module example-server-farm {
-  yang-version 1.1;
-  namespace "urn:example:server-farm";
-  prefix "sfarm";
-
-  import ietf-yang-types {
-    prefix "yang";
-  }
-
-  list server {                        // SID 60000
-    key name;
-    leaf name {                        // SID 60001
-      type string;
-    }
-    action reset {                     // SID 60002
-      input {
-        leaf reset-at {                // SID 60003
-          type yang:date-and-time;
-          mandatory true;
-         }
-       }
-       output {
-         leaf reset-finished-at {      // SID 60004
-           type yang:date-and-time;
-           mandatory true;
-         }
-       }
-     }
-   }
-}
-
-</pre>
-<h1 id="rfc.appendix.C.3">
-<a href="#rfc.appendix.C.3">C.3.</a> <a href="#interfaces" id="interfaces">interfaces</a>
-</h1>
-<p id="rfc.section.C.3.p.1">Excerpt of the YANG module ietf-interfaces <a href="#RFC7223" class="xref">[RFC7223]</a>.</p>
-<pre>
-module ietf-interfaces {               // SID 1500
-  container interfaces {               // SID 1505
-    list interface {                   // SID 1533
-      key "name";
-      leaf name {                      // SID 1537
-        type string;
-      }
-      leaf description {               // SID 1534
-        type string;
-      }
-      leaf type {                      // SID 1538
-        type identityref {
-          base interface-type;
-        }
-        mandatory true;
-      }
-
-      leaf enabled {                   // SID 1535
-        type boolean;
-        default "true";
-      }
-
-      leaf link-up-down-trap-enable {  // SID 1536
-        if-feature if-mib;
-        type enumeration {
-          enum enabled {
-            value 1;
-          }
-          enum disabled {
-            value 2;
-          }
-        }
-      }
-    }
-  }
-}
-</pre>
-<h1 id="rfc.appendix.C.4">
-<a href="#rfc.appendix.C.4">C.4.</a> <a href="#notify-ex" id="notify-ex">Example-port</a>
-</h1>
-<p id="rfc.section.C.4.p.1">Notification example defined within this document.</p>
-<pre>
-module example-port {
-        ...
-        notification example-port-fault {   // SID 60010
-          description
-            "Event generated if a hardware fault on a
-             line card port is detected";
-          leaf port-name {                  // SID 60011
-            type string;
-            description "Port name";
-          }
-          leaf port-fault {                 // SID 60012
-            type string;
-            description "Error condition detected";
-          }
-        }
-      }
-</pre>
-<h1 id="rfc.appendix.C.5">
-<a href="#rfc.appendix.C.5">C.5.</a> <a href="#smi" id="smi">IP-MIB</a>
-</h1>
-<p id="rfc.section.C.5.p.1">The YANG translation of the SMI specifying the IP-MIB <a href="#RFC4293" class="xref">[RFC4293]</a>, extended with example SID numbers, yields:</p>
-<pre>
-module IP-MIB {
-  import IF-MIB {
-    prefix if-mib;
-  }
-  import INET-ADDRESS-MIB {
-    prefix inet-address;
-  }
-  import SNMPv2-TC {
-    prefix smiv2;
-  }
-  import ietf-inet-types {
-    prefix inet;
-  }
-  import yang-smi {
-    prefix smi;
-  }
-  import ietf-yang-types {
-    prefix yang;
-  }
-
-  container ip {                            // SID 60020
-    list ipNetToPhysicalEntry {             // SID 60021
-      key "ipNetToPhysicalIfIndex
-           ipNetToPhysicalNetAddressType
-           ipNetToPhysicalNetAddress";
-      leaf ipNetToPhysicalIfIndex {         // SID 60022
-        type if-mib:InterfaceIndex;
-      }
-      leaf ipNetToPhysicalNetAddressType {  // SID 60023
-        type inet-address:InetAddressType;
-      }
-      leaf ipNetToPhysicalNetAddress {      // SID 60024
-        type inet-address:InetAddress;
-      }
-      leaf ipNetToPhysicalPhysAddress {     // SID 60025
-        type yang:phys-address {
-          length "0..65535";
-        }
-      }
-      leaf ipNetToPhysicalLastUpdated {     // SID 60026
-        type yang:timestamp;
-      }
-      leaf ipNetToPhysicalType {            // SID 60027
-        type enumeration {
-          enum "other" {
-            value 1;
-          }
-          enum "invalid" {
-            value 2;
-          }
-          enum "dynamic" {
-            value 3;
-          }
-          enum "static" {
-            value 4;
-          }
-          enum "local" {
-            value 5;
-          }
-        }
-      }
-      leaf ipNetToPhysicalState {           // SID 60028
-        type enumeration {
-          enum "reachable" {
-            value 1;
-          }
-          enum "stale" {
-            value 2;
-          }
-          enum "delay" {
-            value 3;
-          }
-          enum "probe" {
-            value 4;
-          }
-          enum "invalid" {
-            value 5;
-          }
-          enum "unknown" {
-            value 6;
-          }
-          enum "incomplete" {
-            value 7;
-          }
-        }
-      }
-      leaf ipNetToPhysicalRowStatus {       // SID 60029
-        type smiv2:RowStatus;
-    }  // list ipNetToPhysicalEntry
-  }  // container ip
-}  // module IP-MIB
 </pre>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">

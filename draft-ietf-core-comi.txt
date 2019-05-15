@@ -5,16 +5,16 @@
 CoRE                                                   M. Veillette, Ed.
 Internet-Draft                                   Trilliant Networks Inc.
 Intended status: Standards Track                    P. van der Stok, Ed.
-Expires: November 15, 2019                                    consultant
+Expires: November 16, 2019                                    consultant
                                                                 A. Pelov
                                                                   Acklio
                                                               A. Bierman
                                                                YumaWorks
-                                                            May 14, 2019
+                                                            May 15, 2019
 
 
                        CoAP Management Interface
-                        draft-ietf-core-comi-04
+                        draft-ietf-core-comi-05
 
 Abstract
 
@@ -24,7 +24,9 @@ Abstract
    access datastore and data node resources specified in YANG, or SMIv2
    converted to YANG.  CoMI uses the YANG to CBOR mapping and converts
    YANG identifier strings to numeric identifiers for payload size
-   reduction.  CoMI extends the set of YANG based protocols, NETCONF and
+   reduction.  The complete solution composed of CoMI,
+   [I-D.ietf-core-yang-cbor] and [I-D.ietf-core-sid] is called CORECONF.
+   CORECONF extends the set of YANG based protocols, NETCONF and
    RESTCONF, with the capability to manage constrained devices and
    networks.
 
@@ -48,15 +50,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 15, 2019.
 
 
 
-
-Veillette, et al.       Expires November 15, 2019               [Page 1]
+Veillette, et al.       Expires November 16, 2019               [Page 1]
 
 Internet-Draft                    CoMI                          May 2019
 
+
+   This Internet-Draft will expire on November 16, 2019.
 
 Copyright Notice
 
@@ -87,58 +89,51 @@ Table of Contents
    4.  CoAP Interface  . . . . . . . . . . . . . . . . . . . . . . .  11
      4.1.  Using the 'k' Uri-Query option  . . . . . . . . . . . . .  13
      4.2.  Data Retrieval  . . . . . . . . . . . . . . . . . . . . .  14
-       4.2.1.  Using the 'c' Uri-Query option  . . . . . . . . . . .  15
+       4.2.1.  Using the 'c' Uri-Query option  . . . . . . . . . . .  14
        4.2.2.  Using the 'd' Uri-Query option  . . . . . . . . . . .  15
        4.2.3.  GET . . . . . . . . . . . . . . . . . . . . . . . . .  16
-       4.2.4.  FETCH . . . . . . . . . . . . . . . . . . . . . . . .  19
-     4.3.  Data Editing  . . . . . . . . . . . . . . . . . . . . . .  20
-       4.3.1.  Data Ordering . . . . . . . . . . . . . . . . . . . .  20
-       4.3.2.  POST  . . . . . . . . . . . . . . . . . . . . . . . .  20
-       4.3.3.  PUT . . . . . . . . . . . . . . . . . . . . . . . . .  21
-       4.3.4.  iPATCH  . . . . . . . . . . . . . . . . . . . . . . .  22
-       4.3.5.  DELETE  . . . . . . . . . . . . . . . . . . . . . . .  23
+       4.2.4.  FETCH . . . . . . . . . . . . . . . . . . . . . . . .  18
+     4.3.  Data Editing  . . . . . . . . . . . . . . . . . . . . . .  19
+       4.3.1.  Data Ordering . . . . . . . . . . . . . . . . . . . .  19
+       4.3.2.  POST  . . . . . . . . . . . . . . . . . . . . . . . .  19
+       4.3.3.  PUT . . . . . . . . . . . . . . . . . . . . . . . . .  20
+       4.3.4.  iPATCH  . . . . . . . . . . . . . . . . . . . . . . .  21
+       4.3.5.  DELETE  . . . . . . . . . . . . . . . . . . . . . . .  22
      4.4.  Full datastore access . . . . . . . . . . . . . . . . . .  23
-       4.4.1.  Full datastore examples . . . . . . . . . . . . . . .  24
-     4.5.  Event stream  . . . . . . . . . . . . . . . . . . . . . .  25
-       4.5.1.  Notify Examples . . . . . . . . . . . . . . . . . . .  26
+       4.4.1.  Full datastore examples . . . . . . . . . . . . . . .  23
+     4.5.  Event stream  . . . . . . . . . . . . . . . . . . . . . .  24
+       4.5.1.  Notify Examples . . . . . . . . . . . . . . . . . . .  25
+       4.5.2.  The 'f' Uri-Query option  . . . . . . . . . . . . . .  26
      4.6.  RPC statements  . . . . . . . . . . . . . . . . . . . . .  27
        4.6.1.  RPC Example . . . . . . . . . . . . . . . . . . . . .  27
-   5.  Access to MIB Data  . . . . . . . . . . . . . . . . . . . . .  28
-   6.  Use of Block  . . . . . . . . . . . . . . . . . . . . . . . .  28
-   7.  Application Discovery . . . . . . . . . . . . . . . . . . . .  29
 
 
 
-Veillette, et al.       Expires November 15, 2019               [Page 2]
+Veillette, et al.       Expires November 16, 2019               [Page 2]
 
 Internet-Draft                    CoMI                          May 2019
 
 
-     7.1.  YANG library  . . . . . . . . . . . . . . . . . . . . . .  29
-     7.2.  Resource Discovery  . . . . . . . . . . . . . . . . . . .  29
-       7.2.1.  Datastore Resource Discovery  . . . . . . . . . . . .  30
-       7.2.2.  Data node Resource Discovery  . . . . . . . . . . . .  30
-       7.2.3.  Event stream Resource Discovery . . . . . . . . . . .  31
-   8.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  31
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  34
-   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  35
-     10.1.  Resource Type (rt=) Link Target Attribute Values
-            Registry . . . . . . . . . . . . . . . . . . . . . . . .  35
-     10.2.  CoAP Content-Formats Registry  . . . . . . . . . . . . .  35
-     10.3.  Media Types Registry . . . . . . . . . . . . . . . . . .  36
-   11. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  37
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  38
-     12.1.  Normative References . . . . . . . . . . . . . . . . . .  38
-     12.2.  Informative References . . . . . . . . . . . . . . . . .  39
+   5.  Use of Block  . . . . . . . . . . . . . . . . . . . . . . . .  29
+   6.  Application Discovery . . . . . . . . . . . . . . . . . . . .  29
+     6.1.  YANG library  . . . . . . . . . . . . . . . . . . . . . .  29
+     6.2.  Resource Discovery  . . . . . . . . . . . . . . . . . . .  30
+       6.2.1.  Datastore Resource Discovery  . . . . . . . . . . . .  30
+       6.2.2.  Data node Resource Discovery  . . . . . . . . . . . .  30
+       6.2.3.  Event stream Resource Discovery . . . . . . . . . . .  31
+   7.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  31
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  35
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  35
+     9.1.  Resource Type (rt=) Link Target Attribute Values Registry  35
+     9.2.  CoAP Content-Formats Registry . . . . . . . . . . . . . .  36
+     9.3.  Media Types Registry  . . . . . . . . . . . . . . . . . .  36
+   10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  38
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  38
+     11.1.  Normative References . . . . . . . . . . . . . . . . . .  38
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  40
    Appendix A.  ietf-comi YANG module  . . . . . . . . . . . . . . .  40
    Appendix B.  ietf-comi .sid file  . . . . . . . . . . . . . . . .  46
-   Appendix C.  YANG example specifications  . . . . . . . . . . . .  49
-     C.1.  ietf-system . . . . . . . . . . . . . . . . . . . . . . .  49
-     C.2.  server list . . . . . . . . . . . . . . . . . . . . . . .  51
-     C.3.  interfaces  . . . . . . . . . . . . . . . . . . . . . . .  52
-     C.4.  Example-port  . . . . . . . . . . . . . . . . . . . . . .  52
-     C.5.  IP-MIB  . . . . . . . . . . . . . . . . . . . . . . . . .  53
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  55
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  49
 
 1.  Introduction
 
@@ -160,16 +155,6 @@ Internet-Draft                    CoMI                          May 2019
    language, such as YANG, promotes interoperability between devices and
    applications from different manufacturers.
 
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019               [Page 3]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    CoMI and RESTCONF are intended to work in a stateless client-server
    fashion.  They use a single round-trip to complete a single editing
    transaction, where NETCONF needs multiple round trips.
@@ -177,6 +162,13 @@ Internet-Draft                    CoMI                          May 2019
    To promote small messges, CoMI uses a YANG to CBOR mapping
    [I-D.ietf-core-yang-cbor] and numeric identifiers [I-D.ietf-core-sid]
    to minimize CBOR payloads and URI length.
+
+
+
+Veillette, et al.       Expires November 16, 2019               [Page 3]
+
+Internet-Draft                    CoMI                          May 2019
+
 
 1.1.  Terminology
 
@@ -192,8 +184,8 @@ Internet-Draft                    CoMI                          May 2019
    The following terms are defined in [RFC6241]: configuration data,
    datastore, state data
 
-   The following term is defined in [I-D.ietf-core-yang-cbor]: YANG
-   schema item identifier (SID).
+   The following term is defined in [I-D.ietf-core-sid]: YANG schema
+   item identifier (SID).
 
    The following terms are defined in the CoAP protocol [RFC7252]:
    Confirmable Message, Content-Format, Endpoint.
@@ -218,20 +210,21 @@ Internet-Draft                    CoMI                          May 2019
 
    single instance identifier:  Handle used to identify a specific data
       node which can be instantiated only once.  This includes data
-
-
-
-Veillette, et al.       Expires November 15, 2019               [Page 4]
-
-Internet-Draft                    CoMI                          May 2019
-
-
       nodes defined at the root of a YANG module and data nodes defined
       within a container.  This excludes data nodes defined within a
       list or any children of these data nodes.
 
    instance-identifier:  List instance identifier or single instance
       identifier.
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019               [Page 4]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    instance-value:  The value assigned to a schema node instance.
       Schema node values are serialized into the payload according to
@@ -274,20 +267,20 @@ Internet-Draft                    CoMI                          May 2019
    (1) YANG specification:  contains a set of named and versioned
       modules.
 
-
-
-
-Veillette, et al.       Expires November 15, 2019               [Page 5]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    (2) SMIv2 specification:  A named module specifies a set of variables
       and "conceptual tables".  There is an algorithm to translate SMIv2
       specifications to YANG specifications.
 
    (3) CoAP request/response messages:  The CoMI client sends request
       messages to and receives response messages from the CoMI server.
+
+
+
+
+Veillette, et al.       Expires November 16, 2019               [Page 5]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    (4) Request, Indication, Response, Confirm:  Processes performed by
       the CoMI clients and servers.
@@ -304,7 +297,7 @@ Internet-Draft                    CoMI                          May 2019
 
    (7) Security:  The server MUST prevent unauthorized users from
       reading or writing any CoMI resources.  CoMI relies on security
-      protocols such as DTLS [RFC6347] to secure CoAP communication.
+      protocols such as DTLS [RFC6347] to secure CoAP communications.
 
 2.1.  Major differences between RESTCONF and CoMI
 
@@ -326,17 +319,7 @@ Internet-Draft                    CoMI                          May 2019
       method GET with the "fields" Query parameter.
 
    o  RESTCONF uses the HTTP methods HEAD, and OPTIONS, which are not
-      used by CoAP.
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019               [Page 6]
-
-Internet-Draft                    CoMI                          May 2019
-
+      supported by CoAP.
 
    o  CoMI does not support "insert" query parameter (first, last,
       before, after) and the "point" query parameter which are supported
@@ -347,6 +330,13 @@ Internet-Draft                    CoMI                          May 2019
 
    o  CoMI does not support the "filter" query parameters to observe a
       specific set of notifications.
+
+
+
+Veillette, et al.       Expires November 16, 2019               [Page 6]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    o  CoMI also differ in the handling of default values, only 'report-
       all' and 'trip' options are supported.
@@ -379,21 +369,6 @@ Internet-Draft                    CoMI                          May 2019
 
    For example, SID 1721 is encoded as follow.
 
-
-
-
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019               [Page 7]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    URLsafeChar[1721 >> 60 & 0x3F] = URLsafeChar[0] = 'A'
    URLsafeChar[1721 >> 54 & 0x3F] = URLsafeChar[0] = 'A'
    URLsafeChar[1721 >> 48 & 0x3F] = URLsafeChar[0] = 'A'
@@ -407,6 +382,17 @@ Internet-Draft                    CoMI                          May 2019
    URLsafeChar[1721 & 0x3F]       = URLsafeChar[57] = '5'
 
    The resulting base64 representation of SID 1721 is "a5"
+
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019               [Page 7]
+
+Internet-Draft                    CoMI                          May 2019
+
 
 2.3.  Instance identifier
 
@@ -441,15 +427,6 @@ Internet-Draft                    CoMI                          May 2019
       assigned to the data nodes, CBOR map values are set to the
       instance value as defined in [I-D.ietf-core-yang-cbor] section 4.
 
-
-
-
-
-Veillette, et al.       Expires November 15, 2019               [Page 8]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    application/yang-identifiers+cbor:  This Content-Format represents a
       CBOR YANG document containing a list of instance identifier used
       to target specific data node instances within a datastore.
@@ -466,15 +443,22 @@ Internet-Draft                    CoMI                          May 2019
       data node instance is identified by its associated instance
       identifier.
 
+
+
+Veillette, et al.       Expires November 16, 2019               [Page 8]
+
+Internet-Draft                    CoMI                          May 2019
+
+
       FORMAT: CBOR array of CBOR map of instance-identifier, instance-
       value
 
       The message payload of Content-Format 'application/yang-
       instances+cbor' is encoded using a CBOR array.  Each entry within
-      this CBOR array contains a CBOR map carrying a single instance
-      identifier and associated value.  Instance identifiers are encoded
-      using the rules defined in [I-D.ietf-core-yang-cbor] section
-      6.13.1, values are encoded using the rules defined in
+      this CBOR array contains a CBOR map carrying an instance
+      identifier and associated instance value.  Instance identifiers
+      are encoded using the rules defined in [I-D.ietf-core-yang-cbor]
+      section 6.13.1, values are encoded using the rules defined in
       [I-D.ietf-core-yang-cbor] section 4.
 
       When present in an iPATCH request payload, this Content-Format
@@ -487,7 +471,7 @@ Internet-Draft                    CoMI                          May 2019
       instance with the same instance identifier as D, a new instance is
       created with the same instance identifier and value as D.
 
-   The different Content-formats usage are summarized in the table
+   The different Content-format usages are summarized in the table
    below:
 
 
@@ -501,7 +485,23 @@ Internet-Draft                    CoMI                          May 2019
 
 
 
-Veillette, et al.       Expires November 15, 2019               [Page 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019               [Page 9]
 
 Internet-Draft                    CoMI                          May 2019
 
@@ -540,11 +540,11 @@ Internet-Draft                    CoMI                          May 2019
 
 2.5.  Unified datastore
 
-   CoMI supports a simple datastore model consisting of on a single
-   unified datastore.  This datasore provides access to both
-   configuration and operational data.  Configuration updates performed
-   on this datastore are reflected immediately or with a minimal delay
-   as operational data.
+   CoMI supports a simple datastore model consisting of a single unified
+   datastore.  This datasore provides access to both configuration and
+   operational data.  Configuration updates performed on this datastore
+   are reflected immediately or with a minimal delay as operational
+   data.
 
    Alternatively, CoMI servers MAY implement a more complex datastore
    model such as the Network Management Datastore Architecture (NMDA) as
@@ -557,7 +557,7 @@ Internet-Draft                    CoMI                          May 2019
 
 
 
-Veillette, et al.       Expires November 15, 2019              [Page 10]
+Veillette, et al.       Expires November 16, 2019              [Page 10]
 
 Internet-Draft                    CoMI                          May 2019
 
@@ -577,17 +577,12 @@ Internet-Draft                    CoMI                          May 2019
    | How applied | changes applied in place immediately or with a      |
    |             | minimal delay                                       |
    |             |                                                     |
-   | Protocols   | CoMI                                                |
+   | Protocols   | CORECONF                                            |
    |             |                                                     |
    | Defined in  | "ietf-comi"                                         |
    +-------------+-----------------------------------------------------+
 
 3.  Example syntax
-
-   This section presents the notation used for the examples.  The YANG
-   modules that are used throughout this document are shown in
-   Appendix C.  The example modules are copied from existing modules and
-   annotated with SIDs.
 
    CBOR is used to encode CoMI request and response payloads.  The CBOR
    syntax of the YANG payloads is specified in [RFC7049].  The payload
@@ -603,27 +598,25 @@ Internet-Draft                    CoMI                          May 2019
    implement the CoMI management protocol, support at least one
    discoverable management resource of resource type (rt): core.c.ds,
    with example path: /c, where c is short-hand for CoMI.  The path /c
-   is recommended, but not compulsory (see Section 7).
+   is recommended, but not compulsory (see Section 6).
 
    The mapping of YANG data node instances to CoMI resources is as
    follows.  Every data node of the YANG modules loaded in the CoMI
    server represents a sub-resource of the datastore resource (e.g. /c/
    sid).  When multiple instances of a list exist, instance selection is
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 11]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    possible as described in Section 4.1, Section 4.2.3.1, and
    Section 4.2.4.
 
    CoMI also supports event stream resourced used to observe
    notification instances.  Event stream resources can be discovered
    using resource type (rt): core.c.ev.
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 11]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    The description of the CoMI management interface is shown in the
    table below:
@@ -667,18 +660,19 @@ Internet-Draft                    CoMI                          May 2019
    There is one Uri-Query option for the GET, PUT, POST, and DELETE
    methods.
 
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 12]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    +------------------+----------------------------------------+
    | Uri-Query option | Description                            |
    +------------------+----------------------------------------+
    | k                | Select an instance within YANG list(s) |
    +------------------+----------------------------------------+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 12]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    This parameter is not used for FETCH and iPATCH, because their
    request payloads support list instance selection.
@@ -686,7 +680,7 @@ Internet-Draft                    CoMI                          May 2019
 4.1.  Using the 'k' Uri-Query option
 
    The "k" (key) parameter specifies a specific instance of a data node.
-   The SID in the URI is followed by the (?k=key1, key2,..).  Where SID
+   The SID in the URI is followed by the (?k=key1,key2,...).  Where SID
    identifies a data node, and key1, key2 are the values of the key
    leaves that specify an instance.  Lists can have multiple keys, and
    lists can be part of lists.  The order of key value generation is
@@ -700,35 +694,6 @@ Internet-Draft                    CoMI                          May 2019
 
    Key values are encoded using the rules defined in the following
    table.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 13]
-
-Internet-Draft                    CoMI                          May 2019
-
 
    +-----------------------------+--------------------------------+
    | YANG datatype               | Uri-Query text content         |
@@ -758,6 +723,13 @@ Internet-Draft                    CoMI                          May 2019
 
    In this table:
 
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 13]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    o  The method int2str() is used to convert an integer value to a
       string.  For example, int2str(0x0123) return the string "291".
 
@@ -778,19 +750,6 @@ Internet-Draft                    CoMI                          May 2019
    is mapped to the GET method defined in section 5.8.1 of [RFC7252] and
    to the FETCH method defined in section 2 of [RFC8132].
 
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 14]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-   It is possible that the size of the payload is too large to fit in a
-   single message.  In the case that management data is bigger than the
-   maximum supported payload size, the Block mechanism from [RFC7959]
-   may be used, as explained in more detail in Section 6.
-
    There are two additional Uri-Query options for the GET and FETCH
    methods.
 
@@ -806,10 +765,26 @@ Internet-Draft                    CoMI                          May 2019
 
 4.2.1.  Using the 'c' Uri-Query option
 
-   The 'c' (content) parameter controls how descendant nodes of the
+   The 'c' (content) option controls how descendant nodes of the
    requested data nodes will be processed in the reply.
 
    The allowed values are:
+
+
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 14]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    +-------+-----------------------------------------------------+
    | Value | Description                                         |
@@ -821,7 +796,7 @@ Internet-Draft                    CoMI                          May 2019
    | a     | Return all descendant data nodes                    |
    +-------+-----------------------------------------------------+
 
-   This parameter is only allowed for GET and FETCH methods on datastore
+   This option is only allowed for GET and FETCH methods on datastore
    and data node resources.  A 4.02 (Bad Option) error is returned if
    used for other methods or resource types.
 
@@ -829,18 +804,10 @@ Internet-Draft                    CoMI                          May 2019
 
 4.2.2.  Using the 'd' Uri-Query option
 
-   The "d" (with-defaults) parameter controls how the default values of
-   the descendant nodes of the requested data nodes will be processed.
+   The "d" (with-defaults) option controls how the default values of the
+   descendant nodes of the requested data nodes will be processed.
 
    The allowed values are:
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 15]
-
-Internet-Draft                    CoMI                          May 2019
-
 
    +-------+-----------------------------------------------------------+
    | Value | Description                                               |
@@ -867,6 +834,14 @@ Internet-Draft                    CoMI                          May 2019
 
    If this Uri-Query option is not present, the default value is 't'.
 
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 15]
+
+Internet-Draft                    CoMI                          May 2019
+
+
 4.2.3.  GET
 
    A request to read the values of a data node instance is sent with a
@@ -884,22 +859,14 @@ Internet-Draft                    CoMI                          May 2019
 
 4.2.3.1.  GET Examples
 
-   Using for example the current-datetime leaf from Appendix C.1, a
-   request is sent to retrieve the value of 'system-state/clock/current-
-   datetime' specified in container system-state.  The SID of 'system-
-   state/clock/current-datetime' is 1723, encoded in base64 according to
-   Section 2.2, yields a7.  The response to the request returns the CBOR
-   map with the key set to the SID of the requested data node (i.e.
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 16]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-   1723) and the value encoded using a 'text string' as defined in
-   [I-D.ietf-core-yang-cbor] section 6.4.
+   Using for example the current-datetime leaf from module ietf-system
+   [RFC7317], a request is sent to retrieve the value of 'system-
+   state/clock/current-datetime' specified in container system-state.
+   The SID of 'system-state/clock/current-datetime' is 1723, encoded in
+   base64 according to Section 2.2, yields a7.  The response to the
+   request returns the CBOR map with the key set to the SID of the
+   requested data node (i.e. 1723) and the value encoded using a 'text
+   string' as defined in [I-D.ietf-core-yang-cbor] section 6.4.
 
    REQ: GET example.com/c/a7
 
@@ -924,35 +891,17 @@ Internet-Draft                    CoMI                          May 2019
      }
    }
 
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 16]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    This example shows the retrieval of the /interfaces/interface YANG
    list accessed using SID 1533 (base64: X9).  The return payload is
    encoded using a CBOR array as specified by [I-D.ietf-core-yang-cbor]
    section 4.4.1 containing 2 instances.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 17]
-
-Internet-Draft                    CoMI                          May 2019
-
 
    REQ: GET example.com/c/X9
 
@@ -997,18 +946,19 @@ Internet-Draft                    CoMI                          May 2019
      ]
    }
 
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 17]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    It is equally possible to select a leaf of a specific instance of a
    list.  The example below requests the description leaf (SID=1534,
    base64: X-) within the interface list corresponding to the interface
    name "eth0".  The returned value is encoded in CBOR based on the
-   rules specified by [I-D.ietf-core-yang-cbor] section 5.4.
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 18]
-
-Internet-Draft                    CoMI                          May 2019
-
+   rules specified by [I-D.ietf-core-yang-cbor] section 6.4.
 
    REQ: GET example.com/c/X-?k="eth0"
 
@@ -1042,9 +992,10 @@ Internet-Draft                    CoMI                          May 2019
 
 4.2.4.1.  FETCH examples
 
-   This example uses the current-datetime leaf and the interface list
-   from Appendix C.1.  In this example the value of current-datetime
-   (SID 1723) and the interface list (SID 1533) instance identified with
+   This example uses the current-datetime leaf from module ietf-system
+   [RFC7317] and the interface list from module ietf-interfaces
+   [RFC7223].  In this example the value of current-datetime (SID 1723)
+   and the interface list (SID 1533) instance identified with
    name="eth0" are queried.
 
 
@@ -1054,14 +1005,7 @@ Internet-Draft                    CoMI                          May 2019
 
 
 
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 19]
+Veillette, et al.       Expires November 16, 2019              [Page 18]
 
 Internet-Draft                    CoMI                          May 2019
 
@@ -1117,7 +1061,7 @@ Internet-Draft                    CoMI                          May 2019
 
 
 
-Veillette, et al.       Expires November 15, 2019              [Page 20]
+Veillette, et al.       Expires November 16, 2019              [Page 19]
 
 Internet-Draft                    CoMI                          May 2019
 
@@ -1134,8 +1078,9 @@ Internet-Draft                    CoMI                          May 2019
 
 4.3.2.1.  Post example
 
-   The example uses the interface list from Appendix C.1.  Example is
-   creating a new list instance within the interface list (SID = 1533):
+   The example uses the interface list from module ietf-interfaces
+   [RFC7223].  This example creates a new list instance within the
+   interface list (SID = 1533):
 
    REQ: POST /c/X9 (Content-Format: application/yang-data+cbor)
    {
@@ -1165,18 +1110,23 @@ Internet-Draft                    CoMI                          May 2019
 
      2.01 Created
 
-4.3.3.1.  PUT example
-
-   The example uses the interface list from Appendix C.1.  Example is
-   renewing an instance of the list interface (SID = 1533) with key
-   name="eth0":
 
 
 
-Veillette, et al.       Expires November 15, 2019              [Page 21]
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 20]
 
 Internet-Draft                    CoMI                          May 2019
 
+
+4.3.3.1.  PUT example
+
+   The example uses the interface list from module ietf-interfaces
+   [RFC7223].  Example updates the instance of the list interface (SID =
+   1533) with key name="eth0":
 
    REQ: PUT /c/X9?k="eth0" (Content-Format: application/yang-data+cbor)
    {
@@ -1196,8 +1146,7 @@ Internet-Draft                    CoMI                          May 2019
 4.3.4.  iPATCH
 
    One or multiple data node instances are replaced with the idempotent
-   iPATCH method [RFC8132].  A request is sent with a CoAP iPATCH
-   message.
+   CoAP iPATCH method [RFC8132].
 
    There are no Uri-Query options for the iPATCH method.
 
@@ -1221,18 +1170,19 @@ Internet-Draft                    CoMI                          May 2019
 
    o  Set "/system/ntp/enabled" (SID 1755) to true.
 
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 21]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    o  Remove the server "tac.nrc.ca" from the"/system/ntp/server" (SID
       1756) list.
 
    o  Add/set the server "NTP Pool server 2" to the list "/system/ntp/
       server" (SID 1756).
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 22]
-
-Internet-Draft                    CoMI                          May 2019
-
 
    REQ: iPATCH /c (Content-Format: application/yang-instances+cbor)
    [
@@ -1266,29 +1216,28 @@ Internet-Draft                    CoMI                          May 2019
 
 4.3.5.1.  DELETE example
 
-   This example uses the interface list from Appendix C.3.  This example
-   is deleting an instance of the interface list (SID = 1533):
+   This example uses the interface list from module ietf-interfaces
+   [RFC7223].  This example deletes an instance of the interface list
+   (SID = 1533):
 
    REQ:   DELETE /c/X9?k="eth0"
 
    RES:   2.02 Deleted
 
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 22]
+
+Internet-Draft                    CoMI                          May 2019
+
+
 4.4.  Full datastore access
 
    The methods GET, PUT, POST, and DELETE can be used to request,
    replace, create, and delete a whole datastore respectively.
-
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 23]
-
-Internet-Draft                    CoMI                          May 2019
-
 
    FORMAT:
      GET /c
@@ -1319,12 +1268,13 @@ Internet-Draft                    CoMI                          May 2019
 
 4.4.1.  Full datastore examples
 
-   The example uses the interface list and the clock container from
-   Appendix C.3.  Assume that the datastore contains two modules ietf-
-   system (SID 1700) and ietf-interfaces (SID 1500); they contain the
-   'interface' list (SID 1533) with one instance and the 'clock'
-   container (SID 1721).  After invocation of GET, a CBOR map with data
-   nodes from these two modules is returned:
+   The example uses the interface list from module ietf-interfaces
+   [RFC7223] and the clock container from module ietf-system [RFC7317].
+   We assume that the datastore contains two modules ietf-system (SID
+   1700) and ietf-interfaces (SID 1500); they contain the 'interface'
+   list (SID 1533) with one instance and the 'clock' container (SID
+   1721).  After invocation of GET, a CBOR map with data nodes from
+   these two modules is returned:
 
 
 
@@ -1335,13 +1285,7 @@ Internet-Draft                    CoMI                          May 2019
 
 
 
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 24]
+Veillette, et al.       Expires November 16, 2019              [Page 23]
 
 Internet-Draft                    CoMI                          May 2019
 
@@ -1379,7 +1323,7 @@ Internet-Draft                    CoMI                          May 2019
    resource when the default stream is selected.
 
    Each response payload carries one or multiple notifications.  The
-   number of notification reported and the conditions used to remove
+   number of notifications reported, and the conditions used to remove
    notifications from the reported list is left to implementers.  When
    multiple notifications are reported, they MUST be ordered starting
    from the newest notification at index zero.
@@ -1397,7 +1341,7 @@ Internet-Draft                    CoMI                          May 2019
 
 
 
-Veillette, et al.       Expires November 15, 2019              [Page 25]
+Veillette, et al.       Expires November 16, 2019              [Page 24]
 
 Internet-Draft                    CoMI                          May 2019
 
@@ -1416,9 +1360,47 @@ Internet-Draft                    CoMI                          May 2019
 
 4.5.1.  Notify Examples
 
-   Suppose the server generates the event specified in Appendix C.4.  By
-   executing a GET on the /s resource the client receives the following
-   response:
+   Let suppose the server generates the example-port-fault event as
+   defined below.
+
+   module example-port {
+     ...
+     notification example-port-fault {   // SID 60010
+       description
+         "Event generated if a hardware fault is detected";
+       leaf port-name {                  // SID 60011
+         type string;
+       }
+       leaf port-fault {                 // SID 60012
+         type string;
+       }
+     }
+   }
+
+   By executing a GET on the /s resource the client receives the
+   following response:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 25]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    REQ:  GET /s Observe(0) Token(0x93)
 
@@ -1448,12 +1430,30 @@ Internet-Draft                    CoMI                          May 2019
    the notification from the server, the server will remove the client
    from the list of observers [RFC7641].
 
+4.5.2.  The 'f' Uri-Query option
+
+   The 'f' (filter) option is used to indicate which subset of all
+   possible notifications is of interest.  If not present, all events
+   notifications supported by the event stream are reported.
+
+   When not supported by a CoMI server, this option shall be ignored,
+   all events notifications are reported independently of the presence
+   and content of the 'f' (filter) option.
+
+   When present, this option contains a comma separated list of
+   notification SIDs.  For example, the following request returns
+   notifications 60010 and 60020.
+
+   REQ:  GET /s?f=60010,60020 Observe(0) Token(0x241)
 
 
 
 
 
-Veillette, et al.       Expires November 15, 2019              [Page 26]
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 26]
 
 Internet-Draft                    CoMI                          May 2019
 
@@ -1483,10 +1483,70 @@ Internet-Draft                    CoMI                          May 2019
 
 4.6.1.  RPC Example
 
-   The example is based on the YANG action specification of
-   Appendix C.2.  A server list is specified and the action "reset" (SID
-   60002, base64: Opq), that is part of a "server instance" with key
-   value "myserver", is invoked.
+   The example is based on the YANG action reset as defined in [RFC7950]
+   section 7.15.3 and annotated below with SIDs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 27]
+
+Internet-Draft                    CoMI                          May 2019
+
+
+   module example-server-farm {
+     yang-version 1.1;
+     namespace "urn:example:server-farm";
+     prefix "sfarm";
+
+     import ietf-yang-types {
+       prefix "yang";
+     }
+
+     list server {                        // SID 60000
+       key name;
+       leaf name {                        // SID 60001
+         type string;
+       }
+       action reset {                     // SID 60002
+         input {
+           leaf reset-at {                // SID 60003
+             type yang:date-and-time;
+             mandatory true;
+            }
+          }
+          output {
+            leaf reset-finished-at {      // SID 60004
+              type yang:date-and-time;
+              mandatory true;
+            }
+          }
+        }
+      }
+    }
+
+   This example invokes the 'reset' action (SID 60002, base64: Opq), of
+   the server instance with name equal to "myserver".
 
    REQ:  POST /c/Opq?k="myserver"
                  (Content-Format :application/yang-data+cbor)
@@ -1505,50 +1565,12 @@ Internet-Draft                    CoMI                          May 2019
 
 
 
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 27]
+Veillette, et al.       Expires November 16, 2019              [Page 28]
 
 Internet-Draft                    CoMI                          May 2019
 
 
-5.  Access to MIB Data
-
-   Appendix C.5 shows a YANG module mapped from the SMI specification
-   "IP-MIB" [RFC4293].  The following example shows the
-   "ipNetToPhysicalEntry" list with 2 instances.
-
-   REQ: GET example.com/c/Oz1
-
-   RES: 2.05 Content (Content-Format: application/yang-data+cbor)
-   {
-     60021 : [             / ipNetToPhysicalEntry /
-       {
-         +1 : 1,           / ipNetToPhysicalIfIndex (SID 60022) /
-         +2 : 1,           / ipNetToPhysicalNetAddressType (SID 60023) /
-         +3 : h'0A000033', / ipNetToPhysicalNetAddress (SID 60024) /
-         +4 : h'00000A01172D',/ ipNetToPhysicalPhysAddress (SID 60025) /
-         +5 : 2333943,     / ipNetToPhysicalLastUpdated (SID 60026) /
-         +6 : 4,           / ipNetToPhysicalType (SID 60027) /
-         +7 : 1,           / ipNetToPhysicalState (SID 60028) /
-         +8 : 1            / ipNetToPhysicalRowStatus (SID 60029) /
-       },
-       {
-         +1 : 1,           / ipNetToPhysicalIfIndex (SID 60022) /
-         +2 : 1,           / ipNetToPhysicalNetAddressType (SID 60023) /
-         +3 : h'09020304', / ipNetToPhysicalNetAddress  (SID 60024) /
-         +4 : h'00000A36200A',/ ipNetToPhysicalPhysAddress (SID 60025) /
-         +5 : 2329836,     / ipNetToPhysicalLastUpdated (SID 60026) /
-         +6 : 3,           / ipNetToPhysicalType (SID 60027) /
-         +7 : 6,           / ipNetToPhysicalState (SID 60028) /
-         +8 : 1            / ipNetToPhysicalRowStatus (SID 60029) /
-       }
-     ]
-   }
-
-6.  Use of Block
+5.  Use of Block
 
    The CoAP protocol provides reliability by acknowledging the UDP
    datagrams.  However, when large pieces of data need to be
@@ -1562,14 +1584,6 @@ Internet-Draft                    CoMI                          May 2019
 
    Notice that the Block mechanism splits the data at fixed positions,
    such that individual data fields may become fragmented.  Therefore,
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 28]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    assembly of multiple blocks may be required to process the complete
    data field.
 
@@ -1584,14 +1598,14 @@ Internet-Draft                    CoMI                          May 2019
    actual number of items.  It may be advisable to use Indefinite-length
    CBOR arrays and maps, which are foreseen for data streaming purposes.
 
-7.  Application Discovery
+6.  Application Discovery
 
    Two application discovery mechanisms are supported by CoMI, the YANG
    library data model as defined by [I-D.veillette-core-yang-library]
    and the CORE resource discovery [RFC6690].  Implementers may choose
    to implement one or the other or both.
 
-7.1.  YANG library
+6.1.  YANG library
 
    The YANG library data model [I-D.veillette-core-yang-library]
    provides a high level description of the resources available.  The
@@ -1603,6 +1617,15 @@ Internet-Draft                    CoMI                          May 2019
 
    The location of the YANG library can be found by sending a GET
    request to "/.well-known/core" including a resource type (RT)
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 29]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    parameter with the value "core.c.yl".  Upon success, the return
    payload will contain the root resource of the YANG library module.
 
@@ -1611,22 +1634,14 @@ Internet-Draft                    CoMI                          May 2019
    RES: 2.05 Content (Content-Format: application/link-format)
    </c/kv >;rt="core.c.yl"
 
-7.2.  Resource Discovery
+6.2.  Resource Discovery
 
    Even if the YANG library provides all the information needed for
    application discovery, the implementation of Resource discovery as
    defined by [RFC6690] can be desirable for a seamless integration with
    other CoAP interfaces and services.
 
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 29]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-7.2.1.  Datastore Resource Discovery
+6.2.1.  Datastore Resource Discovery
 
    The presence and location of (path to) each datastore implemented by
    the CoMI server can be discovered by sending a GET request to
@@ -1653,12 +1668,19 @@ Internet-Draft                    CoMI                          May 2019
    RES: 2.05 Content (Content-Format: application/link-format)
    </c>; rt="core.c.ds";ds= 1029
 
-7.2.2.  Data node Resource Discovery
+6.2.2.  Data node Resource Discovery
 
    The presence and location of (path to) each data node implemented by
    the CoMI server are discovered by sending a GET request to "/.well-
    known/core" including a resource type (RT) parameter with the value
    "core.c.dn".
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 30]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    Upon success, the return payload contains the SID assigned to each
    data node and their location.
@@ -1674,19 +1696,11 @@ Internet-Draft                    CoMI                          May 2019
    </c/a6>;rt="core.c.dn",
    </c/a7>;rt="core.c.dn"
 
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 30]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    The list of data nodes may become prohibitively long.
    Implementations MAY return a subset of this list or can rely solely
    on the YANG library.
 
-7.2.3.  Event stream Resource Discovery
+6.2.3.  Event stream Resource Discovery
 
    The presence and location of (path to) each event stream implemented
    by the CoMI server are discovered by sending a GET request to
@@ -1703,7 +1717,7 @@ Internet-Draft                    CoMI                          May 2019
    RES: 2.05 Content (Content-Format: application/link-format)
    </s>;rt="core.c.es"
 
-8.  Error Handling
+7.  Error Handling
 
    In case a request is received which cannot be processed properly, the
    CoMI server MUST return an error message.  This error message MUST
@@ -1713,6 +1727,16 @@ Internet-Draft                    CoMI                          May 2019
    those associated to the CoAP protocol itself and those generated
    during the validation of the YANG data model constrains as described
    in [RFC7950] section 8.
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 31]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    The following list of common CoAP errors should be implemented by
    CoMI servers.  This list is not exhaustive, other errors defined by
@@ -1729,14 +1753,6 @@ Internet-Draft                    CoMI                          May 2019
    o  Error 4.04 (Not Found) is returned by the CoMI server when the
       CoMI client is requesting a non-instantiated resource (i.e. data
       node, datastore, rpc, action or event stream).
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 31]
-
-Internet-Draft                    CoMI                          May 2019
-
 
    o  Error 4.05 (Method Not Allowed) is returned by the CoMI server
       when the CoMI client is requesting a method not supported on the
@@ -1770,6 +1786,14 @@ Internet-Draft                    CoMI                          May 2019
       +--rw error-data-node?      instance-identifier
       +--rw error-message?        string
 
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 32]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    The following 'error-tag' and 'error-app-tag' are defined by the
    ietf-comi YANG module, these tags are implemented as YANG identity
    and can be extended as needed.
@@ -1786,13 +1810,6 @@ Internet-Draft                    CoMI                          May 2019
       *  error-app-tag 'data-not-unique' is returned by the CoMI server
          when the validation of the 'unique' constraint of a list or
          leaf-list fails.
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 32]
-
-Internet-Draft                    CoMI                          May 2019
-
 
       *  error-app-tag 'too-many-elements' is returned by the CoMI
          server when the validation of the 'max-elements' constraint of
@@ -1825,6 +1842,14 @@ Internet-Draft                    CoMI                          May 2019
       *  error-app-tag 'invalid-length' is returned by the CoMI server
          when the validation of the 'length' property fails.
 
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 33]
+
+Internet-Draft                    CoMI                          May 2019
+
+
       *  error-app-tag 'pattern-test-failed' is returned by the CoMI
          server when the validation of the 'pattern' property fails.
 
@@ -1836,19 +1861,10 @@ Internet-Draft                    CoMI                          May 2019
       evaluates to 'false'.
 
       *  error-app-tag 'missing-key' is returned by the CoMI server to
-         further qualify an missing-element error.  This error is
+         further qualify a missing-element error.  This error is
          returned when the CoMI client tries to create or list instance,
          without all the 'key' specified or when the CoMI client tries
          to delete a leaf listed as a 'key'.
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 33]
-
-Internet-Draft                    CoMI                          May 2019
-
 
       *  error-app-tag 'missing-input-parameter' is returned by the CoMI
          server when the input parameters of an RPC or action are
@@ -1880,6 +1896,16 @@ Internet-Draft                    CoMI                          May 2019
 
    For example, the CoMI server might return the following error.
 
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 34]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    RES:  4.00 Bad Request (Content-Format :application/yang-data+cbor)
    {
      1024 : {
@@ -1893,19 +1919,11 @@ Internet-Draft                    CoMI                          May 2019
      }
    }
 
-9.  Security Considerations
+8.  Security Considerations
 
    For secure network management, it is important to restrict access to
    configuration variables only to authorized parties.  CoMI re-uses the
    security mechanisms already available to CoAP, this includes DTLS
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 34]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    [RFC6347] for protected access to resources, as well suitable
    authentication and authorization mechanisms.
 
@@ -1922,13 +1940,27 @@ Internet-Draft                    CoMI                          May 2019
    However, some adaptations may still be required, to cater for CoMI's
    specific requirements.
 
-10.  IANA Considerations
+9.  IANA Considerations
 
-10.1.  Resource Type (rt=) Link Target Attribute Values Registry
+9.1.  Resource Type (rt=) Link Target Attribute Values Registry
 
    This document adds the following resource type to the "Resource Type
    (rt=) Link Target Attribute Values", within the "Constrained RESTful
    Environments (CoRE) Parameters" registry.
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 35]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    +-----------+---------------------+-----------+
    | Value     | Description         | Reference |
@@ -1945,22 +1977,11 @@ Internet-Draft                    CoMI                          May 2019
    // RFC Ed.: replace RFC XXXX with this RFC number and remove this
    note.
 
-10.2.  CoAP Content-Formats Registry
+9.2.  CoAP Content-Formats Registry
 
    This document adds the following Content-Format to the "CoAP Content-
    Formats", within the "Constrained RESTful Environments (CoRE)
    Parameters" registry.
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 35]
-
-Internet-Draft                    CoMI                          May 2019
-
 
    +-----------------------------------+-------------+-----------+
    | Media Type                        | Encoding ID | Reference |
@@ -1975,10 +1996,27 @@ Internet-Draft                    CoMI                          May 2019
    // RFC Ed.: replace XXX with assigned IDs and remove this note.  //
    RFC Ed.: replace RFC XXXX with this RFC number and remove this note.
 
-10.3.  Media Types Registry
+9.3.  Media Types Registry
 
    This document adds the following media types to the "Media Types"
    registry.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 36]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    +-----------------------+----------------------------+-----------+
    | Name                  | Template                   | Reference |
@@ -2011,13 +2049,6 @@ Internet-Draft                    CoMI                          May 2019
 
    o  Published specification: RFC XXXX
 
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 36]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    o  Applications that use this media type: CoMI
 
    o  Fragment identifier considerations: N/A
@@ -2035,6 +2066,14 @@ Internet-Draft                    CoMI                          May 2019
    o  Person & email address to contact for further information:
       iesg&ietf.org
 
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 37]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    o  Intended usage: COMMON
 
    o  Restrictions on usage: N/A
@@ -2048,11 +2087,10 @@ Internet-Draft                    CoMI                          May 2019
    // RFC Ed.: replace RFC XXXX with this RFC number and remove this
    note.
 
-11.  Acknowledgements
+10.  Acknowledgements
 
    We are very grateful to Bert Greevenbosch who was one of the original
-   authors of the CoMI specification and specified CBOR encoding and use
-   of hashes.
+   authors of the CoMI specification.
 
    Mehmet Ersue and Bert Wijnen explained the encoding aspects of PDUs
    transported under SNMP.  Carsten Bormann has given feedback on the
@@ -2063,20 +2101,9 @@ Internet-Draft                    CoMI                          May 2019
    Ropitault, Juergen Schoenwaelder, Anuj Sehgal, Zach Shelby, Hannes
    Tschofenig, Michael Verschoor, and Thomas Watteyne.
 
+11.  References
 
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 37]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-12.  References
-
-12.1.  Normative References
+11.1.  Normative References
 
    [I-D.ietf-core-sid]
               Veillette, M., Pelov, A., and I. Petrov, "YANG Schema Item
@@ -2092,6 +2119,16 @@ Internet-Draft                    CoMI                          May 2019
               Veillette, M. and I. Petrov, "Constrained YANG Module
               Library", draft-veillette-core-yang-library-04 (work in
               progress), March 2019.
+
+
+
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 38]
+
+Internet-Draft                    CoMI                          May 2019
+
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -2119,17 +2156,6 @@ Internet-Draft                    CoMI                          May 2019
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
 
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 38]
-
-Internet-Draft                    CoMI                          May 2019
-
-
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
               Application Protocol (CoAP)", RFC 7252,
               DOI 10.17487/RFC7252, June 2014,
@@ -2153,16 +2179,19 @@ Internet-Draft                    CoMI                          May 2019
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/info/rfc8040>.
 
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 39]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    [RFC8132]  van der Stok, P., Bormann, C., and A. Sehgal, "PATCH and
               FETCH Methods for the Constrained Application Protocol
               (CoAP)", RFC 8132, DOI 10.17487/RFC8132, April 2017,
               <https://www.rfc-editor.org/info/rfc8132>.
 
-12.2.  Informative References
-
-   [RFC4293]  Routhier, S., Ed., "Management Information Base for the
-              Internet Protocol (IP)", RFC 4293, DOI 10.17487/RFC4293,
-              April 2006, <https://www.rfc-editor.org/info/rfc4293>.
+11.2.  Informative References
 
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
@@ -2175,16 +2204,6 @@ Internet-Draft                    CoMI                          May 2019
    [RFC7223]  Bjorklund, M., "A YANG Data Model for Interface
               Management", RFC 7223, DOI 10.17487/RFC7223, May 2014,
               <https://www.rfc-editor.org/info/rfc7223>.
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 39]
-
-Internet-Draft                    CoMI                          May 2019
-
 
    [RFC7317]  Bierman, A. and M. Bjorklund, "A YANG Data Model for
               System Management", RFC 7317, DOI 10.17487/RFC7317, August
@@ -2211,10 +2230,17 @@ Appendix A.  ietf-comi YANG module
      import ietf-restconf {
        prefix rc;
        description
-         "This import statement is only present to access
+         "This import statement is required to access
           the yang-data extension defined in RFC 8040.";
        reference "RFC 8040: RESTCONF Protocol";
      }
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 40]
+
+Internet-Draft                    CoMI                          May 2019
+
 
      organization
        "IETF Core Working Group";
@@ -2234,31 +2260,9 @@ Appendix A.  ietf-comi YANG module
 
      description
        "This module contains the different definitions required
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 40]
-
-Internet-Draft                    CoMI                          May 2019
-
-
         by the CoMI protocol.";
 
      revision 2019-03-28 {
-       description
-         "typedef sid moved to ietf-sid-file.yang.";
-       reference
-         "[I-D.ietf-core-comi] CoAP Management Interface";
-     }
-
-     revision 2018-09-26 {
-       description
-         "Use of YANG data template for the error payload.
-          Definition of the unified datastore.";
-       reference
-         "[I-D.ietf-core-comi] CoAP Management Interface";
-     }
-     revision 2017-07-01 {
         description
          "Initial revision.";
        reference
@@ -2268,7 +2272,8 @@ Internet-Draft                    CoMI                          May 2019
      identity unified {
        base ds:datastore;
        description
-         "The unified configuration and operational state datastore.";
+         "Identifier of the unified configuration and operational
+          state datastore.";
      }
 
      identity error-tag {
@@ -2285,19 +2290,19 @@ Internet-Draft                    CoMI                          May 2019
 
      identity invalid-value {
        base error-tag;
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 41]
+
+Internet-Draft                    CoMI                          May 2019
+
+
        description
          "Returned by the CoMI server when the CoMI client tries to
           update or create a leaf with a value encoded using an
           invalid CBOR datatype or if the 'range', 'length',
           'pattern' or 'require-instance' constrain is not
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 41]
-
-Internet-Draft                    CoMI                          May 2019
-
-
           fulfilled.";
      }
 
@@ -2341,19 +2346,19 @@ Internet-Draft                    CoMI                          May 2019
        description
          "Returned by the CoMI server when an unspecified error has
          occurred.";
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 42]
+
+Internet-Draft                    CoMI                          May 2019
+
+
      }
 
      identity error-app-tag {
        description
          "Base identity for error-app-tag.";
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 42]
-
-Internet-Draft                    CoMI                          May 2019
-
-
      }
 
      identity malformed-message {
@@ -2397,19 +2402,19 @@ Internet-Draft                    CoMI                          May 2019
      identity duplicate {
        base error-app-tag;
        description
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 43]
+
+Internet-Draft                    CoMI                          May 2019
+
+
          "Returned by the CoMI server when a client tries to create
           a duplicate list or leaf-list entry.";
      }
 
      identity invalid-datatype {
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 43]
-
-Internet-Draft                    CoMI                          May 2019
-
-
        base error-app-tag;
        description
          "Returned by the CoMI server when CBOR encoding is
@@ -2453,19 +2458,19 @@ Internet-Draft                    CoMI                          May 2019
        base error-app-tag;
        description
          "Returned by the CoMI server when the input parameters
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 44]
+
+Internet-Draft                    CoMI                          May 2019
+
+
           of a RPC or action are incomplete.";
      }
 
      identity instance-required {
        base error-app-tag;
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 44]
-
-Internet-Draft                    CoMI                          May 2019
-
-
        description
          "Returned by the CoMI server when a leaf of type
           'instance-identifier' or 'leafref' marked with
@@ -2509,19 +2514,19 @@ Internet-Draft                    CoMI                          May 2019
               this leaf identifies the data node in error.";
          }
 
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 45]
+
+Internet-Draft                    CoMI                          May 2019
+
+
          leaf error-message {
            type string;
            description
              "A message describing the error.";
          }
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 45]
-
-Internet-Draft                    CoMI                          May 2019
-
-
        }
      }
    }
@@ -2537,7 +2542,7 @@ Appendix B.  ietf-comi .sid file
        }
      ],
      "module-name": "ietf-comi",
-     "module-revision": "2018-09-26",
+     "module-revision": "2019-03-28",
      "items": [
        {
          "namespace": "module",
@@ -2565,19 +2570,19 @@ Appendix B.  ietf-comi .sid file
          "sid": 1004
        },
        {
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 46]
+
+Internet-Draft                    CoMI                          May 2019
+
+
          "namespace": "identity",
          "identifier": "error",
          "sid": 1005
        },
        {
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 46]
-
-Internet-Draft                    CoMI                          May 2019
-
-
          "namespace": "identity",
          "identifier": "error-app-tag",
          "sid": 1006
@@ -2621,19 +2626,19 @@ Internet-Draft                    CoMI                          May 2019
          "namespace": "identity",
          "identifier": "missing-element",
          "sid": 1014
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 47]
+
+Internet-Draft                    CoMI                          May 2019
+
+
        },
        {
          "namespace": "identity",
          "identifier": "missing-input-parameter",
          "sid": 1015
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 47]
-
-Internet-Draft                    CoMI                          May 2019
-
-
        },
        {
          "namespace": "identity",
@@ -2677,19 +2682,19 @@ Internet-Draft                    CoMI                          May 2019
        },
        {
          "namespace": "identity",
+
+
+
+Veillette, et al.       Expires November 16, 2019              [Page 48]
+
+Internet-Draft                    CoMI                          May 2019
+
+
          "identifier": "unknown-element",
          "sid": 1023
        },
        {
          "namespace": "data",
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 48]
-
-Internet-Draft                    CoMI                          May 2019
-
-
          "identifier": "/ietf-comi:error",
          "sid": 1024
        },
@@ -2716,334 +2721,6 @@ Internet-Draft                    CoMI                          May 2019
      ]
    }
 
-Appendix C.  YANG example specifications
-
-   This appendix shows five YANG example specifications taken over from
-   as many existing YANG modules.  Each YANG item identifier is
-   accompanied by its SID shown after the "//" comment sign.
-
-C.1.  ietf-system
-
-   Excerpt of the YANG module ietf-system [RFC7317].
-
-   module ietf-system {                   // SID 1700
-     container system {                   // SID 1717
-       container clock {                  // SID 1738
-         choice timezone {
-           case timezone-name {
-             leaf timezone-name {         // SID 1739
-               type timezone-name;
-             }
-           }
-           case timezone-utc-offset {
-             leaf timezone-utc-offset {   // SID 1740
-               type int16 {
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 49]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-               }
-             }
-           }
-         }
-       }
-       container ntp {                    // SID 1754
-         leaf enabled {                   // SID 1755
-           type boolean;
-           default true;
-         }
-         list server {                    // SID 1756
-           key name;
-           leaf name {                    // SID 1759
-             type string;
-           }
-           choice transport {
-             case udp {
-               container udp {            // SID 1761
-                 leaf address {           // SID 1762
-                   type inet:host;
-                 }
-                 leaf port {              // SID 1763
-                   type inet:port-number;
-                 }
-               }
-             }
-           }
-           leaf association-type {        // SID 1757
-             type enumeration {
-               enum server {
-               }
-               enum peer {
-               }
-               enum pool {
-               }
-             }
-           }
-           leaf iburst {                  // SID 1758
-             type boolean;
-           }
-           leaf prefer {                  // SID 1760
-             type boolean;
-             default false;
-           }
-         }
-       }
-     container system-state {             // SID 1720
-       container clock {                  // SID 1721
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 50]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-         leaf current-datetime {          // SID 1723
-           type yang:date-and-time;
-         }
-         leaf boot-datetime {             // SID 1722
-           type yang:date-and-time;
-         }
-       }
-     }
-   }
-
-C.2.  server list
-
-   Taken over from [RFC7950] section 7.15.3.
-
-   module example-server-farm {
-     yang-version 1.1;
-     namespace "urn:example:server-farm";
-     prefix "sfarm";
-
-     import ietf-yang-types {
-       prefix "yang";
-     }
-
-     list server {                        // SID 60000
-       key name;
-       leaf name {                        // SID 60001
-         type string;
-       }
-       action reset {                     // SID 60002
-         input {
-           leaf reset-at {                // SID 60003
-             type yang:date-and-time;
-             mandatory true;
-            }
-          }
-          output {
-            leaf reset-finished-at {      // SID 60004
-              type yang:date-and-time;
-              mandatory true;
-            }
-          }
-        }
-      }
-   }
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 51]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-C.3.  interfaces
-
-   Excerpt of the YANG module ietf-interfaces [RFC7223].
-
-   module ietf-interfaces {               // SID 1500
-     container interfaces {               // SID 1505
-       list interface {                   // SID 1533
-         key "name";
-         leaf name {                      // SID 1537
-           type string;
-         }
-         leaf description {               // SID 1534
-           type string;
-         }
-         leaf type {                      // SID 1538
-           type identityref {
-             base interface-type;
-           }
-           mandatory true;
-         }
-
-         leaf enabled {                   // SID 1535
-           type boolean;
-           default "true";
-         }
-
-         leaf link-up-down-trap-enable {  // SID 1536
-           if-feature if-mib;
-           type enumeration {
-             enum enabled {
-               value 1;
-             }
-             enum disabled {
-               value 2;
-             }
-           }
-         }
-       }
-     }
-   }
-
-C.4.  Example-port
-
-   Notification example defined within this document.
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 52]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-   module example-port {
-           ...
-           notification example-port-fault {   // SID 60010
-             description
-               "Event generated if a hardware fault on a
-                line card port is detected";
-             leaf port-name {                  // SID 60011
-               type string;
-               description "Port name";
-             }
-             leaf port-fault {                 // SID 60012
-               type string;
-               description "Error condition detected";
-             }
-           }
-         }
-
-C.5.  IP-MIB
-
-   The YANG translation of the SMI specifying the IP-MIB [RFC4293],
-   extended with example SID numbers, yields:
-
-   module IP-MIB {
-     import IF-MIB {
-       prefix if-mib;
-     }
-     import INET-ADDRESS-MIB {
-       prefix inet-address;
-     }
-     import SNMPv2-TC {
-       prefix smiv2;
-     }
-     import ietf-inet-types {
-       prefix inet;
-     }
-     import yang-smi {
-       prefix smi;
-     }
-     import ietf-yang-types {
-       prefix yang;
-     }
-
-     container ip {                            // SID 60020
-       list ipNetToPhysicalEntry {             // SID 60021
-         key "ipNetToPhysicalIfIndex
-              ipNetToPhysicalNetAddressType
-              ipNetToPhysicalNetAddress";
-         leaf ipNetToPhysicalIfIndex {         // SID 60022
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 53]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-           type if-mib:InterfaceIndex;
-         }
-         leaf ipNetToPhysicalNetAddressType {  // SID 60023
-           type inet-address:InetAddressType;
-         }
-         leaf ipNetToPhysicalNetAddress {      // SID 60024
-           type inet-address:InetAddress;
-         }
-         leaf ipNetToPhysicalPhysAddress {     // SID 60025
-           type yang:phys-address {
-             length "0..65535";
-           }
-         }
-         leaf ipNetToPhysicalLastUpdated {     // SID 60026
-           type yang:timestamp;
-         }
-         leaf ipNetToPhysicalType {            // SID 60027
-           type enumeration {
-             enum "other" {
-               value 1;
-             }
-             enum "invalid" {
-               value 2;
-             }
-             enum "dynamic" {
-               value 3;
-             }
-             enum "static" {
-               value 4;
-             }
-             enum "local" {
-               value 5;
-             }
-           }
-         }
-         leaf ipNetToPhysicalState {           // SID 60028
-           type enumeration {
-             enum "reachable" {
-               value 1;
-             }
-             enum "stale" {
-               value 2;
-             }
-             enum "delay" {
-               value 3;
-             }
-             enum "probe" {
-               value 4;
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 54]
-
-Internet-Draft                    CoMI                          May 2019
-
-
-             }
-             enum "invalid" {
-               value 5;
-             }
-             enum "unknown" {
-               value 6;
-             }
-             enum "incomplete" {
-               value 7;
-             }
-           }
-         }
-         leaf ipNetToPhysicalRowStatus {       // SID 60029
-           type smiv2:RowStatus;
-       }  // list ipNetToPhysicalEntry
-     }  // container ip
-   }  // module IP-MIB
-
 Authors' Addresses
 
    Michel Veillette (editor)
@@ -3063,6 +2740,12 @@ Authors' Addresses
    URI:   www.vanderstok.org
 
 
+
+Veillette, et al.       Expires November 16, 2019              [Page 49]
+
+Internet-Draft                    CoMI                          May 2019
+
+
    Alexander Pelov
    Acklio
    2bis rue de la Chataigneraie
@@ -3070,16 +2753,6 @@ Authors' Addresses
    France
 
    Email: a@ackl.io
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 55]
-
-Internet-Draft                    CoMI                          May 2019
 
 
    Andy Bierman
@@ -3124,13 +2797,4 @@ Internet-Draft                    CoMI                          May 2019
 
 
 
-
-
-
-
-
-
-
-
-
-Veillette, et al.       Expires November 15, 2019              [Page 56]
+Veillette, et al.       Expires November 16, 2019              [Page 50]
